@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Company page";
+}
+
+<section id="companies">
+    <section id="titles_and_bgblue">
+        <div class="blueback"></div>
+        <div class="container">
+            <div class="row">
+                <div class="titles col-lg-12 col-md-12">
+                    <div class="two_side_bridge">
+                        <h3>Şirkətlər</h3>
+                        <ul>
+                            <li>
+                                <a asp-controller="">Əsas səhifə </a>
+                            </li>
+                            <li>
+                                <a asp-controller="company" asp-action="index">Şirkətlər</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="company_card col-md-4 col-lg-3">
+                        <div class="company_box">
+                            <a asp-controller="company" asp-action="detail" class="full">
+                                <div class="company_images">
+                                    <img src="https://www.hellojob.az/uploads/company/min/2023/05/03/645221e5c9ccc-UhBCjSBV40O_V_W.png"
+                                         alt="Kapital Bank" />
+                                </div>
+                                <p>Kapital Bank</p>
+                                <span>Vakansiya sayı <span>40</span> </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="company_card col-md-4 col-lg-3">
+                        <div class="company_box">
+                            <a href="./companydetail.html" class="full">
+                                <div class="company_images">
+                                    <img src="https://www.hellojob.az/uploads/company/min/2023/05/03/6140a01fbb1a9-R_o63qMnR_BeT_p.jpg"
+                                         alt="Pasha Bank" />
+                                </div>
+                                <p>Pasha Bank</p>
+                                <span>Vakansiya sayı <span>10</span> </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="company_card col-md-4 col-lg-3">
+                        <div class="company_box">
+                            <a href="" class="full">
+                                <div class="company_images">
+                                    <img src="https://www.hellojob.az/uploads/company/min/2023/05/03/6109511b552b4-8X-PcUZWa58l2-i.png" alt="Xalq Bank">
+                                </div>
+                                <p>Xalq Bank</p>
+                                <span>Vakansiya sayı <span>30</span> </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="company_card col-md-4 col-lg-3">
+                        <div class="company_box">
+                            <a href="" class="full">
+                                <div class="company_images">
+                                    <img src="https://www.hellojob.az/uploads/company/min/2023/05/03/645221e5c9ccc-UhBCjSBV40O_V_W.png"
+                                         alt="Kapital Bank" />
+                                </div>
+                                <p>Kapital Bank</p>
+                                <span>Vakansiya sayı <span>40</span> </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="company_card col-md-4 col-lg-3">
+                        <div class="company_box">
+                            <a href="" class="full">
+                                <div class="company_images">
+                                    <img src="https://www.hellojob.az/uploads/company/min/2023/05/03/645221e5c9ccc-UhBCjSBV40O_V_W.png"
+                                         alt="Kapital Bank" />
+                                </div>
+                                <p>Kapital Bank</p>
+                                <span>Vakansiya sayı <span>40</span> </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

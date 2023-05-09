@@ -1,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "Company Detail page";
+}
+
+<section id="titles_and_bgblue">
+    <div class="blueback"></div>
+    <div class="container">
+        <div class="row">
+            <div class="titles col-lg-12 col-md-12">
+                <ul>
+                    <li>
+                        <a asp-controller="home" asp-action="index">İş elanları</a>
+                    </li>
+                    <li>
+                        <a asp-controller="company" asp-action="index" >Şirkətlər</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="search_titles_bottom col-lg-12 col-md-12">
+                <div class="searchbar full">
+                    <div class="searchbar_top" style="display: flex">
+                        <form>
+                            <div class="input">
+                                <input type="text" placeholder="Məsələn, Dizayner" />
+                            </div>
+                            <button type="submit" class="search_btn">
+                                <span>Axtar</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="company_detail">
+    <div class="breadcrumbs-block">
+        <div class="container">
+            <ul class="breadcrumbs">
+                <li>
+                    <a asp-controller ="home" asp-action="index">Əsas səhifə</a>
+                </li>
+                <li>/</li>
+                <li>
+                    <a asp-controller="company" asp-action="index">Şirkətlər</a>
+                </li>
+                <li>/</li>
+                <li>
+                    <a asp-controller="company" asp-action="detail">Kapital Bank</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <h3 class="infos">KAPİTAL BANK İŞ ELANLARI</h3>
+
+        <div class="company_vacans">
+            <div class="row">
+                <div class="col-lg-8 col-md-6">
+                    <div class="vacancies">
+                        <div class="company_vacans__href">
+                            <a asp-controller="company" asp-action="vacansdetail">
+                                <div class="item_left">
+                                    <div class="icon">
+                                        <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg"
+                                             alt="Bağban" />
+                                    </div>
+                                    <div class="title">
+                                        <h3>SMM</h3>
+                                        <p>By Telecom MMC</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="item_right">
+                                <span class="salary"> Ə/h razılaşma ilə</span>
+                                <span class="date">Dünən 17:43</span>
+                                <span class="like">
+                                    <i class="fa-regular fa-heart unliked"></i>
+                                    <i class="fa-solid fa-heart liked"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vacancies">
+                        <div class="company_vacans__href">
+                            <a asp-controller="company" asp-action="vacansdetail">
+                                <div class="item_left">
+                                    <div class="icon">
+                                        <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg"
+                                             alt="Bağban" />
+                                    </div>
+                                    <div class="title">
+                                        <h3>SMM</h3>
+                                        <p>By Telecom MMC</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="item_right">
+                                <span class="salary"> Ə/h razılaşma ilə</span>
+                                <span class="date">Dünən 17:43</span>
+                                <span class="like">
+                                    <i class="fa-regular fa-heart unliked"></i>
+                                    <i class="fa-solid fa-heart liked"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vacancies">
+                        <div class="company_vacans__href">
+                            <a asp-controller="company" asp-action="vacansdetail">
+                                <div class="item_left">
+                                    <div class="icon">
+                                        <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg"
+                                             alt="Bağban" />
+                                    </div>
+                                    <div class="title">
+                                        <h3>SMM</h3>
+                                        <p>By Telecom MMC</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="item_right">
+                                <span class="salary"> Ə/h razılaşma ilə</span>
+                                <span class="date">Dünən 17:43</span>
+                                <span class="like">
+                                    <i class="fa-regular fa-heart unliked"></i>
+                                    <i class="fa-solid fa-heart liked"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="company_contact">
+                        <div class="company_contact_body">
+                            <div class="contact_body">
+                                <div class="stick">
+                                    <div class="info">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="item" id="item1">
+                                                    <div class="icon d-flex justify-content-between">
+                                                        <div class="all d-flex">
+                                                            <div class="image">
+                                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/mail.svg"
+                                                                     alt="" />
+                                                            </div>
+                                                            <div class="text focus">
+                                                                <h4 class="secrets_title">
+                                                                    E-poçtu göster
+                                                                </h4>
+                                                                <h4 class="secrets d-none">
+                                                                    ssssss@code.edu.az
+                                                                </h4>
+                                                                <p>E-poçt</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="lock">
+                                                            <div class="locking">
+                                                                <div class="image">
+                                                                    <i class="bi bi-lock close"></i>
+                                                                    <i class="bi bi-unlock open"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Script{
+    <script src="~/assets/js/details.js"></script>
+}
+
