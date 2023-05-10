@@ -1,6 +1,43 @@
 ﻿@{
     ViewBag.Title = "Hello page";
 }
+@if (TempData["Register"] != null)
+{
+    if ((bool)TempData["Register"] == true)
+    {
+        <input type="hidden" id="registerSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="registerError" />
+
+    }
+}
+@if (TempData["Login"] != null)
+{
+    if ((bool)TempData["Login"] == true)
+    {
+        <input type="hidden" id="loginSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="loginError" />
+
+    }
+}
+@if (TempData["ForgotPassword"] != null)
+{
+    if ((bool)TempData["ForgotPassword"] == true)
+    {
+        <input type="hidden" id="forgotSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="forgotError" />
+    }
+}
+
+
 
 <section id="titles_and_bgblue">
     <div class="blueback">
@@ -1257,3 +1294,36 @@
         </div>
     </div>
 </section>
+
+@section Script{
+    <script>
+        $(document).ready(function () {
+            if ($("#registerSuccess").length) {
+                toastr["success"]("You have successfully joined us!", "Hello,Please check your register email" )
+            }
+            else if ($("#registerError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#loginSuccess").length) {
+                toastr["success"]("Welcome back to us!", "Hello")
+            }
+            else if ($("#loginError").length) {
+                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#forgotSuccess").length) {
+                toastr["success"]("You have successfully joined us!", "Hello,Please check your register email")
+            }
+            else if ($("#forgotError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+}

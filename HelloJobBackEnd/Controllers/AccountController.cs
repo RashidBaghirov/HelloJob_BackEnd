@@ -35,7 +35,8 @@ namespace HelloJobBackEnd.Controllers
 
         public async Task<IActionResult> Register(RegisterVM account)
         {
-            if (!ModelState.IsValid) return PartialView("_RegisterPartial");
+            TempData["Register"] = false;
+            if (!ModelState.IsValid) return RedirectToAction("index", "home");
             User user = new()
             {
                 FullName = string.Concat(account.Firstname, " ", account.Lastname),
@@ -49,8 +50,10 @@ namespace HelloJobBackEnd.Controllers
                 {
                     ModelState.AddModelError("", message.Description);
                 }
-                return View("_RegisterPartial");
+                return RedirectToAction("index", "home");
             }
+
+
 
             string token = await _usermanager.GenerateEmailConfirmationTokenAsync(user);
             string link = Url.Action(nameof(VerifyEmail), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
@@ -78,11 +81,9 @@ namespace HelloJobBackEnd.Controllers
 
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
-
             smtp.Send(mail);
-
-
             await _usermanager.AddToRoleAsync(user, account.userRole.ToString());
+            TempData["Register"] = true;
             return RedirectToAction("Index", "Home");
 
         }
@@ -98,13 +99,14 @@ namespace HelloJobBackEnd.Controllers
 
         public async Task<IActionResult> Login(LoginVM account)
         {
-            if (!ModelState.IsValid) return View("_LoginPartial");
+            TempData["Login"] = false;
+            if (!ModelState.IsValid) return RedirectToAction("index", "home");
 
             User user = await _usermanager.FindByNameAsync(account.UserName);
             if (user is null)
             {
                 ModelState.AddModelError("", "Username or password is incorrect");
-                return View();
+                return RedirectToAction("index", "home");
             }
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user, account.Password, account.RememberMe, true);
 
@@ -115,8 +117,9 @@ namespace HelloJobBackEnd.Controllers
                     ModelState.AddModelError("", "Due to your efforts, our account was blocked for 5 minutes");
                 }
                 ModelState.AddModelError("", "Username or password is incorrect");
-                return View("_LoginPartial");
+                return RedirectToAction("index", "home");
             }
+            TempData["Login"] = true;
             return RedirectToAction("Index", "Home");
         }
         public async Task<IActionResult> LogOut()
@@ -128,9 +131,11 @@ namespace HelloJobBackEnd.Controllers
 
         public async Task<IActionResult> ForgotPassword(AccountVM account)
         {
+            TempData["ForgotPassword"] = false;
+            if (account.User.Email is null) return RedirectToAction("index", "home");
             User user = await _usermanager.FindByEmailAsync(account.User.Email);
 
-            if (user == null) BadRequest();
+            if (user is null) return RedirectToAction("index", "home");
 
             string token = await _usermanager.GeneratePasswordResetTokenAsync(user);
             string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
@@ -159,6 +164,7 @@ namespace HelloJobBackEnd.Controllers
             smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
 
             smtp.Send(mail);
+            TempData["ForgotPassword"] = true;
             return RedirectToAction("Index", "Home");
 
 
