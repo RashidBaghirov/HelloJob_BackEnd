@@ -44,23 +44,12 @@
                                     <span>@await layoutService.GetUserFullName()</span>
                                 </a>
                                 <ul class="account_head_user_drop">
-                                    <li><a href="./mysticker.html">Mənim elanlarım</a></li>
+                                    <li><a asp-controller="myaccount" asp-action="index">Hesabım </a></li>
                                     <li><a href="./security.html">Şəxsi məlumatlar</a></li>
                                     <li><a asp-controller="account" asp-action="logout">Çıxış</a></li>
                                 </ul>
                             </div>
-                            
-                            <script>
-
-                                const account_head_user = document.querySelector(".profile__header__user__name");
-                                const account_head_user_drop = document.querySelector(".account_head_user_drop");
-
-                                account_head_user.addEventListener("click", (event) => {
-                                    event.preventDefault();
-                                    account_head_user_drop.classList.toggle("active");
-                                });
-
-                            </script>
+             
 
                         }
                         else
@@ -124,16 +113,35 @@
                     </svg>
                     Elan yerləşdir
                 </a>
-                <a class="login_btn popup_btn" href="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19.576" height="17.567" viewBox="0 0 19.576 17.567">
-                        <g id="log-in_1_" data-name="log-in (1)" transform="translate(0.994 0.75)">
-                            <path id="Path_12" data-name="Path 12" d="M15,3h4.764c1.315,0,2.382.8,2.382,1.785v12.5c0,.986-1.066,1.785-2.382,1.785H15" transform="translate(-4.313 -3)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-                            <path id="Path_13" data-name="Path 13" d="M10,15.926l4.463-4.463L10,7" transform="translate(-3.776 -3.43)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-                            <line id="Line_5" data-name="Line 5" x1="11" transform="translate(-0.244 7.915)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></line>
-                        </g>
-                    </svg>
-                    Sayta daxil ol
-                </a>
+           
+             
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="login_btn popup_btn d-none" href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.576" height="17.567" viewBox="0 0 19.576 17.567">
+                            <g id="log-in_1_" data-name="log-in (1)" transform="translate(0.994 0.75)">
+                                <path id="Path_12" data-name="Path 12" d="M15,3h4.764c1.315,0,2.382.8,2.382,1.785v12.5c0,.986-1.066,1.785-2.382,1.785H15" transform="translate(-4.313 -3)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                                <path id="Path_13" data-name="Path 13" d="M10,15.926l4.463-4.463L10,7" transform="translate(-3.776 -3.43)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                                <line id="Line_5" data-name="Line 5" x1="11" transform="translate(-0.244 7.915)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></line>
+                            </g>
+                        </svg>
+                       @layoutService.GetUserFullName();
+                    </a>
+                }
+                else
+                {
+                    <a class="login_btn popup_btn" href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.576" height="17.567" viewBox="0 0 19.576 17.567">
+                            <g id="log-in_1_" data-name="log-in (1)" transform="translate(0.994 0.75)">
+                                <path id="Path_12" data-name="Path 12" d="M15,3h4.764c1.315,0,2.382.8,2.382,1.785v12.5c0,.986-1.066,1.785-2.382,1.785H15" transform="translate(-4.313 -3)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                                <path id="Path_13" data-name="Path 13" d="M10,15.926l4.463-4.463L10,7" transform="translate(-3.776 -3.43)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                                <line id="Line_5" data-name="Line 5" x1="11" transform="translate(-0.244 7.915)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></line>
+                            </g>
+                        </svg>
+                        Sayta daxil ol
+                    </a>
+                }
+
             </div>
             <div class="col-md-12 p-0">
                 <ul class="mobile_nav">
@@ -182,7 +190,7 @@
                     await Html.RenderPartialAsync("_LoginPartial", new LoginVM());
                 }
             </div>
-            <div class="registration_body  d-none show-register-modal" data-bs-toggle="modal" data-bs-target="#registerModal">
+            <div class="registration_body  d-none">
 
                 <div class="reg_head">
                     <div class="close_button">
@@ -200,6 +208,22 @@
                 }
              
 
+            </div>
+            <div class="forgot_password  d-none">
+                <div class="pass_head">
+                    <div class="close_button">
+                        <button title="Close (Esc)" type="button" class="close">×</button>
+                    </div>
+                    <div class="pass_head_icon">
+                        <img src="https://www.hellojob.az/content/assets/images/login/flag.svg" alt="">
+                    </div>
+                    <div class="pass_head_text">
+                        <h3>Şifrəni unutmuşam</h3>
+                    </div>
+                </div>
+                @{
+                    await Html.RenderPartialAsync("_ForgotPartial");
+                }
             </div>
         </div>
     </header>

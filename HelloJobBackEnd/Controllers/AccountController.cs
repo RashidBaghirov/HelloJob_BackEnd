@@ -7,6 +7,8 @@ using System.Net;
 using Microsoft.EntityFrameworkCore;
 using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Utilities.Enum;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace HelloJobBackEnd.Controllers
 {
@@ -30,14 +32,7 @@ namespace HelloJobBackEnd.Controllers
         }
 
 
-        public IActionResult Register()
-        {
-            RegisterVM account = new RegisterVM { };
 
-            return PartialView("_RegisterPartial", account);
-        }
-
-        [HttpPost]
         public async Task<IActionResult> Register(RegisterVM account)
         {
             if (!ModelState.IsValid) return PartialView("_RegisterPartial");
@@ -103,7 +98,7 @@ namespace HelloJobBackEnd.Controllers
 
         public async Task<IActionResult> Login(LoginVM account)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return View("_LoginPartial");
 
             User user = await _usermanager.FindByNameAsync(account.UserName);
             if (user is null)
@@ -120,7 +115,7 @@ namespace HelloJobBackEnd.Controllers
                     ModelState.AddModelError("", "Due to your efforts, our account was blocked for 5 minutes");
                 }
                 ModelState.AddModelError("", "Username or password is incorrect");
-                return View();
+                return View("_LoginPartial");
             }
             return RedirectToAction("Index", "Home");
         }
@@ -130,10 +125,84 @@ namespace HelloJobBackEnd.Controllers
             return RedirectToAction("index", "home");
         }
 
+
+        public async Task<IActionResult> ForgotPassword(AccountVM account)
+        {
+            User user = await _usermanager.FindByEmailAsync(account.User.Email);
+
+            if (user == null) BadRequest();
+
+            string token = await _usermanager.GeneratePasswordResetTokenAsync(user);
+            string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
+
+
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("hellojob440@gmail.com", "HelloJOB");
+            mail.To.Add(new MailAddress(user.Email));
+
+            mail.Subject = "Reset Password";
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader("wwwroot/assets/template/ResetPassword.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            mail.Body = body.Replace("{{link}}", link);
+            mail.IsBodyHtml = true;
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+
+
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
+
+            smtp.Send(mail);
+            return RedirectToAction("Index", "Home");
+
+
+        }
+
+
+        public async Task<IActionResult> ResetPassword(string email, string token)
+        {
+
+            User user = await _usermanager.FindByEmailAsync(email);
+            if (user == null) BadRequest();
+
+            AccountVM model = new()
+            {
+                User = user,
+                Token = token
+            };
+            return View(model);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(AccountVM account)
+        {
+            User user = await _usermanager.FindByEmailAsync(account.User.Email);
+            AccountVM model = new()
+            {
+                User = user,
+                Token = account.Token
+            };
+            if (!ModelState.IsValid) return View(model);
+            await _usermanager.ResetPasswordAsync(user, account.Token, account.Password);
+            return RedirectToAction("Index", "Home");
+        }
+
+
         //public async Task CreateRoles()
         //{
         //	await _roleManager.CreateAsync(new IdentityRole(UserRole.business.ToString()));
         //	await _roleManager.CreateAsync(new IdentityRole(UserRole.employeer.ToString()));
         //}
+
+
+
     }
 }

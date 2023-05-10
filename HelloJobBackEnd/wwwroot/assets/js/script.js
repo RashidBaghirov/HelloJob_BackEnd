@@ -90,6 +90,7 @@ close_button.forEach(btn => {
         document.body.style.overflowY = "scroll";
         registration_body.classList.add("d-none");
         login_body.classList.remove("d-none");
+        forgot_password.classList.add("d-none");
         setTimeout(function () {
             backgray.classList.remove("active");
             backgray.classList.remove("animate__fadeOutUp");
@@ -99,9 +100,20 @@ close_button.forEach(btn => {
 })
 
 const goRegister = document.querySelector(".goRegister");
-const goLogin = document.querySelector(".goLogin");
+const goLogin = document.querySelectorAll(".goLogin");
 const login_body = document.querySelector(".login_body")
 const registration_body = document.querySelector(".registration_body");
+const regs_bopup_open = document.querySelector(".regs_bopup_open");
+const forgot_password = document.querySelector(".forgot_password");
+
+
+
+regs_bopup_open.addEventListener("click", (e) => {
+    e.preventDefault();
+    login_body.classList.add("d-none");
+    forgot_password.classList.remove("d-none");
+})
+
 
 goRegister.addEventListener("click", (e) => {
     e.preventDefault();
@@ -110,37 +122,24 @@ goRegister.addEventListener("click", (e) => {
 })
 
 
-goLogin.addEventListener("click", (e) => {
-    e.preventDefault();
-    registration_body.classList.add("d-none");
-    login_body.classList.remove("d-none");
+goLogin.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        registration_body.classList.add("d-none");
+        login_body.classList.remove("d-none");
+        forgot_password.classList.add("d-none");
+    })
 })
 
 
+const account_head_user = document.querySelector(".profile__header__user__name");
+const account_head_user_drop = document.querySelector(".account_head_user_drop");
 
-
-
-$(document).on("click", ".show-register-modal", function (e) {
-    e.preventDefault();
-
-    fetch('https://localhost:7120//account/register')
-        .then(response => response.text())
-        .then(data => {
-            $("#register-modal-detail").html(data)
-
-        })
+account_head_user.addEventListener("click", (event) => {
+    event.preventDefault();
+    account_head_user_drop.classList.toggle("active");
 });
 
-///////////////////////////////////////////////////////////////
 
 
-$(document).on("click", ".show-login-modal", function (e) {
-    e.preventDefault();
 
-    fetch('https://localhost:44363/account/login')
-        .then(response => response.text())
-        .then(data => {
-            $("#login-modal-detail").html(data)
-
-        })
-});

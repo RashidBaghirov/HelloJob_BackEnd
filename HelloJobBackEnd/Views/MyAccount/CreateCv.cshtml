@@ -1,0 +1,976 @@
+﻿@{
+    Layout = "_MyAccount";
+}
+@model ProfileVM
+
+<div class="account">
+    <div class="account_bar">
+        <a href="#" class="logo" aria-label="hellojob">
+            <img src="~/assets/images/night_mode_logo.svg" alt="" />
+        </a>
+        <ul class="myprofile">
+
+            <li>
+                <a  asp-controller="myaccount" asp-action="index">
+                    <span>
+                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user2.svg"
+                             alt="" />
+                    </span>
+                    Profilim
+                </a>
+            </li>
+
+            <li>
+                <a asp-controller="myaccount" asp-action="mysticker">
+                    <span>
+                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+                             alt="" />
+                    </span>
+                    Elanlarım
+                </a>
+            </li>
+            <li>
+                <a href="./WishListpage.html">
+                    <span>
+                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
+                             alt="" />
+                    </span>
+                    Bəyəndiklərim
+                </a>
+            </li>
+            <li>
+                <a asp-controller="myaccount" asp-action="security">
+                    <span>
+                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
+                             alt="" />
+                    </span>
+                    Təhlükəsizlik
+                </a>
+            </li>
+            @if (User.IsInRole(UserRole.business.ToString()))
+            {
+                <li>
+                    <a class="active" asp-controller="myaccount" asp-action="createvacans">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
+                                 alt="" />
+                        </span>
+                        Vakansiya Yerləşdir
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a class="active" asp-controller="myaccount" asp-action="createcv">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
+                                 alt="" />
+                        </span>
+                        Cv yerləşdir
+                    </a>
+                </li>
+            }
+
+        </ul>
+        <div class="backsite">
+            <a asp-controller="home" asp-action="index"
+               class="btn btn-site btn-transparent d-md-none">Sayta keçid et</a>
+        </div>
+    </div>
+    <div class="account_content">
+        <div class="account_head">
+            <div class="account_head_tools">
+                <a asp-controller="home" asp-action="index"
+                   class="btn btn-site btn-transparent d-none d-md-block">Sayta keçid et</a>
+                <div class="account_head_user">
+                    <a href="./account.html" class="profile__header__user__name">
+                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user.svg"
+                             alt="" />
+                        <span>@Model.FullName</span>
+                    </a>
+                    <ul class="account_head_user_drop">
+                        <li><a asp-controller="myaccount" asp-action="mysticker">Mənim elanlarım</a></li>
+                        <li>
+                            <a asp-controller="myaccount" asp-action="security">Şəxsi məlumatlar</a>
+                        </li>
+                        <li><a asp-controller="account" asp-action="logout">Çıxış</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="create_cv">
+            <div class="title">
+                <h1>CV Yerləşdir</h1>
+                <ul class="profile__add-cv__parts">
+                    <li class="active">
+                        <a href="#tab1" class="tab1 step_btn"> Şəxsi məlumatlar</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="inner_tab">
+                <form action="">
+                    <div class="row mb-5">
+                        <div class="col-lg-2">
+                            <h2 class="section_title">Şəxsi məlumatlar</h2>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="form-group">
+                                <div class="image_input">
+                                    <input class="choose"
+                                           type="file"
+                                           id="fileInput"
+                                           accept="image/*" />
+                                    <span class="upload_file_img">
+                                        <img id="preview"
+                                             src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png"
+                                             class="m-0"
+                                             alt="" />
+                                    </span>
+                                </div>
+                                <label for="prof_img" class="upload_image">
+                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/upload2.svg"
+                                         alt="" />
+                                    <span>Şəkil əlavə et</span>
+                                    <p>SVG, PNG, JPG or GIF (max. 1000x1000px)</p>
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">Ad</label>
+                                        <input type="text"
+                                               name="name"
+                                               value="Rashid"
+                                               class="form-control inputs"
+                                               placeholder="Adınız" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">Soyad</label>
+                                        <input type="text"
+                                               name="name"
+                                               value="Baghirov"
+                                               class="form-control inputs"
+                                               placeholder="Soyad" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">Doğum Tarixi</label>
+                                        <input type="date"
+                                               name="name"
+                                               value="__/__/____"
+                                               class="form-control inputs"
+                                               placeholder="__/__/____" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">E-Poçt</label>
+                                        <input type="text"
+                                               name="name"
+                                               value="rrrr@gmail.com"
+                                               class="form-control inputs"
+                                               placeholder="E-poçt ünvanınızı yazın" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label>Mobil nömrəniz</label>
+                                        <div class="position-relative">
+                                            <select name="phone_frst"
+                                                    class="shadow-none operator form-select">
+                                                <option value="070">070</option>
+                                                <option value="077">077</option>
+                                                <option value="050">050</option>
+                                                <option value="051">051</option>
+                                                <option value="010">010</option>
+                                                <option value="055">055</option>
+                                                <option value="099">099</option>
+                                            </select>
+                                            <input id="phone"
+                                                   inputmode="tel"
+                                                   type="text"
+                                                   name="phone"
+                                                   placeholder="Mobil nömrənizi qeyd edin"
+                                                   class="form-control inputs"
+                                                   im-insert="true"
+                                                   style="padding-left: 60px" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">Şəhər</label>
+                                        <select name="city" id="" class="form-control cities">
+                                            <option>Ağcabədi</option>
+                                            <option>Ağdam</option>
+                                            <option>Ağdaş</option>
+                                            <option>Ağstafa</option>
+                                            <option>Ağsu</option>
+                                            <option>Astara</option>
+                                            <option>Babək</option>
+                                            <option>Bakı</option>
+                                            <option>Balakən</option>
+                                            <option>Beyləqan</option>
+                                            <option>Biləsuvar</option>
+                                            <option>Bərdə</option>
+                                            <option>Culfa</option>
+                                            <option>Cəbrayıl</option>
+                                            <option>Cəlilabad</option>
+                                            <option>Daşkəsən</option>
+                                            <option>Dəvəçi</option>
+                                            <option>Füzuli</option>
+                                            <option>Goranboy</option>
+                                            <option>Göyçay</option>
+                                            <option>Göygöl</option>
+                                            <option>Gədəbəy</option>
+                                            <option>Gəncə</option>
+                                            <option>Hacıqabul</option>
+                                            <option>Hacıvar</option>
+                                            <option>Heydərabad</option>
+                                            <option>İmişli</option>
+                                            <option>İsmayıllı</option>
+                                            <option>Kürdəmir</option>
+                                            <option>Kəlbəcər</option>
+                                            <option>Laçın</option>
+                                            <option>Lerik</option>
+                                            <option>Lənkəran</option>
+                                            <option>Masallı</option>
+                                            <option>Mingəçevir</option>
+                                            <option>Naftalan</option>
+                                            <option>Naxçıvan</option>
+                                            <option>Neftçala</option>
+                                            <option>Oğuz</option>
+                                            <option>Ordubad</option>
+                                            <option>Qax</option>
+                                            <option>Qazax</option>
+                                            <option>Qıvraq</option>
+                                            <option>Qobustan</option>
+                                            <option>Quba</option>
+                                            <option>Qubadlı</option>
+                                            <option>Qusar</option>
+                                            <option>Qəbələ</option>
+                                            <option>Saatlı</option>
+                                            <option>Sabirabad</option>
+                                            <option>Şahbuz</option>
+                                            <option>Salyan</option>
+                                            <option>Samux</option>
+                                            <option>Şirvan</option>
+                                            <option>Siyəzən</option>
+                                            <option>Sumqayıt</option>
+                                            <option>Şuşa</option>
+                                            <option>Şəki</option>
+                                            <option>Şəmkir</option>
+                                            <option>Şərur</option>
+                                            <option>Tovuz</option>
+                                            <option>Tərtər</option>
+                                            <option>Ucar</option>
+                                            <option>Xaçmaz</option>
+                                            <option>Xırdalan</option>
+                                            <option>Xızı</option>
+                                            <option>Xocalı</option>
+                                            <option>Xocavənd</option>
+                                            <option>Yardımlı</option>
+                                            <option>Yevlax</option>
+                                            <option>Zaqatala</option>
+                                            <option>Zəngilan</option>
+                                            <option>Zərdab</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-lg-2">
+                            <h2 class="section_title">İş məlumatlar</h2>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">Vəzifəniz</label>
+                                        <input type="text"
+                                               name=""
+                                               class="form-control inputs"
+                                               placeholder="Vəzifəniz" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">Kateqoriya</label>
+                                        <select name="category" class="form-control cities">
+                                            <optgroup label="Maliyyə">
+                                                <option>Kredit mütəxəssisi</option>
+                                                <option>Mühasibat</option>
+                                                <option>Maliyyə analiz</option>
+                                                <option>Bank xidməti</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                            <optgroup label="Marketinq">
+                                                <option>Rəqəmsal marketinq</option>
+                                                <option>Marketinq menecment</option>
+                                                <option>SMM</option>
+                                                <option>SEO/SEM</option>
+                                                <option>Kopiraytinq</option>
+                                                <option>İctimaiyyətlə əlaqələr (PR)</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                            <optgroup label="Texnologiya">
+                                                <option>Proqramlaşdırma</option>
+                                                <option>Sistem idarəetməsi</option>
+                                                <option>İT mütəxəssisi / məsləhətçi</option>
+                                                <option>Texniki avadanlıq mütəxəssisi</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                            <optgroup label="Satış">
+                                                <option>Satış üzrə mütəxəssis</option>
+                                                <option>Daşınmaz əmlak agenti / makler</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                            <optgroup label="Xidmət">
+                                                <option>Operator</option>
+                                                <option>Logistika</option>
+                                                <option>Kuryer</option>
+                                                <option>SPA və gözəllik</option>
+                                                <option>Xadimə</option>
+                                                <option>Anbardar</option>
+                                                <option>Restoran işi</option>
+                                                <option>Sürücü</option>
+                                                <option>Dayə</option>
+                                                <option>Telefon ustası</option>
+                                                <option>Fəhlə</option>
+                                                <option>Turizm və mehmanxana işi</option>
+                                                <option>Tərcüməçi</option>
+                                                <option>Mühafizə xidməti</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                            <optgroup label="Dizayn">
+                                                <option>3D modelləşdirmə</option>
+                                                <option>Animasiya dizaynı</option>
+                                                <option>İllustrasiya</option>
+                                                <option>Qrafik dizayn</option>
+                                                <option>Veb-dizayn</option>
+                                                <option>Memar / İnteryer dizaynı</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                            <optgroup label="Müxtəlif">
+                                                <option>Sığorta</option>
+                                                <option>Menecment</option>
+                                                <option>Geologiya və ətraf mühit</option>
+                                                <option>Mühəndis</option>
+                                                <option>Tikinti</option>
+                                                <option>Avtomatlaşdırılmış idarəetmə</option>
+                                                <option>Fotoqrafiya</option>
+                                                <option>Jurnalistika</option>
+                                                <option>Tələbələr üçün</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                            <optgroup label="Səhiyyə">
+                                                <option>Həkim</option>
+                                                <option>Tibb təmsilçisi</option>
+                                                <option>Tibbi personal</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                            <optgroup label="Təhsil və elm">
+                                                <option>Məktəb tədrisi</option>
+                                                <option>Universitet tədrisi</option>
+                                                <option>Repetitor</option>
+                                                <option>Xüsusi təhsil/ Təlim</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                            <optgroup label="Sənaye və k/t">
+                                                <option>Kənd təsərrüfatı</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                            <optgroup label="Hüquq">
+                                                <option>Hüquqşünas</option>
+                                                <option>Cinayət hüququ</option>
+                                                <option>Vəkil</option>
+                                            </optgroup>
+                                            <optgroup label="İnzibati">
+                                                <option>Heyətin idarəolunması</option>
+                                                <option>Ofis menecmenti</option>
+                                                <option>Katibə / Resepşn</option>
+                                                <option>Digər</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">İş stajı</label>
+                                        <select name="category" class="form-control cities">
+                                            <option selected disabled>İş stajı seçin</option>
+                                            <option>1 ildən az</option>
+                                            <option>1 ildən 3 ilə qədər</option>
+                                            <option>3 ildən 5 ilə qədər</option>
+                                            <option>5 ildən yüksək</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">İş saatı</label>
+                                        <select name="category" class="form-control cities">
+                                            <option selected disabled>İş saatı seçin</option>
+                                            <option>Tam-ştat</option>
+                                            <option>Freelance</option>
+                                            <option>Part-time</option>
+                                            <option>Təcrübəçi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">Minimum əmək haqqı AZN</label>
+                                        <input type="number"
+                                               max="12000"
+                                               name=""
+                                               class="form-control inputs"
+                                               placeholder="Məs:1500" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label for="">Sürücülük vəsiqəsi</label>
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="form-check-input mt-0">
+                                            <span>Var</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-lg-2">
+                            <h2 class="section_title">CV Faylı</h2>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="form-group">
+                                <input type="file"
+                                       class="d-none"
+                                       id="cv_inp"
+                                       name="cv_file"
+                                       multiple=""
+                                       accept=".pdf,.docx" />
+                                <label for="cv_inp" class="cv_label">
+                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/upload2.svg"
+                                         alt="" />
+                                    <span>CV əlavə et</span>
+                                    <p>PDF, DOCX (max. 3mb)</p>
+                                </label>
+                            </div>
+                            <div class="cv-file mb-5 active" style="display: none">
+                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/file.svg"
+                                     alt="" />
+                                <img class="check"
+                                     src="https://www.hellojob.az/content/assets/images/profile/svg-icons/check.svg"
+                                     alt="" />
+                                <button type="button" class="remove">
+                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/remove2.svg"
+                                         alt="" />
+                                </button>
+                                <div class="d-block w-100">
+                                    <p class="file_name">Cv.pdf</p>
+                                    <div class="progress">
+                                        <div class="progressbar"
+                                             role="progressbar"
+                                             style="width: 100%"></div>
+                                        <span id="percent">100%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="uploaded_image"></div>
+                        </div>
+                    </div>
+                    <div class="submit-button">
+                        <button class="btn btn-primary submit">Təsdiq et</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mobile_account d-md-none d-lg-none">
+    <div class="head ">
+        <div class="hamburgers icons">
+            <i class="bi bi-list"></i>
+        </div>
+        <div class="logo">
+            <div class="image">
+                <img src="~/assets/images/night_mode_logo.svg" alt="" />
+            </div>
+        </div>
+        <div class="person icons">
+            <i class="bi bi-person-fill person_icon"></i>
+        </div>
+    </div>
+    <div class="body">
+        <div class="persons_menu">
+            <div class="account_head_user">
+                <ul>
+                    <li><a asp-controller="myaccount" asp-action="index">@Model.FullName</a></li>
+                    <li><a asp-controller="myaccount" asp-action="mysticker">Mənim elanlarım</a></li>
+                    <li>
+                        <a asp-controller="myaccount" asp-action="security">Şəxsi məlumatlar</a>
+                    </li>
+                    <li><a asp-controller="account" asp-action="logout">Çıxış</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="hamburgers_menu">
+            <ul class="myprofile">
+                <li>
+                    <a asp-controller="myaccount" asp-action="index">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user2.svg"
+                                 alt="" />
+                        </span>
+                        Profilim
+                    </a>
+                </li>
+                @if (User.IsInRole(UserRole.business.ToString()))
+                {
+                    <li>
+                        <a class="active" asp-controller="myaccount" asp-action="createvacans">
+                            <span>
+                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
+                                     alt="" />
+                            </span>
+                            Vakansiya yerləşdir
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a class="active" asp-controller="myaccount" asp-action="createcv">
+                            <span>
+                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
+                                     alt="" />
+                            </span>
+                            Cv yerləşdir
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a asp-controller="myaccount" asp-action="mysticker">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+                                 alt="" />
+                        </span>
+                        Elanlarım
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="myaccount" asp-action="wishlistpage">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
+                                 alt="" />
+                        </span>
+                        Bəyəndiklərim
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="myaccount" asp-action="security">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
+                                 alt="" />
+                        </span>
+                        Təhlükəsizlik
+                    </a>
+                </li>
+            </ul>
+            <div class="backsite">
+                <a asp-controller="Home" asp-action="index"
+                   class="btn btn-site btn-transparent d-md-none">Sayta keçid et</a>
+            </div>
+        </div>
+        <div class="account_content">
+            <div class="create_cv">
+                <div class="title">
+                    <h1>CV Yerləşdir</h1>
+                    <ul class="profile__add-cv__parts">
+                        <li class="active">
+                            <a href="#tab1" class="tab1 step_btn"> Şəxsi məlumatlar</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inner_tab">
+                    <form action="">
+                        <div class="row mb-5">
+                            <div class="col-lg-2">
+                                <h2 class="section_title">Şəxsi məlumatlar</h2>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <div class="image_input">
+                                        <input class="choose"
+                                               type="file"
+                                               id="fileInput"
+                                               accept="image/*" />
+                                        <span class="upload_file_img">
+                                            <img id="preview"
+                                                 src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png"
+                                                 class="m-0"
+                                                 alt="" />
+                                        </span>
+                                    </div>
+                                    <label for="prof_img" class="upload_image">
+                                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/upload2.svg"
+                                             alt="" />
+                                        <span>Şəkil əlavə et</span>
+                                        <p>SVG, PNG, JPG or GIF (max. 1000x1000px)</p>
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">Ad</label>
+                                            <input type="text"
+                                                   name="name"
+                                                   value="Rashid"
+                                                   class="form-control inputs"
+                                                   placeholder="Adınız" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">Soyad</label>
+                                            <input type="text"
+                                                   name="name"
+                                                   value="Baghirov"
+                                                   class="form-control inputs"
+                                                   placeholder="Soyad" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">Doğum Tarixi</label>
+                                            <input type="date"
+                                                   name="name"
+                                                   value="__/__/____"
+                                                   class="form-control inputs"
+                                                   placeholder="__/__/____" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">E-Poçt</label>
+                                            <input type="text"
+                                                   name="name"
+                                                   value="rrrr@gmail.com"
+                                                   class="form-control inputs"
+                                                   placeholder="E-poçt ünvanınızı yazın" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label>Mobil nömrəniz</label>
+                                            <div class="position-relative">
+                                                <select name="phone_frst"
+                                                        class="shadow-none operator form-select">
+                                                    <option value="070">070</option>
+                                                    <option value="077">077</option>
+                                                    <option value="050">050</option>
+                                                    <option value="051">051</option>
+                                                    <option value="010">010</option>
+                                                    <option value="055">055</option>
+                                                    <option value="099">099</option>
+                                                </select>
+                                                <input id="phone"
+                                                       inputmode="tel"
+                                                       type="text"
+                                                       name="phone"
+                                                       placeholder="Mobil nömrənizi qeyd edin"
+                                                       class="form-control inputs"
+                                                       im-insert="true"
+                                                       style="padding-left: 60px" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">Şəhər</label>
+                                            <select name="city" id="" class="form-control cities">
+                                                <option>Ağcabədi</option>
+                                                <option>Ağdam</option>
+                                                <option>Ağdaş</option>
+                                                <option>Ağstafa</option>
+                                                <option>Ağsu</option>
+                                                <option>Astara</option>
+                                                <option>Babək</option>
+                                                <option>Bakı</option>
+                                                <option>Balakən</option>
+                                                <option>Beyləqan</option>
+                                                <option>Biləsuvar</option>
+                                                <option>Bərdə</option>
+                                                <option>Culfa</option>
+                                                <option>Cəbrayıl</option>
+                                                <option>Cəlilabad</option>
+                                                <option>Daşkəsən</option>
+                                                <option>Dəvəçi</option>
+                                                <option>Füzuli</option>
+                                                <option>Goranboy</option>
+                                                <option>Göyçay</option>
+                                                <option>Göygöl</option>
+                                                <option>Gədəbəy</option>
+                                                <option>Gəncə</option>
+                                                <option>Hacıqabul</option>
+                                                <option>Hacıvar</option>
+                                                <option>Heydərabad</option>
+                                                <option>İmişli</option>
+                                                <option>İsmayıllı</option>
+                                                <option>Kürdəmir</option>
+                                                <option>Kəlbəcər</option>
+                                                <option>Laçın</option>
+                                                <option>Lerik</option>
+                                                <option>Lənkəran</option>
+                                                <option>Masallı</option>
+                                                <option>Mingəçevir</option>
+                                                <option>Naftalan</option>
+                                                <option>Naxçıvan</option>
+                                                <option>Neftçala</option>
+                                                <option>Oğuz</option>
+                                                <option>Ordubad</option>
+                                                <option>Qax</option>
+                                                <option>Qazax</option>
+                                                <option>Qıvraq</option>
+                                                <option>Qobustan</option>
+                                                <option>Quba</option>
+                                                <option>Qubadlı</option>
+                                                <option>Qusar</option>
+                                                <option>Qəbələ</option>
+                                                <option>Saatlı</option>
+                                                <option>Sabirabad</option>
+                                                <option>Şahbuz</option>
+                                                <option>Salyan</option>
+                                                <option>Samux</option>
+                                                <option>Şirvan</option>
+                                                <option>Siyəzən</option>
+                                                <option>Sumqayıt</option>
+                                                <option>Şuşa</option>
+                                                <option>Şəki</option>
+                                                <option>Şəmkir</option>
+                                                <option>Şərur</option>
+                                                <option>Tovuz</option>
+                                                <option>Tərtər</option>
+                                                <option>Ucar</option>
+                                                <option>Xaçmaz</option>
+                                                <option>Xırdalan</option>
+                                                <option>Xızı</option>
+                                                <option>Xocalı</option>
+                                                <option>Xocavənd</option>
+                                                <option>Yardımlı</option>
+                                                <option>Yevlax</option>
+                                                <option>Zaqatala</option>
+                                                <option>Zəngilan</option>
+                                                <option>Zərdab</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-lg-2">
+                                <h2 class="section_title">İş məlumatlar</h2>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">Vəzifəniz</label>
+                                            <input type="text"
+                                                   name=""
+                                                   class="form-control inputs"
+                                                   placeholder="Vəzifəniz" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">Kateqoriya</label>
+                                            <select name="category" class="form-control cities">
+                                                <optgroup label="Maliyyə">
+                                                    <option>Kredit mütəxəssisi</option>
+                                                    <option>Mühasibat</option>
+                                                    <option>Maliyyə analiz</option>
+                                                    <option>Bank xidməti</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                                <optgroup label="Marketinq">
+                                                    <option>Rəqəmsal marketinq</option>
+                                                    <option>Marketinq menecment</option>
+                                                    <option>SMM</option>
+                                                    <option>SEO/SEM</option>
+                                                    <option>Kopiraytinq</option>
+                                                    <option>İctimaiyyətlə əlaqələr (PR)</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                                <optgroup label="Texnologiya">
+                                                    <option>Proqramlaşdırma</option>
+                                                    <option>Sistem idarəetməsi</option>
+                                                    <option>İT mütəxəssisi / məsləhətçi</option>
+                                                    <option>Texniki avadanlıq mütəxəssisi</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                                <optgroup label="Satış">
+                                                    <option>Satış üzrə mütəxəssis</option>
+                                                    <option>Daşınmaz əmlak agenti / makler</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                                <optgroup label="Xidmət">
+                                                    <option>Operator</option>
+                                                    <option>Logistika</option>
+                                                    <option>Kuryer</option>
+                                                    <option>SPA və gözəllik</option>
+                                                    <option>Xadimə</option>
+                                                    <option>Anbardar</option>
+                                                    <option>Restoran işi</option>
+                                                    <option>Sürücü</option>
+                                                    <option>Dayə</option>
+                                                    <option>Telefon ustası</option>
+                                                    <option>Fəhlə</option>
+                                                    <option>Turizm və mehmanxana işi</option>
+                                                    <option>Tərcüməçi</option>
+                                                    <option>Mühafizə xidməti</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                                <optgroup label="Dizayn">
+                                                    <option>3D modelləşdirmə</option>
+                                                    <option>Animasiya dizaynı</option>
+                                                    <option>İllustrasiya</option>
+                                                    <option>Qrafik dizayn</option>
+                                                    <option>Veb-dizayn</option>
+                                                    <option>Memar / İnteryer dizaynı</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                                <optgroup label="Müxtəlif">
+                                                    <option>Sığorta</option>
+                                                    <option>Menecment</option>
+                                                    <option>Geologiya və ətraf mühit</option>
+                                                    <option>Mühəndis</option>
+                                                    <option>Tikinti</option>
+                                                    <option>Avtomatlaşdırılmış idarəetmə</option>
+                                                    <option>Fotoqrafiya</option>
+                                                    <option>Jurnalistika</option>
+                                                    <option>Tələbələr üçün</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                                <optgroup label="Səhiyyə">
+                                                    <option>Həkim</option>
+                                                    <option>Tibb təmsilçisi</option>
+                                                    <option>Tibbi personal</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                                <optgroup label="Təhsil və elm">
+                                                    <option>Məktəb tədrisi</option>
+                                                    <option>Universitet tədrisi</option>
+                                                    <option>Repetitor</option>
+                                                    <option>Xüsusi təhsil/ Təlim</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                                <optgroup label="Sənaye və k/t">
+                                                    <option>Kənd təsərrüfatı</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                                <optgroup label="Hüquq">
+                                                    <option>Hüquqşünas</option>
+                                                    <option>Cinayət hüququ</option>
+                                                    <option>Vəkil</option>
+                                                </optgroup>
+                                                <optgroup label="İnzibati">
+                                                    <option>Heyətin idarəolunması</option>
+                                                    <option>Ofis menecmenti</option>
+                                                    <option>Katibə / Resepşn</option>
+                                                    <option>Digər</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">İş saatı</label>
+                                            <select name="category" class="form-control cities">
+                                                <option selected disabled>İş stajı seçin</option>
+                                                <option>1 ildən az</option>
+                                                <option>1 ildən 3 ilə qədər</option>
+                                                <option>3 ildən 5 ilə qədər</option>
+                                                <option>5 ildən yüksək</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">Minimum əmək haqqı AZN</label>
+                                            <input type="number"
+                                                   max="12000"
+                                                   name=""
+                                                   class="form-control inputs"
+                                                   placeholder="Məs:1500" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-lg-2">
+                                <h2 class="section_title">CV Faylı</h2>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <input type="file"
+                                           class="d-none"
+                                           id="cv_inp"
+                                           name="cv_file"
+                                           multiple=""
+                                           accept=".pdf,.docx" />
+                                    <label for="cv_inp" class="cv_label">
+                                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/upload2.svg"
+                                             alt="" />
+                                        <span>CV əlavə et</span>
+                                        <p>PDF, DOCX (max. 3mb)</p>
+                                    </label>
+                                </div>
+                                <div class="cv-file mb-5 active" style="display: none">
+                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/file.svg"
+                                         alt="" />
+                                    <img class="check"
+                                         src="https://www.hellojob.az/content/assets/images/profile/svg-icons/check.svg"
+                                         alt="" />
+                                    <button type="button" class="remove">
+                                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/remove2.svg"
+                                             alt="" />
+                                    </button>
+                                    <div class="d-block w-100">
+                                        <p class="file_name">Cv.pdf</p>
+                                        <div class="progress">
+                                            <div class="progressbar"
+                                                 role="progressbar"
+                                                 style="width: 100%"></div>
+                                            <span id="percent">100%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="uploaded_image"></div>
+                            </div>
+                        </div>
+                        <div class="submit-button">
+                            <button class="btn btn-primary submit">Təsdiq et</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    <script src="~/assets/js/pageCv.js"></script>
+}
+

@@ -245,10 +245,6 @@
       "PackagePath": "staticwebassets\\assets\\js\\postvacans.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\reg_log.js",
-      "PackagePath": "staticwebassets\\assets\\js\\reg_log.js"
-    },
-    {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\script.js",
       "PackagePath": "staticwebassets\\assets\\js\\script.js"
     },
@@ -261,72 +257,8 @@
       "PackagePath": "staticwebassets\\assets\\js\\wishlist.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\main.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\main.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_WishListpage.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_WishListpage.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_account.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_account.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_company.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_company.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_companydetail.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_companydetail.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_cvdetail.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_cvdetail.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_cvpage.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_cvpage.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_footer.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_footer.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_header.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_header.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_index.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_index.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_liked.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_liked.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_mysticker.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_mysticker.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_postCV.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_postCV.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_postvacans.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_postvacans.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_rules.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_rules.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_security.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_security.scss"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\scss\\others\\_vacansdetail.scss",
-      "PackagePath": "staticwebassets\\assets\\scss\\others\\_vacansdetail.scss"
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\template\\ResetPassword.html",
+      "PackagePath": "staticwebassets\\assets\\template\\ResetPassword.html"
     },
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\template\\verifyemail.html",
