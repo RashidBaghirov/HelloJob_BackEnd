@@ -54,6 +54,81 @@ namespace HelloJobBackEnd.Controllers
             ViewBags(user);
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> CreateVacans(VacansVM newVacans)
+        {
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBags(user);
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            Vacans vacans = new()
+            {
+
+                User = user,
+                Name = newVacans.Name,
+                CityId = newVacans.CityId,
+                OperatingModeId = newVacans.OperatingModeId,
+                ExperienceId = newVacans.ExperienceId,
+                Salary = newVacans.Salary,
+                BusinessAreaId = newVacans.BusinessAreaId,
+                EducationId = newVacans.EducationId,
+                DrivingLicense = newVacans.DrivingLicense,
+                CreatedAt = DateTime.Now,
+                EndedAt = DateTime.Now.AddMonths(1),
+                Email = newVacans.Email,
+                Position = newVacans.Position
+            };
+
+            if (newVacans.InfoWorks is null)
+            {
+                ModelState.AddModelError("", "Please write work's info");
+                return View();
+            }
+            else
+            {
+                string[] work_info = newVacans.InfoWorks.Split('/');
+                foreach (string info in work_info)
+                {
+                    InfoWork infos = new()
+                    {
+                        Vacans=vacans,
+                        Info = info,
+                    };
+
+                    _context.InfoWorks.Add(infos);
+                }
+            }
+
+            if (newVacans.infoEmployeers is null)
+            {
+                ModelState.AddModelError("", "Please write work's info");
+                return View();
+            }
+            else
+            {
+                string[] employee_info = newVacans.infoEmployeers.Split('/');
+                foreach (string info in employee_info)
+                {
+                    InfoEmployeer infos = new()
+                    {
+                        Vacans = vacans,
+                        Info = info,
+                    };
+
+                    _context.InfoEmployeers.Add(infos);
+                }
+            }
+            _context.Vacans.Add(vacans);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
 
         public async Task<IActionResult> MySticker()
         {

@@ -4,6 +4,7 @@ using HelloJobBackEnd.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HelloJobBackEnd.Migrations
 {
     [DbContext(typeof(HelloJobDbContext))]
-    partial class HelloJobDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230511201551_CreatingVacansTable")]
+    partial class CreatingVacansTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

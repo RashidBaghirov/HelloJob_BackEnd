@@ -20,6 +20,9 @@ namespace HelloJobBackEnd.DAL
         public DbSet<OperatingMode> OperatingModes { get; set; }
         public DbSet<BusinessArea> BusinessArea { get; set; }
         public DbSet<BusinessTitle> BusinessTitle { get; set; }
+        public DbSet<Vacans> Vacans { get; set; }
+        public DbSet<InfoEmployeer> InfoEmployeers { get; set; }
+        public DbSet<InfoWork> InfoWorks { get; set; }
 
 
 
