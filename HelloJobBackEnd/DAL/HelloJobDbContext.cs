@@ -4,14 +4,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HelloJobBackEnd.DAL
 {
-	public class HelloJobDbContext : IdentityDbContext<User>
-	{
+    public class HelloJobDbContext : IdentityDbContext<User>
+    {
 
 
-		public HelloJobDbContext(DbContextOptions options) : base(options)
-		{
-		}
+        public HelloJobDbContext(DbContextOptions options) : base(options)
+        {
+        }
 
-		public DbSet<User> Users { get; set; }
-	}
+        public DbSet<User> Users { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Cv> Cvs { get; set; }
+        public DbSet<Education> Educations { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
+        public DbSet<OperatingMode> OperatingModes { get; set; }
+        public DbSet<BusinessArea> BusinessArea { get; set; }
+        public DbSet<BusinessTitle> BusinessTitle { get; set; }
+
+
+
+    }
 }

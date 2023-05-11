@@ -1,7 +1,6 @@
 ﻿@{
     Layout = "_MyAccount";
 }
-@model ProfileVM
 
 <div class="account">
     <div class="account_bar">
@@ -81,20 +80,20 @@
     <div class="account_content">
         <div class="account_head">
             <div class="account_head_tools">
-                <a href="./index.html"
+                <a asp-controller="home" asp-action="index"
                    class="btn btn-site btn-transparent d-none d-md-block">Sayta keçid et</a>
                 <div class="account_head_user">
                     <a href="./account.html" class="profile__header__user__name">
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user.svg"
                              alt="" />
-                        <span>Rashid Baghirov</span>
+                        <span>@ViewBag.User.FullName</span>
                     </a>
                     <ul class="account_head_user_drop">
-                        <li><a href="./mysticker.html">Mənim elanlarım</a></li>
+                        <li><a asp-controller="myaccount" asp-action="mysticker">Mənim elanlarım</a></li>
                         <li>
-                            <a href="./security.html">Şəxsi məlumatlar</a>
+                            <a asp-action="myaccount" asp-action="security">Şəxsi məlumatlar</a>
                         </li>
-                        <li><a href="/logout">Çıxış</a></li>
+                        <li><a asp-controller="account" asp-action="logout">Çıxış</a></li>
                     </ul>
                 </div>
             </div>
@@ -113,7 +112,7 @@
                                     <input type="email"
                                            name=""
                                            class="form-control inputs"
-                                           placeholder="rashidtb@code.edu.az"
+                                           placeholder="@ViewBag.User.Email"
                                            disabled="" />
                                 </div>
                                 <div class="security-inputs">
@@ -155,7 +154,7 @@
         </div>
         <div class="logo">
             <div class="image">
-                <img src="./assets/images/night_mode_logo.svg" alt="" />
+                <img src="~/assets/images/night_mode_logo.svg" alt="" />
             </div>
         </div>
         <div class="person icons">
@@ -166,7 +165,7 @@
         <div class="persons_menu">
             <div class="account_head_user">
                 <ul>
-                    <li><a asp-controller="myaccount" asp-action="index">@Model.FullName</a></li>
+                    <li><a asp-controller="myaccount" asp-action="index">@ViewBag.User.FullName</a></li>
                     <li><a asp-controller="myaccount" asp-action="mysticker">Mənim elanlarım</a></li>
                     <li>
                         <a asp-controller="myaccount" asp-action="security">Şəxsi məlumatlar</a>
@@ -258,7 +257,7 @@
                                         <input type="email"
                                                name=""
                                                class="form-control inputs"
-                                               placeholder="rashidtb@code.edu.az"
+                                               placeholder="@ViewBag.User.Email"
                                                disabled="" />
                                     </div>
                                     <div class="security-inputs">

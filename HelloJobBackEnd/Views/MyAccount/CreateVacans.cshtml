@@ -1,7 +1,6 @@
 ﻿@{
     Layout = "_MyAccount";
 }
-@model ProfileVM
 <div class="account">
     <div class="account_bar">
         <a href="#" class="logo" aria-label="hellojob">
@@ -86,7 +85,7 @@
                     <a href="./account.html" class="profile__header__user__name">
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user.svg"
                              alt="" />
-                        <span>@Model.FullName</span>
+                        <span>@ViewBag.User.FullName</span>
                     </a>
                     <ul class="account_head_user_drop">
                         <li><a asp-controller="myaccount" asp-action="mysticker">Mənim elanlarım</a></li>
@@ -366,7 +365,7 @@
                             <h2 class="section_title">İş barədə əlavə məlumatlar</h2>
                         </div>
                         <div class="col-lg-10">
-                            <div class="adding">
+                            <div class="adding work_add">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
@@ -378,15 +377,48 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="plus_minus_btn">
-                                            <button class="plus_btn"><i class="bi bi-patch-plus-fill"></i></button>
-                                            <button class="minus_btn"><i class="bi bi-patch-minus-fill"></i></button>
+                                            <button class="plus_btn work_pls"><i class="bi bi-patch-plus-fill"></i></button>
+                                            <button class="minus_btn work_mns"><i class="bi bi-patch-minus-fill"></i></button>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="vacans_inputs">
                                             <input type="text"
                                                    name="name"
-                                                   class="form-control inputs hidden_Input w-100"
+                                                   class="form-control inputs hidden_work w-100"
+                                                   disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-lg-2">
+                            <h2 class="section_title">Namizəddən üçün tələblər</h2>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="adding user_add">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="vacans_inputs">
+                                            <input type="text"
+                                                   name="name"
+                                                   class="form-control inputs add_input_user"
+                                                   placeholder="Namizəddən üçün tələblər yazın" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="plus_minus_btn">
+                                            <button class="plus_btn user_pls"><i class="bi bi-patch-plus-fill"></i></button>
+                                            <button class="minus_btn user_mns"><i class="bi bi-patch-minus-fill"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="vacans_inputs">
+                                            <input type="text"
+                                                   name="name"
+                                                   class="form-control inputs hidden_user w-100"
                                                    disabled="" />
                                         </div>
                                     </div>
@@ -420,7 +452,7 @@
         <div class="persons_menu">
             <div class="account_head_user">
                 <ul>
-                    <li><a asp-controller="myaccount" asp-action="index">@Model.FullName</a></li>
+                    <li><a asp-controller="myaccount" asp-action="index">@ViewBag.User.FullName</a></li>
                     <li><a asp-controller="myaccount" asp-action="mysticker">Mənim elanlarım</a></li>
                     <li>
                         <a asp-controller="myaccount" asp-action="security">Şəxsi məlumatlar</a>
@@ -528,80 +560,8 @@
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
                                             <label for="">Şəhər</label>
-                                            <select name="city" id="" class="form-control cities">
-                                                <option>Ağcabədi</option>
-                                                <option>Ağdam</option>
-                                                <option>Ağdaş</option>
-                                                <option>Ağstafa</option>
-                                                <option>Ağsu</option>
-                                                <option>Astara</option>
-                                                <option>Babək</option>
-                                                <option>Bakı</option>
-                                                <option>Balakən</option>
-                                                <option>Beyləqan</option>
-                                                <option>Biləsuvar</option>
-                                                <option>Bərdə</option>
-                                                <option>Culfa</option>
-                                                <option>Cəbrayıl</option>
-                                                <option>Cəlilabad</option>
-                                                <option>Daşkəsən</option>
-                                                <option>Dəvəçi</option>
-                                                <option>Füzuli</option>
-                                                <option>Goranboy</option>
-                                                <option>Göyçay</option>
-                                                <option>Göygöl</option>
-                                                <option>Gədəbəy</option>
-                                                <option>Gəncə</option>
-                                                <option>Hacıqabul</option>
-                                                <option>Hacıvar</option>
-                                                <option>Heydərabad</option>
-                                                <option>İmişli</option>
-                                                <option>İsmayıllı</option>
-                                                <option>Kürdəmir</option>
-                                                <option>Kəlbəcər</option>
-                                                <option>Laçın</option>
-                                                <option>Lerik</option>
-                                                <option>Lənkəran</option>
-                                                <option>Masallı</option>
-                                                <option>Mingəçevir</option>
-                                                <option>Naftalan</option>
-                                                <option>Naxçıvan</option>
-                                                <option>Neftçala</option>
-                                                <option>Oğuz</option>
-                                                <option>Ordubad</option>
-                                                <option>Qax</option>
-                                                <option>Qazax</option>
-                                                <option>Qıvraq</option>
-                                                <option>Qobustan</option>
-                                                <option>Quba</option>
-                                                <option>Qubadlı</option>
-                                                <option>Qusar</option>
-                                                <option>Qəbələ</option>
-                                                <option>Saatlı</option>
-                                                <option>Sabirabad</option>
-                                                <option>Şahbuz</option>
-                                                <option>Salyan</option>
-                                                <option>Samux</option>
-                                                <option>Şirvan</option>
-                                                <option>Siyəzən</option>
-                                                <option>Sumqayıt</option>
-                                                <option>Şuşa</option>
-                                                <option>Şəki</option>
-                                                <option>Şəmkir</option>
-                                                <option>Şərur</option>
-                                                <option>Tovuz</option>
-                                                <option>Tərtər</option>
-                                                <option>Ucar</option>
-                                                <option>Xaçmaz</option>
-                                                <option>Xırdalan</option>
-                                                <option>Xızı</option>
-                                                <option>Xocalı</option>
-                                                <option>Xocavənd</option>
-                                                <option>Yardımlı</option>
-                                                <option>Yevlax</option>
-                                                <option>Zaqatala</option>
-                                                <option>Zəngilan</option>
-                                                <option>Zərdab</option>
+                                            <select name="city" asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities">
+                                               
                                             </select>
                                         </div>
                                     </div>
@@ -729,6 +689,21 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
+                                            <label for="">Təhsil</label>
+                                            <select name="category" class="form-control cities">
+                                                <option selected disabled>Təhsilinizi seçin</option>
+                                                <option>Ali</option>
+                                                <option>Natamam Ali</option>
+                                                <option>Orta Texniki</option>
+                                                <option>Orta Xüsusi</option>
+                                                <option>Orta</option>
+                                                <option>Digər</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="vacans_inputs">
                                             <label for="">İş saatı</label>
                                             <select name="category" class="form-control cities">
                                                 <option selected disabled>İş saatı seçin</option>
@@ -766,7 +741,7 @@
                                 <h2 class="section_title">İş barədə əlavə məlumatlar</h2>
                             </div>
                             <div class="col-lg-10">
-                                <div class="adding">
+                                <div class="adding work_add">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="vacans_inputs">
@@ -778,15 +753,48 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="plus_minus_btn">
-                                                <button class="plus_btn"><i class="bi bi-patch-plus-fill"></i></button>
-                                                <button class="minus_btn"><i class="bi bi-patch-minus-fill"></i></button>
+                                                <button class="plus_btn work_pls"><i class="bi bi-patch-plus-fill"></i></button>
+                                                <button class="minus_btn work_mns"><i class="bi bi-patch-minus-fill"></i></button>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="vacans_inputs">
                                                 <input type="text"
                                                        name="name"
-                                                       class="form-control inputs hidden_Input w-100"
+                                                       class="form-control inputs hidden_work w-100"
+                                                       disabled="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-lg-2">
+                                <h2 class="section_title">Namizəddən üçün tələblər</h2>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="adding user_add">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="vacans_inputs">
+                                                <input type="text"
+                                                       name="name"
+                                                       class="form-control inputs add_input_user"
+                                                       placeholder="Namizəddən üçün tələblər yazın" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="plus_minus_btn">
+                                                <button class="plus_btn user_pls"><i class="bi bi-patch-plus-fill"></i></button>
+                                                <button class="minus_btn user_mns"><i class="bi bi-patch-minus-fill"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="vacans_inputs">
+                                                <input type="text"
+                                                       name="name"
+                                                       class="form-control inputs hidden_user w-100"
                                                        disabled="" />
                                             </div>
                                         </div>
