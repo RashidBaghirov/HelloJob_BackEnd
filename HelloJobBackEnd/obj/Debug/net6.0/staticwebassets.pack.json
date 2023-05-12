@@ -205,6 +205,30 @@
       "PackagePath": "staticwebassets\\assets\\css\\slick.css.map"
     },
     {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\532kb-og-image.png",
+      "PackagePath": "staticwebassets\\assets\\images\\Company\\532kb-og-image.png"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\119photo_2023-04-28_17-30-34.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\119photo_2023-04-28_17-30-34.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\414photo_2023-04-28_17-30-27.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\414photo_2023-04-28_17-30-27.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\905photo_2023-04-28_17-30-34.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\905photo_2023-04-28_17-30-34.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\184photo_2023-04-28_17-30-34.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\184photo_2023-04-28_17-30-34.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\50Cv.pdf",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\50Cv.pdf"
+    },
+    {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\logo.svg",
       "PackagePath": "staticwebassets\\assets\\images\\logo.svg"
     },
@@ -219,6 +243,10 @@
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\account.js",
       "PackagePath": "staticwebassets\\assets\\js\\account.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\createcompany.js",
+      "PackagePath": "staticwebassets\\assets\\js\\createcompany.js"
     },
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\cvpage.js",

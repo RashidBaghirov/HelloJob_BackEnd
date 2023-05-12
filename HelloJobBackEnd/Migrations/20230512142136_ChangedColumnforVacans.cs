@@ -5,29 +5,50 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HelloJobBackEnd.Migrations
 {
-    public partial class CreatingVacansTable : Migration
+    public partial class ChangedColumnforVacans : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Companies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Companies_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Vacans",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyId = table.Column<int>(type: "int", nullable: false),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
                     OperatingModeId = table.Column<int>(type: "int", nullable: false),
                     ExperienceId = table.Column<int>(type: "int", nullable: false),
-                    Salary = table.Column<int>(type: "int", nullable: false),
+                    Salary = table.Column<int>(type: "int", nullable: true),
                     BusinessAreaId = table.Column<int>(type: "int", nullable: false),
                     EducationId = table.Column<int>(type: "int", nullable: false),
                     DrivingLicense = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,8 +57,7 @@ namespace HelloJobBackEnd.Migrations
                         name: "FK_Vacans_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Vacans_BusinessArea_BusinessAreaId",
                         column: x => x.BusinessAreaId,
@@ -48,6 +68,12 @@ namespace HelloJobBackEnd.Migrations
                         name: "FK_Vacans_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Vacans_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -76,7 +102,7 @@ namespace HelloJobBackEnd.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Info = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Info = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VacansId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -96,7 +122,7 @@ namespace HelloJobBackEnd.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Info = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Info = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VacansId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -109,6 +135,17 @@ namespace HelloJobBackEnd.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Companies_Name",
+                table: "Companies",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Companies_UserId",
+                table: "Companies",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InfoEmployeers_VacansId",
@@ -129,6 +166,11 @@ namespace HelloJobBackEnd.Migrations
                 name: "IX_Vacans_CityId",
                 table: "Vacans",
                 column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vacans_CompanyId",
+                table: "Vacans",
+                column: "CompanyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vacans_EducationId",
@@ -161,6 +203,9 @@ namespace HelloJobBackEnd.Migrations
 
             migrationBuilder.DropTable(
                 name: "Vacans");
+
+            migrationBuilder.DropTable(
+                name: "Companies");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using HelloJobBackEnd.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace HelloJobBackEnd.DAL
 {
@@ -23,6 +24,18 @@ namespace HelloJobBackEnd.DAL
         public DbSet<Vacans> Vacans { get; set; }
         public DbSet<InfoEmployeer> InfoEmployeers { get; set; }
         public DbSet<InfoWork> InfoWorks { get; set; }
+        public DbSet<Company> Companies { get; set; }
+
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Company>().
+                    HasIndex(s => s.Name).
+                    IsUnique();
+            base.OnModelCreating(modelBuilder);
+        }
+
 
 
 

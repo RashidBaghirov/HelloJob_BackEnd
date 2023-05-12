@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HelloJobBackEnd.Migrations
 {
     [DbContext(typeof(HelloJobDbContext))]
-    [Migration("20230511201551_CreatingVacansTable")]
-    partial class CreatingVacansTable
+    [Migration("20230512142136_ChangedColumnforVacans")]
+    partial class ChangedColumnforVacans
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,6 +78,40 @@ namespace HelloJobBackEnd.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("HelloJobBackEnd.Entities.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("HelloJobBackEnd.Entities.Cv", b =>
@@ -209,7 +243,6 @@ namespace HelloJobBackEnd.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Info")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VacansId")
@@ -231,7 +264,6 @@ namespace HelloJobBackEnd.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Info")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VacansId")
@@ -343,6 +375,9 @@ namespace HelloJobBackEnd.Migrations
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -352,19 +387,11 @@ namespace HelloJobBackEnd.Migrations
                     b.Property<int>("EducationId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("EndedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ExperienceId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OperatingModeId")
                         .HasColumnType("int");
@@ -373,11 +400,10 @@ namespace HelloJobBackEnd.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Salary")
+                    b.Property<int?>("Salary")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -385,6 +411,8 @@ namespace HelloJobBackEnd.Migrations
                     b.HasIndex("BusinessAreaId");
 
                     b.HasIndex("CityId");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("EducationId");
 
@@ -541,6 +569,17 @@ namespace HelloJobBackEnd.Migrations
                     b.Navigation("BusinessTitle");
                 });
 
+            modelBuilder.Entity("HelloJobBackEnd.Entities.Company", b =>
+                {
+                    b.HasOne("HelloJobBackEnd.Entities.User", "User")
+                        .WithMany("Companies")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("HelloJobBackEnd.Entities.Cv", b =>
                 {
                     b.HasOne("HelloJobBackEnd.Entities.BusinessArea", "BusinessArea")
@@ -628,6 +667,12 @@ namespace HelloJobBackEnd.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HelloJobBackEnd.Entities.Company", "Company")
+                        .WithMany("Vacans")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("HelloJobBackEnd.Entities.Education", "Education")
                         .WithMany()
                         .HasForeignKey("EducationId")
@@ -646,23 +691,21 @@ namespace HelloJobBackEnd.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HelloJobBackEnd.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("HelloJobBackEnd.Entities.User", null)
+                        .WithMany("Vacans")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("BusinessArea");
 
                     b.Navigation("City");
+
+                    b.Navigation("Company");
 
                     b.Navigation("Education");
 
                     b.Navigation("Experience");
 
                     b.Navigation("OperatingMode");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -731,6 +774,11 @@ namespace HelloJobBackEnd.Migrations
                     b.Navigation("Cvs");
                 });
 
+            modelBuilder.Entity("HelloJobBackEnd.Entities.Company", b =>
+                {
+                    b.Navigation("Vacans");
+                });
+
             modelBuilder.Entity("HelloJobBackEnd.Entities.Education", b =>
                 {
                     b.Navigation("Cvs");
@@ -748,7 +796,11 @@ namespace HelloJobBackEnd.Migrations
 
             modelBuilder.Entity("HelloJobBackEnd.Entities.User", b =>
                 {
+                    b.Navigation("Companies");
+
                     b.Navigation("Cvs");
+
+                    b.Navigation("Vacans");
                 });
 
             modelBuilder.Entity("HelloJobBackEnd.Entities.Vacans", b =>

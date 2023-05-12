@@ -1,6 +1,10 @@
 ﻿@{
     Layout = "_MyAccount";
+    List<Cv> cvs = ViewBag.Allcv;
+    List<Vacans> vacans = ViewBag.Allvacans;
 }
+
+
 
 <div class="account">
     <div class="account_bar">
@@ -57,6 +61,24 @@
                         Vakansiya Yerləşdir
                     </a>
                 </li>
+                <li>
+                    <a asp-controller="myaccount" asp-action="creatingcompany">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
+                                 alt="" />
+                        </span>
+                        Şirkət Yarat
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="myaccount" asp-action="mycompany">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
+                                 alt="" />
+                        </span>
+                        Şirkətlərim
+                    </a>
+                </li>
             }
             else
             {
@@ -102,118 +124,45 @@
             <div class="title">
                 <h1>Elanlarim</h1>
                 <ul class="profile__add-cv__parts">
-                    <li class="active">
-                        <a href="#tab1" class="tab1 step_btn">Cv-lər(1)</a>
-                    </li>
-                    <li class="active d-none">
-                        <a href="#tab1" class="tab1 step_btn">Vakansiyalar(1)</a>
-                    </li>
+                    @if (User.IsInRole(UserRole.employeer.ToString()))
+                    {
+
+
+                        <li class="active">
+                            <a href="#tab1" class="tab1 step_btn">CV(@cvs.Count())</a>
+                        </li>
+
+
+
+                    }
+                    else
+                    {
+                        <li class="active">
+                            <a href="#tab1" class="tab1 step_btn">Vakansiyalar(@vacans.Count())</a>
+                        </li>
+                    }
+              
+            
                 </ul>
             </div>
             <div class="inner_tab">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-12 ">
-                            <div class="user_block">
-                                <a href="./userdetail.html" target="_blank">
-                                    <div class="header_user">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="user_img">
-                                                <img src="https://e7.pngegg.com/pngimages/518/64/png-clipart-person-icon-computer-icons-user-profile-symbol-person-miscellaneous-monochrome-thumbnail.png"
-                                                     alt="" />
-                                            </div>
-                                            <div class="d-flex justify-content-between w-100">
-                                                <div class="user_desc">
-                                                    <h3 class="profession">
-                                                        İnsan resursları üzrə kiçik mütəxəssis
-                                                    </h3>
 
-                                                    <p class="fullname">Nərminə Nəzərli Əsgərova</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="user_options">
-                                        <div class="item">
-                                            <div class="icon">
-                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg"
-                                                     alt="" />
-                                            </div>
-                                            <div class="text">
-                                                <h4>Tam-ştat</h4>
-                                                <p>İş rejimi</p>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="icon">
-                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg"
-                                                     alt="" />
-                                            </div>
-                                            <div class="text">
-                                                <h4>600</h4>
-                                                <p>Minimum əmək haqqı AZN</p>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="icon">
-                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg"
-                                                     alt="" />
-                                            </div>
-                                            <div class="text">
-                                                <h4>1 ildən 3 ilə qədər</h4>
-                                                <p>İş staji</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="user_buttons">
-                                    <a href="" class="edited btn">
-                                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/edit.svg"
-                                             alt="" />
-                                        <span>Redaktə et</span>
-                                    </a>
-                                    <a class="deleted btn" href="">
-                                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/delete.svg"
-                                             alt="" />
-                                        <span>Sil</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 d-none">
-                            <div class="vacancies">
-                                <div class="vacancies_href">
-                                    <a href="./vacansdetail.html">
-                                        <div class="item_left">
-                                            <div class="icon">
-                                                <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg"
-                                                     alt="Bağban" />
-                                            </div>
-                                            <div class="title">
-                                                <h3>Bağban</h3>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <div class="item_right">
-                                        <span class="salary">500 - 500 AZN</span>
-                                        <span class="date">Dünən 11:29</span>
-                                    </div>
-                                    <div class="vacans_buttons">
-                                        <a href="" class="edited btn">
-                                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/edit.svg"
-                                                 alt="" />
-                                            <span>Redaktə et</span>
-                                        </a>
-                                        <a class="deleted btn" href="">
-                                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/delete.svg"
-                                                 alt="" />
-                                            <span>Sil</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @if (User.IsInRole(UserRole.employeer.ToString()))
+                        {
+
+
+                            @await Html.PartialAsync("_CvsPartial",cvs)
+                            
+                
+                           
+                        }
+                        else
+                        {
+                            @await Html.PartialAsync("_VacansPartial",vacans)
+                        }
+                     
                     </div>
                 </div>
             </div>
@@ -269,6 +218,24 @@
                             Vakansiya yerləşdir
                         </a>
                     </li>
+                    <li>
+                        <a asp-controller="myaccount" asp-action="creatingcompany">
+                            <span>
+                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
+                                     alt="" />
+                            </span>
+                            Şirkət Yarat
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="myaccount" asp-action="mycompany">
+                            <span>
+                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
+                                     alt="" />
+                            </span>
+                            Şirkətlərim
+                        </a>
+                    </li>
                 }
                 else
                 {
@@ -320,115 +287,45 @@
                 <div class="title">
                     <h1>Elanlarim</h1>
                     <ul class="profile__add-cv__parts">
-                        <li class="active">
-                            <a href="#tab1" class="tab1 step_btn">Cv-lər(1)</a>
-                        </li>
+                        @if (User.IsInRole(UserRole.employeer.ToString()))
+                        {
+
+
+                            <li class="active">
+                                <a href="#tab1" class="tab1 step_btn">CV(@cvs.Count())</a>
+                            </li>
+
+
+
+                        }
+                        else
+                        {
+                            <li class="active">
+                                <a href="#tab1" class="tab1 step_btn">Vakansiyalar(@vacans.Count())</a>
+                            </li>
+                        }
+
+
                     </ul>
                 </div>
                 <div class="inner_tab">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-12 ">
-                                <div class="user_block">
-                                    <a href="./userdetail.html" target="_blank">
-                                        <div class="header_user">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="user_img">
-                                                    <img src="https://e7.pngegg.com/pngimages/518/64/png-clipart-person-icon-computer-icons-user-profile-symbol-person-miscellaneous-monochrome-thumbnail.png"
-                                                         alt="" />
-                                                </div>
-                                                <div class="d-flex justify-content-between w-100">
-                                                    <div class="user_desc">
-                                                        <h3 class="profession">
-                                                            İnsan resursları üzrə kiçik mütəxəssis
-                                                        </h3>
 
-                                                        <p class="fullname">Nərminə Nəzərli Əsgərova</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="user_options">
-                                            <div class="item">
-                                                <div class="icon">
-                                                    <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg"
-                                                         alt="" />
-                                                </div>
-                                                <div class="text">
-                                                    <h4>Tam-ştat</h4>
-                                                    <p>İş rejimi</p>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="icon">
-                                                    <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg"
-                                                         alt="" />
-                                                </div>
-                                                <div class="text">
-                                                    <h4>600</h4>
-                                                    <p>Minimum əmək haqqı AZN</p>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="icon">
-                                                    <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg"
-                                                         alt="" />
-                                                </div>
-                                                <div class="text">
-                                                    <h4>1 ildən 3 ilə qədər</h4>
-                                                    <p>İş staji</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <div class="user_buttons">
-                                        <a href="" class="edited btn">
-                                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/edit.svg"
-                                                 alt="" />
-                                            <span>Redaktə et</span>
-                                        </a>
-                                        <a class="deleted btn" href="">
-                                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/delete.svg"
-                                                 alt="" />
-                                            <span>Sil</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 d-none">
-                                <div class="vacancies">
-                                    <div class="vacancies_href">
-                                        <a href="./vacansdetail.html">
-                                            <div class="item_left">
-                                                <div class="icon">
-                                                    <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg"
-                                                         alt="Bağban" />
-                                                </div>
-                                                <div class="title">
-                                                    <h3>Bağban</h3>
-                                                    <p></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <div class="item_right">
-                                            <span class="salary">500 - 500 AZN</span>
-                                            <span class="date">Dünən 11:29</span>
-                                        </div>
-                                        <div class="vacans_buttons">
-                                            <a href="" class="edited btn">
-                                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/edit.svg"
-                                                     alt="" />
-                                                <span>Redaktə et</span>
-                                            </a>
-                                            <a class="deleted btn" href="">
-                                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/delete.svg"
-                                                     alt="" />
-                                                <span>Sil</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @if (User.IsInRole(UserRole.employeer.ToString()))
+                            {
+
+
+                                @await Html.PartialAsync("_CvsPartial",cvs)
+
+
+
+                            }
+                            else
+                            {
+                                @await Html.PartialAsync("_VacansPartial",vacans)
+                            }
+
                         </div>
                     </div>
                 </div>

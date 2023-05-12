@@ -6573,4 +6573,50 @@
 .mobile_account .active {
     display: block;
 }
+
+.company_card {
+    transition: 0.3s ease;
+    margin-bottom: 20px;
+}
+
+    .company_card .company_box {
+        transition: 0.3s ease;
+    }
+
+        .company_card .company_box .full {
+            padding: 30px 10px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #EDEDED;
+            align-items: center;
+            transition: 0.3s ease;
+            text-decoration: none;
+        }
+
+            .company_card .company_box .full .company_images {
+                width: 150px;
+                height: 40px;
+                position: relative;
+                padding: 0 15px;
+            }
+
+                .company_card .company_box .full .company_images img {
+                    width: 100%;
+                    -o-object-fit: contain;
+                    object-fit: contain;
+                }
+
+            .company_card .company_box .full p {
+                font-size: 16px;
+                color: #212944;
+                font-weight: 500;
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .company_card .company_box .full span {
+                font-size: 14px;
+                color: #212944;
+            }
 /*# sourceMappingURL=main.css.map */

@@ -5,19 +5,33 @@ namespace HelloJobBackEnd.ViewModel
 {
     public class VacansVM
     {
-        public string Name { get; set; }
+        [Required(ErrorMessage = " Şəhər  qeyd olunmalıdır.*")]
         public int CityId { get; set; }
-        public int OperatingModeId { get; set; }
-        public int ExperienceId { get; set; }
-        public int Salary { get; set; }
-        public string Position { get; set; }
-        public int BusinessAreaId { get; set; }
-        public int EducationId { get; set; }
-        public bool DrivingLicense { get; set; }
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        [Required(ErrorMessage = " İş saatı  qeyd olunmalıdır.*")]
 
-        public string InfoWorks { get; set; }
-        public string infoEmployeers { get; set; }
+        public int OperatingModeId { get; set; }
+        [Required(ErrorMessage = " İş stajı  qeyd olunmalıdır.*")]
+
+        public int ExperienceId { get; set; }
+        public int? Salary { get; set; }
+        [Required(ErrorMessage = " Vəzifə  qeyd olunmalıdır.*")]
+
+        public string Position { get; set; }
+        [Required(ErrorMessage = " Kateqoriya  qeyd olunmalıdır.*")]
+
+        public int BusinessAreaId { get; set; }
+        [Required(ErrorMessage = " Təhsil  qeyd olunmalıdır.*")]
+
+        public int EducationId { get; set; }
+        [Required(ErrorMessage = " Şirkət  qeyd olunmalıdır.*")]
+
+        public int CompanyId { get; set; }
+        public bool DrivingLicense { get; set; }
+        [Required(ErrorMessage = " İş barədə məlumat  qeyd olunmalıdır.*")]
+
+        public string? InfoWorks { get; set; }
+        [Required(ErrorMessage = " Namizəddən tələblər   qeyd olunmalıdır.*")]
+
+        public string? infoEmployeers { get; set; }
     }
 }

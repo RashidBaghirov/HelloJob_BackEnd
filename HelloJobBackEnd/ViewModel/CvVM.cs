@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HelloJobBackEnd.ViewModel
 {
     public class CvVM
     {
+        public int Id { get; set; }
         public IFormFile Image { get; set; }
+        public string? Images { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         [DataType(DataType.Date)]
@@ -24,5 +27,6 @@ namespace HelloJobBackEnd.ViewModel
 
         public int Number { get; set; }
         public IFormFile? CvPDF { get; set; }
+        public string? CvPDFs { get; set; }
     }
 }

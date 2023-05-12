@@ -1,8 +1,44 @@
-﻿
-@{
+﻿@{
     Layout = "_MyAccount";
-
 }
+@if (TempData["Company"] != null)
+{
+    if ((bool)TempData["Company"] == true)
+    {
+        <input type="hidden" id="companySuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="companyError" />
+
+    }
+}
+@if (TempData["Edited"] != null)
+{
+    if ((bool)TempData["Edited"] == true)
+    {
+        <input type="hidden" id="editedSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="editedError" />
+
+    }
+}
+@if (TempData["Deleted"] != null)
+{
+    if ((bool)TempData["Deleted"] == true)
+    {
+        <input type="hidden" id="deletedSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="deletedError" />
+
+    }
+}
+
+@model List<Company>
 
 <div class="account">
     <div class="account_bar">
@@ -12,7 +48,7 @@
         <ul class="myprofile">
 
             <li>
-                <a class="active" asp-controller="myaccount" asp-action="index">
+                <a asp-controller="myaccount" asp-action="index">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user2.svg"
                              alt="" />
@@ -31,7 +67,7 @@
                 </a>
             </li>
             <li>
-                <a asp-controller="myaccount" asp-action="wishlistpage">
+                <a  asp-controller="myaccount" asp-action="wishlistpage">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
                              alt="" />
@@ -51,7 +87,7 @@
             @if (User.IsInRole(UserRole.business.ToString()))
             {
                 <li>
-                    <a  asp-controller="myaccount" asp-action="createvacans">
+                    <a asp-controller="myaccount" asp-action="createvacans">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
                                  alt="" />
@@ -69,7 +105,7 @@
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="myaccount" asp-action="mycompany">
+                    <a class="active" asp-controller="myaccount" asp-action="mycompany">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                  alt="" />
@@ -118,64 +154,49 @@
                 </div>
             </div>
         </div>
-        <div class="account_body">
-            <div class="my-profile">
-                <div class="my-profile__head">
-                    <h1 class="my-profile__name">Xoş gəlmisiniz, @ViewBag.User.FullName</h1>
-                    <p>Hellojob.az</p>
-                </div>
-                <div class="row">
-                    @if (User.IsInRole(UserRole.business.ToString()))
+        <div class="create_cv">
+            <div class="title">
+                <h1>Şirkətlərim</h1>
+                <ul class="profile__add-cv__parts">
+                    <li class="active">
+                        <a href="#tab1" class="tab1 step_btn"> Şirkətlər(@Model.Count())</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="inner_tab">
+                <div class="row mt-5">
+                    @foreach (var item in Model)
                     {
-                        <div class="col-lg-3 col-md-6 ">
-                            <a class="my-profile__item" asp-controller="company" asp-action="createvacans">
-                                <div class="my-profile__item__icon">
-                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/building.svg"
-                                         alt="" />
+                        <div class="company_card col-md-4 col-lg-3">
+                            <div class="company_box">
+                                <a href="./companydetail.html" class="full">
+                                    <div class="company_images">
+                                        <img src="~/assets/images/Company/@item.Image"
+                                             alt="@item.Name" />
+                                    </div>
+                                    <p>@item.Name</p>
+                                    <span>Vakansiya sayı <span>@item.Vacans.Count()</span> </span>
+                                </a>
+                                <div class="crudbtn mt-2">
+                                    <a class="btn btn-success" style="text-decoration:none" asp-controller="myaccount" asp-action="editcompany" asp-route-id="@item.Id">
+                                        Edit
+                                   </a>
+                                    <a class="btn btn-danger" style="text-decoration:none" asp-controller="myaccount" asp-action="deletecompany" asp-route-id="@item.Id">
+                                       Delete
+                                    </a>
+                                 
                                 </div>
-                                <h2 class="my-profile__item__name">Vakansiya Yerləşdir</h2>
-                            </a>
+                            </div>
                         </div>
                     }
-                    else
-                    {
-                        <div class="col-lg-3 col-md-6">
-                            <a class="my-profile__item" asp-controller="myaccount" asp-action="createcv">
-                                <div class="my-profile__item__icon">
-                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user-check.svg"
-                                         alt="" />
-                                </div>
-                                <h2 class="my-profile__item__name">CV yerləşdir</h2>
-                            </a>
-                        </div>
-                    }
-
-               
-                    <div class="col-lg-3 col-md-6">
-                        <a class="my-profile__item" asp-controller="myaccount" asp-action="mysticker">
-                            <div class="my-profile__item__icon"> 
-                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/share.svg"
-                                     alt="" />
-                            </div>
-                            <h2 class="my-profile__item__name">Elanlarım</h2>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a class="my-profile__item" asp-controller="myaccount" asp-action="wishlistpage">
-                            <div class="my-profile__item__icon">
-                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/check-heart.svg"
-                                     alt="" />
-                            </div>
-                            <h2 class="my-profile__item__name">Bəyəndiklərim</h2>
-                        </a>
-                    </div>
+                 
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="mobile_account d-md-none d-lg-none">
-    <div class="head ">
+    <div class="head">
         <div class="hamburgers icons">
             <i class="bi bi-list"></i>
         </div>
@@ -204,7 +225,7 @@
         <div class="hamburgers_menu">
             <ul class="myprofile">
                 <li>
-                    <a class="active" asp-controller="myaccount" asp-action="index">
+                    <a asp-controller="myaccount" asp-action="index">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user2.svg"
                                  alt="" />
@@ -212,7 +233,7 @@
                         Profilim
                     </a>
                 </li>
-                    @if (User.IsInRole(UserRole.business.ToString()))
+                @if (User.IsInRole(UserRole.business.ToString()))
                 {
                     <li>
                         <a asp-controller="myaccount" asp-action="createvacans">
@@ -233,7 +254,7 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-controller="myaccount" asp-action="mycompany">
+                        <a class="active" asp-controller="myaccount" asp-action="mycompany">
                             <span>
                                 <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                      alt="" />
@@ -264,7 +285,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./WishListpage.html">
+                    <a  asp-controller="myaccount" asp-action="wishlistpage">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
                                  alt="" />
@@ -288,56 +309,37 @@
             </div>
         </div>
         <div class="account_content">
-            <div class="account_body">
-                <div class="my-profile">
-                    <div class="my-profile__head">
-                        <h1 class="my-profile__name">Xoş gəlmisiniz, @ViewBag.User.FullName</h1>
-                        <p>Hellojob.az</p>
-                    </div>
-                    <div class="row">
-                                @if (User.IsInRole(UserRole.business.ToString()))
+            <div class="create_cv">
+                <div class="title">
+                    <h1>Şirkətlərim</h1>
+                    <ul class="profile__add-cv__parts">
+                        <li class="active">
+                            <a href="#tab1" class="tab1 step_btn"> Şirkətlər(@Model.Count())</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inner_tab">
+                    <div class="row mt-5">
+                        @foreach (var item in Model)
                         {
-                            <div class=" col-md-3 ">
-                                <a class="my-profile__item" asp-controller="myaccount" asp-action="createvacans">
-                                    <div class="my-profile__item__icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/building.svg"
-                                             alt="" />
+                            <div class="company_card col-md-4 col-lg-3">
+                                <div class="company_box">
+                                    <a href="./companydetail.html" class="full">
+                                        <div class="company_images">
+                                            <img src="~/assets/images/Company/@item.Image"
+                                                 alt="@item.Name" />
+                                        </div>
+                                        <p>@item.Name</p>
+                                        <span>Vakansiya sayı <span>@item.Vacans.Count()</span> </span>
+                                    </a>
+                                    <div class="crudbtn mt-2">
+                                        <button class="btn btn-success">Edit</button>
+                                        <button class="btn btn-danger">Delete</button>
                                     </div>
-                                    <h2 class="my-profile__item__name">Vakansiya Yerləşdir</h2>
-                                </a>
+                                </div>
                             </div>
                         }
-                        else
-                        {
-                            <div class="col-md-3">
-                                <a class="my-profile__item" asp-controller="myaccount" asp-action="createcv">
-                                    <div class="my-profile__item__icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user-check.svg"
-                                             alt="" />
-                                    </div>
-                                    <h2 class="my-profile__item__name">CV yerləşdir</h2>
-                                </a>
-                            </div>
-                        }
-                   
-                        <div class="col-md-3">
-                            <a asp-controller="myaccount" asp-action="mysticker">
-                                <span>
-                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
-                                         alt="" />
-                                </span>
-                                Elanlarım
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a asp-controller="myaccount" asp-action="wishlistpage">
-                                <span>
-                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
-                                         alt="" />
-                                </span>
-                                Bəyəndiklərim
-                            </a>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -345,3 +347,37 @@
 
     </div>
 </div>
+
+
+ @section Scripts{
+    <script>
+        $(document).ready(function () {
+            if ($("#companySuccess").length) {
+                toastr["success"]("You have successfully joined us!", "Your Company creaiting")
+            }
+            else if ($("#companyError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#editedSuccess").length) {
+                toastr["success"]("You have successfully joined us!", "Your Company is edited")
+            }
+            else if ($("#editedError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#deletedSuccess").length) {
+                toastr["success"]("You have successfully joined us!", "Your Company is deleted")
+            }
+            else if ($("#deletedError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+ }

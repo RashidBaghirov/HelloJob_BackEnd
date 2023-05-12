@@ -57,6 +57,24 @@
                         Vakansiya Yerləşdir
                     </a>
                 </li>
+                <li>
+                    <a asp-controller="myaccount" asp-action="creatingcompany">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
+                                 alt="" />
+                        </span>
+                        Şirkət Yarat
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="myaccount" asp-action="mycompany">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
+                                 alt="" />
+                        </span>
+                        Şirkətlərim
+                    </a>
+                </li>
             }
             else
             {
@@ -118,22 +136,14 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="vacans_inputs">
-                                        <label asp-for="Email">E-Poçt</label>
-                                        <input asp-for="Email"
-                                               value="rrrr@gmail.com"
-                                               class="form-control inputs"
-                                               placeholder="E-poçt ünvanınızı yazın" />
-                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                     
+                                        <label asp-for="CompanyId">Şirkət adı</label>
+                                        <select asp-for="CompanyId" asp-items="@(new SelectList(ViewBag.Company,"Id","Name"))" class="form-control cities">
+                                            <option selected disabled>Şirkətinizi Seçin</option>
 
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="vacans_inputs">
-                                        <label asp-for="Name">Şirkət adı</label>
-                                        <input asp-for=Name
-                                               class="form-control inputs"
-                                               placeholder="Şirkət adınızı yazın" />
-                                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                                        </select>
+                                        <span asp-validation-for="CompanyId" class="text-danger"></span>
 
                                     </div>
                                 </div>
@@ -343,11 +353,29 @@
                             Vakansiya yerləşdir
                         </a>
                     </li>
+                    <li>
+                        <a  asp-controller="myaccount" asp-action="creatingcompany">
+                            <span>
+                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
+                                     alt="" />
+                            </span>
+                            Şirkət Yarat
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="myaccount" asp-action="mycompany">
+                            <span>
+                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
+                                     alt="" />
+                            </span>
+                            Şirkətlərim
+                        </a>
+                    </li>
                 }
                 else
                 {
                     <li>
-                        <a class="active" asp-controller="myaccount" asp-action="createcv">
+                        <a  asp-controller="myaccount" asp-action="createcv">
                             <span>
                                 <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                      alt="" />
@@ -400,204 +428,107 @@
                     </ul>
                 </div>
                 <div class="inner_tab">
-                    <form action="">
+                    <form asp-controller="myaccount" asp-action="Createvacans" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="row mb-5">
                             <div class="col-lg-2">
                                 <h2 class="section_title">İş barədə məlumatlar</h2>
                             </div>
                             <div class="col-lg-10">
                                 <div class="row">
+                                
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
-                                            <label for="">E-Poçt</label>
-                                            <input type="email"
-                                                   name="name"
-                                                   value="rrrr@gmail.com"
-                                                   class="form-control inputs"
-                                                   placeholder="E-poçt ünvanınızı yazın" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="vacans_inputs">
-                                            <label for="">Şirkət adı</label>
-                                            <input type="text"
-                                                   name="name"
-                                                   class="form-control inputs"
-                                                   placeholder="Şirkət adınızı yazın" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="vacans_inputs">
-                                            <label for="">Şəhər</label>
-                                            <select name="city" asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities">
-                                               
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="vacans_inputs">
-                                            <label for="">Vəzifə</label>
-                                            <input type="text"
-                                                   name=""
-                                                   class="form-control inputs"
-                                                   placeholder="Vəzifə" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="vacans_inputs">
-                                            <label for="">Kateqoriya</label>
-                                            <select name="category" class="form-control cities">
-                                                <optgroup label="Maliyyə">
-                                                    <option>Kredit mütəxəssisi</option>
-                                                    <option>Mühasibat</option>
-                                                    <option>Maliyyə analiz</option>
-                                                    <option>Bank xidməti</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                                <optgroup label="Marketinq">
-                                                    <option>Rəqəmsal marketinq</option>
-                                                    <option>Marketinq menecment</option>
-                                                    <option>SMM</option>
-                                                    <option>SEO/SEM</option>
-                                                    <option>Kopiraytinq</option>
-                                                    <option>İctimaiyyətlə əlaqələr (PR)</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                                <optgroup label="Texnologiya">
-                                                    <option>Proqramlaşdırma</option>
-                                                    <option>Sistem idarəetməsi</option>
-                                                    <option>İT mütəxəssisi / məsləhətçi</option>
-                                                    <option>Texniki avadanlıq mütəxəssisi</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                                <optgroup label="Satış">
-                                                    <option>Satış üzrə mütəxəssis</option>
-                                                    <option>Daşınmaz əmlak agenti / makler</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                                <optgroup label="Xidmət">
-                                                    <option>Operator</option>
-                                                    <option>Logistika</option>
-                                                    <option>Kuryer</option>
-                                                    <option>SPA və gözəllik</option>
-                                                    <option>Xadimə</option>
-                                                    <option>Anbardar</option>
-                                                    <option>Restoran işi</option>
-                                                    <option>Sürücü</option>
-                                                    <option>Dayə</option>
-                                                    <option>Telefon ustası</option>
-                                                    <option>Fəhlə</option>
-                                                    <option>Turizm və mehmanxana işi</option>
-                                                    <option>Tərcüməçi</option>
-                                                    <option>Mühafizə xidməti</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                                <optgroup label="Dizayn">
-                                                    <option>3D modelləşdirmə</option>
-                                                    <option>Animasiya dizaynı</option>
-                                                    <option>İllustrasiya</option>
-                                                    <option>Qrafik dizayn</option>
-                                                    <option>Veb-dizayn</option>
-                                                    <option>Memar / İnteryer dizaynı</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                                <optgroup label="Müxtəlif">
-                                                    <option>Sığorta</option>
-                                                    <option>Menecment</option>
-                                                    <option>Geologiya və ətraf mühit</option>
-                                                    <option>Mühəndis</option>
-                                                    <option>Tikinti</option>
-                                                    <option>Avtomatlaşdırılmış idarəetmə</option>
-                                                    <option>Fotoqrafiya</option>
-                                                    <option>Jurnalistika</option>
-                                                    <option>Tələbələr üçün</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                                <optgroup label="Səhiyyə">
-                                                    <option>Həkim</option>
-                                                    <option>Tibb təmsilçisi</option>
-                                                    <option>Tibbi personal</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                                <optgroup label="Təhsil və elm">
-                                                    <option>Məktəb tədrisi</option>
-                                                    <option>Universitet tədrisi</option>
-                                                    <option>Repetitor</option>
-                                                    <option>Xüsusi təhsil/ Təlim</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                                <optgroup label="Sənaye və k/t">
-                                                    <option>Kənd təsərrüfatı</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                                <optgroup label="Hüquq">
-                                                    <option>Hüquqşünas</option>
-                                                    <option>Cinayət hüququ</option>
-                                                    <option>Vəkil</option>
-                                                </optgroup>
-                                                <optgroup label="İnzibati">
-                                                    <option>Heyətin idarəolunması</option>
-                                                    <option>Ofis menecmenti</option>
-                                                    <option>Katibə / Resepşn</option>
-                                                    <option>Digər</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="vacans_inputs">
-                                            <label for="">İş stajı</label>
-                                            <select name="category" class="form-control cities">
-                                                <option selected disabled>İş stajı seçin</option>
-                                                <option>1 ildən az</option>
-                                                <option>1 ildən 3 ilə qədər</option>
-                                                <option>3 ildən 5 ilə qədər</option>
-                                                <option>5 ildən yüksək</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="vacans_inputs">
-                                            <label for="">Təhsil</label>
-                                            <select name="category" class="form-control cities">
-                                                <option selected disabled>Təhsilinizi seçin</option>
-                                                <option>Ali</option>
-                                                <option>Natamam Ali</option>
-                                                <option>Orta Texniki</option>
-                                                <option>Orta Xüsusi</option>
-                                                <option>Orta</option>
-                                                <option>Digər</option>
+                                            <label asp-for="CompanyId">Şirkət adı</label>
+                                            <select asp-for="CompanyId" asp-items="@(new SelectList(ViewBag.Company,"Id","Name"))" class="form-control cities">
+                                                <option selected disabled>Şirkətinizi Seçin</option>
+
 
                                             </select>
+                                            <span asp-validation-for="CompanyId" class="text-danger"></span>
+
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
-                                            <label for="">İş saatı</label>
-                                            <select name="category" class="form-control cities">
-                                                <option selected disabled>İş saatı seçin</option>
-                                                <option>Tam-ştat</option>
-                                                <option>Freelance</option>
-                                                <option>Part-time</option>
-                                                <option>Təcrübəçi</option>
+                                            <label asp-for="EducationId">Təhsil tələbi</label>
+                                            <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
+                                                <option selected disabled>Təhsil tələbinizi seçin</option>
+
+
                                             </select>
+                                            <span asp-validation-for="EducationId" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
-                                            <label for="">Əmək haqqı AZN</label>
-                                            <input type="number"
+                                            <label asp-for="CityId">Şəhər</label>
+                                            <select asp-for=CityId asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities">
+                                            </select>
+                                            <span asp-validation-for="CityId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="vacans_inputs">
+                                            <label asp-for="Position">Vəzifə</label>
+                                            <input asp-for="Position"
+                                                   class="form-control inputs"
+                                                   placeholder="Vəzifə" />
+                                            <span asp-validation-for="Position" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="vacans_inputs">
+                                            <label asp-for="BusinessAreaId">Kateqoriya</label>
+                                            <select asp-for=BusinessAreaId class="form-control cities">
+                                                @foreach (var businessTitle in ViewBag.Business)
+                                                {
+                                                    <optgroup label="@businessTitle.Name">
+                                                        @foreach (var businessArea in businessTitle.BusinessAreas)
+                                                        {
+                                                            <option value="@businessArea.Id">@businessArea.Name</option>
+                                                        }
+                                                    </optgroup>
+                                                }
+                                            </select>
+                                            <span asp-validation-for="BusinessAreaId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="vacans_inputs">
+                                            <label asp-for="ExperienceId">İş stajı</label>
+                                            <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
+                                                <option selected disabled>İş stajı seçin</option>
+
+                                            </select>
+                                            <span asp-validation-for="ExperienceId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="vacans_inputs">
+                                            <label asp-for="OperatingModeId">İş saatı</label>
+                                            <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
+                                                <option selected disabled>İş saatı seçin</option>
+
+                                            </select>
+                                            <span asp-validation-for="OperatingModeId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="vacans_inputs">
+                                            <label asp-for="Salary">Əmək haqqı AZN</label>
+                                            <input asp-for="Salary"
                                                    max="12000"
-                                                   name=""
                                                    class="form-control inputs"
                                                    placeholder="Məs:1500" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
-                                            <label for="">Sürücülük vəsiqəsi</label>
+                                            <label asp-for="DrivingLicense">Sürücülük vəsiqəsi</label>
                                             <div class="checkbox">
-                                                <input type="checkbox" class="form-check-input mt-0">
+                                                <input asp-for="DrivingLicense" class="form-check-input mt-0">
                                                 <span>Şərtdir</span>
                                             </div>
                                         </div>
@@ -615,7 +546,6 @@
                                         <div class="col-lg-6">
                                             <div class="vacans_inputs">
                                                 <input type="text"
-                                                       name="name"
                                                        class="form-control inputs add_input"
                                                        placeholder="İş barədə əlavə məlumatlar yazın" />
                                             </div>
@@ -628,10 +558,9 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="vacans_inputs">
-                                                <input type="text"
-                                                       name="name"
+                                                <input asp-for="InfoWorks"
                                                        class="form-control inputs hidden_work w-100"
-                                                       disabled="" />
+                                                       readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -648,7 +577,6 @@
                                         <div class="col-lg-6">
                                             <div class="vacans_inputs">
                                                 <input type="text"
-                                                       name="name"
                                                        class="form-control inputs add_input_user"
                                                        placeholder="Namizəddən üçün tələblər yazın" />
                                             </div>
@@ -661,10 +589,9 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="vacans_inputs">
-                                                <input type="text"
-                                                       name="name"
+                                                <input asp-for="infoEmployeers"
                                                        class="form-control inputs hidden_user w-100"
-                                                       disabled="" />
+                                                       readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -672,7 +599,7 @@
                             </div>
                         </div>
                         <div class="submit-button">
-                            <button class="btn btn-primary submit">Təsdiq et</button>
+                            <button type="submit" class="btn btn-primary submit">Təsdiq et</button>
                         </div>
                     </form>
                 </div>

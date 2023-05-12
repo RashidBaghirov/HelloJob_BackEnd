@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\assets\images\Company\" />
     <Folder Include="wwwroot\assets\images\User\CVs\" />
   </ItemGroup>
 

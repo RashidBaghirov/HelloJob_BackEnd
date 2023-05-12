@@ -11,7 +11,7 @@
         <ul class="myprofile">
 
             <li>
-                <a  asp-controller="myaccount" asp-action="index">
+                <a asp-controller="myaccount" asp-action="index">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user2.svg"
                              alt="" />
@@ -50,7 +50,7 @@
             @if (User.IsInRole(UserRole.business.ToString()))
             {
                 <li>
-                    <a  asp-controller="myaccount" asp-action="createvacans">
+                    <a asp-controller="myaccount" asp-action="createvacans">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
                                  alt="" />
@@ -128,7 +128,7 @@
                 </ul>
             </div>
             <div class="inner_tab">
-                <form asp-controller="myaccount" asp-action="createcv" method="post" enctype="multipart/form-data">
+                <form asp-controller="myaccount" asp-action="editcv" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row mb-5">
                         <div class="col-lg-2">
@@ -143,10 +143,11 @@
                                            accept="image/*" />
                                     <span class="upload_file_img">
                                         <img id="preview"
-                                             src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png"
+                                             src="~/assets/images/User/@Model.Images"
                                              class="m-0"
                                              alt="" />
                                     </span>
+                                    <input type="hidden" name="ImagesId" value="@Model.Images" />
                                 </div>
                                 <label for="prof_img" class="upload_image">
                                     <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/upload2.svg"
@@ -159,10 +160,11 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="Name">
-                                            Ad</label>
+                                            Ad
+                                        </label>
                                         <input asp-for="Name"
                                                class="form-control inputs"
-                                               placeholder="Adınız" />
+                                               />
                                         <span asp-validation-for="Name" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -171,19 +173,20 @@
                                         <label asp-for="Surname">Soyad</label>
                                         <input asp-for="Surname"
                                                class="form-control inputs"
-                                               placeholder="Soyad" />
+                                                />
                                         <span asp-validation-for="Surname" class="text-danger"></span>
 
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
-                                        <label asp-for ="BornDate">
-                                            Doğum Tarixi</label>
+                                        <label asp-for="BornDate">
+                                            Doğum Tarixi
+                                        </label>
                                         <input asp-for="BornDate"
-                                               value="__/__/____"
+                                               value="@Model.BornDate"
                                                class="form-control inputs"
-                                               placeholder="__/__/____" />
+                                             >
                                         <span asp-validation-for="BornDate" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -191,9 +194,8 @@
                                     <div class="cv_inputs">
                                         <label asp-for="Email">E-Poçt</label>
                                         <input asp-for="Email"
-                                               value="rrrr@gmail.com"
                                                class="form-control inputs"
-                                               placeholder="E-poçt ünvanınızı yazın" />
+                                               />
                                         <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -212,15 +214,12 @@
                                                 <option value="099">099</option>
                                             </select>
                                             <input id="phone"
-                                                   inputmode="tel"
-                                                   type="text"
-                                                   name="phone"
-                                                   placeholder="Mobil nömrənizi qeyd edin"
+                                                   asp-for="Number"
                                                    class="form-control inputs"
                                                    im-insert="true"
                                                    style="padding-left: 60px" />
                                         </div>
-                                        <input type="hidden"  asp-for="Number" id="full_phone_number" />
+                                        <input type="text" asp-for="Number" id="full_phone_number" />
                                         <span asp-validation-for="Number" class="text-danger"></span>
 
                                     </div>
@@ -228,7 +227,7 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="CityId">Şəhər</label>
-                                        <select asp-for=CityId  asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities">
+                                        <select asp-for=CityId asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities">
                                         </select>
                                         <span asp-validation-for="CityId" class="text-danger"></span>
 
@@ -248,13 +247,13 @@
                                         <label asp-for="Position">Vəzifəniz</label>
                                         <input asp-for="Position"
                                                class="form-control inputs"
-                                               placeholder="Vəzifəniz" />
+                                               />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="BusinessAreaId">Kateqoriya</label>
-                                        <select asp-for=BusinessAreaId  class="form-control cities">
+                                        <select asp-for=BusinessAreaId class="form-control cities">
                                             @foreach (var businessTitle in ViewBag.Business)
                                             {
                                                 <optgroup label="@businessTitle.Name">
@@ -272,9 +271,7 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="ExperienceId">İş stajı</label>
-                                        <select asp-for="ExperienceId"  asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>İş stajı seçin</option>
-
+                                        <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
                                         </select>
                                         <span asp-validation-for="ExperienceId" class="text-danger"></span>
 
@@ -283,10 +280,7 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="EducationId">Təhsil</label>
-                                        <select asp-for="EducationId"  asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>Təhsilinizi seçin</option>
-
-
+                                        <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
                                         </select>
                                         <span asp-validation-for="EducationId" class="text-danger"></span>
 
@@ -295,9 +289,7 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="OperatingModeId">İş saatı</label>
-                                        <select asp-for="OperatingModeId"  asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>İş saatı seçin</option>
-
+                                        <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
                                         </select>
                                         <span asp-validation-for="OperatingModeId" class="text-danger"></span>
 
@@ -416,7 +408,7 @@
                 @if (User.IsInRole(UserRole.business.ToString()))
                 {
                     <li>
-                        <a  asp-controller="myaccount" asp-action="createvacans">
+                        <a asp-controller="myaccount" asp-action="createvacans">
                             <span>
                                 <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                      alt="" />
@@ -425,7 +417,7 @@
                         </a>
                     </li>
                     <li>
-                        <a  asp-controller="myaccount" asp-action="creatingcompany">
+                        <a asp-controller="myaccount" asp-action="creatingcompany">
                             <span>
                                 <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                      alt="" />

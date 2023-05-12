@@ -1,8 +1,8 @@
-﻿
-@{
+﻿@{
     Layout = "_MyAccount";
-
 }
+
+@model CompanyVM
 
 <div class="account">
     <div class="account_bar">
@@ -12,7 +12,7 @@
         <ul class="myprofile">
 
             <li>
-                <a class="active" asp-controller="myaccount" asp-action="index">
+                <a asp-controller="myaccount" asp-action="index">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user2.svg"
                              alt="" />
@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li>
-                <a asp-controller="myaccount" asp-action="wishlistpage">
+                <a  asp-controller="myaccount" asp-action="wishlistpage">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
                              alt="" />
@@ -51,7 +51,7 @@
             @if (User.IsInRole(UserRole.business.ToString()))
             {
                 <li>
-                    <a  asp-controller="myaccount" asp-action="createvacans">
+                    <a asp-controller="myaccount" asp-action="createvacans">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
                                  alt="" />
@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="myaccount" asp-action="creatingcompany">
+                    <a class="active" asp-controller="myaccount" asp-action="creatingcompany">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
                                  alt="" />
@@ -118,58 +118,74 @@
                 </div>
             </div>
         </div>
-        <div class="account_body">
-            <div class="my-profile">
-                <div class="my-profile__head">
-                    <h1 class="my-profile__name">Xoş gəlmisiniz, @ViewBag.User.FullName</h1>
-                    <p>Hellojob.az</p>
-                </div>
-                <div class="row">
-                    @if (User.IsInRole(UserRole.business.ToString()))
-                    {
-                        <div class="col-lg-3 col-md-6 ">
-                            <a class="my-profile__item" asp-controller="company" asp-action="createvacans">
-                                <div class="my-profile__item__icon">
-                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/building.svg"
-                                         alt="" />
-                                </div>
-                                <h2 class="my-profile__item__name">Vakansiya Yerləşdir</h2>
-                            </a>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-lg-3 col-md-6">
-                            <a class="my-profile__item" asp-controller="myaccount" asp-action="createcv">
-                                <div class="my-profile__item__icon">
-                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user-check.svg"
-                                         alt="" />
-                                </div>
-                                <h2 class="my-profile__item__name">CV yerləşdir</h2>
-                            </a>
-                        </div>
-                    }
+        <div class="create_cv">
+            <div class="title">
+                <h1>Şirkət yarat</h1>
+                <ul class="profile__add-cv__parts">
+                    <li class="active">
+                        <a href="#tab1" class="tab1 step_btn"> Şirkət məlumatları</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="inner_tab">
+                <form asp-controller="myaccount" asp-action="creatingcompany" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-               
-                    <div class="col-lg-3 col-md-6">
-                        <a class="my-profile__item" asp-controller="myaccount" asp-action="mysticker">
-                            <div class="my-profile__item__icon"> 
-                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/share.svg"
-                                     alt="" />
+                    <div class="row mb-5">
+                        <div class="col-lg-2">
+                            <h2 class="section_title">Şirkət məlumatları</h2>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="form-group">
+                                <div class="image_input">
+                                    <input class="choose"
+                                           asp-for="Image"
+                                           id="fileInput"
+                                           accept="image/*" />
+                                    <span class="upload_file_img">
+                                        <img id="preview"
+                                             src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png"
+                                             class="m-0"
+                                             alt="" />
+                                    </span>
+                                </div>
+                                <label for="prof_img" class="upload_image">
+                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/upload2.svg"
+                                         alt="" />
+                                    <span>Şəkil əlavə et</span>
+                                    <p>SVG, PNG, JPG or GIF (max. 1000x1000px)</p>
+                                </label>
+                            
+
                             </div>
-                            <h2 class="my-profile__item__name">Elanlarım</h2>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a class="my-profile__item" asp-controller="myaccount" asp-action="wishlistpage">
-                            <div class="my-profile__item__icon">
-                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/check-heart.svg"
-                                     alt="" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label asp-for="Name">Ad</label>
+                                        <input asp-for="Name"
+                                               class="form-control inputs"
+                                               placeholder="Adınız" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cv_inputs">
+                                        <label asp-for="Email">E-Poçt</label>
+                                        <input asp-for="Email"
+                                               class="form-control inputs"
+                                               placeholder="E-poçt ünvanınızı yazın" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
                             </div>
-                            <h2 class="my-profile__item__name">Bəyəndiklərim</h2>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                    <div class="submit-button">
+                        <button type="submit" class="btn btn-primary submit">Təsdiq et</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -204,7 +220,7 @@
         <div class="hamburgers_menu">
             <ul class="myprofile">
                 <li>
-                    <a class="active" asp-controller="myaccount" asp-action="index">
+                    <a asp-controller="myaccount" asp-action="index">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user2.svg"
                                  alt="" />
@@ -212,10 +228,10 @@
                         Profilim
                     </a>
                 </li>
-                    @if (User.IsInRole(UserRole.business.ToString()))
+                @if (User.IsInRole(UserRole.business.ToString()))
                 {
                     <li>
-                        <a asp-controller="myaccount" asp-action="createvacans">
+                        <a  asp-controller="myaccount" asp-action="createvacans">
                             <span>
                                 <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                      alt="" />
@@ -224,7 +240,7 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-controller="myaccount" asp-action="creatingcompany">
+                        <a class="active" asp-controller="myaccount" asp-action="creatingcompany">
                             <span>
                                 <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                      alt="" />
@@ -233,7 +249,7 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-controller="myaccount" asp-action="mycompany">
+                        <a  asp-controller="myaccount" asp-action="mycompany">
                             <span>
                                 <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                      alt="" />
@@ -264,7 +280,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./WishListpage.html">
+                    <a asp-controller="myaccount" asp-action="wishlistpage">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
                                  alt="" />
@@ -288,60 +304,77 @@
             </div>
         </div>
         <div class="account_content">
-            <div class="account_body">
-                <div class="my-profile">
-                    <div class="my-profile__head">
-                        <h1 class="my-profile__name">Xoş gəlmisiniz, @ViewBag.User.FullName</h1>
-                        <p>Hellojob.az</p>
-                    </div>
-                    <div class="row">
-                                @if (User.IsInRole(UserRole.business.ToString()))
-                        {
-                            <div class=" col-md-3 ">
-                                <a class="my-profile__item" asp-controller="myaccount" asp-action="createvacans">
-                                    <div class="my-profile__item__icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/building.svg"
-                                             alt="" />
-                                    </div>
-                                    <h2 class="my-profile__item__name">Vakansiya Yerləşdir</h2>
-                                </a>
+            <div class="create_cv">
+                <div class="title">
+                    <h1>Şirkət yarat</h1>
+                    <ul class="profile__add-cv__parts">
+                        <li class="active">
+                            <a href="#tab1" class="tab1 step_btn"> Şirkət məlumatları</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inner_tab">
+                    <form action="">
+                        <div class="row mb-5">
+                            <div class="col-lg-2">
+                                <h2 class="section_title">Şirkət məlumatları</h2>
                             </div>
-                        }
-                        else
-                        {
-                            <div class="col-md-3">
-                                <a class="my-profile__item" asp-controller="myaccount" asp-action="createcv">
-                                    <div class="my-profile__item__icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user-check.svg"
-                                             alt="" />
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <div class="image_input">
+                                        <input class="choose"
+                                               type="file"
+                                               id="fileInput"
+                                               accept="image/*" />
+                                        <span class="upload_file_img">
+                                            <img id="preview"
+                                                 src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png"
+                                                 class="m-0"
+                                                 alt="" />
+                                        </span>
                                     </div>
-                                    <h2 class="my-profile__item__name">CV yerləşdir</h2>
-                                </a>
+                                    <label for="prof_img" class="upload_image">
+                                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/upload2.svg"
+                                             alt="" />
+                                        <span>Şəkil əlavə et</span>
+                                        <p>SVG, PNG, JPG or GIF (max. 1000x1000px)</p>
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">Ad</label>
+                                            <input type="text"
+                                                   name="name"
+                                                   value="Rashid"
+                                                   class="form-control inputs"
+                                                   placeholder="Adınız" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="cv_inputs">
+                                            <label for="">E-Poçt</label>
+                                            <input type="text"
+                                                   name="name"
+                                                   value="rrrr@gmail.com"
+                                                   class="form-control inputs"
+                                                   placeholder="E-poçt ünvanınızı yazın" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        }
-                   
-                        <div class="col-md-3">
-                            <a asp-controller="myaccount" asp-action="mysticker">
-                                <span>
-                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
-                                         alt="" />
-                                </span>
-                                Elanlarım
-                            </a>
                         </div>
-                        <div class="col-md-3">
-                            <a asp-controller="myaccount" asp-action="wishlistpage">
-                                <span>
-                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
-                                         alt="" />
-                                </span>
-                                Bəyəndiklərim
-                            </a>
+                        <div class="submit-button">
+                            <button type="submit" class="btn btn-primary submit">Təsdiq et</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/assets/js/createcompany.js"></script>
+}
