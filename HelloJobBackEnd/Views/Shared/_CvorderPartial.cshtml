@@ -1,0 +1,31 @@
+﻿@model List<Cv>
+@{
+    int count = 1;
+}
+
+        <table class="table caption-top">
+            <caption>Gözləmədə olan elanlar</caption>
+            <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Soyad</th>
+                    <th scope="col">E-poçt</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <th scope="row">@count</th>
+                        <td>@item.Name</td>
+                        <td>@item.Surname</td>
+                        <td>@item.Email</td>
+                        <td>@item.Status</td>
+                    </tr>
+                    count++;
+                }
+            </tbody>
+        </table>

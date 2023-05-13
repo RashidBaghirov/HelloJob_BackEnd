@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using HelloJobBackEnd.Utilities.Enum;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HelloJobBackEnd.ViewModel
@@ -28,5 +29,6 @@ namespace HelloJobBackEnd.ViewModel
         public int Number { get; set; }
         public IFormFile? CvPDF { get; set; }
         public string? CvPDFs { get; set; }
+        public OrderStatus Status { get; set; }
     }
 }

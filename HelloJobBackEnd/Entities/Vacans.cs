@@ -1,4 +1,5 @@
 ﻿using HelloJobBackEnd.Entities.Base;
+using HelloJobBackEnd.Utilities.Enum;
 
 namespace HelloJobBackEnd.Entities
 {
@@ -25,5 +26,6 @@ namespace HelloJobBackEnd.Entities
         public DateTime EndedAt { get; set; }
         public List<InfoWork>? InfoWorks { get; set; }
         public List<InfoEmployeer>? infoEmployeers { get; set; }
+        public OrderStatus Status { get; set; }
     }
 }

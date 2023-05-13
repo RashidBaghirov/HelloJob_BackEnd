@@ -126,7 +126,7 @@
         </div>
         <div class="create_vacans">
             <div class="title">
-                <h1>Vakansiya Yerləşdir</h1>
+                <h1>Vakansiya Sil</h1>
                 <ul class="profile__add-vacans__parts">
                     <li class="active">
                         <a href="#tab1" class=" step_btn">İş barədə məlumatlar</a>
@@ -134,7 +134,7 @@
                 </ul>
             </div>
             <div class="inner_tab">
-                <form asp-controller="myaccount" asp-action="Createvacans" method="post">
+                <form asp-controller="myaccount" asp-action="deletevacans" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row mb-5">
                         <div class="col-lg-2">
@@ -144,12 +144,9 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="vacans_inputs">
-                                     
+
                                         <label asp-for="CompanyId">Şirkət adı</label>
-                                        <select asp-for="CompanyId" asp-items="@(new SelectList(ViewBag.Company,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>Şirkətinizi Seçin</option>
-
-
+                                        <select asp-for="CompanyId" asp-items="@(new SelectList(ViewBag.Company,"Id","Name"))" class="form-control cities" disabled>
                                         </select>
                                         <span asp-validation-for="CompanyId" class="text-danger"></span>
 
@@ -158,10 +155,7 @@
                                 <div class="col-lg-6">
                                     <div class="vacans_inputs">
                                         <label asp-for="EducationId">Təhsil tələbi</label>
-                                        <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>Təhsil tələbinizi seçin</option>
-
-
+                                        <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities" disabled>
                                         </select>
                                         <span asp-validation-for="EducationId" class="text-danger"></span>
                                     </div>
@@ -169,7 +163,7 @@
                                 <div class="col-lg-6">
                                     <div class="vacans_inputs">
                                         <label asp-for="CityId">Şəhər</label>
-                                        <select asp-for=CityId asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities">
+                                        <select asp-for=CityId asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities" disabled>
                                         </select>
                                         <span asp-validation-for="CityId" class="text-danger"></span>
                                     </div>
@@ -178,25 +172,15 @@
                                     <div class="vacans_inputs">
                                         <label asp-for="Position">Vəzifə</label>
                                         <input asp-for="Position"
-                                               class="form-control inputs"
-                                               placeholder="Vəzifə" />
+                                               class="form-control inputs" disabled />
                                         <span asp-validation-for="Position" class="text-danger"></span>
-
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="vacans_inputs">
                                         <label asp-for="BusinessAreaId">Kateqoriya</label>
-                                        <select asp-for=BusinessAreaId class="form-control cities">
-                                            @foreach (var businessTitle in ViewBag.Business)
-                                            {
-                                                <optgroup label="@businessTitle.Name">
-                                                    @foreach (var businessArea in businessTitle.BusinessAreas)
-                                                    {
-                                                        <option value="@businessArea.Id">@businessArea.Name</option>
-                                                    }
-                                                </optgroup>
-                                            }
+                                        <select asp-for=BusinessAreaId class="form-control cities" disabled>
+                                          
                                         </select>
                                         <span asp-validation-for="BusinessAreaId" class="text-danger"></span>
                                     </div>
@@ -204,9 +188,7 @@
                                 <div class="col-lg-6">
                                     <div class="vacans_inputs">
                                         <label asp-for="ExperienceId">İş stajı</label>
-                                        <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>İş stajı seçin</option>
-
+                                        <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities" disabled>
                                         </select>
                                         <span asp-validation-for="ExperienceId" class="text-danger"></span>
                                     </div>
@@ -214,9 +196,7 @@
                                 <div class="col-lg-6">
                                     <div class="vacans_inputs">
                                         <label asp-for="OperatingModeId">İş saatı</label>
-                                        <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>İş saatı seçin</option>
-
+                                        <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities" disabled>
                                         </select>
                                         <span asp-validation-for="OperatingModeId" class="text-danger"></span>
                                     </div>
@@ -226,14 +206,13 @@
                                         <label asp-for="Salary">Əmək haqqı AZN</label>
                                         <input asp-for="Salary"
                                                max="12000"
-                                               class="form-control inputs"
-                                               placeholder="Məs:1500" />
+                                               class="form-control inputs" disabled />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="vacans_inputs">
-                                        <label asp-for="DrivingLicense">Sürücülük vəsiqəsi</label>
-                                        <div class="checkbox">
+                                        <label asp-for="DrivingLicense" >Sürücülük vəsiqəsi</label>
+                                        <div class="checkbox" disabled>
                                             <input asp-for="DrivingLicense" class="form-check-input mt-0">
                                             <span>Şərtdir</span>
                                         </div>
@@ -249,26 +228,16 @@
                         <div class="col-lg-10">
                             <div class="adding work_add">
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="vacans_inputs">
-                                            <input type="text"
-                                                   class="form-control inputs add_input"
-                                                   placeholder="İş barədə əlavə məlumatlar yazın" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="plus_minus_btn">
-                                            <button class="plus_btn work_pls"><i class="bi bi-patch-plus-fill"></i></button>
-                                            <button class="minus_btn work_mns"><i class="bi bi-patch-minus-fill"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="vacans_inputs">
-                                            <input asp-for="InfoWorks"
-                                                   class="form-control inputs hidden_work w-100"
-                                                   readonly />
-                                        </div>
-                                    </div>
+                                    <ol style="padding:15px">
+                                        @foreach (var item in Model.AllWorkInfos)
+                                        {
+                                            <li>
+                                                <span> @item.Info</span>
+                                                <i style="cursor:pointer;" class="bi bi-trash delbtn"></i>
+                                                <input type="hidden" name="DeleteWork" value="@item.Id" />
+                                            </li>
+                                        }
+                                    </ol>
                                 </div>
                             </div>
                         </div>
@@ -280,32 +249,22 @@
                         <div class="col-lg-10">
                             <div class="adding user_add">
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="vacans_inputs">
-                                            <input type="text"
-                                                   class="form-control inputs add_input_user"
-                                                   placeholder="Namizəddən üçün tələblər yazın" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="plus_minus_btn">
-                                            <button class="plus_btn user_pls"><i class="bi bi-patch-plus-fill"></i></button>
-                                            <button class="minus_btn user_mns"><i class="bi bi-patch-minus-fill"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="vacans_inputs">
-                                            <input asp-for="infoEmployeers"
-                                                   class="form-control inputs hidden_user w-100"
-                                                   readonly />
-                                        </div>
-                                    </div>
+                                    <ol style="padding:15px">
+                                        @foreach (var item in Model.AllEmployeerInfos)
+                                        {
+                                            <li>
+                                                <span> @item.Info</span>
+                                                <i style="cursor:pointer;" class="bi bi-trash delbtn"></i>
+                                                <input type="hidden" name="DeleteEmployeers" value="@item.Id" />
+                                            </li>
+                                        }
+                                    </ol>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="submit-button">
-                        <button type="submit" class="btn btn-primary submit">Təsdiq et</button>
+                        <button type="submit" class="btn btn-primary submit">Dəyişdirmək</button>
                     </div>
                 </form>
             </div>
@@ -362,7 +321,7 @@
                         </a>
                     </li>
                     <li>
-                        <a  asp-controller="myaccount" asp-action="creatingcompany">
+                        <a asp-controller="myaccount" asp-action="creatingcompany">
                             <span>
                                 <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                      alt="" />
@@ -383,7 +342,7 @@
                 else
                 {
                     <li>
-                        <a  asp-controller="myaccount" asp-action="createcv">
+                        <a asp-controller="myaccount" asp-action="createcv">
                             <span>
                                 <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                      alt="" />
@@ -402,7 +361,7 @@
                     </a>
                 </li>
                 <li>
-                    <a  asp-controller="myaccount" asp-action="mysticker">
+                    <a asp-controller="myaccount" asp-action="mysticker">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
                                  alt="" />
@@ -437,7 +396,7 @@
         <div class="account_content">
             <div class="create_vacans">
                 <div class="title">
-                    <h1>Vakansiya Yerləşdir</h1>
+                    <h1>Vakansiya Sil</h1>
                     <ul class="profile__add-vacans__parts">
                         <li class="active">
                             <a href="#tab1" class=" step_btn">İş barədə məlumatlar</a>
@@ -445,7 +404,7 @@
                     </ul>
                 </div>
                 <div class="inner_tab">
-                    <form asp-controller="myaccount" asp-action="Createvacans" method="post">
+                    <form asp-controller="myaccount" asp-action="deletevacans" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="row mb-5">
                             <div class="col-lg-2">
@@ -453,14 +412,11 @@
                             </div>
                             <div class="col-lg-10">
                                 <div class="row">
-                                
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
+
                                             <label asp-for="CompanyId">Şirkət adı</label>
-                                            <select asp-for="CompanyId" asp-items="@(new SelectList(ViewBag.Company,"Id","Name"))" class="form-control cities">
-                                                <option selected disabled>Şirkətinizi Seçin</option>
-
-
+                                            <select asp-for="CompanyId" asp-items="@(new SelectList(ViewBag.Company,"Id","Name"))" class="form-control cities" disabled>
                                             </select>
                                             <span asp-validation-for="CompanyId" class="text-danger"></span>
 
@@ -469,10 +425,7 @@
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
                                             <label asp-for="EducationId">Təhsil tələbi</label>
-                                            <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
-                                                <option selected disabled>Təhsil tələbinizi seçin</option>
-
-
+                                            <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities" disabled>
                                             </select>
                                             <span asp-validation-for="EducationId" class="text-danger"></span>
                                         </div>
@@ -480,7 +433,7 @@
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
                                             <label asp-for="CityId">Şəhər</label>
-                                            <select asp-for=CityId asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities">
+                                            <select asp-for=CityId asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities" disabled>
                                             </select>
                                             <span asp-validation-for="CityId" class="text-danger"></span>
                                         </div>
@@ -489,10 +442,8 @@
                                         <div class="vacans_inputs">
                                             <label asp-for="Position">Vəzifə</label>
                                             <input asp-for="Position"
-                                                   class="form-control inputs"
-                                                   placeholder="Vəzifə" />
+                                                   class="form-control inputs" disabled />
                                             <span asp-validation-for="Position" class="text-danger"></span>
-
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -515,9 +466,7 @@
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
                                             <label asp-for="ExperienceId">İş stajı</label>
-                                            <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
-                                                <option selected disabled>İş stajı seçin</option>
-
+                                            <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities" disabled>
                                             </select>
                                             <span asp-validation-for="ExperienceId" class="text-danger"></span>
                                         </div>
@@ -525,9 +474,7 @@
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
                                             <label asp-for="OperatingModeId">İş saatı</label>
-                                            <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
-                                                <option selected disabled>İş saatı seçin</option>
-
+                                            <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities" disabled>
                                             </select>
                                             <span asp-validation-for="OperatingModeId" class="text-danger"></span>
                                         </div>
@@ -537,14 +484,13 @@
                                             <label asp-for="Salary">Əmək haqqı AZN</label>
                                             <input asp-for="Salary"
                                                    max="12000"
-                                                   class="form-control inputs"
-                                                   placeholder="Məs:1500" />
+                                                   class="form-control inputs" disabled />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
                                             <label asp-for="DrivingLicense">Sürücülük vəsiqəsi</label>
-                                            <div class="checkbox">
+                                            <div class="checkbox" disabled>
                                                 <input asp-for="DrivingLicense" class="form-check-input mt-0">
                                                 <span>Şərtdir</span>
                                             </div>
@@ -560,26 +506,14 @@
                             <div class="col-lg-10">
                                 <div class="adding work_add">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="vacans_inputs">
-                                                <input type="text"
-                                                       class="form-control inputs add_input"
-                                                       placeholder="İş barədə əlavə məlumatlar yazın" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="plus_minus_btn">
-                                                <button class="plus_btn work_pls"><i class="bi bi-patch-plus-fill"></i></button>
-                                                <button class="minus_btn work_mns"><i class="bi bi-patch-minus-fill"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="vacans_inputs">
-                                                <input asp-for="InfoWorks"
-                                                       class="form-control inputs hidden_work w-100"
-                                                       readonly />
-                                            </div>
-                                        </div>
+                                        <ol style="padding:15px">
+                                            @foreach (var item in Model.AllWorkInfos)
+                                            {
+                                                <li>
+                                                    <span> @item.Info</span>
+                                                </li>
+                                            }
+                                        </ol>
                                     </div>
                                 </div>
                             </div>
@@ -591,32 +525,20 @@
                             <div class="col-lg-10">
                                 <div class="adding user_add">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="vacans_inputs">
-                                                <input type="text"
-                                                       class="form-control inputs add_input_user"
-                                                       placeholder="Namizəddən üçün tələblər yazın" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="plus_minus_btn">
-                                                <button class="plus_btn user_pls"><i class="bi bi-patch-plus-fill"></i></button>
-                                                <button class="minus_btn user_mns"><i class="bi bi-patch-minus-fill"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="vacans_inputs">
-                                                <input asp-for="infoEmployeers"
-                                                       class="form-control inputs hidden_user w-100"
-                                                       readonly />
-                                            </div>
-                                        </div>
+                                        <ol style="padding:15px">
+                                            @foreach (var item in Model.AllEmployeerInfos)
+                                            {
+                                                <li>
+                                                    <span> @item.Info</span>
+                                                </li>
+                                            }
+                                        </ol>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="submit-button">
-                            <button type="submit" class="btn btn-primary submit">Təsdiq et</button>
+                            <button type="submit" class="btn btn-primary submit">Silmək</button>
                         </div>
                     </form>
                 </div>
@@ -626,5 +548,4 @@
 </div>
 @section Scripts{
     <script src="~/assets/js/postvacans.js"></script>
-
 }

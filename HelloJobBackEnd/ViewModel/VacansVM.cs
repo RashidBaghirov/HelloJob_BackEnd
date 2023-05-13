@@ -1,10 +1,12 @@
 ﻿using HelloJobBackEnd.Entities;
+using HelloJobBackEnd.Utilities.Enum;
 using System.ComponentModel.DataAnnotations;
 
 namespace HelloJobBackEnd.ViewModel
 {
     public class VacansVM
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = " Şəhər  qeyd olunmalıdır.*")]
         public int CityId { get; set; }
         [Required(ErrorMessage = " İş saatı  qeyd olunmalıdır.*")]
@@ -30,8 +32,20 @@ namespace HelloJobBackEnd.ViewModel
         [Required(ErrorMessage = " İş barədə məlumat  qeyd olunmalıdır.*")]
 
         public string? InfoWorks { get; set; }
-        [Required(ErrorMessage = " Namizəddən tələblər   qeyd olunmalıdır.*")]
+        public List<InfoWork>? AllWorkInfos { get; set; }
+        public List<int>? DeleteWork { get; set; }
 
+        [Required(ErrorMessage = " Namizəddən tələblər   qeyd olunmalıdır.*")]
         public string? infoEmployeers { get; set; }
+        public List<int>? DeleteEmployeers { get; set; }
+        public List<InfoEmployeer>? AllEmployeerInfos { get; set; }
+        public OrderStatus Status { get; set; }
+
+
+        public VacansVM()
+        {
+            AllWorkInfos = new();
+            AllEmployeerInfos = new();
+        }
     }
 }

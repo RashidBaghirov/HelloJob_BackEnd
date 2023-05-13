@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.Design;
 using System.Data;
+using System.Linq;
 
 namespace HelloJobBackEnd.Controllers
 {
@@ -63,6 +65,7 @@ namespace HelloJobBackEnd.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateVacans(VacansVM newVacans)
         {
+            TempData["Create"] = false;
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             if (user is null)
             {
@@ -86,7 +89,8 @@ namespace HelloJobBackEnd.Controllers
                 CreatedAt = DateTime.Now,
                 EndedAt = DateTime.Now.AddMonths(1),
                 Position = newVacans.Position,
-                CompanyId = newVacans.CompanyId
+                CompanyId = newVacans.CompanyId,
+                Status = OrderStatus.Pending
             };
 
             if (newVacans.InfoWorks is null)
@@ -130,10 +134,247 @@ namespace HelloJobBackEnd.Controllers
             }
             _context.Vacans.Add(vacans);
             _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            TempData["Create"] = true;
+            return RedirectToAction(nameof(MyOrder));
+        }
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+        public async Task<IActionResult> EditVacans(int id)
+        {
+
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBags(user);
+
+            VacansVM? vacanVM = _context.Vacans.Include(v => v.BusinessArea).
+                Include(e => e.Education).
+                Include(e => e.Experience).
+                Include(c => c.City).
+                Include(c => c.BusinessArea).
+                Include(i => i.infoEmployeers).
+                 Include(i => i.InfoWorks).
+                Include(o => o.OperatingMode).Select(p =>
+                                         new VacansVM
+                                         {
+                                             Id = p.Id,
+                                             BusinessAreaId = p.BusinessAreaId,
+                                             CityId = p.CityId,
+                                             EducationId = p.EducationId,
+                                             ExperienceId = p.ExperienceId,
+                                             OperatingModeId = p.OperatingModeId,
+                                             Salary = p.Salary,
+                                             Position = p.Position,
+                                             AllEmployeerInfos = p.infoEmployeers,
+                                             AllWorkInfos = p.InfoWorks,
+                                             Status = p.Status
+                                         }).FirstOrDefault(x => x.Id == id);
+
+            return View(vacanVM);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditVacans(int id, VacansVM editedvacans)
+        {
+            TempData["Edited"] = false;
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBags(user);
+
+            VacansVM? vacanVM = _context.Vacans.Include(v => v.BusinessArea).
+                Include(e => e.Education).
+                Include(e => e.Experience).
+                Include(c => c.City).
+                Include(c => c.BusinessArea).
+                Include(i => i.infoEmployeers)
+                 .Include(i => i.InfoWorks).
+                Include(o => o.OperatingMode).Select(p =>
+                                         new VacansVM
+                                         {
+                                             Id = p.Id,
+                                             BusinessAreaId = p.BusinessAreaId,
+                                             CityId = p.CityId,
+                                             EducationId = p.EducationId,
+                                             ExperienceId = p.ExperienceId,
+                                             OperatingModeId = p.OperatingModeId,
+                                             Salary = p.Salary,
+                                             Position = p.Position,
+                                             AllEmployeerInfos = p.infoEmployeers,
+                                             AllWorkInfos = p.InfoWorks,
+                                             Status = p.Status
+                                         }).FirstOrDefault(x => x.Id == id);
+            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
+                  Include(e => e.Education).
+                Include(e => e.Experience).
+                Include(c => c.City).
+                Include(c => c.BusinessArea).
+                Include(i => i.infoEmployeers).
+                 Include(i => i.InfoWorks).
+                Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
+
+
+
+            vacans.InfoWorks.RemoveAll(p => !editedvacans.DeleteWork.Contains(p.Id));
+            if (editedvacans.InfoWorks is not null)
+            {
+                string[] work_info = editedvacans.InfoWorks.Split('/');
+                foreach (string info in work_info)
+                {
+                    InfoWork infos = new()
+                    {
+                        Vacans = vacans,
+                        Info = info,
+                    };
+
+                    _context.InfoWorks.Add(infos);
+                }
+            }
+            vacans.infoEmployeers.RemoveAll(p => !editedvacans.DeleteEmployeers.Contains(p.Id));
+            if (editedvacans.infoEmployeers is not null)
+            {
+                string[] employee_info = editedvacans.infoEmployeers.Split('/');
+                foreach (string info in employee_info)
+                {
+                    InfoEmployeer infos = new()
+                    {
+                        Vacans = vacans,
+                        Info = info,
+                    };
+
+                    _context.InfoEmployeers.Add(infos);
+                }
+            }
+
+
+            vacans.CityId = editedvacans.CityId;
+            vacans.OperatingModeId = editedvacans.OperatingModeId;
+            vacans.ExperienceId = editedvacans.ExperienceId;
+            vacans.Salary = editedvacans.Salary;
+            vacans.BusinessAreaId = editedvacans.BusinessAreaId;
+            vacans.EducationId = editedvacans.EducationId;
+            vacans.DrivingLicense = editedvacans.DrivingLicense;
+            vacans.CreatedAt = DateTime.Now;
+            vacans.EndedAt = DateTime.Now.AddMonths(1);
+            vacans.Position = editedvacans.Position;
+            vacans.Status = OrderStatus.Pending;
+            _context.SaveChanges();
+            TempData["Edited"] = true;
+            return RedirectToAction(nameof(MyOrder));
         }
 
 
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+        public async Task<IActionResult> DeleteVacans(int id)
+        {
+
+
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBags(user);
+
+            VacansVM? vacanVM = _context.Vacans.Include(v => v.BusinessArea).
+                Include(e => e.Education).
+                Include(e => e.Experience).
+                Include(c => c.City).
+                Include(c => c.BusinessArea).
+                Include(i => i.infoEmployeers).
+                 Include(i => i.InfoWorks).
+                Include(o => o.OperatingMode).Select(p =>
+                                         new VacansVM
+                                         {
+                                             Id = p.Id,
+                                             BusinessAreaId = p.BusinessAreaId,
+                                             CityId = p.CityId,
+                                             EducationId = p.EducationId,
+                                             ExperienceId = p.ExperienceId,
+                                             OperatingModeId = p.OperatingModeId,
+                                             Salary = p.Salary,
+                                             Position = p.Position,
+                                             AllEmployeerInfos = p.infoEmployeers,
+                                             AllWorkInfos = p.InfoWorks,
+                                             Status = p.Status
+                                         }).FirstOrDefault(x => x.Id == id);
+
+            return View(vacanVM);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteVacans(int id, VacansVM deleteVacans)
+        {
+            TempData["Deleted"] = false;
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBags(user);
+
+
+            VacansVM? vacanVM = _context.Vacans.Include(v => v.BusinessArea).
+                Include(e => e.Education).
+                Include(e => e.Experience).
+                Include(c => c.City).
+                Include(c => c.BusinessArea).
+                Include(i => i.infoEmployeers)
+                 .Include(i => i.InfoWorks).
+                Include(o => o.OperatingMode).Select(p =>
+                                         new VacansVM
+                                         {
+                                             Id = p.Id,
+                                             BusinessAreaId = p.BusinessAreaId,
+                                             CityId = p.CityId,
+                                             EducationId = p.EducationId,
+                                             ExperienceId = p.ExperienceId,
+                                             OperatingModeId = p.OperatingModeId,
+                                             Salary = p.Salary,
+                                             Position = p.Position,
+                                             AllEmployeerInfos = p.infoEmployeers,
+                                             AllWorkInfos = p.InfoWorks,
+                                             Status = p.Status
+                                         }).FirstOrDefault(x => x.Id == id);
+            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
+                  Include(e => e.Education).
+                Include(e => e.Experience).
+                Include(c => c.City).
+                Include(c => c.BusinessArea).
+                Include(i => i.infoEmployeers).
+                 Include(i => i.InfoWorks).
+                Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
+
+
+
+
+            _context.Vacans.Remove(vacans);
+            _context.SaveChanges();
+            TempData["Deleted"] = true;
+            return RedirectToAction(nameof(MySticker));
+        }
+
+
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------
         //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -155,7 +396,7 @@ namespace HelloJobBackEnd.Controllers
               Include(c => c.BusinessArea).
               Include(o => o.OperatingMode).
               Include(x => x.User).
-              Where(x => x.UserId == user.Id).ToList();
+              Where(x => x.UserId == user.Id && x.Status == OrderStatus.Accepted).ToList();
                 return View();
             }
             else
@@ -169,7 +410,7 @@ namespace HelloJobBackEnd.Controllers
                 ThenInclude(x => x.User).
               Include(c => c.BusinessArea).
               Include(o => o.OperatingMode).
-              Where(x => x.Company.UserId == user.Id).ToList();
+              Where(x => x.Company.UserId == user.Id && x.Status == OrderStatus.Accepted).ToList();
                 return View();
 
             }
@@ -191,6 +432,7 @@ namespace HelloJobBackEnd.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCv(CvVM newCv)
         {
+            TempData["Create"] = false;
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             if (user is null)
             {
@@ -230,6 +472,7 @@ namespace HelloJobBackEnd.Controllers
                 Email = newCv.Email,
                 Number = newCv.Number,
                 Position = newCv.Position,
+                Status = OrderStatus.Pending
 
             };
             var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
@@ -239,12 +482,54 @@ namespace HelloJobBackEnd.Controllers
 
             _context.Cvs.Add(cv);
             _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            TempData["Create"] = true;
+            return RedirectToAction(nameof(MyOrder));
         }
 
         //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+        public async Task<IActionResult> MyOrder()
+        {
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBags(user);
+
+            if (User.IsInRole(UserRole.employeer.ToString()))
+            {
+                ViewBag.Allcv = _context.Cvs.Include(v => v.BusinessArea).
+              Include(e => e.Education).
+              Include(e => e.Experience).
+              Include(c => c.City).
+              Include(c => c.BusinessArea).
+              Include(o => o.OperatingMode).
+              Include(x => x.User).
+              Where(x => x.UserId == user.Id && x.Status == OrderStatus.Pending).ToList();
+                return View();
+            }
+            else
+            {
+                ViewBag.Allvacans = _context.Vacans.Include(v => v.BusinessArea).
+              Include(e => e.Education).
+              Include(e => e.Experience).
+              Include(c => c.City).
+              Include(c => c.Company).
+              Include(c => c.Company).
+                ThenInclude(x => x.User).
+              Include(c => c.BusinessArea).
+              Include(o => o.OperatingMode).
+              Where(x => x.Company.UserId == user.Id && x.Status == OrderStatus.Pending).ToList();
+                return View();
+
+            }
+
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -282,7 +567,8 @@ namespace HelloJobBackEnd.Controllers
                                              Number = p.Number,
                                              BornDate = p.BornDate,
                                              Images = p.Image,
-                                             CvPDFs = p.CvPDF
+                                             CvPDFs = p.CvPDF,
+                                             Status = p.Status
                                          }).FirstOrDefault(x => x.Id == id);
 
             return View(cv);
@@ -320,7 +606,8 @@ namespace HelloJobBackEnd.Controllers
                                            Number = p.Number,
                                            BornDate = p.BornDate,
                                            Images = p.Image,
-                                           CvPDFs = p.CvPDF
+                                           CvPDFs = p.CvPDF,
+                                           Status = p.Status
                                        }).FirstOrDefault(x => x.Id == id);
 
             Cv? cv = _context.Cvs.Include(v => v.BusinessArea).
@@ -350,10 +637,10 @@ namespace HelloJobBackEnd.Controllers
 
             if (editedCv.CvPDF is not null)
             {
-                var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images", "User");
-                string filepath = Path.Combine(imagefolderPath, "CVs", cv.CvPDF);
+                var cvfolderPath = Path.Combine(_env.WebRootPath, "assets", "images", "User");
+                string filepath = Path.Combine(cvfolderPath, "CVs", cv.CvPDF);
                 ExtensionMethods.DeleteImage(filepath);
-                cv.Image = await editedCv.Image.CreateImage(imagefolderPath, "CVs");
+                cv.CvPDF = await editedCv.CvPDF.CreateImage(cvfolderPath, "CVs");
             }
 
             cv.Name = editedCv.Name;
@@ -366,17 +653,121 @@ namespace HelloJobBackEnd.Controllers
             cv.Salary = editedCv.Salary;
             cv.Position = editedCv.Position;
             cv.Number = editedCv.Number;
-            cv.BornDate = editedCv.BornDate;
-
-
+            cv.Status = OrderStatus.Default;
             _context.SaveChanges();
             TempData["Edited"] = true;
-            return RedirectToAction(nameof(MyCompany));
+            return RedirectToAction(nameof(MyOrder));
         }
 
 
 
         //-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+        public async Task<IActionResult> DeleteCV(int id)
+        {
+
+
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBags(user);
+            CvVM? cv = _context.Cvs.Include(v => v.BusinessArea).
+                Include(e => e.Education).
+                Include(e => e.Experience).
+                Include(c => c.City).
+                Include(c => c.BusinessArea).
+                Include(o => o.OperatingMode).Select(p =>
+                                         new CvVM
+                                         {
+                                             Id = p.Id,
+                                             Name = p.Name,
+                                             Surname = p.Surname,
+                                             Email = p.Email,
+                                             BusinessAreaId = p.BusinessAreaId,
+                                             CityId = p.CityId,
+                                             EducationId = p.EducationId,
+                                             ExperienceId = p.ExperienceId,
+                                             OperatingModeId = p.OperatingModeId,
+                                             Salary = p.Salary,
+                                             Position = p.Position,
+                                             Number = p.Number,
+                                             BornDate = p.BornDate,
+                                             Images = p.Image,
+                                             CvPDFs = p.CvPDF
+                                         }).FirstOrDefault(x => x.Id == id);
+
+            return View(cv);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteCV(int id, CvVM deleteCv)
+        {
+            TempData["Deleted"] = false;
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBags(user);
+
+            CvVM? cvvm = _context.Cvs.Include(v => v.BusinessArea).
+                  Include(e => e.Education).
+                  Include(e => e.Experience).
+                  Include(c => c.City).
+                  Include(c => c.BusinessArea).
+                  Include(o => o.OperatingMode).Select(p =>
+                                           new CvVM
+                                           {
+                                               Id = p.Id,
+                                               Name = p.Name,
+                                               Surname = p.Surname,
+                                               Email = p.Email,
+                                               BusinessAreaId = p.BusinessAreaId,
+                                               CityId = p.CityId,
+                                               EducationId = p.EducationId,
+                                               ExperienceId = p.ExperienceId,
+                                               OperatingModeId = p.OperatingModeId,
+                                               Salary = p.Salary,
+                                               Position = p.Position,
+                                               Number = p.Number,
+                                               BornDate = p.BornDate,
+                                               Images = p.Image,
+                                               CvPDFs = p.CvPDF
+                                           }).FirstOrDefault(x => x.Id == id);
+
+            Cv? cv = _context.Cvs.Include(v => v.BusinessArea).
+                Include(e => e.Education).
+                Include(e => e.Experience).
+                Include(c => c.City).
+                Include(c => c.BusinessArea).
+                Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
+
+
+            var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
+            string filepath = Path.Combine(imagefolderPath, "User", cv.Image);
+            ExtensionMethods.DeleteImage(filepath);
+            string pdfpath = Path.Combine(imagefolderPath, "User", "CVs", cv.CvPDF);
+            ExtensionMethods.DeleteImage(pdfpath);
+
+            _context.Cvs.Remove(cv);
+            _context.SaveChanges();
+            TempData["Deleted"] = true;
+            return RedirectToAction(nameof(MySticker));
+        }
+
+
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
         public async Task<IActionResult> WishListPage()
         {
@@ -452,7 +843,8 @@ namespace HelloJobBackEnd.Controllers
             {
                 User = user,
                 Name = newCompany.Name,
-                Email = newCompany.Email
+                Email = newCompany.Email,
+                Status = OrderStatus.Pending,
             };
 
             var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
@@ -487,7 +879,9 @@ namespace HelloJobBackEnd.Controllers
                                                     Id = p.Id,
                                                     Name = p.Name,
                                                     Email = p.Email,
-                                                    Images = p.Image
+                                                    Images = p.Image,
+                                                    Status = p.Status
+
                                                 }).FirstOrDefault(x => x.Id == id);
 
             return View(company);
@@ -509,7 +903,8 @@ namespace HelloJobBackEnd.Controllers
                                              Id = p.Id,
                                              Name = p.Name,
                                              Email = p.Email,
-                                             Images = p.Image
+                                             Images = p.Image,
+                                             Status = p.Status
                                          }).FirstOrDefault(x => x.Id == id);
 
             Company company = _context.Companies.FirstOrDefault(x => x.Id == id);
@@ -531,6 +926,7 @@ namespace HelloJobBackEnd.Controllers
 
             company.Name = editedCompany.Name;
             company.Email = editedCompany.Email;
+            company.Status = OrderStatus.Pending;
             _context.SaveChanges();
             TempData["Edited"] = true;
             return RedirectToAction(nameof(MyCompany));
@@ -637,7 +1033,7 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.Experince = _context.Experiences.ToList();
             ViewBag.Mode = _context.OperatingModes.ToList();
             ViewBag.Business = _context.BusinessTitle.Include(b => b.BusinessAreas).ToList();
-            ViewBag.Company = _context.Companies.ToList();
+            ViewBag.Company = _context.Companies.Where(x => x.UserId == user.Id).ToList();
 
         }
 

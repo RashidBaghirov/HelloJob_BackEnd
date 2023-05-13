@@ -1,0 +1,31 @@
+﻿@model List<Vacans>
+@{
+    int count = 1;
+}
+
+<table class="table caption-top">
+    <caption>Gözləmədə olan elanlar</caption>
+    <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Şirkət adı</th>
+            <th scope="col">Vəzifə</th>
+            <th scope="col">E-poçt</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <th scope="row">@count</th>
+                <td>@item.Company.Name</td>
+                <td>@item.Position</td>
+                <td>@item.Company.Email</td>
+                <td>@item.Status</td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>

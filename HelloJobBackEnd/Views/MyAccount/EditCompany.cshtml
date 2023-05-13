@@ -20,7 +20,15 @@
                     Profilim
                 </a>
             </li>
-
+            <li>
+                <a asp-controller="myaccount" asp-action="myorder">
+                    <span>
+                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+                             alt="" />
+                    </span>
+                    Gözləmədə olan elanlar
+                </a>
+            </li>
             <li>
                 <a asp-controller="myaccount" asp-action="mysticker">
                     <span>
@@ -272,6 +280,15 @@
                     </li>
                 }
                 <li>
+                    <a asp-controller="myaccount" asp-action="myorder">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+                                 alt="" />
+                        </span>
+                        Gözləmədə olan elanlar
+                    </a>
+                </li>
+                <li>
                     <a asp-controller="myaccount" asp-action="mysticker">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
@@ -307,7 +324,7 @@
         <div class="account_content">
             <div class="create_cv">
                 <div class="title">
-                    <h1>Şirkət yarat</h1>
+                    <h1>Şirkətə düzəliş et</h1>
                     <ul class="profile__add-cv__parts">
                         <li class="active">
                             <a href="#tab1" class="tab1 step_btn"> Şirkət məlumatları</a>
@@ -315,7 +332,9 @@
                     </ul>
                 </div>
                 <div class="inner_tab">
-                    <form action="">
+                    <form asp-controller="myaccount" asp-action="editcompany" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                         <div class="row mb-5">
                             <div class="col-lg-2">
                                 <h2 class="section_title">Şirkət məlumatları</h2>
@@ -324,15 +343,16 @@
                                 <div class="form-group">
                                     <div class="image_input">
                                         <input class="choose"
-                                               type="file"
+                                               asp-for="Image"
                                                id="fileInput"
                                                accept="image/*" />
                                         <span class="upload_file_img">
                                             <img id="preview"
-                                                 src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png"
+                                                 src="~/assets/images/Company/@Model.Images"
                                                  class="m-0"
                                                  alt="" />
                                         </span>
+                                        <input type="hidden" name="ImagesId" value="@Model.Images" />
                                     </div>
                                     <label for="prof_img" class="upload_image">
                                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/upload2.svg"
@@ -340,33 +360,35 @@
                                         <span>Şəkil əlavə et</span>
                                         <p>SVG, PNG, JPG or GIF (max. 1000x1000px)</p>
                                     </label>
+
+
                                 </div>
+                                <span asp-validation-for="Image" class="text-danger"></span>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="cv_inputs">
-                                            <label for="">Ad</label>
-                                            <input type="text"
-                                                   name="name"
-                                                   value="Rashid"
+                                            <label asp-for="Name">Ad</label>
+                                            <input asp-for="Name"
                                                    class="form-control inputs"
                                                    placeholder="Adınız" />
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="cv_inputs">
-                                            <label for="">E-Poçt</label>
-                                            <input type="text"
-                                                   name="name"
-                                                   value="rrrr@gmail.com"
+                                            <label asp-for="Email">E-Poçt</label>
+                                            <input asp-for="Email"
                                                    class="form-control inputs"
                                                    placeholder="E-poçt ünvanınızı yazın" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="submit-button">
-                            <button type="submit" class="btn btn-primary submit">Dəyişdir</button>
+                            <button type="submit" class="btn btn-primary submit">Dəyişdirmək</button>
                         </div>
                     </form>
                 </div>

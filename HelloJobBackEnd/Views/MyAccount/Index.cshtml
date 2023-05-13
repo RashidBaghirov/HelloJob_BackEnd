@@ -20,7 +20,15 @@
                     Profilim
                 </a>
             </li>
-
+            <li>
+                <a asp-controller="myaccount" asp-action="myorder">
+                    <span>
+                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+                             alt="" />
+                    </span>
+                    Gözləmədə olan elanlar
+                </a>
+            </li>
             <li>
                 <a asp-controller="myaccount" asp-action="mysticker">
                     <span>
@@ -264,7 +272,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./WishListpage.html">
+                    <a asp-controller="myaccount" asp-action="wishlistpage">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
                                  alt="" />
@@ -295,10 +303,10 @@
                         <p>Hellojob.az</p>
                     </div>
                     <div class="row">
-                                @if (User.IsInRole(UserRole.business.ToString()))
+                        @if (User.IsInRole(UserRole.business.ToString()))
                         {
-                            <div class=" col-md-3 ">
-                                <a class="my-profile__item" asp-controller="myaccount" asp-action="createvacans">
+                            <div class="col-lg-3 col-md-6 ">
+                                <a class="my-profile__item" asp-controller="company" asp-action="createvacans">
                                     <div class="my-profile__item__icon">
                                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/building.svg"
                                              alt="" />
@@ -309,7 +317,7 @@
                         }
                         else
                         {
-                            <div class="col-md-3">
+                            <div class="col-lg-3 col-md-6">
                                 <a class="my-profile__item" asp-controller="myaccount" asp-action="createcv">
                                     <div class="my-profile__item__icon">
                                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user-check.svg"
@@ -319,23 +327,24 @@
                                 </a>
                             </div>
                         }
-                   
-                        <div class="col-md-3">
-                            <a asp-controller="myaccount" asp-action="mysticker">
-                                <span>
-                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+
+
+                        <div class="col-lg-3 col-md-6">
+                            <a class="my-profile__item" asp-controller="myaccount" asp-action="mysticker">
+                                <div class="my-profile__item__icon">
+                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/share.svg"
                                          alt="" />
-                                </span>
-                                Elanlarım
+                                </div>
+                                <h2 class="my-profile__item__name">Elanlarım</h2>
                             </a>
                         </div>
-                        <div class="col-md-3">
-                            <a asp-controller="myaccount" asp-action="wishlistpage">
-                                <span>
-                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
+                        <div class="col-lg-3 col-md-6">
+                            <a class="my-profile__item" asp-controller="myaccount" asp-action="wishlistpage">
+                                <div class="my-profile__item__icon">
+                                    <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/check-heart.svg"
                                          alt="" />
-                                </span>
-                                Bəyəndiklərim
+                                </div>
+                                <h2 class="my-profile__item__name">Bəyəndiklərim</h2>
                             </a>
                         </div>
                     </div>

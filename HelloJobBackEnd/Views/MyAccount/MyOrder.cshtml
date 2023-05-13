@@ -3,21 +3,30 @@
     List<Cv> cvs = ViewBag.Allcv;
     List<Vacans> vacans = ViewBag.Allvacans;
 }
-
-
-@if (TempData["Deleted"] != null)
+@if (TempData["Edited"] != null)
 {
-    if ((bool)TempData["Deleted"] == true)
+    if ((bool)TempData["Edited"] == true)
     {
-        <input type="hidden" id="deletedSuccess" />
+        <input type="hidden" id="editedSuccess" />
     }
     else
     {
-        <input type="hidden" id="deletedError" />
+        <input type="hidden" id="editedError" />
 
     }
 }
+@if (TempData["Create"] != null)
+{
+    if ((bool)TempData["Create"] == true)
+    {
+        <input type="hidden" id="createSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="createError" />
 
+    }
+}
 <div class="account">
     <div class="account_bar">
         <a href="#" class="logo" aria-label="hellojob">
@@ -26,7 +35,7 @@
         <ul class="myprofile">
 
             <li>
-                <a asp-controller="myaccount" asp-action="index">
+                <a  asp-controller="myaccount" asp-action="index">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user2.svg"
                              alt="" />
@@ -34,8 +43,9 @@
                     Profilim
                 </a>
             </li>
+
             <li>
-                <a asp-controller="myaccount" asp-action="myorder">
+                <a class="active" asp-controller="myaccount" asp-action="myorder">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
                              alt="" />
@@ -43,8 +53,9 @@
                     Gözləmədə olan elanlar
                 </a>
             </li>
+
             <li>
-                <a class="active" asp-controller="myaccount" asp-action="mysticker">
+                <a asp-controller="myaccount" asp-action="mysticker">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
                              alt="" />
@@ -73,7 +84,7 @@
             @if (User.IsInRole(UserRole.business.ToString()))
             {
                 <li>
-                    <a  asp-controller="myaccount" asp-action="createvacans">
+                    <a asp-controller="myaccount" asp-action="createvacans">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
                                  alt="" />
@@ -84,7 +95,7 @@
                 <li>
                     <a asp-controller="myaccount" asp-action="creatingcompany">
                         <span>
-                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
                                  alt="" />
                         </span>
                         Şirkət Yarat
@@ -103,7 +114,7 @@
             else
             {
                 <li>
-                    <a  asp-controller="myaccount" asp-action="createcv">
+                    <a asp-controller="myaccount" asp-action="createcv">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                  alt="" />
@@ -133,57 +144,27 @@
                     <ul class="account_head_user_drop">
                         <li><a asp-controller="myaccount" asp-action="mysticker">Mənim elanlarım</a></li>
                         <li>
-                            <a asp-action="myaccount" asp-action="security">Şəxsi məlumatlar</a>
+                            <a asp-controller="myaccount" asp-action="security">Şəxsi məlumatlar</a>
                         </li>
                         <li><a asp-controller="account" asp-action="logout">Çıxış</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="create_cv">
+        <div class="orders">
             <div class="title">
-                <h1>Elanlarim</h1>
-                <ul class="profile__add-cv__parts">
+                <h1>Gözləmədə Olanlar</h1>
+            </div>
+            <div class="myorder">
+                <div class="container border border-secondary-subtle">
                     @if (User.IsInRole(UserRole.employeer.ToString()))
                     {
-
-
-                        <li class="active">
-                            <a href="#tab1" class="tab1 step_btn">CV(@cvs.Count())</a>
-                        </li>
-
-
-
+                        @await Html.PartialAsync("_CvorderPartial",cvs)
                     }
                     else
                     {
-                        <li class="active">
-                            <a href="#tab1" class="tab1 step_btn">Vakansiyalar(@vacans.Count())</a>
-                        </li>
+                        @await Html.PartialAsync("_VacansorderPartial",vacans)
                     }
-              
-            
-                </ul>
-            </div>
-            <div class="inner_tab">
-                <div class="container">
-                    <div class="row">
-
-                        @if (User.IsInRole(UserRole.employeer.ToString()))
-                        {
-
-
-                            @await Html.PartialAsync("_CvsPartial",cvs)
-                            
-                
-                           
-                        }
-                        else
-                        {
-                            @await Html.PartialAsync("_VacansPartial",vacans)
-                        }
-                     
-                    </div>
                 </div>
             </div>
         </div>
@@ -219,7 +200,7 @@
         <div class="hamburgers_menu">
             <ul class="myprofile">
                 <li>
-                    <a asp-controller="myaccount" asp-action="index">
+                    <a  asp-controller="myaccount" asp-action="index">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user2.svg"
                                  alt="" />
@@ -241,7 +222,7 @@
                     <li>
                         <a asp-controller="myaccount" asp-action="creatingcompany">
                             <span>
-                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/shield.svg"
+                                <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/cv.svg"
                                      alt="" />
                             </span>
                             Şirkət Yarat
@@ -270,7 +251,7 @@
                     </li>
                 }
                 <li>
-                    <a asp-controller="myaccount" asp-action="myorder">
+                    <a class="active" asp-controller="myaccount" asp-action="myorder">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
                                  alt="" />
@@ -279,7 +260,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="active" asp-controller="myaccount" asp-action="mysticker">
+                    <a asp-controller="myaccount" asp-action="mysticker">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
                                  alt="" />
@@ -288,7 +269,7 @@
                     </a>
                 </li>
                 <li>
-                    <a  asp-controller="myaccount" asp-action="wishlistpage">
+                    <a asp-controller="myaccount" asp-action="wishlistpage">
                         <span>
                             <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
                                  alt="" />
@@ -312,59 +293,51 @@
             </div>
         </div>
         <div class="account_content">
-            <div class="create_cv">
+            <div class="orders">
                 <div class="title">
-                    <h1>Elanlarim</h1>
-                    <ul class="profile__add-cv__parts">
-                        @if (User.IsInRole(UserRole.employeer.ToString()))
-                        {
-
-
-                            <li class="active">
-                                <a href="#tab1" class="tab1 step_btn">CV(@cvs.Count())</a>
-                            </li>
-
-
-
-                        }
-                        else
-                        {
-                            <li class="active">
-                                <a href="#tab1" class="tab1 step_btn">Vakansiyalar(@vacans.Count())</a>
-                            </li>
-                        }
-
-
-                    </ul>
+                    <h1>Gözləmədə Olanlar</h1>
                 </div>
-                <div class="inner_tab">
-                    <div class="container">
-                        <div class="row">
-
-                            @if (User.IsInRole(UserRole.employeer.ToString()))
-                            {
-
-
-                                @await Html.PartialAsync("_CvsPartial",cvs)
-
-
-
-                            }
-                            else
-                            {
-                                @await Html.PartialAsync("_VacansPartial",vacans)
-                            }
-
-                        </div>
+                <div class="myorder">
+                    <div class="container border border-secondary-subtle">
+                        <table class="table caption-top">
+                            <caption>Gözləmədə olan elanlar</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">№</th>
+                                    <th scope="col">Ad</th>
+                                    <th scope="col">Soyad</th>
+                                    <th scope="col">E-poçt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>fat</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 @section Scripts{
-    <script src="~/assets/js/pageCv.js"></script>
-
     <script>
         $(document).ready(function () {
             if ($("#editedSuccess").length) {
@@ -377,10 +350,10 @@
     </script>
     <script>
         $(document).ready(function () {
-            if ($("#deletedSuccess").length) {
-                toastr["success"]("You have successfully joined us!", "deleted")
+            if ($("#createSuccess").length) {
+                toastr["success"]("You have successfully joined us!", " created")
             }
-            else if ($("#deletedError").length) {
+            else if ($("#createError").length) {
                 toastr["error"]("Something went wrong!", "Upsss Sorry")
             }
         })

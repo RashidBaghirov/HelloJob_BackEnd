@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using HelloJobBackEnd.Utilities.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace HelloJobBackEnd.ViewModel
 {
@@ -14,5 +15,6 @@ namespace HelloJobBackEnd.ViewModel
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "E-poçt qeyd olunmalıdır.*")]
         public string Email { get; set; }
+        public OrderStatus Status { get; set; }
     }
 }

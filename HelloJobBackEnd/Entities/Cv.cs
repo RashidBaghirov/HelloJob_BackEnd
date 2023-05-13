@@ -1,4 +1,5 @@
 ﻿using HelloJobBackEnd.Entities.Base;
+using HelloJobBackEnd.Utilities.Enum;
 
 namespace HelloJobBackEnd.Entities
 {
@@ -30,5 +31,6 @@ namespace HelloJobBackEnd.Entities
         public string CvPDF { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
+        public OrderStatus Status { get; set; }
     }
 }

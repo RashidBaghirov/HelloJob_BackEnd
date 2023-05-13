@@ -19,6 +19,15 @@
                     Profilim
                 </a>
             </li>
+            <li>
+                <a asp-controller="myaccount" asp-action="myorder">
+                    <span>
+                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+                             alt="" />
+                    </span>
+                    Gözləmədə olan elanlar
+                </a>
+            </li>
 
             <li>
                 <a asp-controller="myaccount" asp-action="mysticker">
@@ -30,7 +39,7 @@
                 </a>
             </li>
             <li>
-                <a href="./WishListpage.html">
+                <a asp-controller="myaccount" asp-action="wishlistpage">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/heart2.svg"
                              alt="" />
@@ -500,6 +509,7 @@
                 </div>
                 <div class="inner_tab">
                     <form asp-controller="myaccount" asp-action="createcv" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="row mb-5">
                             <div class="col-lg-2">
                                 <h2 class="section_title">Şəxsi məlumatlar</h2>

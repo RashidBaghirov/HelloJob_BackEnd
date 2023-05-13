@@ -136,7 +136,7 @@
                 </ul>
             </div>
             <div class="inner_tab">
-                <form asp-controller="myaccount" asp-action="editcv" method="post" enctype="multipart/form-data">
+                <form asp-controller="myaccount" asp-action="deletecv" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row mb-5">
                         <div class="col-lg-2">
@@ -148,7 +148,7 @@
                                     <input class="choose"
                                            asp-for="Image"
                                            id="fileInput"
-                                           accept="image/*" />
+                                           accept="image/*" disabled/>
                                     <span class="upload_file_img">
                                         <img id="preview"
                                              src="~/assets/images/User/@Model.Images"
@@ -171,8 +171,7 @@
                                             Ad
                                         </label>
                                         <input asp-for="Name"
-                                               class="form-control inputs"
-                                               />
+                                               class="form-control inputs" disabled/>
                                         <span asp-validation-for="Name" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -180,8 +179,7 @@
                                     <div class="cv_inputs">
                                         <label asp-for="Surname">Soyad</label>
                                         <input asp-for="Surname"
-                                               class="form-control inputs"
-                                                />
+                                               class="form-control inputs" disabled />
                                         <span asp-validation-for="Surname" class="text-danger"></span>
 
                                     </div>
@@ -194,7 +192,7 @@
                                         <input type="text"
                                                value="@Model.BornDate.ToString("dd/MM/yyyy")"
                                                class="form-control inputs"
-                                            readonly >
+                                               readonly>
                                         <span asp-validation-for="BornDate" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -202,8 +200,7 @@
                                     <div class="cv_inputs">
                                         <label asp-for="Email">E-Poçt</label>
                                         <input asp-for="Email"
-                                               class="form-control inputs"
-                                               />
+                                               class="form-control inputs" disabled />
                                         <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -211,21 +208,11 @@
                                     <div class="cv_inputs">
                                         <label asp-for="Number">Mobil nömrəniz</label>
                                         <div class="position-relative">
-                                            <select name="phone_frst"
-                                                    class="shadow-none operator form-select">
-                                                <option value="070">070</option>
-                                                <option value="077">077</option>
-                                                <option value="050">050</option>
-                                                <option value="051">051</option>
-                                                <option value="010">010</option>
-                                                <option value="055">055</option>
-                                                <option value="099">099</option>
-                                            </select>
                                             <input id="phone"
                                                    asp-for="Number"
                                                    class="form-control inputs"
                                                    im-insert="true"
-                                                   style="padding-left: 60px" />
+                                                   style="padding-left: 60px" disabled />
                                         </div>
                                         <input type="hidden" asp-for="Number" id="full_phone_number" />
                                         <span asp-validation-for="Number" class="text-danger"></span>
@@ -235,7 +222,7 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="CityId">Şəhər</label>
-                                        <select asp-for=CityId asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities">
+                                        <select asp-for=CityId asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities" disabled>
                                         </select>
                                         <span asp-validation-for="CityId" class="text-danger"></span>
 
@@ -254,14 +241,13 @@
                                     <div class="cv_inputs">
                                         <label asp-for="Position">Vəzifəniz</label>
                                         <input asp-for="Position"
-                                               class="form-control inputs"
-                                               />
+                                               class="form-control inputs" disabled />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="BusinessAreaId">Kateqoriya</label>
-                                        <select asp-for=BusinessAreaId class="form-control cities">
+                                        <select asp-for=BusinessAreaId class="form-control cities" disabled>
                                             @foreach (var businessTitle in ViewBag.Business)
                                             {
                                                 <optgroup label="@businessTitle.Name">
@@ -279,7 +265,7 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="ExperienceId">İş stajı</label>
-                                        <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
+                                        <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities" disabled>
                                         </select>
                                         <span asp-validation-for="ExperienceId" class="text-danger"></span>
 
@@ -288,7 +274,7 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="EducationId">Təhsil</label>
-                                        <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
+                                        <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities" disabled>
                                         </select>
                                         <span asp-validation-for="EducationId" class="text-danger"></span>
 
@@ -297,7 +283,7 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="OperatingModeId">İş saatı</label>
-                                        <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
+                                        <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities" disabled>
                                         </select>
                                         <span asp-validation-for="OperatingModeId" class="text-danger"></span>
 
@@ -307,7 +293,7 @@
                                     <div class="cv_inputs">
                                         <label asp-for="Salary">Minimum əmək haqqı AZN</label>
                                         <input asp-for="Salary"
-                                               max="12000"
+                                               max="12000" disabled
                                                class="form-control inputs"
                                                placeholder="Məs:1500" />
                                     </div>
@@ -316,7 +302,7 @@
                                     <div class="cv_inputs">
                                         <label asp-for="DrivingLicense">Sürücülük vəsiqəsi</label>
                                         <div class="checkbox">
-                                            <input asp-for="DrivingLicense" class="form-check-input mt-0">
+                                            <input asp-for="DrivingLicense" class="form-check-input mt-0" disabled>
                                             <span>Var</span>
                                         </div>
                                         <span asp-validation-for="DrivingLicense" class="text-danger"></span>
@@ -336,7 +322,7 @@
                                        class="d-none"
                                        id="cv_inp"
                                        multiple=""
-                                       accept=".pdf,.docx" />
+                                       accept=".pdf,.docx" disabled />
                                 <label for="cv_inp" class="cv_label">
                                     <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/upload2.svg"
                                          alt="" />
@@ -368,7 +354,7 @@
                         </div>
                     </div>
                     <div class="submit-button">
-                        <button type="submit" class="btn btn-primary submit">Dəyişdirmək</button>
+                        <button type="submit" class="btn btn-primary submit">Təsdiq et</button>
                     </div>
                 </form>
             </div>
@@ -508,7 +494,7 @@
                     </ul>
                 </div>
                 <div class="inner_tab">
-                    <form asp-controller="myaccount" asp-action="editcv" method="post" enctype="multipart/form-data">
+                    <form asp-controller="myaccount" asp-action="deletecv" method="post" enctype="multipart/form-data">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="row mb-5">
                             <div class="col-lg-2">
@@ -520,7 +506,7 @@
                                         <input class="choose"
                                                asp-for="Image"
                                                id="fileInput"
-                                               accept="image/*" />
+                                               accept="image/*" disabled />
                                         <span class="upload_file_img">
                                             <img id="preview"
                                                  src="~/assets/images/User/@Model.Images"
@@ -543,7 +529,7 @@
                                                 Ad
                                             </label>
                                             <input asp-for="Name"
-                                                   class="form-control inputs" />
+                                                   class="form-control inputs" disabled />
                                             <span asp-validation-for="Name" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -551,7 +537,7 @@
                                         <div class="cv_inputs">
                                             <label asp-for="Surname">Soyad</label>
                                             <input asp-for="Surname"
-                                                   class="form-control inputs" />
+                                                   class="form-control inputs" disabled />
                                             <span asp-validation-for="Surname" class="text-danger"></span>
 
                                         </div>
@@ -572,7 +558,7 @@
                                         <div class="cv_inputs">
                                             <label asp-for="Email">E-Poçt</label>
                                             <input asp-for="Email"
-                                                   class="form-control inputs" />
+                                                   class="form-control inputs" disabled />
                                             <span asp-validation-for="Email" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -580,21 +566,11 @@
                                         <div class="cv_inputs">
                                             <label asp-for="Number">Mobil nömrəniz</label>
                                             <div class="position-relative">
-                                                <select name="phone_frst"
-                                                        class="shadow-none operator form-select">
-                                                    <option value="070">070</option>
-                                                    <option value="077">077</option>
-                                                    <option value="050">050</option>
-                                                    <option value="051">051</option>
-                                                    <option value="010">010</option>
-                                                    <option value="055">055</option>
-                                                    <option value="099">099</option>
-                                                </select>
                                                 <input id="phone"
                                                        asp-for="Number"
                                                        class="form-control inputs"
                                                        im-insert="true"
-                                                       style="padding-left: 60px" />
+                                                       style="padding-left: 60px" disabled />
                                             </div>
                                             <input type="hidden" asp-for="Number" id="full_phone_number" />
                                             <span asp-validation-for="Number" class="text-danger"></span>
@@ -604,7 +580,7 @@
                                     <div class="col-lg-6">
                                         <div class="cv_inputs">
                                             <label asp-for="CityId">Şəhər</label>
-                                            <select asp-for=CityId asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities">
+                                            <select asp-for=CityId asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))" class="form-control cities" disabled>
                                             </select>
                                             <span asp-validation-for="CityId" class="text-danger"></span>
 
@@ -623,13 +599,13 @@
                                         <div class="cv_inputs">
                                             <label asp-for="Position">Vəzifəniz</label>
                                             <input asp-for="Position"
-                                                   class="form-control inputs" />
+                                                   class="form-control inputs" disabled />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="cv_inputs">
                                             <label asp-for="BusinessAreaId">Kateqoriya</label>
-                                            <select asp-for=BusinessAreaId class="form-control cities">
+                                            <select asp-for=BusinessAreaId class="form-control cities" disabled>
                                                 @foreach (var businessTitle in ViewBag.Business)
                                                 {
                                                     <optgroup label="@businessTitle.Name">
@@ -647,7 +623,7 @@
                                     <div class="col-lg-6">
                                         <div class="cv_inputs">
                                             <label asp-for="ExperienceId">İş stajı</label>
-                                            <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
+                                            <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities" disabled>
                                             </select>
                                             <span asp-validation-for="ExperienceId" class="text-danger"></span>
 
@@ -656,7 +632,7 @@
                                     <div class="col-lg-6">
                                         <div class="cv_inputs">
                                             <label asp-for="EducationId">Təhsil</label>
-                                            <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
+                                            <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities" disabled>
                                             </select>
                                             <span asp-validation-for="EducationId" class="text-danger"></span>
 
@@ -665,7 +641,7 @@
                                     <div class="col-lg-6">
                                         <div class="cv_inputs">
                                             <label asp-for="OperatingModeId">İş saatı</label>
-                                            <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
+                                            <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities" disabled>
                                             </select>
                                             <span asp-validation-for="OperatingModeId" class="text-danger"></span>
 
@@ -675,7 +651,7 @@
                                         <div class="cv_inputs">
                                             <label asp-for="Salary">Minimum əmək haqqı AZN</label>
                                             <input asp-for="Salary"
-                                                   max="12000"
+                                                   max="12000" disabled
                                                    class="form-control inputs"
                                                    placeholder="Məs:1500" />
                                         </div>
@@ -684,7 +660,7 @@
                                         <div class="cv_inputs">
                                             <label asp-for="DrivingLicense">Sürücülük vəsiqəsi</label>
                                             <div class="checkbox">
-                                                <input asp-for="DrivingLicense" class="form-check-input mt-0">
+                                                <input asp-for="DrivingLicense" class="form-check-input mt-0" disabled>
                                                 <span>Var</span>
                                             </div>
                                             <span asp-validation-for="DrivingLicense" class="text-danger"></span>
@@ -704,7 +680,7 @@
                                            class="d-none"
                                            id="cv_inp"
                                            multiple=""
-                                           accept=".pdf,.docx" />
+                                           accept=".pdf,.docx" disabled />
                                     <label for="cv_inp" class="cv_label">
                                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/upload2.svg"
                                              alt="" />
@@ -736,7 +712,7 @@
                             </div>
                         </div>
                         <div class="submit-button">
-                            <button type="submit" class="btn btn-primary submit">Təsdiq et</button>
+                            <button type="submit" class="btn btn-primary submit">Silmək</button>
                         </div>
                     </form>
                 </div>

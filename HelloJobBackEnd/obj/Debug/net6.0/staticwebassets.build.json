@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "U6z7G1fgOksHENaQtnHl38ge62qHstvVgD7gYSpOV80=",
+  "Hash": "5UVVyt8Ks0hgpEs1ebpHazmV4QifGvl9E/vr1wjThoQ=",
   "Source": "HelloJobBackEnd",
   "BasePath": "_content/HelloJobBackEnd",
   "Mode": "Default",
@@ -884,6 +884,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\slick.css.map"
     },
     {
+      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\293kb-og-image.png",
+      "SourceId": "HelloJobBackEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
+      "BasePath": "_content/HelloJobBackEnd",
+      "RelativePath": "assets/images/Company/293kb-og-image.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\Company\\293kb-og-image.png"
+    },
+    {
       "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\532kb-og-image.png",
       "SourceId": "HelloJobBackEnd",
       "SourceType": "Discovered",
@@ -969,12 +986,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\User\\119photo_2023-04-28_17-30-34.jpg"
     },
     {
-      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\414photo_2023-04-28_17-30-27.jpg",
+      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\641827unnamed.jpg",
       "SourceId": "HelloJobBackEnd",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
       "BasePath": "_content/HelloJobBackEnd",
-      "RelativePath": "assets/images/User/414photo_2023-04-28_17-30-27.jpg",
+      "RelativePath": "assets/images/User/641827unnamed.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -983,15 +1000,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\414photo_2023-04-28_17-30-27.jpg"
+      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\641827unnamed.jpg"
     },
     {
-      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\905photo_2023-04-28_17-30-34.jpg",
+      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\725photo_2023-04-28_17-30-27.jpg",
       "SourceId": "HelloJobBackEnd",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
       "BasePath": "_content/HelloJobBackEnd",
-      "RelativePath": "assets/images/User/905photo_2023-04-28_17-30-34.jpg",
+      "RelativePath": "assets/images/User/725photo_2023-04-28_17-30-27.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1000,15 +1017,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\905photo_2023-04-28_17-30-34.jpg"
+      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\725photo_2023-04-28_17-30-27.jpg"
     },
     {
-      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\184photo_2023-04-28_17-30-34.jpg",
+      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\941photo_2023-04-28_17-30-27.jpg",
       "SourceId": "HelloJobBackEnd",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
       "BasePath": "_content/HelloJobBackEnd",
-      "RelativePath": "assets/images/User/CVs/184photo_2023-04-28_17-30-34.jpg",
+      "RelativePath": "assets/images/User/941photo_2023-04-28_17-30-27.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1017,15 +1034,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\CVs\\184photo_2023-04-28_17-30-34.jpg"
+      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\941photo_2023-04-28_17-30-27.jpg"
     },
     {
-      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\50Cv.pdf",
+      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\162Cv.pdf",
       "SourceId": "HelloJobBackEnd",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
       "BasePath": "_content/HelloJobBackEnd",
-      "RelativePath": "assets/images/User/CVs/50Cv.pdf",
+      "RelativePath": "assets/images/User/CVs/162Cv.pdf",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1034,7 +1051,58 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\CVs\\50Cv.pdf"
+      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\CVs\\162Cv.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\244Cv.pdf",
+      "SourceId": "HelloJobBackEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
+      "BasePath": "_content/HelloJobBackEnd",
+      "RelativePath": "assets/images/User/CVs/244Cv.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\CVs\\244Cv.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\557Cv.pdf",
+      "SourceId": "HelloJobBackEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
+      "BasePath": "_content/HelloJobBackEnd",
+      "RelativePath": "assets/images/User/CVs/557Cv.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\CVs\\557Cv.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\699Cv.pdf",
+      "SourceId": "HelloJobBackEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
+      "BasePath": "_content/HelloJobBackEnd",
+      "RelativePath": "assets/images/User/CVs/699Cv.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\CVs\\699Cv.pdf"
     },
     {
       "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\account.js",
