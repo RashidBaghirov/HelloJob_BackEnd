@@ -36,6 +36,17 @@
         <input type="hidden" id="forgotError" />
     }
 }
+@if (TempData["Security"] != null)
+{
+    if ((bool)TempData["Security"] == true)
+    {
+        <input type="hidden" id="securitySuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="securityError" />
+    }
+}
 
 
 
@@ -51,9 +62,6 @@
                     </li>
                     <li>
                         <a asp-controller="cvpage" asp-action="index">CV-lər</a>
-                    </li>
-                    <li>
-                        <a href="">Kurslar</a>
                     </li>
                 </ul>
             </div>
@@ -1322,6 +1330,16 @@
                 toastr["success"]("You have successfully joined us!", "Hello,Please check your register email")
             }
             else if ($("#forgotError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#securitySuccess").length) {
+                toastr["success"]("You have successfully joined us!", "Hello,Your Password or Username Changed")
+            }
+            else if ($("#securityError").length) {
                 toastr["error"]("Something went wrong!", "Upsss Sorry")
             }
         })

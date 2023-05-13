@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "_MyAccount";
 }
-
+@model ProfileVM
 <div class="account">
     <div class="account_bar">
         <a href="#" class="logo" aria-label="hellojob">
@@ -132,38 +132,41 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="allsecurity">
-                            <form action="">
+                            <form asp-controller="myaccount" asp-action="security">
                                 <div class="security-inputs">
-                                    <label for="">Email</label>
-                                    <input type="email"
-                                           name=""
+                                    <label asp-for="Email">E-poçt</label>
+                                    <input asp-for="Email"
                                            class="form-control inputs"
                                            placeholder="@ViewBag.User.Email"
-                                           disabled="" />
+                                           disabled />
                                 </div>
                                 <div class="security-inputs">
-                                    <label for="">Mövcud Şifrəni Daxil Edin</label>
-                                    <input type="password"
-                                           name=""
+                                    <label asp-for="UserName">İstifadəçi</label>
+                                    <input asp-for="UserName"
+                                           class="form-control inputs"
+                                           placeholder="@ViewBag.User.UserName"
+                                            />
+                                </div>
+                                <div class="security-inputs">
+                                    <label asp-for="CurrentPassword">Mövcud Şifrəni Daxil Edin</label>
+                                    <input asp-for="CurrentPassword"
                                            class="form-control inputs"
                                            placeholder="********" />
                                 </div>
                                 <div class="security-inputs">
-                                    <label for="">Yeni Şifrə</label>
-                                    <input type="password"
-                                           name=""
+                                    <label asp-for="NewPassword">Yeni Şifrə</label>
+                                    <input asp-for="NewPassword"
                                            class="form-control inputs"
                                            placeholder="********" />
                                 </div>
                                 <div class="security-inputs">
-                                    <label for="">Şifrənin təsdiqi</label>
-                                    <input type="password"
-                                           name=""
+                                    <label asp-for="ConfirmNewPassword">Şifrənin təsdiqi</label>
+                                    <input asp-for="ConfirmNewPassword"
                                            class="form-control inputs"
                                            placeholder="********" />
                                 </div>
                                 <div class="save_button mb-0">
-                                    <button class="btn btn-submit submit" type="submit">Şifrəni yeniləmək</button>
+                                    <button class="btn btn-submit submit" type="submit">Yeniləmək</button>
                                 </div>
                             </form>
                         </div>

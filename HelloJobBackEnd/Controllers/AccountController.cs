@@ -43,6 +43,11 @@ namespace HelloJobBackEnd.Controllers
                 Email = account.Email,
                 UserName = account.Username
             };
+            if (_usermanager.Users.Any(x => x.NormalizedEmail == account.Email.ToUpper()))
+            {
+                ModelState.AddModelError("Email", "Bu e-poçtda istifadəçi mövcuddur");
+                return RedirectToAction("index", "home");
+            }
             IdentityResult result = await _usermanager.CreateAsync(user, account.Password);
             if (!result.Succeeded)
             {

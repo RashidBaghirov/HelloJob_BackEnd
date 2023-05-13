@@ -205,12 +205,12 @@
       "PackagePath": "staticwebassets\\assets\\css\\slick.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\293kb-og-image.png",
-      "PackagePath": "staticwebassets\\assets\\images\\Company\\293kb-og-image.png"
-    },
-    {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\532kb-og-image.png",
       "PackagePath": "staticwebassets\\assets\\images\\Company\\532kb-og-image.png"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\587kb-og-image.png",
+      "PackagePath": "staticwebassets\\assets\\images\\Company\\587kb-og-image.png"
     },
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\119photo_2023-04-28_17-30-34.jpg",

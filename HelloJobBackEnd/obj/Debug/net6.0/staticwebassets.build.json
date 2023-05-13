@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5UVVyt8Ks0hgpEs1ebpHazmV4QifGvl9E/vr1wjThoQ=",
+  "Hash": "wDIO+U/oGRbsj5GF0R5owt0we1DvN8QB4YMXw7jse7E=",
   "Source": "HelloJobBackEnd",
   "BasePath": "_content/HelloJobBackEnd",
   "Mode": "Default",
@@ -884,23 +884,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\css\\slick.css.map"
     },
     {
-      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\293kb-og-image.png",
-      "SourceId": "HelloJobBackEnd",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
-      "BasePath": "_content/HelloJobBackEnd",
-      "RelativePath": "assets/images/Company/293kb-og-image.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\Company\\293kb-og-image.png"
-    },
-    {
       "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\532kb-og-image.png",
       "SourceId": "HelloJobBackEnd",
       "SourceType": "Discovered",
@@ -916,6 +899,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\Company\\532kb-og-image.png"
+    },
+    {
+      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\587kb-og-image.png",
+      "SourceId": "HelloJobBackEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
+      "BasePath": "_content/HelloJobBackEnd",
+      "RelativePath": "assets/images/Company/587kb-og-image.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\Company\\587kb-og-image.png"
     },
     {
       "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\logo.svg",

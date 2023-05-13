@@ -180,7 +180,15 @@
                                     <div class="vacans_inputs">
                                         <label asp-for="BusinessAreaId">Kateqoriya</label>
                                         <select asp-for=BusinessAreaId class="form-control cities" disabled>
-                                          
+                                            @foreach (var businessTitle in ViewBag.Business)
+                                            {
+                                                <optgroup label="@businessTitle.Name">
+                                                    @foreach (var businessArea in businessTitle.BusinessAreas)
+                                                    {
+                                                        <option value="@businessArea.Id">@businessArea.Name</option>
+                                                    }
+                                                </optgroup>
+                                            }
                                         </select>
                                         <span asp-validation-for="BusinessAreaId" class="text-danger"></span>
                                     </div>
@@ -211,9 +219,9 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="vacans_inputs">
-                                        <label asp-for="DrivingLicense" >Sürücülük vəsiqəsi</label>
+                                        <label asp-for="DrivingLicense">Sürücülük vəsiqəsi</label>
                                         <div class="checkbox" disabled>
-                                            <input asp-for="DrivingLicense" class="form-check-input mt-0">
+                                            <input asp-for="DrivingLicense" class="form-check-input mt-0" disabled>
                                             <span>Şərtdir</span>
                                         </div>
                                     </div>
@@ -233,8 +241,6 @@
                                         {
                                             <li>
                                                 <span> @item.Info</span>
-                                                <i style="cursor:pointer;" class="bi bi-trash delbtn"></i>
-                                                <input type="hidden" name="DeleteWork" value="@item.Id" />
                                             </li>
                                         }
                                     </ol>
@@ -254,8 +260,6 @@
                                         {
                                             <li>
                                                 <span> @item.Info</span>
-                                                <i style="cursor:pointer;" class="bi bi-trash delbtn"></i>
-                                                <input type="hidden" name="DeleteEmployeers" value="@item.Id" />
                                             </li>
                                         }
                                     </ol>
@@ -264,7 +268,7 @@
                         </div>
                     </div>
                     <div class="submit-button">
-                        <button type="submit" class="btn btn-primary submit">Dəyişdirmək</button>
+                        <button type="submit" class="btn btn-primary submit">Silmək</button>
                     </div>
                 </form>
             </div>
@@ -449,7 +453,7 @@
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
                                             <label asp-for="BusinessAreaId">Kateqoriya</label>
-                                            <select asp-for=BusinessAreaId class="form-control cities">
+                                            <select asp-for=BusinessAreaId class="form-control cities" disabled>
                                                 @foreach (var businessTitle in ViewBag.Business)
                                                 {
                                                     <optgroup label="@businessTitle.Name">
@@ -490,8 +494,8 @@
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
                                             <label asp-for="DrivingLicense">Sürücülük vəsiqəsi</label>
-                                            <div class="checkbox" disabled>
-                                                <input asp-for="DrivingLicense" class="form-check-input mt-0">
+                                            <div class="checkbox" >
+                                                <input asp-for="DrivingLicense" class="form-check-input mt-0" disabled>
                                                 <span>Şərtdir</span>
                                             </div>
                                         </div>
