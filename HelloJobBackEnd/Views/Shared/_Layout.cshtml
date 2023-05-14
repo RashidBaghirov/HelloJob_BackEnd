@@ -30,14 +30,14 @@
                 <div class="col-lg-6 col-md-4">
                     <div class="logo">
                         <a asp-controller="home" asp-action="index">
-                            <img class="lightmode" src="./assets/images/logo.svg" alt="">
-                            <img class="nightmode" src="./assets/images/night_mode_logo.svg" alt="">
+                            <img class="lightmode" src="~/assets/images/logo.svg" alt="">
+                            <img class="nightmode" src="~/assets/images/night_mode_logo.svg" alt="">
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="buttons">
-                        	@if (User.Identity.IsAuthenticated)
+                       @if (User.Identity.IsAuthenticated)
                         {
                             <div class="account_head_user">
                                 <a  class="profile__header__user__name">
@@ -50,8 +50,6 @@
                                     <li><a asp-controller="account" asp-action="logout">Çıxış</a></li>
                                 </ul>
                             </div>
-             
-
                         }
                         else
                         {
@@ -223,7 +221,7 @@
                     </div>
                 </div>
                 @{
-                    await Html.RenderPartialAsync("_ForgotPartial");
+                    await Html.RenderPartialAsync("_ForgotPartial", new AccountVM());
                 }
             </div>
         </div>

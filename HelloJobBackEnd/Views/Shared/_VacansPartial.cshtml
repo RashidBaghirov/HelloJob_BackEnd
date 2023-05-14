@@ -8,7 +8,8 @@
             <div class="vacancies_href">
                 <a href="./vacansdetail.html">
                     <div class="item_left">
-                        <div class="icon">
+                        <div class="icon" style="
+                         width: 58px !important;height:auto !important">
                             <img style="
                                  width: 100%;
                                  object-fit: contain;
@@ -16,14 +17,17 @@
                                  alt="@item.Company.Name" />
                         </div>
                         <div class="title">
-                            <h3>@item.Position</h3>
+                            <h3 style="
+                            position: inherit !important;">
+                            @item.Position
+                        </h3>
                             <p>@item.Company.Name</p>
                         </div>
                     </div>
                 </a>
                 <div class="item_right">
-                    <span class="salary">@item.Salary AZN</span>
-                    <span class="date">@item.CreatedAt</span>
+                    <span class="salary">@(item.Salary==0 ? "Ə-h razılaşma ilə" : item.Salary) (AZN)</span>
+                    <span class="date">@item.CreatedAt.ToString("dd/MM")</span>
                 </div>
                 <div class="vacans_buttons">
                     <a asp-controller="myaccount" asp-action="editVacans" asp-route-id="@item.Id" class="edited btn">

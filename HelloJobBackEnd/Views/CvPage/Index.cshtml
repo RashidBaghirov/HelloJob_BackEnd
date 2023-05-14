@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "CV page";
 }
-
+@model List<Cv>
 <section id="titles_and_bgblue">
     <div class="blueback">
     </div>
@@ -15,9 +15,6 @@
                     <li>
                         <a asp-controller="cvpage" asp-action="index">CV-lər</a>
                     </li>
-                    <li>
-                        <a href="">Kurslar</a>
-                    </li>
                 </ul>
             </div>
             <div class="search_titles_bottom col-lg-12 col-md-12">
@@ -25,7 +22,7 @@
                     <div class="searchbar_top" style="display: flex;">
                         <form>
                             <div class="input">
-                                <input type="text" placeholder="Məsələn, Dizayner">
+                                <input type="text" placeholder="İxtisasa uyğun Cv axtar....">
                             </div>
                             <button type="submit" class="search_btn"><span>Axtar</span></button>
                         </form>
@@ -51,100 +48,36 @@
                         <div class="filters_item">
                             <h3 class="title">İxtisas</h3>
                             <div class="pro">
-                                <div class="inputs">
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Maliyyə </span>
+                             
+                                    @foreach (var item in ViewBag.Business)
+                                    {
+                                    <div class="inputs">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="form-check-input mt-0">
+                                            <span>@item.Name </span>
+                                        </div>
+                                        <div class="count">
+                                            <span class="prof_count">@item.Cvs.Count</span>
+                                        </div>
                                     </div>
-                                    <div class="count">
-                                        <span class="prof_count">127</span>
-                                    </div>
-                                </div>
-                                <div class="inputs">
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Maliyyə </span>
-                                    </div>
-                                    <div class="count">
-                                        <span class="prof_count">127</span>
-                                    </div>
-                                </div>
-                                <div class="inputs">
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Maliyyə </span>
-                                    </div>
-                                    <div class="count">
-                                        <span class="prof_count">127</span>
-                                    </div>
-                                </div>
-                                <div class="inputs">
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Maliyyə </span>
-                                    </div>
-                                    <div class="count">
-                                        <span class="prof_count">127</span>
-                                    </div>
-                                </div>
-                                <div class="inputs">
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Maliyyə </span>
-                                    </div>
-                                    <div class="count">
-                                        <span class="prof_count">127</span>
-                                    </div>
-                                </div>
-                                <div class="inputs">
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Maliyyə </span>
-                                    </div>
-                                    <div class="count">
-                                        <span class="prof_count">127</span>
-                                    </div>
-                                </div>
-                                <div class="inputs">
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Maliyyə </span>
-                                    </div>
-                                    <div class="count">
-                                        <span class="prof_count">127</span>
-                                    </div>
-                                </div>
-                                <div class="inputs">
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Maliyyə </span>
-                                    </div>
-                                    <div class="count">
-                                        <span class="prof_count">127</span>
-                                    </div>
-                                </div>
+                                    }
+                                
+                                
+                              
                             </div>
                         </div>
                         <div class="work_mode">
                             <h3 class="title">İş rejimi</h3>
                             <div class="pro">
                                 <div class="inputs">
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Tam-Ştat </span>
-                                    </div>
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Freelance</span>
-                                    </div>
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Part-Time </span>
-                                    </div>
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Təcrübəçi</span>
-                                    </div>
+
+                                    @foreach (var item in ViewBag.Mode)
+                                    {
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="form-check-input mt-0">
+                                            <span>@item.Name</span>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -152,30 +85,14 @@
                             <h3 class="title">Təhsil</h3>
                             <div class="pro">
                                 <div class="inputs">
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Ali </span>
-                                    </div>
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Natamam Ali</span>
-                                    </div>
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Orta Texniki</span>
-                                    </div>
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Orta Xüsusi</span>
-                                    </div>
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Orta</span>
-                                    </div>
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Digər-</span>
-                                    </div>
+                                    @foreach (var item in ViewBag.Education)
+                                    {
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="form-check-input mt-0">
+                                            <span>@item.Name </span>
+                                        </div>
+                                    }
+                                
                                 </div>
                             </div>
                         </div>
@@ -190,11 +107,11 @@
                                             <span tabindex="0" class="handle" style="left: 0%;"></span>
                                         </div>
                                         <div class="interval">
-                                            <span>1 ildən az</span>
-                                            <span>2</span>
-                                            <span>3</span>
-                                            <span>4</span>
-                                            <span>5 ildən çox</span>
+                                            @foreach (var item in ViewBag.Experince)
+                                            {
+                                                <span value="@item.Id">@item.Name</span>
+                                            }
+                                          
                                         </div>
                                     </div>
                                 </div>
@@ -232,342 +149,70 @@
                         </select>
                     </div>
                     <div class="persons_cv">
-                        <div class="user_block">
-                            <a asp-controller="cvpage" asp-action="detail" target="_blank">
-                                <div class="header_user">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user_img">
-                                            <img src="https://e7.pngegg.com/pngimages/518/64/png-clipart-person-icon-computer-icons-user-profile-symbol-person-miscellaneous-monochrome-thumbnail.png" alt="">
-                                        </div>
-                                        <div class="d-flex justify-content-between w-100">
-                                            <div class="user_desc">
-                                                <h3 class="profession">İnsan resursları üzrə kiçik mütəxəssis </h3>
-
-                                                <p class="fullname">Nərminə Nəzərli Əsgərova</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="user_options">
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>Tam-ştat</h4>
-                                            <p>İş rejimi</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>600</h4>
-                                            <p>Minimum əmək haqqı AZN</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>1 ildən 3 ilə qədər</h4>
-                                            <p>İş staji</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="hearts">
-                                <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="user_block">
-                            <a href="./userdetail.html" target="_blank">
-                                <div class="header_user">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user_img">
-                                            <img src="https://e7.pngegg.com/pngimages/518/64/png-clipart-person-icon-computer-icons-user-profile-symbol-person-miscellaneous-monochrome-thumbnail.png" alt="">
-                                        </div>
-                                        <div class="d-flex justify-content-between w-100">
-                                            <div class="user_desc">
-                                                <h3 class="profession">İnsan resursları üzrə kiçik mütəxəssis </h3>
-
-                                                <p class="fullname">Nərminə Nəzərli Əsgərova</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="user_options">
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>Tam-ştat</h4>
-                                            <p>İş rejimi</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>600</h4>
-                                            <p>Minimum əmək haqqı AZN</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>1 ildən 3 ilə qədər</h4>
-                                            <p>İş staji</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="hearts">
-                                <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="user_block">
-                            <a href="./userdetail.html" target="_blank">
-                                <div class="header_user">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user_img">
-                                            <img src="https://e7.pngegg.com/pngimages/518/64/png-clipart-person-icon-computer-icons-user-profile-symbol-person-miscellaneous-monochrome-thumbnail.png" alt="">
-                                        </div>
-                                        <div class="d-flex justify-content-between w-100">
-                                            <div class="user_desc">
-                                                <h3 class="profession">İnsan resursları üzrə kiçik mütəxəssis </h3>
-
-                                                <p class="fullname">Nərminə Nəzərli Əsgərova</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="user_options">
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>Tam-ştat</h4>
-                                            <p>İş rejimi</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>600</h4>
-                                            <p>Minimum əmək haqqı AZN</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>1 ildən 3 ilə qədər</h4>
-                                            <p>İş staji</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="hearts">
-                                <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="user_block">
-                            <a href="" target="_blank">
-                                <div class="header_user">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user_img">
-                                            <img src="https://e7.pngegg.com/pngimages/518/64/png-clipart-person-icon-computer-icons-user-profile-symbol-person-miscellaneous-monochrome-thumbnail.png" alt="">
-                                        </div>
-                                        <div class="d-flex justify-content-between w-100">
-                                            <div class="user_desc">
-                                                <h3 class="profession">İnsan resursları üzrə kiçik mütəxəssis </h3>
-
-                                                <p class="fullname">Nərminə Nəzərli Əsgərova</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="user_options">
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>Tam-ştat</h4>
-                                            <p>İş rejimi</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>600</h4>
-                                            <p>Minimum əmək haqqı AZN</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>1 ildən 3 ilə qədər</h4>
-                                            <p>İş staji</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="hearts">
-                                <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
-                                </span>
-                            </div>
-                        </div>
                         <div class="user_block" style="width: 100%;">
                             <a href="" target="_blank">
                                 <img style="width: 100%;" src="https://www.hellojob.az/uploads/banners/2023/04/08/cv-elave-et-banner-64312af897dcb-8974446226af1314d43ee5cd3689350d64312af897deb-9z_D06zcQTxQh5p.png" alt="">
                             </a>
 
                         </div>
-                        <div class="user_block">
-                            <a href="" target="_blank">
-                                <div class="header_user">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user_img">
-                                            <img src="https://e7.pngegg.com/pngimages/518/64/png-clipart-person-icon-computer-icons-user-profile-symbol-person-miscellaneous-monochrome-thumbnail.png" alt="">
-                                        </div>
-                                        <div class="d-flex justify-content-between w-100">
-                                            <div class="user_desc">
-                                                <h3 class="profession">İnsan resursları üzrə kiçik mütəxəssis </h3>
-
-                                                <p class="fullname">Nərminə Nəzərli Əsgərova</p>
+                        @foreach (var item in Model)
+                        {
+                            <div class="user_block">
+                                <a href="" target="_blank">
+                                    <div class="header_user">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="user_img">
+                                                <img src="~/assets/images/User/@item.Image" alt="">
                                             </div>
+                                            <div class="d-flex justify-content-between w-100">
+                                                <div class="user_desc">
+                                                    <h3 class="profession">@item.Position</h3>
 
-                                        </div>
-                                    </div>
+                                                    <p class="fullname">@item.Name @item.Surname</p>
+                                                </div>
 
-                                </div>
-                                <div class="user_options">
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>Tam-ştat</h4>
-                                            <p>İş rejimi</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>600</h4>
-                                            <p>Minimum əmək haqqı AZN</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>1 ildən 3 ilə qədər</h4>
-                                            <p>İş staji</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="hearts">
-                                <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="user_block">
-                            <a href="" target="_blank">
-                                <div class="header_user">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="user_img">
-                                            <img src="https://e7.pngegg.com/pngimages/518/64/png-clipart-person-icon-computer-icons-user-profile-symbol-person-miscellaneous-monochrome-thumbnail.png" alt="">
-                                        </div>
-                                        <div class="d-flex justify-content-between w-100">
-                                            <div class="user_desc">
-                                                <h3 class="profession">İnsan resursları üzrə kiçik mütəxəssis </h3>
-
-                                                <p class="fullname">Nərminə Nəzərli Əsgərova</p>
                                             </div>
+                                        </div>
 
+                                    </div>
+                                    <div class="user_options" style="justify-content:space-around !important">
+                                        <div class="item">
+                                            <div class="icon">
+                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
+                                            </div>
+                                            <div class="text">
+                                                <h4>@item.OperatingMode.Name</h4>
+                                                <p>İş rejimi</p>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="icon">
+                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
+                                            </div>
+                                            <div class="text">
+                                                <h4>@(item.Salary == 0 ? "Ə-h razılaşma ilə" : item.Salary) (AZN)</h4>
+                                                <p>Minimum əmək haqqı</p>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="icon">
+                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
+                                            </div>
+                                            <div class="text">
+                                                <h4>@item.Experience.Name</h4>
+                                                <p>İş staji</p>
+                                            </div>
                                         </div>
                                     </div>
-
+                                </a>
+                                <div class="hearts">
+                                    <span class="like">
+                                        <i class="fa-regular fa-heart unliked"></i>
+                                        <i class="fa-solid fa-heart liked"></i>
+                                    </span>
                                 </div>
-                                <div class="user_options">
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>Tam-ştat</h4>
-                                            <p>İş rejimi</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>600</h4>
-                                            <p>Minimum əmək haqqı AZN</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>1 ildən 3 ilə qədər</h4>
-                                            <p>İş staji</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="hearts">
-                                <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
-                                </span>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
 

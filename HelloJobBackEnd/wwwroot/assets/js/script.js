@@ -135,11 +135,9 @@ goLogin.forEach(btn => {
 const account_head_user = document.querySelector(".profile__header__user__name");
 const account_head_user_drop = document.querySelector(".account_head_user_drop");
 
+
+
 account_head_user.addEventListener("click", (event) => {
     event.preventDefault();
     account_head_user_drop.classList.toggle("active");
 });
-
-
-
-

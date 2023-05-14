@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Hello page";
+    List<Company> companies = ViewBag.Company;
 }
+
+@model  List<Vacans>
 @if (TempData["Register"] != null)
 {
     if ((bool)TempData["Register"] == true)
@@ -68,14 +71,49 @@
             <div class="search_titles_bottom col-lg-12 col-md-12">
                 <div class="searchbar full">
                     <div class="searchbar_top" style="display: flex;">
-                        <form>
+                        <form method="post" action="#" class="search">
                             <div class="input">
-                                <input type="text" placeholder="Məsələn, Dizayner">
+                                <input type="text" name="search" class="search-input" placeholder="Vəzifəyə uyğun vakansiya axtarın...." autocomplete="off">
                             </div>
                             <button type="submit" class="search_btn"><span>Axtar</span></button>
                         </form>
+                      
+               
                     </div>
+                   
                 </div>
+                <div class="search-results d-block"></div>
+
+                <script>
+                    const searchForm = document.querySelector('.search');
+                    const searchInput = searchForm.querySelector('.search-input');
+                    const searchResults = document.querySelector('.search-results');
+
+                    searchForm.addEventListener('submit', (e) => {
+                        const searchQuery = e.target.value.trim();
+                        e.preventDefault(); 
+                        window.location.href = "/Home/Search?search=${searchQuery}";
+                    });
+
+                    let timeoutId;
+
+                    searchInput.addEventListener('input', (e) => {
+                        const searchQuery = e.target.value.trim();
+                        if (searchQuery.length < 2) {
+                            searchResults.innerHTML = '';
+                            return;
+                        }
+                        clearTimeout(timeoutId);
+                        timeoutId = setTimeout(() => {
+                            fetch(`/Home/Search?search=${searchQuery}`)
+                                .then(response => response.text())
+                                .then(data => {
+                                    searchResults.innerHTML = data;
+                                })
+                                .catch(error => console.log(error));
+                        }, 500);
+                    });
+                </script>
             </div>
         </div>
     </div>
@@ -92,15 +130,18 @@
             </div>
             <div class="col-lg-12">
                 <div class="responsive">
-                    <div class="item">
-                        <div class="new-cat-card apply-cv">
-                            <a href="~/postCv.html">
-                                <img src="https://www.hellojob.az/content/assets/images/vacancies/upload.svg">
-                                <div class="new-cat-name"><p>CV əlavə et</p></div>
-                                <div class="new-cat-count"><p>Şirkətlər sizi tapsın</p></div>
-                            </a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole(UserRole.employeer.ToString()))
+                    {
+                        <div class="item">
+                            <div class="new-cat-card apply-cv">
+                                <a href="~/postCv.html">
+                                    <img src="https://www.hellojob.az/content/assets/images/vacancies/upload.svg">
+                                    <div class="new-cat-name"><p>CV əlavə et</p></div>
+                                    <div class="new-cat-count"><p>Şirkətlər sizi tapsın</p></div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    }
                     <div class="item">
                         <div class="new-cat-card">
                             <a href="">
@@ -202,1041 +243,38 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 col-md-8">
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="~/vacansdetail.html">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg" alt="Bağban">
+                        @foreach (var item in Model)
+                        {
+                            <div class="vacancies">
+                                <div class="vacancies_href">
+                                    <a href="~/vacansdetail.html">
+                                        <div class="item_left">
+                                            <div class="icon" style="
+                         width: 58px !important;height:auto !important">
+                                                <img style="
+                                 width: 100%;
+                                 object-fit: contain;
+                                  " src="~/assets/images/Company/@item.Company.Image"
+                                                     alt="@item.Company.Name" />
+                                            </div>
+                                            <div class="title">
+                                                <h3>@item.Position</h3>
+                                                <p>@item.BusinessArea.BusinessTitle.Name</p>
+                                            </div>
                                         </div>
-                                        <div class="title">
-                                            <h3>Bağban</h3>
-                                            <p></p>
-                                        </div>
+                                    </a>
+                                    <div class="item_right">
+                                        <span class="salary">@(item.Salary == 0 ? "Ə-h razılaşma ilə" : item.Salary) (AZN)</span>
+                                        <span class="date">@item.CreatedAt.ToString("dd/MM")</span>
+                                        <span class="like">
+                                            <i class="fa-regular fa-heart unliked"></i>
+                                            <i class="fa-solid fa-heart liked"></i>
+                                        </span>
                                     </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">500 - 500 AZN</span>
-                                    <span class="date">Dünən 11:29</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="~/vacansdetail.html">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Satış Təmsilçisi</h3>
-                                            <p> Senser lingerie</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">400 - 800 AZN</span>
-                                    <span class="date">14 Aprel</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="~/vacansdetail.html">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Telesatış bölməsində kiçik mütəxəssis</h3>
-                                            <p> Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:25</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="~/vacansdetail.html">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Birbaşa satışlar bölməsində kiçik mütəxəssis</h3>
-                                            <p>Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:23</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="~/vacansdetail.html">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/tehsil-ve-elm-cat-6414348e561bd6414348e561cb-lY0Gl-kw9Pyk_kP.svg" alt="Aspaz">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Aşpaz</h3>
-                                            <p> Fidan uşaq bağçası</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 22:04</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="~/vacansdetail.html">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>SMM</h3>
-                                            <p> By Telecom MMC</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 17:43</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Telesatış bölməsində kiçik mütəxəssis</h3>
-                                            <p> Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:25</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Birbaşa satışlar bölməsində kiçik mütəxəssis</h3>
-                                            <p>Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:23</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/tehsil-ve-elm-cat-6414348e561bd6414348e561cb-lY0Gl-kw9Pyk_kP.svg" alt="Aspaz">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Aşpaz</h3>
-                                            <p> Fidan uşaq bağçası</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 22:04</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>SMM</h3>
-                                            <p> By Telecom MMC</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 17:43</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Telesatış bölməsində kiçik mütəxəssis</h3>
-                                            <p> Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:25</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Birbaşa satışlar bölməsində kiçik mütəxəssis</h3>
-                                            <p>Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:23</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/tehsil-ve-elm-cat-6414348e561bd6414348e561cb-lY0Gl-kw9Pyk_kP.svg" alt="Aspaz">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Aşpaz</h3>
-                                            <p> Fidan uşaq bağçası</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 22:04</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>SMM</h3>
-                                            <p> By Telecom MMC</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 17:43</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Bağban</h3>
-                                            <p></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">500 - 500 AZN</span>
-                                    <span class="date">Dünən 11:29</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Bağban</h3>
-                                            <p></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">500 - 500 AZN</span>
-                                    <span class="date">Dünən 11:29</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Satış Təmsilçisi</h3>
-                                            <p> Senser lingerie</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">400 - 800 AZN</span>
-                                    <span class="date">14 Aprel</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Telesatış bölməsində kiçik mütəxəssis</h3>
-                                            <p> Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:25</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Birbaşa satışlar bölməsində kiçik mütəxəssis</h3>
-                                            <p>Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:23</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/tehsil-ve-elm-cat-6414348e561bd6414348e561cb-lY0Gl-kw9Pyk_kP.svg" alt="Aspaz">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Aşpaz</h3>
-                                            <p> Fidan uşaq bağçası</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 22:04</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>SMM</h3>
-                                            <p> By Telecom MMC</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 17:43</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Telesatış bölməsində kiçik mütəxəssis</h3>
-                                            <p> Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:25</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Birbaşa satışlar bölməsində kiçik mütəxəssis</h3>
-                                            <p>Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:23</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/tehsil-ve-elm-cat-6414348e561bd6414348e561cb-lY0Gl-kw9Pyk_kP.svg" alt="Aspaz">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Aşpaz</h3>
-                                            <p> Fidan uşaq bağçası</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 22:04</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>SMM</h3>
-                                            <p> By Telecom MMC</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 17:43</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Telesatış bölməsində kiçik mütəxəssis</h3>
-                                            <p> Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:25</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Birbaşa satışlar bölməsində kiçik mütəxəssis</h3>
-                                            <p>Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:23</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/tehsil-ve-elm-cat-6414348e561bd6414348e561cb-lY0Gl-kw9Pyk_kP.svg" alt="Aspaz">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Aşpaz</h3>
-                                            <p> Fidan uşaq bağçası</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 22:04</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>SMM</h3>
-                                            <p> By Telecom MMC</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 17:43</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Bağban</h3>
-                                            <p></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">500 - 500 AZN</span>
-                                    <span class="date">Dünən 11:29</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Bağban</h3>
-                                            <p></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">500 - 500 AZN</span>
-                                    <span class="date">Dünən 11:29</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Satış Təmsilçisi</h3>
-                                            <p> Senser lingerie</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">400 - 800 AZN</span>
-                                    <span class="date">14 Aprel</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Telesatış bölməsində kiçik mütəxəssis</h3>
-                                            <p> Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:25</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Birbaşa satışlar bölməsində kiçik mütəxəssis</h3>
-                                            <p>Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:23</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/tehsil-ve-elm-cat-6414348e561bd6414348e561cb-lY0Gl-kw9Pyk_kP.svg" alt="Aspaz">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Aşpaz</h3>
-                                            <p> Fidan uşaq bağçası</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 22:04</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>SMM</h3>
-                                            <p> By Telecom MMC</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 17:43</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Telesatış bölməsində kiçik mütəxəssis</h3>
-                                            <p> Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:25</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Birbaşa satışlar bölməsində kiçik mütəxəssis</h3>
-                                            <p>Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:23</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/tehsil-ve-elm-cat-6414348e561bd6414348e561cb-lY0Gl-kw9Pyk_kP.svg" alt="Aspaz">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Aşpaz</h3>
-                                            <p> Fidan uşaq bağçası</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 22:04</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>SMM</h3>
-                                            <p> By Telecom MMC</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 17:43</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="satis">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Telesatış bölməsində kiçik mütəxəssis</h3>
-                                            <p> Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:25</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/satis-cat-64143417860756414341786081-vC1K1njTVifH3Sh.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Birbaşa satışlar bölməsində kiçik mütəxəssis</h3>
-                                            <p>Kapital Bank</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Bu gün 10:23</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/tehsil-ve-elm-cat-6414348e561bd6414348e561cb-lY0Gl-kw9Pyk_kP.svg" alt="Aspaz">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Aşpaz</h3>
-                                            <p> Fidan uşaq bağçası</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 22:04</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>SMM</h3>
-                                            <p> By Telecom MMC</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary"> Ə/h razılaşma ilə</span>
-                                    <span class="date">Dünən 17:43</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg" alt="Bağban">
-                                        </div>
-                                        <div class="title">
-                                            <h3>Bağban</h3>
-                                            <p></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">500 - 500 AZN</span>
-                                    <span class="date">Dünən 11:29</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        }
+                     
                     </div>
                     <div class="col-lg-4 col-md-4 mb-3">
                         <div class="sticky_element">
@@ -1245,54 +283,32 @@
                             </div>
                             <div class="companies">
 
-                                <div class="company">
-                                    <a href="~/companydetail.html">
-                                        <div class="images">
-                                            <img src="https://www.hellojob.az/uploads/company/min/2021/09/14/61409f490f31b-gn4S-uC-ECn51mv.jpg" alt="Kapital Bank" class="image">
-                                        </div>
-                                        <p>36 vakansiya</p>
-                                    </a>
-                                </div>
+                                @foreach (var item in companies)
+                                {
+                                    <div class="company">
+                                        <a href="./companydetail.html" class="full">
+                                            <div>
+                                                <div class="company_images" style="padding:0px !important; position:static !important;">
+                                                    <div class="image" style="
+                                                                  height: 70px;
+                                                                   display: flex;
+                                                                   justify-content: center;">
+                                                                                                           
+                                                        <img src="~/assets/images/Company/@item.Image"
+                                                             alt="@item.Name" />
+                                                    </div>
+                                                </div>
+                                                <p style="
+    display: flex;
+    justify-content: center;
+">@item.Name</p>
+                                                <p>Vakansiya sayı <span>@item.Vacans.Count()</span> </p>
+                                            </div>
+                                        </a>
+                                    </div>
 
+                                }
 
-                                <div class="company">
-                                    <a href="~/companydetail.html">
-                                        <div class="images">
-                                            <img src="https://www.hellojob.az/uploads/company/min/2021/09/14/6140a01fbb1a9-R_o63qMnR_BeT_p.jpg" alt="PASHA Bank" class="image">
-                                        </div>
-                                        <p>25 vakansiya</p>
-                                    </a>
-                                </div>
-
-
-                                <div class="company">
-                                    <a href="~/companydetail.html">
-                                        <div class="images">
-                                            <img src="https://www.hellojob.az/uploads/company/min/2021/09/05/6109511b552b4-8X-PcUZWa58l2-i.png" alt="Xalq Bank" class="image">
-                                        </div>
-                                        <p>20 vakansiya</p>
-                                    </a>
-                                </div>
-
-
-                                <div class="company">
-                                    <a href="~/companydetail.html">
-                                        <div class="images">
-                                            <img src="https://www.hellojob.az/uploads/company/min/2021/09/29/61548ddd3c469-iF_04-QSR3PU3W-.jpg" alt="AccessBank" class="image">
-                                        </div>
-                                        <p>15 vakansiya</p>
-                                    </a>
-                                </div>
-
-
-                                <div class="company">
-                                    <a href="~/companydetail.html">
-                                        <div class="images">
-                                            <img src="https://www.hellojob.az/uploads/company/min/2021/03/02/6038f2d221bd1-Mx_Gdq7mSi7MLA_.jpg" alt="Güvənli MMC" class="image">
-                                        </div>
-                                        <p>8 vakansiya</p>
-                                    </a>
-                                </div>
 
                             </div>
                         </div>

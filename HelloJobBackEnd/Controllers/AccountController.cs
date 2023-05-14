@@ -88,6 +88,7 @@ namespace HelloJobBackEnd.Controllers
             smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
             smtp.Send(mail);
             await _usermanager.AddToRoleAsync(user, account.userRole.ToString());
+           
             TempData["Register"] = true;
             return RedirectToAction("Index", "Home");
 

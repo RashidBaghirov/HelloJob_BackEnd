@@ -1147,8 +1147,6 @@
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 10px;
-  position: absolute;
-  top: 35px;
 }
 @media screen and (max-width: 821px) {
   .main #works .vacancies .vacancies_href a .item_left .icon {
@@ -1293,6 +1291,147 @@
 .main .sticky_element .companies .company a p {
   margin-top: 10px;
 }
+.main .search_ul .vacancies {
+  margin-bottom: 15px;
+}
+.main .search_ul .vacancies .vacancies_href {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #212944;
+  padding: 18px;
+  border: 1px solid #E4E7EC;
+  border-radius: 6px;
+  position: relative;
+}
+.main .search_ul .vacancies .vacancies_href a {
+  text-decoration: none;
+  color: black;
+}
+.main .search_ul .vacancies .vacancies_href a .item_left {
+  max-width: 390px;
+  display: flex;
+  align-items: center;
+}
+.main .search_ul .vacancies .vacancies_href a .item_left .icon {
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.main .search_ul .vacancies .vacancies_href a .item_left .title {
+  margin-left: 15px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+}
+.main .search_ul .vacancies .vacancies_href a .item_left .title h3 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 821px) {
+  .main .search_ul .vacancies .vacancies_href a .item_left .icon {
+    width: 36px;
+    height: 36px;
+  }
+  .main .search_ul .vacancies .vacancies_href a .item_left .icon img {
+    width: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .main .search_ul .vacancies .vacancies_href a .item_left .title {
+    margin-left: 15px;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 11px;
+  }
+  .main .search_ul .vacancies .vacancies_href a .item_left .title h3 {
+    font-weight: 500;
+    font-size: 8px;
+    line-height: 16px;
+    margin-bottom: 10px;
+  }
+}
+.main .search_ul .vacancies .vacancies_href .item_right {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.main .search_ul .vacancies .vacancies_href .item_right .salary {
+  color: #2196F3;
+  display: flex;
+  align-items: center;
+}
+.main .search_ul .vacancies .vacancies_href .item_right .salary::after {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 16px;
+  background-color: #E4E7EC;
+  margin: 0 12px;
+}
+.main .search_ul .vacancies .vacancies_href .item_right .like {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  background: #F4F6F9;
+  border-radius: 6px;
+  margin-left: 28px;
+}
+.main .search_ul .vacancies .vacancies_href .item_right .like .unliked {
+  font-size: 18px;
+  text-align: center;
+  position: absolute;
+  top: 6px;
+  right: 7px;
+}
+.main .search_ul .vacancies .vacancies_href .item_right .like .liked {
+  font-size: 18px;
+  text-align: center;
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  color: #2196f3;
+  display: none;
+}
+.main .search_ul .vacancies .vacancies_href .item_right .like .hidden {
+  display: block;
+}
+@media screen and (max-width: 821px) {
+  .main .search_ul .vacancies .vacancies_href .salary {
+    font-size: 9px;
+  }
+  .main .search_ul .vacancies .vacancies_href .date {
+    font-size: 8px;
+  }
+  .main .search_ul .vacancies .vacancies_href .like {
+    width: 22px;
+    height: 22px;
+  }
+  .main .search_ul .vacancies .vacancies_href .like .unliked {
+    font-size: 8px;
+  }
+  .main .search_ul .vacancies .vacancies_href .like .liked {
+    font-size: 8px;
+  }
+}
+@media screen and (max-width: 391px) {
+  .main .search_ul .vacancies .vacancies_href .salary {
+    font-size: 7px;
+  }
+  .main .search_ul .vacancies .vacancies_href .date {
+    font-size: 6px;
+  }
+  .main .search_ul .vacancies .vacancies_href .like {
+    display: none;
+  }
+}
 
 .dark {
   background: #061e40 !important;
@@ -1385,6 +1524,32 @@
 .dark .sticky_element .companies .company a p {
   margin-top: 10px;
   color: white;
+}
+.dark .search_ul .vacancies .vacancies_href {
+  color: white;
+  border: 1px solid #214f8b;
+}
+.dark .search_ul .vacancies .vacancies_href a {
+  color: white;
+}
+.dark .search_ul .vacancies .vacancies_href a .item_left .title h3 {
+  color: white;
+}
+.dark .search_ul .vacancies .vacancies_href a .item_left .title p {
+  color: white;
+}
+.dark .search_ul .vacancies .vacancies_href .item_right .like {
+  background: #436ca8 !important;
+}
+.dark .search_ul .vacancies .vacancies_href .item_right .like .unliked {
+  color: black;
+}
+.dark .search_ul .vacancies .vacancies_href .item_right .like .unliked:hover {
+  color: blue;
+  transition: 0.3s ease;
+}
+.dark .search_ul .vacancies .vacancies_href .item_right .date {
+  color: gray;
 }
 
 * {
