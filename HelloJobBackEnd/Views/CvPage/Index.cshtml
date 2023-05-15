@@ -20,14 +20,49 @@
             <div class="search_titles_bottom col-lg-12 col-md-12">
                 <div class="searchbar full">
                     <div class="searchbar_top" style="display: flex;">
-                        <form>
+                        <form method="post" action="#" class="search">
                             <div class="input">
-                                <input type="text" placeholder="İxtisasa uyğun Cv axtar....">
+                                <input type="text" name="search" class="search-input" placeholder="Vəzifəyə uyğun Cv axtarın...." autocomplete="off">
                             </div>
                             <button type="submit" class="search_btn"><span>Axtar</span></button>
                         </form>
+
+
                     </div>
+
                 </div>
+                <div class="search-results d-block"></div>
+
+                <script>
+                    const searchForm = document.querySelector('.search');
+                    const searchInput = searchForm.querySelector('.search-input');
+                    const searchResults = document.querySelector('.search-results');
+
+                    searchForm.addEventListener('submit', (e) => {
+                        const searchQuery = e.target.value.trim();
+                        e.preventDefault();
+                        window.location.href = "/CvPage/Search?search=${searchQuery}";
+                    });
+
+                    let timeoutId;
+
+                    searchInput.addEventListener('input', (e) => {
+                        const searchQuery = e.target.value.trim();
+                        if (searchQuery.length < 2) {
+                            searchResults.innerHTML = '';
+                            return;
+                        }
+                        clearTimeout(timeoutId);
+                        timeoutId = setTimeout(() => {
+                            fetch(`/Cvpage/Search?search=${searchQuery}`)
+                                .then(response => response.text())
+                                .then(data => {
+                                    searchResults.innerHTML = data;
+                                })
+                                .catch(error => console.log(error));
+                        }, 500);
+                    });
+                </script>
             </div>
         </div>
     </div>
@@ -158,7 +193,7 @@
                         @foreach (var item in Model)
                         {
                             <div class="user_block">
-                                <a href="" target="_blank">
+                                <a asp-controller="cvpage" asp-action="detail" asp-route-id="@item.Id" target="_blank">
                                     <div class="header_user">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="user_img">
@@ -168,7 +203,7 @@
                                                 <div class="user_desc">
                                                     <h3 class="profession">@item.Position</h3>
 
-                                                    <p class="fullname">@item.Name @item.Surname</p>
+                                                    <p class="fullname">@string.Concat(item.Name," ",item.Surname)</p>
                                                 </div>
 
                                             </div>

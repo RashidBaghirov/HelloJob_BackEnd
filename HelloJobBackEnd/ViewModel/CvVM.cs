@@ -9,8 +9,8 @@ namespace HelloJobBackEnd.ViewModel
         public int Id { get; set; }
         public IFormFile Image { get; set; }
         public string? Images { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
         [DataType(DataType.Date)]
 
         public DateTime BornDate { get; set; }
@@ -30,5 +30,6 @@ namespace HelloJobBackEnd.ViewModel
         public IFormFile? CvPDF { get; set; }
         public string? CvPDFs { get; set; }
         public OrderStatus Status { get; set; }
+        public int Count { get; set; }
     }
 }

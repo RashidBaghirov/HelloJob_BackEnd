@@ -1,5 +1,7 @@
 ﻿using HelloJobBackEnd.Entities;
+using HelloJobBackEnd.Utilities.Comparer;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace HelloJobBackEnd.Utilities.Extension
 {
@@ -39,5 +41,33 @@ namespace HelloJobBackEnd.Utilities.Extension
         {
             return file.ContentType.Contains(type);
         }
+
+
+        public static List<Cv> RelatedByBusinessArea(IQueryable<Cv> queryable, Cv cv, int id)
+        {
+            List<Cv> relatedCvs = new();
+            if (cv.BusinessAreaId != 0)
+            {
+                List<Cv> relatedByBusinessArea = queryable
+                    .Include(v => v.BusinessArea)
+                    .Include(e => e.Education)
+                    .Include(ex => ex.Experience)
+                    .Include(c => c.City)
+                    .Include(o => o.OperatingMode)
+                    .Include(u => u.User)
+                    .AsEnumerable()
+                    .Where(p =>
+                        p.BusinessAreaId == cv.BusinessAreaId &&
+                        p.Id != id &&
+                        !relatedCvs.Contains(p, new CvComparer())
+                    )
+                    .Take(6).ToList();
+
+                relatedCvs.AddRange(relatedByBusinessArea);
+            }
+
+            return relatedCvs;
+        }
+
     }
 }

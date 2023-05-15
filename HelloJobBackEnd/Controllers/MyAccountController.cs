@@ -91,7 +91,8 @@ namespace HelloJobBackEnd.Controllers
                 EndedAt = DateTime.Now.AddMonths(1),
                 Position = newVacans.Position,
                 CompanyId = newVacans.CompanyId,
-                Status = OrderStatus.Pending
+                Status = OrderStatus.Pending,
+                Count = 0
             };
 
             if (newVacans.InfoWorks is null)
@@ -147,7 +148,7 @@ namespace HelloJobBackEnd.Controllers
 
         public async Task<IActionResult> EditVacans(int id)
         {
-
+            if (id == 0) return BadRequest();
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             if (user is null)
             {
@@ -155,34 +156,15 @@ namespace HelloJobBackEnd.Controllers
             }
             ViewBags(user);
 
-            VacansVM? vacanVM = _context.Vacans.Include(v => v.BusinessArea).
-                Include(e => e.Education).
-                Include(e => e.Experience).
-                Include(c => c.City).
-                Include(c => c.BusinessArea).
-                Include(i => i.infoEmployeers).
-                 Include(i => i.InfoWorks).
-                Include(o => o.OperatingMode).Select(p =>
-                                         new VacansVM
-                                         {
-                                             Id = p.Id,
-                                             BusinessAreaId = p.BusinessAreaId,
-                                             CityId = p.CityId,
-                                             EducationId = p.EducationId,
-                                             ExperienceId = p.ExperienceId,
-                                             OperatingModeId = p.OperatingModeId,
-                                             Salary = p.Salary,
-                                             Position = p.Position,
-                                             AllEmployeerInfos = p.infoEmployeers,
-                                             AllWorkInfos = p.InfoWorks,
-                                             Status = p.Status
-                                         }).FirstOrDefault(x => x.Id == id);
-
+            VacansVM? vacanVM = EditedModelVC(id);
+            if (vacanVM is null) return BadRequest();
             return View(vacanVM);
         }
+
         [HttpPost]
         public async Task<IActionResult> EditVacans(int id, VacansVM editedvacans)
         {
+            if (id == 0) return BadRequest();
             TempData["Edited"] = false;
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             if (user is null)
@@ -190,29 +172,8 @@ namespace HelloJobBackEnd.Controllers
                 return RedirectToAction("Index", "Home");
             }
             ViewBags(user);
-
-            VacansVM? vacanVM = _context.Vacans.Include(v => v.BusinessArea).
-                Include(e => e.Education).
-                Include(e => e.Experience).
-                Include(c => c.City).
-                Include(c => c.BusinessArea).
-                Include(i => i.infoEmployeers)
-                 .Include(i => i.InfoWorks).
-                Include(o => o.OperatingMode).Select(p =>
-                                         new VacansVM
-                                         {
-                                             Id = p.Id,
-                                             BusinessAreaId = p.BusinessAreaId,
-                                             CityId = p.CityId,
-                                             EducationId = p.EducationId,
-                                             ExperienceId = p.ExperienceId,
-                                             OperatingModeId = p.OperatingModeId,
-                                             Salary = p.Salary,
-                                             Position = p.Position,
-                                             AllEmployeerInfos = p.infoEmployeers,
-                                             AllWorkInfos = p.InfoWorks,
-                                             Status = p.Status
-                                         }).FirstOrDefault(x => x.Id == id);
+            VacansVM? vacanVM = EditedModelVC(id);
+            if (vacanVM is null) return BadRequest();
             Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
                   Include(e => e.Education).
                 Include(e => e.Experience).
@@ -276,6 +237,32 @@ namespace HelloJobBackEnd.Controllers
 
         //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
+        private VacansVM? EditedModelVC(int id)
+        {
+            VacansVM? vacanVM = _context.Vacans.Include(v => v.BusinessArea).
+               Include(e => e.Education).
+               Include(e => e.Experience).
+               Include(c => c.City).
+               Include(c => c.BusinessArea).
+               Include(i => i.infoEmployeers).
+                Include(i => i.InfoWorks).
+               Include(o => o.OperatingMode).Select(p =>
+                                        new VacansVM
+                                        {
+                                            Id = p.Id,
+                                            BusinessAreaId = p.BusinessAreaId,
+                                            CityId = p.CityId,
+                                            EducationId = p.EducationId,
+                                            ExperienceId = p.ExperienceId,
+                                            OperatingModeId = p.OperatingModeId,
+                                            Salary = p.Salary,
+                                            Position = p.Position,
+                                            AllEmployeerInfos = p.infoEmployeers,
+                                            AllWorkInfos = p.InfoWorks,
+                                            Status = p.Status
+                                        }).FirstOrDefault(x => x.Id == id);
+            return vacanVM;
+        }
 
 
 
@@ -473,8 +460,8 @@ namespace HelloJobBackEnd.Controllers
                 Email = newCv.Email,
                 Number = newCv.Number,
                 Position = newCv.Position,
-                Status = OrderStatus.Pending
-
+                Status = OrderStatus.Pending,
+                Count = 0
             };
             var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
             var pdffolderPath = Path.Combine(_env.WebRootPath, "assets", "images", "User");
@@ -540,43 +527,23 @@ namespace HelloJobBackEnd.Controllers
         public async Task<IActionResult> EditCV(int id)
         {
 
+            if (id == 0) return BadRequest();
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             if (user is null)
             {
                 return RedirectToAction("Index", "Home");
             }
+            CvVM? cvVm = EditedModelCv(id);
             ViewBags(user);
-            CvVM? cv = _context.Cvs.Include(v => v.BusinessArea).
-                Include(e => e.Education).
-                Include(e => e.Experience).
-                Include(c => c.City).
-                Include(c => c.BusinessArea).
-                Include(o => o.OperatingMode).Select(p =>
-                                         new CvVM
-                                         {
-                                             Id = p.Id,
-                                             Name = p.Name,
-                                             Surname = p.Surname,
-                                             Email = p.Email,
-                                             BusinessAreaId = p.BusinessAreaId,
-                                             CityId = p.CityId,
-                                             EducationId = p.EducationId,
-                                             ExperienceId = p.ExperienceId,
-                                             OperatingModeId = p.OperatingModeId,
-                                             Salary = p.Salary,
-                                             Position = p.Position,
-                                             Number = p.Number,
-                                             BornDate = p.BornDate,
-                                             Images = p.Image,
-                                             CvPDFs = p.CvPDF,
-                                             Status = p.Status
-                                         }).FirstOrDefault(x => x.Id == id);
-
-            return View(cv);
+            if (cvVm is null) return BadRequest();
+            return View(cvVm);
         }
+
+
         [HttpPost]
         public async Task<IActionResult> EditCV(int id, CvVM editedCv)
         {
+            if (id == 0) return BadRequest();
             TempData["Edited"] = false;
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             if (user is null)
@@ -585,38 +552,17 @@ namespace HelloJobBackEnd.Controllers
             }
             ViewBags(user);
 
-            CvVM? cvVm = _context.Cvs.Include(v => v.BusinessArea).
+            CvVM? cvVm = EditedModelCv(id);
+
+            Cv? cv = await _context.Cvs.Include(v => v.BusinessArea).
               Include(e => e.Education).
               Include(e => e.Experience).
               Include(c => c.City).
-              Include(c => c.BusinessArea).
-              Include(o => o.OperatingMode).Select(p =>
-                                       new CvVM
-                                       {
-                                           Id = p.Id,
-                                           Name = p.Name,
-                                           Surname = p.Surname,
-                                           Email = p.Email,
-                                           BusinessAreaId = p.BusinessAreaId,
-                                           CityId = p.CityId,
-                                           EducationId = p.EducationId,
-                                           ExperienceId = p.ExperienceId,
-                                           OperatingModeId = p.OperatingModeId,
-                                           Salary = p.Salary,
-                                           Position = p.Position,
-                                           Number = p.Number,
-                                           BornDate = p.BornDate,
-                                           Images = p.Image,
-                                           CvPDFs = p.CvPDF,
-                                           Status = p.Status
-                                       }).FirstOrDefault(x => x.Id == id);
+              Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
+              Include(o => o.OperatingMode)
+             .FirstOrDefaultAsync(x => x.Id == id);
 
-            Cv? cv = _context.Cvs.Include(v => v.BusinessArea).
-                Include(e => e.Education).
-                Include(e => e.Experience).
-                Include(c => c.City).
-                Include(c => c.BusinessArea).
-                Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
+            if (cv is null) return BadRequest();
 
             if (editedCv.Image is not null)
             {
@@ -654,7 +600,7 @@ namespace HelloJobBackEnd.Controllers
             cv.Salary = editedCv.Salary;
             cv.Position = editedCv.Position;
             cv.Number = editedCv.Number;
-            cv.Status = OrderStatus.Default;
+            cv.Status = OrderStatus.Pending;
             _context.SaveChanges();
             TempData["Edited"] = true;
             return RedirectToAction(nameof(MyOrder));
@@ -664,6 +610,37 @@ namespace HelloJobBackEnd.Controllers
 
         //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+        private CvVM? EditedModelCv(int id)
+        {
+            CvVM? cvVm = _context.Cvs.Include(v => v.BusinessArea).
+              Include(e => e.Education).
+              Include(e => e.Experience).
+              Include(c => c.City).
+              Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
+              Include(o => o.OperatingMode).Select(p =>
+                                         new CvVM
+                                         {
+                                             Id = p.Id,
+                                             Name = p.Name,
+                                             Surname = p.Surname,
+                                             Email = p.Email,
+                                             BusinessAreaId = p.BusinessAreaId,
+                                             CityId = p.CityId,
+                                             EducationId = p.EducationId,
+                                             ExperienceId = p.ExperienceId,
+                                             OperatingModeId = p.OperatingModeId,
+                                             Salary = p.Salary,
+                                             Position = p.Position,
+                                             Number = p.Number,
+                                             BornDate = p.BornDate,
+                                             Images = p.Image,
+                                             CvPDFs = p.CvPDF,
+                                             Status = p.Status,
+                                             Count = p.Count
+                                         }).FirstOrDefault(x => x.Id == id);
+            return cvVm;
+        }
 
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------

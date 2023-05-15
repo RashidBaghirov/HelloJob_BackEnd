@@ -92,7 +92,7 @@
                     searchForm.addEventListener('submit', (e) => {
                         const searchQuery = e.target.value.trim();
                         e.preventDefault(); 
-                        window.location.href = "/Home/Search?search=${searchQuery}";
+                        window.location.href = "/Home/Index?search=${searchQuery}";
                     });
 
                     let timeoutId;
@@ -265,7 +265,7 @@
                                     </a>
                                     <div class="item_right">
                                         <span class="salary">@(item.Salary == 0 ? "Ə-h razılaşma ilə" : item.Salary) (AZN)</span>
-                                        <span class="date">@item.CreatedAt.ToString("dd/MM")</span>
+                                        <span class="date">@item.CreatedAt.ToString("dd.MM")</span>
                                         <span class="like">
                                             <i class="fa-regular fa-heart unliked"></i>
                                             <i class="fa-solid fa-heart liked"></i>
@@ -299,9 +299,9 @@
                                                     </div>
                                                 </div>
                                                 <p style="
-    display: flex;
-    justify-content: center;
-">@item.Name</p>
+                                             display: flex;
+                                     justify-content: center;
+                                                ">@item.Name</p>
                                                 <p>Vakansiya sayı <span>@item.Vacans.Count()</span> </p>
                                             </div>
                                         </a>

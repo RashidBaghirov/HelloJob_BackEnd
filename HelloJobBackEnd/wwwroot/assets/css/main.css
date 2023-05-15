@@ -1207,6 +1207,10 @@
   top: 6px;
   right: 7px;
 }
+.main #works .vacancies .vacancies_href .item_right .like .unliked:hover {
+  color: blue;
+  transition: 0.3s ease;
+}
 .main #works .vacancies .vacancies_href .item_right .like .liked {
   font-size: 18px;
   text-align: center;
@@ -2383,7 +2387,7 @@
   cursor: pointer;
 }
 .main .user_block .hearts .like {
-  top: 20px;
+  top: 5px;
   position: absolute;
   width: 28px;
   height: 28px;

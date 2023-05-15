@@ -135,6 +135,8 @@
             </div>
             <div class="inner_tab">
                 <form asp-controller="myaccount" asp-action="deletevacans" method="post">
+                    <input type="hidden" asp-for="Id" />
+
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row mb-5">
                         <div class="col-lg-2">
@@ -410,6 +412,8 @@
                 <div class="inner_tab">
                     <form asp-controller="myaccount" asp-action="deletevacans" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+
                         <div class="row mb-5">
                             <div class="col-lg-2">
                                 <h2 class="section_title">İş barədə məlumatlar</h2>

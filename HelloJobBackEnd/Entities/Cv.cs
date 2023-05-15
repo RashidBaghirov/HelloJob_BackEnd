@@ -6,8 +6,8 @@ namespace HelloJobBackEnd.Entities
     public class Cv : BaseEntity
     {
         public string Image { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
         public string Position { get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
@@ -32,5 +32,6 @@ namespace HelloJobBackEnd.Entities
         public string UserId { get; set; }
         public User User { get; set; }
         public OrderStatus Status { get; set; }
+        public int Count { get; set; }
     }
 }
