@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "CV Detail page";
-    var related = ViewBag.Related;
+    List<Cv> related = ViewBag.Related;
 }
 @model Cv
 
@@ -372,21 +372,21 @@
                 </div>
             </div>
             <div class="row">
-                @foreach (var item in related)
+                @foreach (Cv cv in related)
                 {
                     <div class="col-lg-6">
                         <div class="user_block">
-                            <a asp-controller="cvpage" asp-action="detail" asp-route-id="@item.Id">
+                            <a asp-controller="cvpage" asp-action="detail" asp-route-id="@cv.Id">
                                 <div class="header_user">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="user_img">
-                                            <img src="~/assets/images/User/@item.Image" alt="@item.Name">
+                                            <img src="~/assets/images/User/@cv.Image" alt="@cv.Name">
                                         </div>
                                         <div class="d-flex justify-content-between w-100">
                                             <div class="user_desc">
-                                                <h3 class="profession">@item.Position </h3>
+                                                <h3 class="profession">@cv.Position </h3>
 
-                                                <p class="fullname">@string.Concat(item.Name," ",item.Surname)</p>
+                                                <p class="fullname">@string.Concat(cv.Name," ",cv.Surname)</p>
                                             </div>
 
                                         </div>
@@ -399,7 +399,7 @@
                                             <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
                                         </div>
                                         <div class="text">
-                                            <h4>@item.OperatingMode.Name</h4>
+                                            <h4>@cv.OperatingMode.Name</h4>
                                             <p>İş rejimi</p>
                                         </div>
                                     </div>
@@ -408,7 +408,7 @@
                                             <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
                                         </div>
                                         <div class="text">
-                                            <h4>@(item.Salary == 0 ? "Ə-h razılaşma ilə" : item.Salary) (AZN)</h4>
+                                            <h4>@(cv.Salary == 0 ? "Ə-h razılaşma ilə" : cv.Salary) (AZN)</h4>
                                             <p>Minimum əmək haqqı AZN</p>
                                         </div>
                                     </div>
@@ -417,7 +417,7 @@
                                             <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
                                         </div>
                                         <div class="text">
-                                            <h4>@item.Experience.Name</h4>
+                                            <h4>@cv.Experience.Name</h4>
                                             <p>İş staji</p>
                                         </div>
                                     </div>

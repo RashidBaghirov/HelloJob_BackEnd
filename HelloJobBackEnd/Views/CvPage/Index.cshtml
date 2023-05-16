@@ -33,36 +33,7 @@
                 </div>
                 <div class="search-results d-block"></div>
 
-                <script>
-                    const searchForm = document.querySelector('.search');
-                    const searchInput = searchForm.querySelector('.search-input');
-                    const searchResults = document.querySelector('.search-results');
-
-                    searchForm.addEventListener('submit', (e) => {
-                        const searchQuery = e.target.value.trim();
-                        e.preventDefault();
-                        window.location.href = "/CvPage/Search?search=${searchQuery}";
-                    });
-
-                    let timeoutId;
-
-                    searchInput.addEventListener('input', (e) => {
-                        const searchQuery = e.target.value.trim();
-                        if (searchQuery.length < 2) {
-                            searchResults.innerHTML = '';
-                            return;
-                        }
-                        clearTimeout(timeoutId);
-                        timeoutId = setTimeout(() => {
-                            fetch(`/Cvpage/Search?search=${searchQuery}`)
-                                .then(response => response.text())
-                                .then(data => {
-                                    searchResults.innerHTML = data;
-                                })
-                                .catch(error => console.log(error));
-                        }, 500);
-                    });
-                </script>
+             
             </div>
         </div>
     </div>
@@ -79,38 +50,34 @@
             </div>
             <div class="col-lg-3 col-md-3 full_filter">
                 <div class="filters">
-                    <form action="">
+                    <form id="filterForm">
+
                         <div class="filters_item">
                             <h3 class="title">İxtisas</h3>
                             <div class="pro">
-                             
-                                    @foreach (var item in ViewBag.Business)
-                                    {
+                                @foreach (var item in ViewBag.Business)
+                                {
                                     <div class="inputs">
                                         <div class="checkbox">
-                                            <input type="checkbox" class="form-check-input mt-0">
-                                            <span>@item.Name </span>
+                                            <input type="checkbox" name="businessIds" value="@item.Id"  class="form-check-input mt-0">
+                                            <label for="@item.Id">@item.Name</label>
                                         </div>
                                         <div class="count">
                                             <span class="prof_count">@item.Cvs.Count</span>
                                         </div>
                                     </div>
-                                    }
-                                
-                                
-                              
+                                }
                             </div>
                         </div>
                         <div class="work_mode">
                             <h3 class="title">İş rejimi</h3>
                             <div class="pro">
                                 <div class="inputs">
-
-                                    @foreach (var item in ViewBag.Mode)
+                                    @foreach (OperatingMode item in ViewBag.Mode)
                                     {
                                         <div class="checkbox">
-                                            <input type="checkbox" class="form-check-input mt-0">
-                                            <span>@item.Name</span>
+                                            <input type="checkbox" name="modeIds" value="@item.Id"  class="form-check-input mt-0">
+                                            <label for="@item.Id">@item.Name</label>
                                         </div>
                                     }
                                 </div>
@@ -120,14 +87,13 @@
                             <h3 class="title">Təhsil</h3>
                             <div class="pro">
                                 <div class="inputs">
-                                    @foreach (var item in ViewBag.Education)
+                                    @foreach (Education item in ViewBag.Education)
                                     {
                                         <div class="checkbox">
-                                            <input type="checkbox" class="form-check-input mt-0">
-                                            <span>@item.Name </span>
+                                            <input type="checkbox" name="educationIds" value="@item.Id"  class="form-check-input mt-0">
+                                            <label for="@item.Id">@item.Name</label>
                                         </div>
                                     }
-                                
                                 </div>
                             </div>
                         </div>
@@ -141,12 +107,14 @@
                                             <span tabindex="0" class="handle" style="left: 0%;"></span>
                                             <span tabindex="0" class="handle" style="left: 0%;"></span>
                                         </div>
-                                        <div class="interval">
-                                            @foreach (var item in ViewBag.Experince)
+                                        <div class="interval text-center">
+                                            @foreach (Experience item in ViewBag.Experince)
                                             {
-                                                <span value="@item.Id">@item.Name</span>
+                                                <div class="checkbox">
+                                                    <input type="radio"  name="experienceIds" value="@item.Id" class="form-check-input mt-0 d-none">
+                                                    <label for="@item.Id">@item.Name</label>
+                                                </div>
                                             }
-                                          
                                         </div>
                                     </div>
                                 </div>
@@ -155,20 +123,28 @@
                         <div class="drivers">
                             <h3 class="title">Sürücülük vəsiqəsi</h3>
                             <div class="pro">
-
                                 <div class="inputs">
                                     <div class="checkbox">
-                                        <input type="checkbox" class="form-check-input mt-0">
-                                        <span>Var</span>
+                                        <input type="checkbox" name="hasDriverLicense" value="Var" id="driverLicenseCheckbox" class="form-check-input mt-0">
+                                        <label for="driverLicenseCheckbox">Var</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="filters_btns ">
-                            <a href="" class="btn btn-primary d-block my-2">Axtar <span>(632)</span></a>
-                            <a href="./CvPage.html" class="btn btn-light d-block my-2">Təmizlə</a>
+                        <div class="filters_btns d-flex">
+                            <div class="row">
+                                <div class="col-lg-6">
+
+                                    <button type="submit" class="btn btn-primary  w-100 my-2">Axtar</button>
+
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-light w-100 d-block my-2" onclick="resetForm()">Təmizlə</button>
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                      </form>
                 </div>
 
             </div>
@@ -176,85 +152,35 @@
                 <div class="right_side">
                     <div class="sorting">
                         <label for="">Sırala</label>
-                        <select name="sort2" id="sort" class="form-control selected">
+                        <select name="sort" id="sort2" class="form-control selected">
                             <option value="new">Yenilər</option>
                             <option value="old">Köhnələr</option>
                             <option value="salary_desc">Maaşa görə(çox)</option>
                             <option value="salary_asc">Maaşa görə(az)</option>
                         </select>
                     </div>
+
                     <div class="persons_cv">
-                        <div class="user_block" style="width: 100%;">
+                        <div class="user_block"  style="width: 100%;">
                             <a href="" target="_blank">
                                 <img style="width: 100%;" src="https://www.hellojob.az/uploads/banners/2023/04/08/cv-elave-et-banner-64312af897dcb-8974446226af1314d43ee5cd3689350d64312af897deb-9z_D06zcQTxQh5p.png" alt="">
                             </a>
 
                         </div>
-                        @foreach (var item in Model)
-                        {
-                            <div class="user_block">
-                                <a asp-controller="cvpage" asp-action="detail" asp-route-id="@item.Id" target="_blank">
-                                    <div class="header_user">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="user_img">
-                                                <img src="~/assets/images/User/@item.Image" alt="">
-                                            </div>
-                                            <div class="d-flex justify-content-between w-100">
-                                                <div class="user_desc">
-                                                    <h3 class="profession">@item.Position</h3>
-
-                                                    <p class="fullname">@string.Concat(item.Name," ",item.Surname)</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="user_options" style="justify-content:space-around !important">
-                                        <div class="item">
-                                            <div class="icon">
-                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
-                                            </div>
-                                            <div class="text">
-                                                <h4>@item.OperatingMode.Name</h4>
-                                                <p>İş rejimi</p>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="icon">
-                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
-                                            </div>
-                                            <div class="text">
-                                                <h4>@(item.Salary == 0 ? "Ə-h razılaşma ilə" : item.Salary) (AZN)</h4>
-                                                <p>Minimum əmək haqqı</p>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="icon">
-                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
-                                            </div>
-                                            <div class="text">
-                                                <h4>@item.Experience.Name</h4>
-                                                <p>İş staji</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="hearts">
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
+                            <div id="userBlocks">
+                                @await Html.PartialAsync("_UserblocksPartial", Model)
                             </div>
-                        }
                     </div>
+               
                 </div>
 
             </div>
         </div>
+      
     </div>
 </section>
+
 @section Script{
     <script src="~/assets/js/cvpage.js"></script>
+
 }

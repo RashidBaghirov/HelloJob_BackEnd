@@ -16,7 +16,7 @@ namespace HelloJobBackEnd.Controllers
         }
         public IActionResult Index(string search)
         {
-            List<Vacans> vacans = _context.Vacans.Include(v => v.BusinessArea).
+            IQueryable<Vacans> allVacans = _context.Vacans.Include(v => v.BusinessArea).
               Include(e => e.Education).
               Include(e => e.Experience).
               Include(c => c.City).
@@ -25,37 +25,25 @@ namespace HelloJobBackEnd.Controllers
                 ThenInclude(x => x.User).
               Include(c => c.BusinessArea).
                 Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-              Include(o => o.OperatingMode).Where(c => c.Status == OrderStatus.Accepted).ToList();
+              Include(o => o.OperatingMode).Where(c => c.Status == OrderStatus.Accepted);
 
             ViewBag.Company = _context.Companies
                     .Include(v => v.Vacans)
                     .OrderByDescending(c => c.Vacans.Count)
                         .Take(4)
                         .ToList();
-
-
-            if (search is not null)
+            if (!string.IsNullOrEmpty(search))
             {
-                List<Vacans> findedVacans = _context.Vacans.Include(v => v.BusinessArea).
-             Include(e => e.Education).
-             Include(e => e.Experience).
-             Include(c => c.City).
-             Include(c => c.Company).
-             Include(c => c.Company).
-               ThenInclude(x => x.User).
-             Include(c => c.BusinessArea).
-               Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-             Include(o => o.OperatingMode).Where(c => c.Position.Contains(search) && c.Status == OrderStatus.Accepted).ToList();
-                return View(findedVacans);
+                allVacans = allVacans.Where(c => c.Position.Contains(search));
+
             }
-
-
+            List<Vacans> vacans = allVacans.ToList();
             return View(vacans);
         }
 
         public IActionResult Search(string search)
         {
-            var query = _context.Vacans.Include(v => v.BusinessArea).
+            IQueryable<Vacans> query = _context.Vacans.Include(v => v.BusinessArea).
               Include(e => e.Education).
               Include(e => e.Experience).
               Include(c => c.City).

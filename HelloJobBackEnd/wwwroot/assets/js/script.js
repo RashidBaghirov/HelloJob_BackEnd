@@ -141,3 +141,4 @@ account_head_user.addEventListener("click", (event) => {
     event.preventDefault();
     account_head_user_drop.classList.toggle("active");
 });
+

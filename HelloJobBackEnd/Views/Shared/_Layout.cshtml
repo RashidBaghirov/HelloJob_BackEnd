@@ -97,8 +97,8 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-12 logo_cont mobile_logo_cont">
                         <div class="logo">
-                            <img class="lightmode" src="./assets/images/logo.svg" alt="">
-                            <img class="nightmode" src="./assets/images/night_mode_logo.svg" alt="">
+                            <img class="lightmode" src="~/assets/images/logo.svg" alt="">
+                            <img class="nightmode" src="~/assets/images/night_mode_logo.svg" alt="">
                         </div>
                         <button name="menu_close" class="menu_close"></button>
                     </div>
@@ -112,20 +112,16 @@
                     </svg>
                     Elan yerləşdir
                 </a>
-           
-             
+
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a class="login_btn popup_btn d-none" href="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="19.576" height="17.567" viewBox="0 0 19.576 17.567">
-                            <g id="log-in_1_" data-name="log-in (1)" transform="translate(0.994 0.75)">
-                                <path id="Path_12" data-name="Path 12" d="M15,3h4.764c1.315,0,2.382.8,2.382,1.785v12.5c0,.986-1.066,1.785-2.382,1.785H15" transform="translate(-4.313 -3)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-                                <path id="Path_13" data-name="Path 13" d="M10,15.926l4.463-4.463L10,7" transform="translate(-3.776 -3.43)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-                                <line id="Line_5" data-name="Line 5" x1="11" transform="translate(-0.244 7.915)" fill="none" stroke="#212844" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></line>
-                            </g>
-                        </svg>
-                       @layoutService.GetUserFullName();
-                    </a>
+                    <div class="account_head_user">
+                        <a asp-controller="myaccount" asp-action="index" class="profile__header__user__name text-center">
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/user.svg" alt="" />
+                            <span>@await layoutService.GetUserFullName()</span>
+                        </a>
+                
+                    </div>
                 }
                 else
                 {
@@ -140,10 +136,12 @@
                         Sayta daxil ol
                     </a>
                 }
+           
 
             </div>
             <div class="col-md-12 p-0">
                 <ul class="mobile_nav">
+
                     <li>
                         <a asp-controller="home" asp-action="index">Bütün vakansiyalar</a>
                     </li>

@@ -178,7 +178,9 @@ namespace HelloJobBackEnd.Controllers
                   Include(e => e.Education).
                 Include(e => e.Experience).
                 Include(c => c.City).
+                Include(c => c.Company).
                 Include(c => c.BusinessArea).
+                Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
                 Include(i => i.infoEmployeers).
                  Include(i => i.InfoWorks).
                 Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
@@ -243,7 +245,9 @@ namespace HelloJobBackEnd.Controllers
                Include(e => e.Education).
                Include(e => e.Experience).
                Include(c => c.City).
+               Include(c => c.Company).
                Include(c => c.BusinessArea).
+               Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
                Include(i => i.infoEmployeers).
                 Include(i => i.InfoWorks).
                Include(o => o.OperatingMode).Select(p =>
@@ -255,6 +259,7 @@ namespace HelloJobBackEnd.Controllers
                                             EducationId = p.EducationId,
                                             ExperienceId = p.ExperienceId,
                                             OperatingModeId = p.OperatingModeId,
+                                            CompanyId = p.CompanyId,
                                             Salary = p.Salary,
                                             Position = p.Position,
                                             AllEmployeerInfos = p.infoEmployeers,

@@ -69,5 +69,35 @@ namespace HelloJobBackEnd.Utilities.Extension
             return relatedCvs;
         }
 
+
+        public static List<Vacans> RelatedByBusinessArea(IQueryable<Vacans> queryable, Vacans vacans, int id)
+        {
+            List<Vacans> relatedvacanss = new();
+            if (vacans.BusinessAreaId != 0)
+            {
+                List<Vacans> relatedByBusinessArea = queryable.
+                 Include(v => v.BusinessArea).
+              Include(e => e.Education).
+            Include(e => e.Experience).
+            Include(c => c.City).
+            Include(c => c.Company).
+            Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
+            Include(i => i.infoEmployeers).
+             Include(i => i.InfoWorks).
+            Include(o => o.OperatingMode)
+                    .AsEnumerable()
+                    .Where(p =>
+                        p.BusinessAreaId == vacans.BusinessAreaId &&
+                        p.Id != id &&
+                        !relatedvacanss.Contains(p, new VacansComparer())
+                    )
+                    .Take(6).ToList();
+
+                relatedvacanss.AddRange(relatedByBusinessArea);
+            }
+
+            return relatedvacanss;
+        }
+
     }
 }

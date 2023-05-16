@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Company Detail page";
 }
-
+@model Company
 <section id="titles_and_bgblue">
     <div class="blueback"></div>
     <div class="container">
@@ -18,18 +18,45 @@
             </div>
             <div class="search_titles_bottom col-lg-12 col-md-12">
                 <div class="searchbar full">
-                    <div class="searchbar_top" style="display: flex">
-                        <form>
+                    <div class="searchbar_top" style="display: flex;">
+                        <form method="post" action="#" class="search">
                             <div class="input">
-                                <input type="text" placeholder="Məsələn, Dizayner" />
+                                <input type="text" name="search" class="search-input" placeholder="Vəzifəyə uyğun vakansiya axtarın...." autocomplete="off">
                             </div>
-                            <button type="submit" class="search_btn">
-                                <span>Axtar</span>
-                            </button>
                         </form>
+
+
                     </div>
+
                 </div>
+                <div class="search-results d-block"></div>
+
+                <script>
+                    const searchForm = document.querySelector('.search');
+                    const searchInput = searchForm.querySelector('.search-input');
+                    const searchResults = document.querySelector('.search-results');
+
+                    let timeoutId;
+
+                    searchInput.addEventListener('input', (e) => {
+                        const searchQuery = e.target.value.trim();
+                        if (searchQuery.length < 2) {
+                            searchResults.innerHTML = '';
+                            return;
+                        }
+                        clearTimeout(timeoutId);
+                        timeoutId = setTimeout(() => {
+                            fetch(`/Home/Search?search=${searchQuery}`)
+                                .then(response => response.text())
+                                .then(data => {
+                                    searchResults.innerHTML = data;
+                                })
+                                .catch(error => console.log(error));
+                        }, 500);
+                    });
+                </script>
             </div>
+
         </div>
     </div>
 </section>
@@ -46,89 +73,50 @@
                 </li>
                 <li>/</li>
                 <li>
-                    <a asp-controller="company" asp-action="detail">Kapital Bank</a>
+                    <a asp-controller="company" asp-action="detail" asp-route-id="@Model.Id">@Model.Name</a>
                 </li>
             </ul>
         </div>
     </div>
     <div class="container">
-        <h3 class="infos">KAPİTAL BANK İŞ ELANLARI</h3>
+        <h3 class="infos">@Model.Name İŞ ELANLARI</h3>
 
         <div class="company_vacans">
             <div class="row">
                 <div class="col-lg-8 col-md-6">
-                    <div class="vacancies">
-                        <div class="company_vacans__href">
-                            <a asp-controller="company" asp-action="vacansdetail">
-                                <div class="item_left">
-                                    <div class="icon">
-                                        <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg"
-                                             alt="Bağban" />
+                    @foreach (Vacans vacans in Model.Vacans)
+                    {
+                        <div class="vacancies">
+                            <div class="company_vacans__href">
+                                <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@vacans.Id" target="_blank">
+                                    <div class="item_left">
+                                        <div class="icon" style="
+                         width: 58px !important;height:auto !important">
+                                            <img style="
+                                 width: 100%;
+                                 object-fit: contain;
+                                  " src="~/assets/images/Company/@vacans.Company.Image"
+                                                 alt="@vacans.Company.Name" />
+                                        </div>
+                                        <div class="title">
+                                            <h3>@vacans.Position</h3>
+                                            <p>@vacans.BusinessArea.Name</p>
+                                        </div>
                                     </div>
-                                    <div class="title">
-                                        <h3>SMM</h3>
-                                        <p>By Telecom MMC</p>
-                                    </div>
+                                </a>
+                                <div class="item_right">
+                                    <span class="salary">@(vacans.Salary == 0 ? "Ə-h razılaşma ilə" : vacans.Salary) (AZN)</span>
+                                    <span class="date">@vacans.CreatedAt.ToString("dd.MM")</span>
+                                    <span class="like">
+                                        <i class="fa-regular fa-heart unliked"></i>
+                                        <i class="fa-solid fa-heart liked"></i>
+                                    </span>
                                 </div>
-                            </a>
-                            <div class="item_right">
-                                <span class="salary"> Ə/h razılaşma ilə</span>
-                                <span class="date">Dünən 17:43</span>
-                                <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
-                                </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="vacancies">
-                        <div class="company_vacans__href">
-                            <a asp-controller="company" asp-action="vacansdetail">
-                                <div class="item_left">
-                                    <div class="icon">
-                                        <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg"
-                                             alt="Bağban" />
-                                    </div>
-                                    <div class="title">
-                                        <h3>SMM</h3>
-                                        <p>By Telecom MMC</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="item_right">
-                                <span class="salary"> Ə/h razılaşma ilə</span>
-                                <span class="date">Dünən 17:43</span>
-                                <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vacancies">
-                        <div class="company_vacans__href">
-                            <a asp-controller="company" asp-action="vacansdetail">
-                                <div class="item_left">
-                                    <div class="icon">
-                                        <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/marketinq-cat-641433fe9e5c6641433fe9e5d3-rKuhtYV5f4UPa85.svg"
-                                             alt="Bağban" />
-                                    </div>
-                                    <div class="title">
-                                        <h3>SMM</h3>
-                                        <p>By Telecom MMC</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="item_right">
-                                <span class="salary"> Ə/h razılaşma ilə</span>
-                                <span class="date">Dünən 17:43</span>
-                                <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    }
+                 
+                 
                 </div>
                 <div class="col-lg-4 col-md-6 mb-3">
                     <div class="company_contact">
@@ -150,7 +138,7 @@
                                                                     E-poçtu göster
                                                                 </h4>
                                                                 <h4 class="secrets d-none">
-                                                                    ssssss@code.edu.az
+                                                                   @Model.Email
                                                                 </h4>
                                                                 <p>E-poçt</p>
                                                             </div>

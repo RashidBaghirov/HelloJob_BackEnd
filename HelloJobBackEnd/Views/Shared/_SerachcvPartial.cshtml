@@ -1,11 +1,11 @@
 ﻿@model List<Cv>
 
 <ul class="search_ul" style="list-style:none;margin:0px;padding:0px;">
-    @foreach (var item in Model)
+    @foreach (Cv item in Model)
     {
         <li>
             <div class="user_block">
-                <a href="./userdetail.html" target="_blank">
+                <a asp-controller="cvpage" asp-action="detail" asp-route-id="@item.Id">
                     <div class="header_user">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="user_img">

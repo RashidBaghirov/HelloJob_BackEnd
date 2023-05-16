@@ -1,12 +1,12 @@
 ﻿@model List<Vacans>
 
 <ul class="search_ul" style="list-style:none;margin:0px;padding:0px;">
-	@foreach (var item in Model)
+	@foreach (Vacans item in Model)
 	{
 		<li>
             <div class="vacancies">
                 <div class="vacancies_href">
-                    <a href="~/vacansdetail.html">
+                    <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@item.Id">
                         <div class="item_left">
                             <div class="icon" style="
                          width: 58px !important;height:auto !important">

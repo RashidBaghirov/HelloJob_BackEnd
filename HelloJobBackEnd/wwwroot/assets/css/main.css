@@ -190,6 +190,9 @@
   .header .buttons .wishlist {
     display: none;
   }
+  .header .buttons .account_head_user {
+    display: none;
+  }
   .header .buttons .darkmode .night_mode {
     right: -333px;
     top: -30px;
@@ -256,6 +259,51 @@
 .header .mobile_menu .buttons_mobile .login_btn svg {
   margin-right: 10px;
   width: 14px;
+}
+.header .mobile_menu .buttons_mobile .account_head_user {
+  padding: 12px 16px;
+  background-color: #F4F6F9;
+  border-radius: 14px;
+  position: relative;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.header .mobile_menu .buttons_mobile .account_head_user a {
+  color: black;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 25px;
+  text-decoration: none;
+}
+.header .mobile_menu .buttons_mobile .account_head_user .account_head_user_drop {
+  position: absolute;
+  background-color: #F4F6F9;
+  width: 100%;
+  left: 0;
+  padding: 12px 6px;
+  border-radius: 0 0 14px 14px;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  list-style: none;
+  transition: 0.3s ease;
+}
+.header .mobile_menu .buttons_mobile .account_head_user .account_head_user_drop li a {
+  padding: 5px 10px;
+  border-radius: 8px;
+  width: 100%;
+  transition: 0.2s linear;
+  font-size: 12px;
+  text-decoration: none;
+  position: inherit;
+}
+.header .mobile_menu .buttons_mobile .account_head_user .active {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.3s ease;
+  position: absolute;
+  top: 36px;
+  height: 95px;
 }
 .header .mobile_menu .mobile_nav {
   list-style: none;
@@ -1206,9 +1254,10 @@
   position: absolute;
   top: 6px;
   right: 7px;
+  transition: 0.3s ease;
 }
 .main #works .vacancies .vacancies_href .item_right .like .unliked:hover {
-  color: blue;
+  color: #2196F3;
   transition: 0.3s ease;
 }
 .main #works .vacancies .vacancies_href .item_right .like .liked {
@@ -2096,7 +2145,10 @@
   background-color: #061e40;
   color: white;
 }
-.dark #cv_filter .full_filter .filters .filters_item .pro .inputs .checkbox span {
+.dark #cv_filter .full_filter .filters .filters_item .pro .inputs .checkbox label {
+  color: white;
+}
+.dark #cv_filter .full_filter .filters .filters_item .pro .inputs .prof_count {
   color: white;
 }
 .dark #cv_filter .full_filter .work_mode {
@@ -2109,7 +2161,10 @@
   background-color: #061e40;
   color: white;
 }
-.dark #cv_filter .full_filter .work_mode .pro .inputs .checkbox span {
+.dark #cv_filter .full_filter .work_mode .pro .inputs .checkbox label {
+  color: white;
+}
+.dark #cv_filter .full_filter .work_mode .pro .inputs span {
   color: white;
 }
 .dark #cv_filter .full_filter .education {
@@ -2120,6 +2175,9 @@
 }
 .dark #cv_filter .full_filter .education .pro .inputs .checkbox input {
   background-color: #061e40;
+  color: white;
+}
+.dark #cv_filter .full_filter .education .pro .inputs .checkbox label {
   color: white;
 }
 .dark #cv_filter .full_filter .education .pro .inputs .checkbox span {
@@ -2137,32 +2195,6 @@
 .dark #cv_filter .full_filter .seniority .seniorties .form-group #ranger .range {
   background-color: #e4e4e4;
 }
-.dark #cv_filter .full_filter .genders {
-  border-bottom: 1px solid #183d70;
-}
-.dark #cv_filter .full_filter .genders .title {
-  color: white !important;
-}
-.dark #cv_filter .full_filter .genders .pro .inputs .checkbox input {
-  background-color: #061e40;
-  color: white;
-}
-.dark #cv_filter .full_filter .genders .pro .inputs .checkbox span {
-  color: white;
-}
-.dark #cv_filter .language {
-  border-bottom: 1px solid #183d70;
-}
-.dark #cv_filter .language .title {
-  color: white !important;
-}
-.dark #cv_filter .language .pro .inputs .checkbox input {
-  background-color: #061e40;
-  color: white;
-}
-.dark #cv_filter .language .pro .inputs .checkbox span {
-  color: white;
-}
 .dark #cv_filter .drivers {
   border-bottom: 1px solid #183d70;
 }
@@ -2171,6 +2203,9 @@
 }
 .dark #cv_filter .drivers .pro .inputs .checkbox input {
   background-color: #061e40;
+  color: white;
+}
+.dark #cv_filter .drivers .pro .inputs .checkbox label {
   color: white;
 }
 .dark #cv_filter .drivers .pro .inputs .checkbox span {
@@ -2260,7 +2295,7 @@
 .main #companies .company_card .company_box {
   transition: 0.3s ease;
 }
-.main #companies .company_card .company_box a {
+.main #companies .company_card .company_box .full {
   padding: 30px 10px;
   border-radius: 6px;
   display: flex;
@@ -2270,30 +2305,33 @@
   transition: 0.3s ease;
   text-decoration: none;
 }
-.main #companies .company_card .company_box a .company_images {
-  width: 150px;
-  height: 40px;
-  position: relative;
-  padding: 0 15px;
+.main #companies .company_card .company_box .full .company_images {
+  padding: 0px !important;
+  position: static !important;
 }
-.main #companies .company_card .company_box a .company_images img {
+.main #companies .company_card .company_box .full .company_images .image {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+}
+.main #companies .company_card .company_box .full .company_images .image img {
   width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
-.main #companies .company_card .company_box a p {
+.main #companies .company_card .company_box .full p {
   font-size: 16px;
   color: #212944;
   font-weight: 500;
   margin-top: 20px;
   text-align: center;
 }
-.main #companies .company_card .company_box a span {
+.main #companies .company_card .company_box .full span {
   font-size: 14px;
   color: #212944;
 }
-.main #companies .company_card .company_box a:hover {
-  width: 310px;
+.main #companies .company_card .company_box .full:hover {
+  transform: translateZ(15px);
   transition: 0.3s;
 }
 .main #companies .company_card:hover {
@@ -4863,6 +4901,11 @@
   position: absolute;
   top: 6px;
   right: 7px;
+  transition: 0.3s ease;
+}
+#company_detail .company_vacans .vacancies .company_vacans__href .item_right .like .unliked:hover {
+  color: #2196f3;
+  transition: 0.3s ease;
 }
 #company_detail .company_vacans .vacancies .company_vacans__href .item_right .like .liked {
   font-size: 18px;
@@ -5144,6 +5187,10 @@
   position: absolute;
   top: 6px;
   right: 7px;
+  transition: 0.3s all;
+}
+#vacansdetail .vacancies .vacancies__href .item_right .like .unliked:hover {
+  color: #2196F3;
 }
 #vacansdetail .vacancies .vacancies__href .item_right .like .liked {
   font-size: 18px;
@@ -5396,7 +5443,7 @@
 #related .vacancies .vacancies__href a .item_left .title h3 {
   font-weight: 500;
   font-size: 16px;
-  margin-bottom: 21px;
+  margin-bottom: 10px;
 }
 @media screen and (max-width: 821px) {
   #related .vacancies .vacancies__href a .item_left .icon {
@@ -5456,6 +5503,10 @@
   position: absolute;
   top: 6px;
   right: 7px;
+  transition: 0.3s all;
+}
+#related .vacancies .vacancies__href .item_right .like .unliked:hover {
+  color: #2196F3;
 }
 #related .vacancies .vacancies__href .item_right .like .liked {
   font-size: 18px;
@@ -5801,40 +5852,54 @@
   transition: 0.3s ease;
   margin-bottom: 20px;
 }
-.company_card .company_box {
+.company_card .company_card {
+  transition: 0.3s ease;
+  margin-bottom: 20px;
+}
+.company_card .company_card .company_box {
   transition: 0.3s ease;
 }
-.company_card .company_box .full {
+.company_card .company_card .company_box .full {
   padding: 30px 10px;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
   border: 1px solid #EDEDED;
   align-items: center;
-  transition: 0.3s ease;
+  transition: 0.3s ease all;
   text-decoration: none;
 }
-.company_card .company_box .full .company_images {
-  width: 150px;
-  height: 40px;
-  position: relative;
-  padding: 0 15px;
+.company_card .company_card .company_box .full .company_images {
+  padding: 0px !important;
+  position: static !important;
 }
-.company_card .company_box .full .company_images img {
+.company_card .company_card .company_box .full .company_images .image {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+}
+.company_card .company_card .company_box .full .company_images .image img {
   width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
-.company_card .company_box .full p {
+.company_card .company_card .company_box .full p {
   font-size: 16px;
   color: #212944;
   font-weight: 500;
   margin-top: 20px;
   text-align: center;
 }
-.company_card .company_box .full span {
+.company_card .company_card .company_box .full span {
   font-size: 14px;
   color: #212944;
+}
+.company_card .company_card .company_box .full:hover {
+  transform: translateZ(15px);
+  transition: 0.3s;
+}
+.company_card .company_card:hover {
+  transform: translateY(-5px);
 }
 
 .orders {

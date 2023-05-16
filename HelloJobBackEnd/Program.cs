@@ -41,7 +41,7 @@ namespace HelloJobBackEnd
 
                 opt.User.RequireUniqueEmail = false;
 
-                opt.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnm_-";
+                opt.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnm_-1234567890.";
 
                 opt.Lockout.MaxFailedAccessAttempts = 5;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);

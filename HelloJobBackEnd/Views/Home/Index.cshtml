@@ -83,37 +83,6 @@
                    
                 </div>
                 <div class="search-results d-block"></div>
-
-                <script>
-                    const searchForm = document.querySelector('.search');
-                    const searchInput = searchForm.querySelector('.search-input');
-                    const searchResults = document.querySelector('.search-results');
-
-                    searchForm.addEventListener('submit', (e) => {
-                        const searchQuery = e.target.value.trim();
-                        e.preventDefault(); 
-                        window.location.href = "/Home/Index?search=${searchQuery}";
-                    });
-
-                    let timeoutId;
-
-                    searchInput.addEventListener('input', (e) => {
-                        const searchQuery = e.target.value.trim();
-                        if (searchQuery.length < 2) {
-                            searchResults.innerHTML = '';
-                            return;
-                        }
-                        clearTimeout(timeoutId);
-                        timeoutId = setTimeout(() => {
-                            fetch(`/Home/Search?search=${searchQuery}`)
-                                .then(response => response.text())
-                                .then(data => {
-                                    searchResults.innerHTML = data;
-                                })
-                                .catch(error => console.log(error));
-                        }, 500);
-                    });
-                </script>
             </div>
         </div>
     </div>
@@ -243,29 +212,29 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 col-md-8">
-                        @foreach (var item in Model)
+                        @foreach (Vacans vacans in Model)
                         {
                             <div class="vacancies">
                                 <div class="vacancies_href">
-                                    <a href="~/vacansdetail.html">
+                                    <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@vacans.Id">
                                         <div class="item_left">
                                             <div class="icon" style="
                          width: 58px !important;height:auto !important">
                                                 <img style="
                                  width: 100%;
                                  object-fit: contain;
-                                  " src="~/assets/images/Company/@item.Company.Image"
-                                                     alt="@item.Company.Name" />
+                                  " src="~/assets/images/Company/@vacans.Company.Image"
+                                                     alt="@vacans.Company.Name" />
                                             </div>
                                             <div class="title">
-                                                <h3>@item.Position</h3>
-                                                <p>@item.BusinessArea.BusinessTitle.Name</p>
+                                                <h3 style="position:inherit !important;">@vacans.Position</h3>
+                                                <p>@vacans.BusinessArea.Name</p>
                                             </div>
                                         </div>
                                     </a>
                                     <div class="item_right">
-                                        <span class="salary">@(item.Salary == 0 ? "Ə-h razılaşma ilə" : item.Salary) (AZN)</span>
-                                        <span class="date">@item.CreatedAt.ToString("dd.MM")</span>
+                                        <span class="salary">@(vacans.Salary == 0 ? "Ə-h razılaşma ilə" : vacans.Salary) (AZN)</span>
+                                        <span class="date">@vacans.CreatedAt.ToString("dd.MM")</span>
                                         <span class="like">
                                             <i class="fa-regular fa-heart unliked"></i>
                                             <i class="fa-solid fa-heart liked"></i>
@@ -283,10 +252,10 @@
                             </div>
                             <div class="companies">
 
-                                @foreach (var item in companies)
+                                @foreach (Company item in companies)
                                 {
                                     <div class="company">
-                                        <a href="./companydetail.html" class="full">
+                                        <a asp-controller="company" asp-action="detail" asp-route-id="@item.Id" class="full">
                                             <div>
                                                 <div class="company_images" style="padding:0px !important; position:static !important;">
                                                     <div class="image" style="
@@ -320,6 +289,39 @@
 </section>
 
 @section Script{
+
+    <script>
+
+        const searchForm = document.querySelector('.search');
+        const searchInput = searchForm.querySelector('.search-input');
+        const searchResults = document.querySelector('.search-results');
+
+        searchForm.addEventListener('submit', (e) => {
+            const searchQuery = e.target.value.trim();
+            e.preventDefault();
+            window.location.href = "/Home/Index?search=${searchQuery}";
+        });
+
+        let timeoutId;
+
+        searchInput.addEventListener('input', (e) => {
+            const searchQuery = e.target.value.trim();
+            if (searchQuery.length < 2) {
+                searchResults.innerHTML = '';
+                return;
+            }
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                fetch(`/Home/Search?search=${searchQuery}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        searchResults.innerHTML = data;
+                    })
+                    .catch(error => console.log(error));
+            }, 500);
+        });
+
+    </script>
     <script>
         $(document).ready(function () {
             if ($("#registerSuccess").length) {
