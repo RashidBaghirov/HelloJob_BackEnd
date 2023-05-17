@@ -80,53 +80,30 @@ document.getElementById("filterForm").addEventListener("submit", function (event
         .then(result => {
             document.getElementById("userBlocks").innerHTML = result;
         })
-        .catch(error => {
-            console.error('Bir hata oluştu:', error);
-        });
+        .catch(error => console.log(error));
 });
 
-//Cvpage search method
-const searchForm = document.querySelector('.search');
-const searchInput = searchForm.querySelector('.search-input');
-const searchResults = document.querySelector('.search-results');
 
-searchForm.addEventListener('submit', (e) => {
-    const searchQuery = e.target.value.trim();
-    e.preventDefault();
-    window.location.href = "/CvPage/Search?search=${searchQuery}";
-});
-
-let timeoutId;
-
-searchInput.addEventListener('input', (e) => {
-    const searchQuery = e.target.value.trim();
-    if (searchQuery.length < 2) {
-        searchResults.innerHTML = '';
-        return;
-    }
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-        fetch(`/Cvpage/Search?search=${searchQuery}`)
-            .then(response => response.text())
-            .then(data => {
-                searchResults.innerHTML = data;
-            })
-            .catch(error => console.log(error));
-    }, 500);
-});
 
 
 
 //sort method
-const sortSelect = document.getElementById("sort2");
+const sortSelect = document.getElementById('sort2');
 
-const savedSort = localStorage.getItem("selectedSort");
-if (savedSort) {
-    sortSelect.value = savedSort;
-}
+sortSelect.addEventListener('change', () => {
+    const selectedSort = sortSelect.value;
 
-sortSelect.addEventListener("change", function () {
-    const selectedSort = this.value;
-    localStorage.setItem("selectedSort", selectedSort);
-    window.location.href = `/CvPage/Index?sort=${selectedSort}`;
+    const formData = new FormData();
+    formData.append('sort', selectedSort);
+
+    fetch(`/CvPage/Sorts?sort=${selectedSort}`, {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.text())
+        .then(result => {
+            document.getElementById("userBlocks").innerHTML = result;
+        })
+        .catch(error => console.log(error));
 });
+

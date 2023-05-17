@@ -64,8 +64,12 @@
                             </a>
                             <div class="hearts">
                                 <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
+                                    <a class="like-button" data-item-id="@Model.Id" data-item-type="Cv">
+                                        <i class="fa-regular fa-heart unliked"></i>
+                                    </a>
+                                    <a class="unliked-button" data-cv-id="@Model.Id" data-item-type="CV">
+                                        <i class="fa-solid fa-heart liked"></i>
+                                    </a>
                                 </span>
                             </div>
                         </div>

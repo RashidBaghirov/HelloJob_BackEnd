@@ -218,16 +218,11 @@
                                 <div class="vacancies_href">
                                     <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@vacans.Id">
                                         <div class="item_left">
-                                            <div class="icon" style="
-                         width: 58px !important;height:auto !important">
-                                                <img style="
-                                 width: 100%;
-                                 object-fit: contain;
-                                  " src="~/assets/images/Company/@vacans.Company.Image"
-                                                     alt="@vacans.Company.Name" />
+                                            <div class="icon" style="width: 58px !important; height: auto !important">
+                                                <img style="width: 100%; object-fit: contain;" src="~/assets/images/Company/@vacans.Company.Image" alt="@vacans.Company.Name" />
                                             </div>
                                             <div class="title">
-                                                <h3 style="position:inherit !important;">@vacans.Position</h3>
+                                                <h3 style="position: inherit !important;">@vacans.Position</h3>
                                                 <p>@vacans.BusinessArea.Name</p>
                                             </div>
                                         </div>
@@ -236,13 +231,18 @@
                                         <span class="salary">@(vacans.Salary == 0 ? "Ə-h razılaşma ilə" : vacans.Salary) (AZN)</span>
                                         <span class="date">@vacans.CreatedAt.ToString("dd.MM")</span>
                                         <span class="like">
-                                            <i class="fa-regular fa-heart unliked"></i>
-                                            <i class="fa-solid fa-heart liked"></i>
+                                            <a class="like-button" data-item-id="@vacans.Id" data-item-type="Vacans">
+                                                <i class="fa-regular fa-heart unliked"></i>
+                                            </a>
+                                            <a class="unliked-button" data-vacans-id="@vacans.Id" data-item-type="Vacans">
+                                                <i class="fa-solid fa-heart liked"></i>
+                                           </a>
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         }
+
                      
                     </div>
                     <div class="col-lg-4 col-md-4 mb-3">
@@ -320,6 +320,9 @@
                     .catch(error => console.log(error));
             }, 500);
         });
+
+       
+
 
     </script>
     <script>

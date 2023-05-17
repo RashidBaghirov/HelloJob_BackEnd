@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace HelloJobBackEnd.Migrations
 {
-    public partial class Createrequesttable : Migration
+    public partial class CreateWishlisttable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,7 +46,7 @@ namespace HelloJobBackEnd.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CvId = table.Column<int>(type: "int", nullable: true),
                     VacansId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -55,12 +54,49 @@ namespace HelloJobBackEnd.Migrations
                 {
                     table.PrimaryKey("PK_Requests", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Requests_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Requests_Cvs_CvId",
                         column: x => x.CvId,
                         principalTable: "Cvs",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Requests_Vacans_VacansId",
+                        column: x => x.VacansId,
+                        principalTable: "Vacans",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WishLists",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CvId = table.Column<int>(type: "int", nullable: true),
+                    VacansId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WishLists", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WishLists_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_WishLists_Cvs_CvId",
+                        column: x => x.CvId,
+                        principalTable: "Cvs",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_WishLists_Vacans_VacansId",
                         column: x => x.VacansId,
                         principalTable: "Vacans",
                         principalColumn: "Id");
@@ -99,6 +135,37 @@ namespace HelloJobBackEnd.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "WishListItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CvId = table.Column<int>(type: "int", nullable: true),
+                    WishListId = table.Column<int>(type: "int", nullable: false),
+                    VacansId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WishListItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WishListItems_Cvs_CvId",
+                        column: x => x.CvId,
+                        principalTable: "Cvs",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_WishListItems_Vacans_VacansId",
+                        column: x => x.VacansId,
+                        principalTable: "Vacans",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_WishListItems_WishLists_WishListId",
+                        column: x => x.WishListId,
+                        principalTable: "WishLists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_RequestItems_CvId",
                 table: "RequestItems",
@@ -120,8 +187,43 @@ namespace HelloJobBackEnd.Migrations
                 column: "CvId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Requests_UserId",
+                table: "Requests",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Requests_VacansId",
                 table: "Requests",
+                column: "VacansId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WishListItems_CvId",
+                table: "WishListItems",
+                column: "CvId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WishListItems_VacansId",
+                table: "WishListItems",
+                column: "VacansId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WishListItems_WishListId",
+                table: "WishListItems",
+                column: "WishListId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WishLists_CvId",
+                table: "WishLists",
+                column: "CvId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WishLists_UserId",
+                table: "WishLists",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WishLists_VacansId",
+                table: "WishLists",
                 column: "VacansId");
         }
 
@@ -131,7 +233,13 @@ namespace HelloJobBackEnd.Migrations
                 name: "RequestItems");
 
             migrationBuilder.DropTable(
+                name: "WishListItems");
+
+            migrationBuilder.DropTable(
                 name: "Requests");
+
+            migrationBuilder.DropTable(
+                name: "WishLists");
 
             migrationBuilder.AddColumn<string>(
                 name: "UserId",

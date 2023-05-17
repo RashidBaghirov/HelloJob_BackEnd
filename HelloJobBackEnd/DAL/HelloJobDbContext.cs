@@ -28,6 +28,9 @@ namespace HelloJobBackEnd.DAL
         public DbSet<RequestItem> RequestItems { get; set; }
 
         public DbSet<Request> Requests { get; set; }
+        public DbSet<WishListItem> WishListItems { get; set; }
+
+        public DbSet<WishList> WishLists { get; set; }
 
 
 
@@ -42,6 +45,11 @@ namespace HelloJobBackEnd.DAL
                  .WithMany()
                  .HasForeignKey(r => r.UserId)
                   .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<WishList>()
+      .HasOne(r => r.User)
+         .WithMany()
+         .HasForeignKey(r => r.UserId)
+          .OnDelete(DeleteBehavior.Restrict);
             base.OnModelCreating(modelBuilder);
         }
 

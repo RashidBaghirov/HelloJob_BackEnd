@@ -309,9 +309,6 @@ namespace HelloJobBackEnd.Migrations
                     b.Property<int?>("CvId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -492,6 +489,63 @@ namespace HelloJobBackEnd.Migrations
                     b.HasIndex("OperatingModeId");
 
                     b.ToTable("Vacans");
+                });
+
+            modelBuilder.Entity("HelloJobBackEnd.Entities.WishList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CvId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("VacansId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CvId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("VacansId");
+
+                    b.ToTable("WishLists");
+                });
+
+            modelBuilder.Entity("HelloJobBackEnd.Entities.WishListItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CvId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VacansId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WishListId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CvId");
+
+                    b.HasIndex("VacansId");
+
+                    b.HasIndex("WishListId");
+
+                    b.ToTable("WishListItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -817,6 +871,48 @@ namespace HelloJobBackEnd.Migrations
                     b.Navigation("OperatingMode");
                 });
 
+            modelBuilder.Entity("HelloJobBackEnd.Entities.WishList", b =>
+                {
+                    b.HasOne("HelloJobBackEnd.Entities.Cv", null)
+                        .WithMany("WishLists")
+                        .HasForeignKey("CvId");
+
+                    b.HasOne("HelloJobBackEnd.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("HelloJobBackEnd.Entities.Vacans", null)
+                        .WithMany("WishLists")
+                        .HasForeignKey("VacansId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("HelloJobBackEnd.Entities.WishListItem", b =>
+                {
+                    b.HasOne("HelloJobBackEnd.Entities.Cv", "Cv")
+                        .WithMany()
+                        .HasForeignKey("CvId");
+
+                    b.HasOne("HelloJobBackEnd.Entities.Vacans", "Vacans")
+                        .WithMany()
+                        .HasForeignKey("VacansId");
+
+                    b.HasOne("HelloJobBackEnd.Entities.WishList", "WishList")
+                        .WithMany("WishListItems")
+                        .HasForeignKey("WishListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cv");
+
+                    b.Navigation("Vacans");
+
+                    b.Navigation("WishList");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -891,6 +987,8 @@ namespace HelloJobBackEnd.Migrations
             modelBuilder.Entity("HelloJobBackEnd.Entities.Cv", b =>
                 {
                     b.Navigation("Requests");
+
+                    b.Navigation("WishLists");
                 });
 
             modelBuilder.Entity("HelloJobBackEnd.Entities.Education", b =>
@@ -926,7 +1024,14 @@ namespace HelloJobBackEnd.Migrations
 
                     b.Navigation("Requests");
 
+                    b.Navigation("WishLists");
+
                     b.Navigation("infoEmployeers");
+                });
+
+            modelBuilder.Entity("HelloJobBackEnd.Entities.WishList", b =>
+                {
+                    b.Navigation("WishListItems");
                 });
 #pragma warning restore 612, 618
         }

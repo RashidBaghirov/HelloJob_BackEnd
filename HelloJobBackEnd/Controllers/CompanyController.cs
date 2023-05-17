@@ -106,7 +106,6 @@ namespace HelloJobBackEnd.Controllers
                     userRequest = new Request
                     {
                         UserId = user.Id,
-                        Date = DateTime.Now,
                         RequestItems = new List<RequestItem> { newRequestItem }
                     };
                     _context.Requests.Add(userRequest);

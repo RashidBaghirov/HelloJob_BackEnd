@@ -327,10 +327,12 @@
                                         <div class="item_right">
                                             <span class="salary">@(Model.Salary == 0 ? "Ə-h razılaşma ilə" : Model.Salary) (AZN)</span>
                                             <span class="date">@Model.CreatedAt.ToString("dd.MM")</span>
-                                            <span class="like">
+                                            <a class="like-button" data-item-id="@vacans.Id" data-item-type="Vacans">
                                                 <i class="fa-regular fa-heart unliked"></i>
+                                            </a>
+                                            <a class="unliked-button" data-cv-id="@vacans.Id" data-item-type="Vacans">
                                                 <i class="fa-solid fa-heart liked"></i>
-                                            </span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

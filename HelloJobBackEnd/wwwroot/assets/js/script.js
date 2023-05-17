@@ -15,7 +15,6 @@ const likedIcons = document.querySelectorAll('.liked');
 
 unlikedIcons.forEach((btn, index) => {
     btn.addEventListener('click', () => {
-
         likedIcons[index].classList.toggle('hidden');
     });
 });
@@ -26,6 +25,41 @@ likedIcons.forEach((btn, index) => {
     });
 });
 
+const likehref = document.querySelectorAll('.like-button');
+const unlikehref = document.querySelectorAll('.unliked-button');
+
+likehref.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const itemId = btn.getAttribute('data-item-id');
+        const itemType = btn.getAttribute('data-item-type');
+
+        const formData = new FormData();
+        formData.append('itemId', itemId);
+        formData.append('itemType', itemType);
+
+        fetch('/liked/AddToWishlist', {
+            method: 'POST',
+            body: formData
+        })
+
+    });
+});
+
+unlikehref.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const itemId = btn.getAttribute('data-item-id');
+        const itemType = btn.getAttribute('data-item-type');
+
+        const formData = new FormData();
+        formData.append('itemId', itemId);
+        formData.append('itemType', itemType);
+
+        fetch('/liked/RemoveFromWishlist', {
+            method: 'POST',
+            body: formData
+        })
+    });
+});
 
 $(".responsive").slick({
     dots: false,

@@ -3,15 +3,14 @@ using HelloJobBackEnd.Utilities.Enum;
 
 namespace HelloJobBackEnd.Entities
 {
-    public class RequestItem : BaseEntity
+    public class WishListItem : BaseEntity
     {
         public int? CvId { get; set; }
-        public int RequestId { get; set; }
+        public int WishListId { get; set; }
         public Cv Cv { get; set; }
-        public Request Request { get; set; }
+        public WishList WishList { get; set; }
         public Vacans Vacans { get; set; }
-        public int VacansId { get; set; }
-        public OrderStatus Status { get; set; }
+        public int? VacansId { get; set; }
 
     }
 }

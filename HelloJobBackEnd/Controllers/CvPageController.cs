@@ -15,7 +15,35 @@ namespace HelloJobBackEnd.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(string? search, string? sort)
+        public IActionResult Index(string? search)
+        {
+            IQueryable<Cv> allcvs = _context.Cvs.Include(v => v.BusinessArea)
+                   .Include(e => e.Education)
+                   .Include(e => e.Experience)
+                   .Include(c => c.City)
+                   .Include(c => c.BusinessArea)
+                   .Include(o => o.OperatingMode)
+                   .Include(x => x.User)
+                   .Where(c => c.Status == OrderStatus.Accepted);
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                allcvs = allcvs.Where(c => c.Position.Contains(search));
+            }
+
+            List<Cv> filteredCvs = allcvs.ToList();
+
+            ViewBag.Education = _context.Educations.ToList();
+            ViewBag.Experince = _context.Experiences.ToList();
+            ViewBag.Mode = _context.OperatingModes.ToList();
+            ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs).ToList();
+
+            return View(filteredCvs);
+        }
+
+
+        [HttpPost]
+        public IActionResult Sorts(string? sort)
         {
             IQueryable<Cv> allcvs = _context.Cvs.Include(v => v.BusinessArea)
                 .Include(e => e.Education)
@@ -25,11 +53,6 @@ namespace HelloJobBackEnd.Controllers
                 .Include(o => o.OperatingMode)
                 .Include(x => x.User)
                 .Where(c => c.Status == OrderStatus.Accepted);
-
-            if (!string.IsNullOrEmpty(search))
-            {
-                allcvs = allcvs.Where(c => c.Position.Contains(search));
-            }
             if (!string.IsNullOrEmpty(sort))
             {
                 switch (sort)
@@ -55,7 +78,7 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.Mode = _context.OperatingModes.ToList();
             ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs).ToList();
 
-            return View(filteredCvs);
+            return PartialView("_UserblocksPartial", filteredCvs);
         }
 
         [HttpPost]

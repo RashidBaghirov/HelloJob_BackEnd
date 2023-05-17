@@ -183,4 +183,36 @@
 @section Script{
     <script src="~/assets/js/cvpage.js"></script>
 
+    <script>
+        //Cvpage search method
+        const searchForm = document.querySelector('.search');
+        const searchInput = searchForm.querySelector('.search-input');
+        const searchResults = document.querySelector('.search-results');
+
+        searchForm.addEventListener('submit', (e) => {
+            const searchQuery = e.target.value.trim();
+            e.preventDefault();
+            window.location.href = "/CvPage/Index?search=${searchQuery}";
+        });
+
+        let timeoutId;
+
+        searchInput.addEventListener('input', (e) => {
+            const searchQuery = e.target.value.trim();
+            if (searchQuery.length < 2) {
+                searchResults.innerHTML = '';
+                return;
+            }
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                fetch(`/CvPage/Search?search=${searchQuery}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        searchResults.innerHTML = data;
+                    })
+                    .catch(error => console.log(error));
+            }, 500);
+        });
+
+    </script>
 }
