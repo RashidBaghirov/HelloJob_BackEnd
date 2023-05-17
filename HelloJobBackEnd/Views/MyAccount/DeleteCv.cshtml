@@ -20,6 +20,15 @@
                 </a>
             </li>
             <li>
+                <a asp-controller="myaccount" asp-action="myrequest">
+                    <span>
+                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+                             alt="" />
+                    </span>
+                    Müraciətlər
+                </a>
+            </li>
+            <li>
                 <a asp-controller="myaccount" asp-action="myorder">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
@@ -399,6 +408,15 @@
                                  alt="" />
                         </span>
                         Profilim
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="myaccount" asp-action="myrequest">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+                                 alt="" />
+                        </span>
+                        Müraciətlər
                     </a>
                 </li>
                 @if (User.IsInRole(UserRole.business.ToString()))

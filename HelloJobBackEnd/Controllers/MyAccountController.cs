@@ -8,10 +8,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Common;
 using NuGet.Protocol.Plugins;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 
 namespace HelloJobBackEnd.Controllers
 {
@@ -523,6 +526,184 @@ namespace HelloJobBackEnd.Controllers
 
         }
         //-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+        public async Task<IActionResult> MyRequest()
+        {
+
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBags(user);
+
+            if (User.IsInRole(UserRole.employeer.ToString()))
+            {
+                ViewBag.AllRequest = _context.Requests
+                  .Include(r => r.RequestItems)
+                     .ThenInclude(ri => ri.Cv)
+                 .Include(r => r.RequestItems)
+                     .ThenInclude(ri => ri.Vacans)
+                 .ThenInclude(v => v.Company).Where(x => x.User == user)
+                  .ToList();
+            }
+            else
+            {
+                ViewBag.AllRequest = _context.Requests
+                .Include(r => r.RequestItems)
+                 .ThenInclude(ri => ri.Cv)
+                    .Include(r => r.RequestItems)
+                  .ThenInclude(ri => ri.Vacans)
+                   .ThenInclude(v => v.Company)
+                .Where(x => x.User == user || x.RequestItems.Any(ri => ri.Vacans.Company.User == user))
+                    .ToList();
+
+
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> AcceptRequestItem(int requestId, int requestItemId)
+        {
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            Request request = _context.Requests
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Cv)
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Cv.User)
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Vacans)
+                .ThenInclude(v => v.Company)
+                .FirstOrDefault(r => r.Id == requestId && (r.User == user || r.RequestItems.Any(ri => ri.Vacans.Company.User == user)));
+
+            if (request is null)
+            {
+                return RedirectToAction("Index", "Myaccount");
+            }
+
+            RequestItem requestItem = request.RequestItems.FirstOrDefault(ri => ri.Id == requestItemId);
+            if (requestItem is null)
+            {
+                return RedirectToAction("Index", "Myaccount");
+            }
+
+            if (requestItem.Status != OrderStatus.Accepted)
+            {
+                requestItem.Status = OrderStatus.Accepted;
+                _context.SaveChanges();
+
+                string recipientEmail = requestItem.Cv.User.Email;
+
+                string body = string.Empty;
+                using (StreamReader reader = new StreamReader("wwwroot/assets/template/acceptedmail.html"))
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                body = body.Replace("{{userFullName}}", requestItem.Cv.User.FullName);
+                body = body.Replace("{{companyName}}", requestItem.Vacans.Company.Name);
+                body = body.Replace("{{position}}", requestItem.Vacans.Position);
+
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("hellojob440@gmail.com", "HelloJOB");
+                mail.To.Add(new MailAddress(recipientEmail));
+                mail.Subject = "Bildiriş";
+                mail.Body = body;
+                mail.IsBodyHtml = true;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
+
+                smtp.Send(mail);
+            }
+
+            return RedirectToAction(nameof(MyRequest));
+        }
+
+        //---------------------------------------------------------------------------------------------------------------------------
+
+
+
+        //--------------------------------------------------------------------------------------------------------------------------
+        public async Task<IActionResult> RejectedRequestItem(int requestId, int requestItemId)
+        {
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            Request request = _context.Requests
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Cv)
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Cv.User)
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Vacans)
+                .ThenInclude(v => v.Company)
+                .FirstOrDefault(r => r.Id == requestId && (r.User == user || r.RequestItems.Any(ri => ri.Vacans.Company.User == user)));
+
+            if (request is null)
+            {
+                return RedirectToAction("Index", "Myaccount");
+            }
+
+            RequestItem requestItem = request.RequestItems.FirstOrDefault(ri => ri.Id == requestItemId);
+            if (requestItem is null)
+            {
+                return RedirectToAction("Index", "Myaccount");
+            }
+
+            if (requestItem.Status != OrderStatus.Rejected)
+            {
+                requestItem.Status = OrderStatus.Rejected;
+                _context.SaveChanges();
+
+                string recipientEmail = requestItem.Cv.User.Email;
+
+                string body = string.Empty;
+                using (StreamReader reader = new StreamReader("wwwroot/assets/template/RejectedMail.html"))
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                body = body.Replace("{{userFullName}}", requestItem.Cv.User.FullName);
+                body = body.Replace("{{companyName}}", requestItem.Vacans.Company.Name);
+                body = body.Replace("{{position}}", requestItem.Vacans.Position);
+
+
+
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("hellojob440@gmail.com", "HelloJOB");
+                mail.To.Add(new MailAddress(recipientEmail));
+                mail.Subject = "Bildiriş";
+                mail.Body = body;
+                mail.IsBodyHtml = true;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
+
+                smtp.Send(mail);
+            }
+
+            return RedirectToAction(nameof(MyRequest));
+        }
+
+
         //-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -875,7 +1056,6 @@ namespace HelloJobBackEnd.Controllers
                 User = user,
                 Name = newCompany.Name,
                 Email = newCompany.Email,
-                Status = OrderStatus.Pending,
             };
 
             var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
@@ -910,8 +1090,7 @@ namespace HelloJobBackEnd.Controllers
                                                     Id = p.Id,
                                                     Name = p.Name,
                                                     Email = p.Email,
-                                                    Images = p.Image,
-                                                    Status = p.Status
+                                                    Images = p.Image
 
                                                 }).FirstOrDefault(x => x.Id == id);
 
@@ -934,8 +1113,7 @@ namespace HelloJobBackEnd.Controllers
                                              Id = p.Id,
                                              Name = p.Name,
                                              Email = p.Email,
-                                             Images = p.Image,
-                                             Status = p.Status
+                                             Images = p.Image
                                          }).FirstOrDefault(x => x.Id == id);
 
             Company company = _context.Companies.FirstOrDefault(x => x.Id == id);
@@ -957,7 +1135,6 @@ namespace HelloJobBackEnd.Controllers
 
             company.Name = editedCompany.Name;
             company.Email = editedCompany.Email;
-            company.Status = OrderStatus.Pending;
             _context.SaveChanges();
             TempData["Edited"] = true;
             return RedirectToAction(nameof(MyCompany));

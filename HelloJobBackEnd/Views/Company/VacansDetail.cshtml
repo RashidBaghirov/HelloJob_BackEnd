@@ -195,12 +195,28 @@
                  
                   </ul>
                 </div>
-                <div class="request">
-                    <div class="button">
-                      <button class="req_btn">Müraciət et</button>
-                    </div>
+                   
+                        <div class="request">
+                            <form asp-controller="Company" asp-action="VAcansDetail" method="post">
+                                <div class="button">
+                                @if (User.Identity.IsAuthenticated && (User.IsInRole(UserRole.employeer.ToString())))
+                                {
+                                    <div class="vacans_inputs my-3">
+
+                                        <label>Cv-nizi Seçin</label>
+                                        <select name="cvsID"  asp-items="@(new SelectList(ViewBag.Cvs,"Id","Email"))" class="form-control cities">
+                                        </select>
+                                        <input class="d-none" name="id" value="@Model.Id"/>
+                                        <span class="text-danger"></span>
+
+                                    </div>
+                                }
+                                    
+                                    <button type="submit" class="req_btn">Müraciət et</button>
+                                </div>
+                            </form>
+                        </div>
                 </div>
-              </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-3">
               <div class="user_contact">

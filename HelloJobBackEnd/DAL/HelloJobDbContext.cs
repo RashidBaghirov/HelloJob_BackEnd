@@ -25,6 +25,10 @@ namespace HelloJobBackEnd.DAL
         public DbSet<InfoEmployeer> InfoEmployeers { get; set; }
         public DbSet<InfoWork> InfoWorks { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<RequestItem> RequestItems { get; set; }
+
+        public DbSet<Request> Requests { get; set; }
+
 
 
 
@@ -33,6 +37,11 @@ namespace HelloJobBackEnd.DAL
             modelBuilder.Entity<Company>().
                     HasIndex(s => s.Name).
                     IsUnique();
+            modelBuilder.Entity<Request>()
+              .HasOne(r => r.User)
+                 .WithMany()
+                 .HasForeignKey(r => r.UserId)
+                  .OnDelete(DeleteBehavior.Restrict);
             base.OnModelCreating(modelBuilder);
         }
 

@@ -101,9 +101,6 @@ namespace HelloJobBackEnd.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -166,7 +163,6 @@ namespace HelloJobBackEnd.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Number")
@@ -186,7 +182,6 @@ namespace HelloJobBackEnd.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -301,6 +296,69 @@ namespace HelloJobBackEnd.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OperatingModes");
+                });
+
+            modelBuilder.Entity("HelloJobBackEnd.Entities.Request", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CvId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("VacansId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CvId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("VacansId");
+
+                    b.ToTable("Requests");
+                });
+
+            modelBuilder.Entity("HelloJobBackEnd.Entities.RequestItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CvId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RequestId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VacansId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CvId");
+
+                    b.HasIndex("RequestId");
+
+                    b.HasIndex("VacansId");
+
+                    b.ToTable("RequestItems");
                 });
 
             modelBuilder.Entity("HelloJobBackEnd.Entities.User", b =>
@@ -419,9 +477,6 @@ namespace HelloJobBackEnd.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BusinessAreaId");
@@ -435,8 +490,6 @@ namespace HelloJobBackEnd.Migrations
                     b.HasIndex("ExperienceId");
 
                     b.HasIndex("OperatingModeId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Vacans");
                 });
@@ -669,6 +722,50 @@ namespace HelloJobBackEnd.Migrations
                     b.Navigation("Vacans");
                 });
 
+            modelBuilder.Entity("HelloJobBackEnd.Entities.Request", b =>
+                {
+                    b.HasOne("HelloJobBackEnd.Entities.Cv", null)
+                        .WithMany("Requests")
+                        .HasForeignKey("CvId");
+
+                    b.HasOne("HelloJobBackEnd.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("HelloJobBackEnd.Entities.Vacans", null)
+                        .WithMany("Requests")
+                        .HasForeignKey("VacansId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("HelloJobBackEnd.Entities.RequestItem", b =>
+                {
+                    b.HasOne("HelloJobBackEnd.Entities.Cv", "Cv")
+                        .WithMany()
+                        .HasForeignKey("CvId");
+
+                    b.HasOne("HelloJobBackEnd.Entities.Request", "Request")
+                        .WithMany("RequestItems")
+                        .HasForeignKey("RequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HelloJobBackEnd.Entities.Vacans", "Vacans")
+                        .WithMany()
+                        .HasForeignKey("VacansId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cv");
+
+                    b.Navigation("Request");
+
+                    b.Navigation("Vacans");
+                });
+
             modelBuilder.Entity("HelloJobBackEnd.Entities.Vacans", b =>
                 {
                     b.HasOne("HelloJobBackEnd.Entities.BusinessArea", "BusinessArea")
@@ -706,10 +803,6 @@ namespace HelloJobBackEnd.Migrations
                         .HasForeignKey("OperatingModeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("HelloJobBackEnd.Entities.User", null)
-                        .WithMany("Vacans")
-                        .HasForeignKey("UserId");
 
                     b.Navigation("BusinessArea");
 
@@ -795,6 +888,11 @@ namespace HelloJobBackEnd.Migrations
                     b.Navigation("Vacans");
                 });
 
+            modelBuilder.Entity("HelloJobBackEnd.Entities.Cv", b =>
+                {
+                    b.Navigation("Requests");
+                });
+
             modelBuilder.Entity("HelloJobBackEnd.Entities.Education", b =>
                 {
                     b.Navigation("Cvs");
@@ -810,18 +908,23 @@ namespace HelloJobBackEnd.Migrations
                     b.Navigation("Cvs");
                 });
 
+            modelBuilder.Entity("HelloJobBackEnd.Entities.Request", b =>
+                {
+                    b.Navigation("RequestItems");
+                });
+
             modelBuilder.Entity("HelloJobBackEnd.Entities.User", b =>
                 {
                     b.Navigation("Companies");
 
                     b.Navigation("Cvs");
-
-                    b.Navigation("Vacans");
                 });
 
             modelBuilder.Entity("HelloJobBackEnd.Entities.Vacans", b =>
                 {
                     b.Navigation("InfoWorks");
+
+                    b.Navigation("Requests");
 
                     b.Navigation("infoEmployeers");
                 });

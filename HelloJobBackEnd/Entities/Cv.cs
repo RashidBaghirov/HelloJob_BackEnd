@@ -33,5 +33,6 @@ namespace HelloJobBackEnd.Entities
         public User User { get; set; }
         public OrderStatus Status { get; set; }
         public int Count { get; set; }
+        public List<Request>? Requests { get; set; }
     }
 }

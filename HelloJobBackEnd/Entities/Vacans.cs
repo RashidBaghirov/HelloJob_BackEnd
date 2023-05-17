@@ -26,8 +26,10 @@ namespace HelloJobBackEnd.Entities
         public DateTime EndedAt { get; set; }
         public List<InfoWork>? InfoWorks { get; set; }
         public List<InfoEmployeer>? infoEmployeers { get; set; }
+
         public OrderStatus Status { get; set; }
         public int Count { get; set; }
+        public List<Request>? Requests { get; set; }
 
     }
 }

@@ -2,9 +2,9 @@
 @{
     int count = 1;
 }
-
+<p>Gözləmədə olan elanlar</p>
 <table class="table caption-top">
-    <caption>Gözləmədə olan elanlar</caption>
+
     <thead>
         <tr>
             <th scope="col">№</th>
@@ -19,11 +19,11 @@
         {
 
             <tr>
-                <th scope="row">@count</th>
+                <td scope="row">@count</td>
                 <td>@item.Company.Name</td>
                 <td>@item.Position</td>
                 <td>@item.Company.Email</td>
-                <td>@item.Status</td>
+                <td>@(item.Status == OrderStatus.Pending ? "Gözləmədə" : item.Status)</td>
             </tr>
             count++;
         }

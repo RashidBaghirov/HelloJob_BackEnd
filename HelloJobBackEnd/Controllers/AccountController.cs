@@ -75,6 +75,7 @@ namespace HelloJobBackEnd.Controllers
             {
                 body = reader.ReadToEnd();
             }
+            body = body.Replace("{{userFullName}}", user.FullName);
             mail.Body = body.Replace("{{link}}", link);
             mail.IsBodyHtml = true;
 
@@ -88,7 +89,7 @@ namespace HelloJobBackEnd.Controllers
             smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
             smtp.Send(mail);
             await _usermanager.AddToRoleAsync(user, account.userRole.ToString());
-           
+
             TempData["Register"] = true;
             return RedirectToAction("Index", "Home");
 
@@ -157,6 +158,7 @@ namespace HelloJobBackEnd.Controllers
             {
                 body = reader.ReadToEnd();
             }
+            body = body.Replace("{{userFullName}}", user.FullName);
             mail.Body = body.Replace("{{link}}", link);
             mail.IsBodyHtml = true;
 

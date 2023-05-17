@@ -5852,53 +5852,49 @@
   transition: 0.3s ease;
   margin-bottom: 20px;
 }
-.company_card .company_card {
-  transition: 0.3s ease;
-  margin-bottom: 20px;
-}
-.company_card .company_card .company_box {
+.company_card .company_box {
   transition: 0.3s ease;
 }
-.company_card .company_card .company_box .full {
+.company_card .company_box .full {
   padding: 30px 10px;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
   border: 1px solid #EDEDED;
   align-items: center;
-  transition: 0.3s ease all;
+  transition: 0.3s ease;
   text-decoration: none;
 }
-.company_card .company_card .company_box .full .company_images {
+.company_card .company_box .full .company_images {
   padding: 0px !important;
   position: static !important;
 }
-.company_card .company_card .company_box .full .company_images .image {
+.company_card .company_box .full .company_images .image {
   height: 70px;
   display: flex;
   justify-content: center;
 }
-.company_card .company_card .company_box .full .company_images .image img {
+.company_card .company_box .full .company_images .image img {
   width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
-.company_card .company_card .company_box .full p {
+.company_card .company_box .full p {
   font-size: 16px;
   color: #212944;
   font-weight: 500;
   margin-top: 20px;
   text-align: center;
 }
-.company_card .company_card .company_box .full span {
+.company_card .company_box .full span {
   font-size: 14px;
   color: #212944;
 }
-.company_card .company_card .company_box .full:hover {
+.company_card .company_box .full:hover {
   transform: translateZ(15px);
   transition: 0.3s;
 }
-.company_card .company_card:hover {
+.company_card:hover {
   transform: translateY(-5px);
 }
 
@@ -5928,4 +5924,37 @@
   display: block;
   margin-right: 16px;
   border-radius: 10px;
+}
+
+.myorder p {
+  padding: 15px;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  line-height: 21px !important;
+  text-transform: uppercase;
+  color: #2196F3 !important;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 24px;
+}
+.myorder p::before {
+  content: "";
+  width: 3px;
+  height: 24px;
+  background-color: #2196F3;
+  display: block;
+  margin-right: 16px;
+  border-radius: 10px;
+}
+.myorder .table tr {
+  border: 1px solid #2196F3;
+}
+.myorder .table tr th {
+  border-right: 1px solid #2196F3;
+  color: #2196F3;
+}
+.myorder .table tr td {
+  border-right: 1px solid #2196F3;
+  color: #2196F3;
 }/*# sourceMappingURL=main.css.map */

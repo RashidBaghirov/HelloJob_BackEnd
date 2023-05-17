@@ -57,6 +57,15 @@
                 </a>
             </li>
             <li>
+                <a asp-controller="myaccount" asp-action="myrequest">
+                    <span>
+                        <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+                             alt="" />
+                    </span>
+                    Müraciətlər
+                </a>
+            </li>
+            <li>
                 <a asp-controller="myaccount" asp-action="myorder">
                     <span>
                         <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
@@ -194,10 +203,10 @@
                                 </div>
                                 </a>
                                 <div class="crudbtn mt-2">
-                                    <a class="btn btn-success" style="text-decoration:none" asp-controller="myaccount" asp-action="editcompany" asp-route-id="@company.Id">
+                                    <a class="btn btn-primary" style="text-decoration:none" asp-controller="myaccount" asp-action="editcompany" asp-route-id="@company.Id">
                                         Edit
                                    </a>
-                                    <a class="btn btn-danger" style="text-decoration:none" asp-controller="myaccount" asp-action="deletecompany" asp-route-id="@company.Id">
+                                    <a class="btn btn-warning" style="text-decoration:none" asp-controller="myaccount" asp-action="deletecompany" asp-route-id="@company.Id">
                                        Delete
                                     </a>
                                  
@@ -247,6 +256,15 @@
                                  alt="" />
                         </span>
                         Profilim
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="myaccount" asp-action="myrequest">
+                        <span>
+                            <img src="https://www.hellojob.az/content/assets/images/profile/svg-icons/megaphone.svg"
+                                 alt="" />
+                        </span>
+                        Müraciətlər
                     </a>
                 </li>
                 @if (User.IsInRole(UserRole.business.ToString()))
@@ -345,25 +363,27 @@
                 </div>
                 <div class="inner_tab">
                     <div class="row mt-5">
-                        @foreach (var item in Model)
+                        @foreach (Company company in Model)
                         {
                             <div class="company_card col-md-4 col-lg-3">
                                 <div class="company_box">
-                                    <a href="./companydetail.html" class="full">
-                                       <div>
-                                            <div class="company_images" style="padding:0px !important; position:static !important;">
-                                                <img src="~/assets/images/Company/@item.Image"
-                                                     alt="@item.Name" />
+                                    <a asp-controller="company" asp-action="detail" asp-route-id="@company.Id" class="full">
+                                        <div>
+                                            <div class="company_images">
+                                                <div class="image">
+                                                    <img src="~/assets/images/Company/@company.Image"
+                                                         alt="@company.Name" />
+                                                </div>
                                             </div>
-                                            <p>@item.Name</p>
-                                            <span>Vakansiya sayı <span>@item.Vacans.Count()</span> </span>
-                                       </div>
+                                            <p>@company.Name</p>
+                                            <p>Vakansiya sayı <span>@company.Vacans.Count()</span> </p>
+                                        </div>
                                     </a>
                                     <div class="crudbtn mt-2">
-                                        <a class="btn btn-success" style="text-decoration:none" asp-controller="myaccount" asp-action="editcompany" asp-route-id="@item.Id">
+                                        <a class="btn btn-primary" style="text-decoration:none" asp-controller="myaccount" asp-action="editcompany" asp-route-id="@company.Id">
                                             Edit
                                         </a>
-                                        <a class="btn btn-danger" style="text-decoration:none" asp-controller="myaccount" asp-action="deletecompany" asp-route-id="@item.Id">
+                                        <a class="btn btn-warning" style="text-decoration:none" asp-controller="myaccount" asp-action="deletecompany" asp-route-id="@company.Id">
                                             Delete
                                         </a>
 
@@ -371,7 +391,6 @@
                                 </div>
                             </div>
                         }
-
                     </div>
                 </div>
             </div>
