@@ -9,6 +9,7 @@ namespace HelloJobBackEnd.Entities
         public List<Cv>? Cvs { get; set; }
         public List<Company>? Companies { get; set; }
 
+
     }
 }
 

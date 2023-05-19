@@ -11,6 +11,7 @@ namespace HelloJobBackEnd.Entities
         public List<Vacans> Vacans { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
+        public OrderStatus Status { get; set; }
 
     }
 }

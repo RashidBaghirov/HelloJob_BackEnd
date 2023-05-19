@@ -1056,6 +1056,7 @@ namespace HelloJobBackEnd.Controllers
                 User = user,
                 Name = newCompany.Name,
                 Email = newCompany.Email,
+                Status = OrderStatus.Pending
             };
 
             var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");

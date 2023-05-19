@@ -23,7 +23,8 @@ namespace HelloJobBackEnd.Controllers
                    .Include(c => c.City)
                    .Include(c => c.BusinessArea)
                    .Include(o => o.OperatingMode)
-                   .Include(x => x.User)
+                   .Include(x => x.User).
+                   Include(x => x.WishListItems).ThenInclude(x => x.WishList)
                    .Where(c => c.Status == OrderStatus.Accepted);
 
             if (!string.IsNullOrEmpty(search))
@@ -46,13 +47,14 @@ namespace HelloJobBackEnd.Controllers
         public IActionResult Sorts(string? sort)
         {
             IQueryable<Cv> allcvs = _context.Cvs.Include(v => v.BusinessArea)
-                .Include(e => e.Education)
-                .Include(e => e.Experience)
-                .Include(c => c.City)
-                .Include(c => c.BusinessArea)
-                .Include(o => o.OperatingMode)
-                .Include(x => x.User)
-                .Where(c => c.Status == OrderStatus.Accepted);
+                    .Include(e => e.Education)
+                    .Include(e => e.Experience)
+                    .Include(c => c.City)
+                    .Include(c => c.BusinessArea)
+                    .Include(o => o.OperatingMode)
+                    .Include(x => x.User).
+                    Include(x => x.WishListItems).ThenInclude(x => x.WishList)
+                    .Where(c => c.Status == OrderStatus.Accepted);
             if (!string.IsNullOrEmpty(sort))
             {
                 switch (sort)
@@ -85,13 +87,14 @@ namespace HelloJobBackEnd.Controllers
         public IActionResult FilterData(int[] businessIds, int[] modeIds, int[] educationIds, int[] experienceIds, bool? hasDriverLicense)
         {
             IQueryable<Cv> allcvs = _context.Cvs.Include(v => v.BusinessArea)
-                .Include(e => e.Education)
-                .Include(e => e.Experience)
-                .Include(c => c.City)
-                .Include(c => c.BusinessArea)
-                .Include(o => o.OperatingMode)
-                .Include(x => x.User)
-                .Where(c => c.Status == OrderStatus.Accepted);
+                    .Include(e => e.Education)
+                    .Include(e => e.Experience)
+                    .Include(c => c.City)
+                    .Include(c => c.BusinessArea)
+                    .Include(o => o.OperatingMode)
+                    .Include(x => x.User).
+                    Include(x => x.WishListItems).ThenInclude(x => x.WishList)
+                    .Where(c => c.Status == OrderStatus.Accepted);
 
             List<Cv> filteredCvs = ApplyFilters(allcvs, businessIds, modeIds, educationIds, experienceIds, hasDriverLicense);
             return PartialView("_UserblocksPartial", filteredCvs);
@@ -138,7 +141,8 @@ namespace HelloJobBackEnd.Controllers
               Include(e => e.Experience).
               Include(c => c.City).
               Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-              Include(o => o.OperatingMode)
+              Include(o => o.OperatingMode).
+                 Include(x => x.WishListItems).ThenInclude(x => x.WishList)
              .FirstOrDefault(x => x.Id == id);
             if (cv is null) return NotFound();
             cv.Count++;
@@ -155,6 +159,7 @@ namespace HelloJobBackEnd.Controllers
               Include(c => c.City).
               Include(c => c.BusinessArea).
               Include(o => o.OperatingMode).
+                 Include(x => x.WishListItems).ThenInclude(x => x.WishList).
               Include(x => x.User).AsQueryable().Where(x => x.Position.Contains(search));
             List<Cv> cvs = query.OrderByDescending(x => x.Id).Take(3).Where(c => c.Status == OrderStatus.Accepted).ToList();
             return PartialView("_SerachcvPartial", cvs);

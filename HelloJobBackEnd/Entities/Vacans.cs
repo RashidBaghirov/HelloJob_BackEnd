@@ -30,7 +30,7 @@ namespace HelloJobBackEnd.Entities
         public OrderStatus Status { get; set; }
         public int Count { get; set; }
         public List<Request>? Requests { get; set; }
-        public List<WishList>? WishLists { get; set; }
+        public List<WishListItem> WishListItems { get; set; }
 
 
     }

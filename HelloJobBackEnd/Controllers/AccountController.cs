@@ -115,19 +115,26 @@ namespace HelloJobBackEnd.Controllers
                 ModelState.AddModelError("", "Username or password is incorrect");
                 return RedirectToAction("index", "home");
             }
-            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user, account.Password, account.RememberMe, true);
 
-            if (!result.Succeeded)
+            var userRoles = await _usermanager.GetRolesAsync(user);
+
+            if (userRoles.Contains(UserRole.business.ToString()) || userRoles.Contains(UserRole.employeer.ToString()))
             {
-                if (result.IsLockedOut)
+                Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user, account.Password, account.RememberMe, true);
+
+                if (!result.Succeeded)
                 {
-                    ModelState.AddModelError("", "Due to your efforts, our account was blocked for 5 minutes");
+                    if (result.IsLockedOut)
+                    {
+                        ModelState.AddModelError("", "Due to your efforts, our account was blocked for 5 minutes");
+                    }
+                    ModelState.AddModelError("", "Username or password is incorrect");
+                    return RedirectToAction("index", "home");
                 }
-                ModelState.AddModelError("", "Username or password is incorrect");
-                return RedirectToAction("index", "home");
+                TempData["Login"] = true;
             }
-            TempData["Login"] = true;
             return RedirectToAction("Index", "Home");
+
         }
         public async Task<IActionResult> LogOut()
         {
@@ -212,8 +219,13 @@ namespace HelloJobBackEnd.Controllers
 
         //public async Task CreateRoles()
         //{
-        //	await _roleManager.CreateAsync(new IdentityRole(UserRole.business.ToString()));
-        //	await _roleManager.CreateAsync(new IdentityRole(UserRole.employeer.ToString()));
+        //await _roleManager.CreateAsync(new IdentityRole(UserRole.business.ToString()));
+        //await _roleManager.CreateAsync(new IdentityRole(UserRole.employeer.ToString()));
+
+        //await _roleManager.CreateAsync(new IdentityRole(AdminRoles.superadmin.ToString()));
+        //await _roleManager.CreateAsync(new IdentityRole(AdminRoles.admin.ToString()));
+        //await _roleManager.CreateAsync(new IdentityRole(AdminRoles.moderator.ToString()));
+
         //}
 
 

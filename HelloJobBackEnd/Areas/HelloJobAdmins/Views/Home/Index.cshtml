@@ -1,0 +1,25 @@
+﻿@if (TempData["Login"] != null)
+{
+    if ((bool)TempData["Login"] == true)
+    {
+        <input type="hidden" id="loginSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="loginError" />
+
+    }
+}
+
+@section Scripts{
+<script>
+    $(document).ready(function () {
+        if ($("#loginSuccess").length) {
+            toastr["success"]("Welcome back to us!", "Hello")
+        }
+        else if ($("#loginError").length) {
+            toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+        }
+    })
+</script>
+}

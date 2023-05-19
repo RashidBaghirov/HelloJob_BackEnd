@@ -71,7 +71,7 @@ namespace HelloJobBackEnd
             {
                 endpoints.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{search?}"
+                  pattern: "{area:exists}/{controller=Home}/{action=login}/{search?}"
                 );
                 endpoints.MapControllerRoute(
                 name: "default",

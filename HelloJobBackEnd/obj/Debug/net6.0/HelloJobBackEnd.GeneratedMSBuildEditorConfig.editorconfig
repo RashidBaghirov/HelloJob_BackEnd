@@ -9,173 +9,193 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = HelloJobBackEnd
 build_property.RootNamespace = HelloJobBackEnd
-build_property.ProjectDir = C:\Users\resid\OneDrive\Desktop\HelloJob_BackEnd\HelloJobBackEnd\
+build_property.ProjectDir = C:\Users\resid\OneDrive\Desktop\HelloJobBack\HelloJob_BackEnd\HelloJobBackEnd\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\resid\OneDrive\Desktop\HelloJob_BackEnd\HelloJobBackEnd
+build_property.MSBuildProjectDirectory = C:\Users\resid\OneDrive\Desktop\HelloJobBack\HelloJob_BackEnd\HelloJobBackEnd
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Account/ResetPassword.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Areas/HelloJobAdmins/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSGVsbG9Kb2JBZG1pbnNcVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Areas/HelloJobAdmins/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSGVsbG9Kb2JBZG1pbnNcVmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Areas/HelloJobAdmins/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSGVsbG9Kb2JBZG1pbnNcVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Areas/HelloJobAdmins/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSGVsbG9Kb2JBZG1pbnNcVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Areas/HelloJobAdmins/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSGVsbG9Kb2JBZG1pbnNcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Account/ResetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Company/Detail.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Company/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Company/Index.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Company/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Company/VacansDetail.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Company/VacansDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxWYWNhbnNEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/CvPage/Detail.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/CvPage/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3ZQYWdlXERldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/CvPage/Index.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/CvPage/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3ZQYWdlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Home/Index.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Liked/Index.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Liked/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlrZWRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/CreateCv.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/CreateCv.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XENyZWF0ZUN2LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/CreateVacans.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/CreateVacans.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XENyZWF0ZVZhY2Fucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/CreatingCompany.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/CreatingCompany.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XENyZWF0aW5nQ29tcGFueS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/DeleteCompany.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/DeleteCompany.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XERlbGV0ZUNvbXBhbnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/DeleteCv.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/DeleteCv.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XERlbGV0ZUN2LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/DeleteVacans.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/DeleteVacans.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XERlbGV0ZVZhY2Fucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/EditCompany.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/EditCompany.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XEVkaXRDb21wYW55LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/EditCV.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/EditCV.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XEVkaXRDVi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/EditVacans.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/EditVacans.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XEVkaXRWYWNhbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/Index.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/MyCompany.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/MyCompany.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XE15Q29tcGFueS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/MyOrder.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/MyOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XE15T3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/MyRequest.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/MyRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XE15UmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/MySticker.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/MySticker.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XE15U3RpY2tlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/Security.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/Security.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XFNlY3VyaXR5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/WishListPage.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/MyAccount/WishListPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlBY2NvdW50XFdpc2hMaXN0UGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Rules/Index.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Rules/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUnVsZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_CvorderPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_CvorderPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ddm9yZGVyUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_CvsPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_CvsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DdnNQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_EmployeerPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_EmployeerPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FbXBsb3llZXJQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_ForgotPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_ForgotPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb3Jnb3RQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_Layout.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_MyAccount.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_MyAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NeUFjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_RegisterPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_RegisterPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9SZWdpc3RlclBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_SearchvacansPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_SearchvacansPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TZWFyY2h2YWNhbnNQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_SerachcvPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_SerachcvPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TZXJhY2hjdlBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_UserblocksPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_UserblocksPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Vc2VyYmxvY2tzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_VacansorderPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_VacansorderPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWNhbnNvcmRlclBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_VacansPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_VacansPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWNhbnNQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/_ViewImports.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/resid/OneDrive/Desktop/HelloJob_BackEnd/HelloJobBackEnd/Views/_ViewStart.cshtml]
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

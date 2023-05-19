@@ -4,7 +4,7 @@
 
 namespace HelloJobBackEnd.Migrations
 {
-    public partial class CreateWishlisttable : Migration
+    public partial class Columisliked : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -143,7 +143,8 @@ namespace HelloJobBackEnd.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CvId = table.Column<int>(type: "int", nullable: true),
                     WishListId = table.Column<int>(type: "int", nullable: false),
-                    VacansId = table.Column<int>(type: "int", nullable: true)
+                    VacansId = table.Column<int>(type: "int", nullable: true),
+                    IsLiked = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

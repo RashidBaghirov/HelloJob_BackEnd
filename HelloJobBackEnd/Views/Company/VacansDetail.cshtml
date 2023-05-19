@@ -2,6 +2,18 @@
     ViewBag.Title = "Vacans detail page";
     List<Vacans> related = ViewBag.Related;
 }
+@if (TempData["Request"] != null)
+{
+    if ((bool)TempData["Request"] == true)
+    {
+        <input type="hidden" id="requestSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="requestError" />
+
+    }
+}
 @model Vacans
 
       <section id="titles_and_bgblue">
@@ -61,8 +73,13 @@
                                 <span class="salary">@(Model.Salary == 0 ? "Ə-h razılaşma ilə" : Model.Salary) (AZN)</span>
                                 <span class="date">@Model.CreatedAt.ToString("dd.MM")</span>
                                 <span class="like">
-                                    <i class="fa-regular fa-heart unliked"></i>
-                                    <i class="fa-solid fa-heart liked"></i>
+                                    <a class="like-button" data-item-id="@Model.Id" data-item-type="Vacans">
+                                        <i class="fa-regular fa-heart unliked"></i>
+                                    </a>
+                                    <a class="unliked-button" data-item-id="@Model.Id" data-item-type="Vacans">
+                                        <i class="fa-solid fa-heart liked @(Model.WishListItems.Any(w => w.WishList.User.UserName == User.Identity.Name && w.IsLiked == true) ? "hidden" : "")"></i>
+                                    </a>
+
                                 </span>
                             </div>
                   </div>
@@ -327,12 +344,15 @@
                                         <div class="item_right">
                                             <span class="salary">@(Model.Salary == 0 ? "Ə-h razılaşma ilə" : Model.Salary) (AZN)</span>
                                             <span class="date">@Model.CreatedAt.ToString("dd.MM")</span>
-                                            <a class="like-button" data-item-id="@vacans.Id" data-item-type="Vacans">
-                                                <i class="fa-regular fa-heart unliked"></i>
-                                            </a>
-                                            <a class="unliked-button" data-cv-id="@vacans.Id" data-item-type="Vacans">
-                                                <i class="fa-solid fa-heart liked"></i>
-                                            </a>
+                                            <span class="like">
+                                                <a class="like-button" data-item-id="@vacans.Id" data-item-type="Vacans">
+                                                    <i class="fa-regular fa-heart unliked"></i>
+                                                </a>
+                                                <a class="unliked-button" data-item-id="@vacans.Id" data-item-type="Vacans">
+                                                    <i class="fa-solid fa-heart liked @(vacans.WishListItems.Any(w => w.WishList.User.UserName == User.Identity.Name && w.IsLiked == true) ? "hidden" : "")"></i>
+                                                </a>
+
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -345,3 +365,16 @@
           </div>
         </div>
       </section>
+
+@section Script{
+<script>
+    $(document).ready(function () {
+            if ($("#requestSuccess").length) {
+                toastr["success"]("You have successfully joined us!", "successfully")
+        }
+            else if ($("#requestError").length) {
+            toastr["error"]("Something went wrong!", "Upsss Sorry")
+        }
+    })
+</script>
+}

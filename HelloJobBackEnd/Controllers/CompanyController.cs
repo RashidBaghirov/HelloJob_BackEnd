@@ -23,24 +23,39 @@ namespace HelloJobBackEnd.Controllers
         }
         public IActionResult Index()
         {
-            List<Company> companies = _context.Companies.Include(v => v.Vacans).ToList();
+            List<Company> companies = _context.Companies.Include(v => v.Vacans).
+                Include(x => x.Vacans).ThenInclude(x => x.WishListItems).ThenInclude(x => x.WishList).
+                Include(x => x.User).
+                Include(x => x.Vacans).ThenInclude(x => x).
+                Include(b => b.Vacans).ThenInclude(b => b.BusinessArea).Where(x => x.Status == OrderStatus.Accepted).ToList();
             return View(companies);
         }
 
-
-
-
-
         public IActionResult Detail(int id)
         {
-            Company? company = _context.Companies.Include(v => v.Vacans).Include(b => b.Vacans).ThenInclude(b => b.BusinessArea).FirstOrDefault(x => x.Id == id);
+            Company? company = _context.Companies.Include(v => v.Vacans).
+                Include(x => x.Vacans).ThenInclude(x => x.WishListItems).ThenInclude(x => x.WishList).
+                Include(x => x.User).
+                Include(x => x.Vacans).ThenInclude(x => x).
+                Include(b => b.Vacans).ThenInclude(b => b.BusinessArea).
+                FirstOrDefault(x => x.Id == id);
 
             return View(company);
         }
 
-        public async Task<IActionResult> VacansDetailAsync(int id)
+        public async Task<IActionResult> VacansDetail(int id)
         {
-            IQueryable<Vacans> vacanss = _context.Vacans.AsNoTracking().AsQueryable();
+            IQueryable<Vacans> vacanss = _context.Vacans.Include(v => v.BusinessArea).
+              Include(e => e.Education).
+              Include(e => e.Experience).
+              Include(c => c.City).
+              Include(c => c.Company).
+              Include(c => c.Company).
+                ThenInclude(x => x.User).
+              Include(c => c.BusinessArea).
+                Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
+                     Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+               Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User);
             if (User.Identity.IsAuthenticated)
             {
                 User user = await _usermanager.FindByNameAsync(User.Identity.Name);
@@ -54,13 +69,15 @@ namespace HelloJobBackEnd.Controllers
 
             Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
               Include(e => e.Education).
-            Include(e => e.Experience).
-            Include(c => c.City).
-            Include(c => c.Company).
-            Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-            Include(i => i.infoEmployeers).
-             Include(i => i.InfoWorks).
-            Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
+              Include(e => e.Experience).
+              Include(c => c.City).
+              Include(c => c.Company).
+              Include(c => c.Company).
+                ThenInclude(x => x.User).
+              Include(c => c.BusinessArea).
+                Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
+                     Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+               Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User).FirstOrDefault(x => x.Id == id);
             vacans.Count++;
             _context.SaveChanges();
             ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(vacanss, vacans, id);
@@ -68,9 +85,20 @@ namespace HelloJobBackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> VacansDetailAsync(int id, int cvsID)
+        public async Task<IActionResult> VacansDetail(int id, int cvsID)
         {
-            IQueryable<Vacans> vacanss = _context.Vacans.AsNoTracking().AsQueryable();
+            TempData["Request"] = false;
+            IQueryable<Vacans> vacanss = _context.Vacans.Include(v => v.BusinessArea).
+             Include(e => e.Education).
+             Include(e => e.Experience).
+             Include(c => c.City).
+             Include(c => c.Company).
+             Include(c => c.Company).
+               ThenInclude(x => x.User).
+             Include(c => c.BusinessArea).
+               Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
+                    Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+              Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User);
             if (User.Identity.IsAuthenticated)
             {
                 User user = await _usermanager.FindByNameAsync(User.Identity.Name);
@@ -113,20 +141,22 @@ namespace HelloJobBackEnd.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea)
-                .Include(e => e.Education)
-                .Include(e => e.Experience)
-                .Include(c => c.City)
-                .Include(c => c.Company)
-                .Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle)
-                .Include(i => i.infoEmployeers)
-                .Include(i => i.InfoWorks)
-                .Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
-
-            vacans.Count++;
+            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
+               Include(e => e.Education).
+               Include(e => e.Experience).
+               Include(c => c.City).
+               Include(c => c.Company).
+               Include(c => c.Company).
+                 ThenInclude(x => x.User).
+               Include(c => c.BusinessArea).
+                 Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
+                      Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User).FirstOrDefault(x => x.Id == id);
             await _context.SaveChangesAsync();
 
             ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(vacanss, vacans, id);
+            TempData["Request"] = true;
+
             return View(vacans);
         }
 

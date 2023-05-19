@@ -67,6 +67,7 @@ namespace HelloJobBackEnd.Controllers
                 }
 
                 wishlistItem.CvId = cv.Id;
+                wishlistItem.IsLiked = true;
             }
             else if (itemType == "Vacans")
             {
@@ -77,6 +78,7 @@ namespace HelloJobBackEnd.Controllers
                 }
 
                 wishlistItem.VacansId = vacans.Id;
+                wishlistItem.IsLiked = true;
             }
             else
             {

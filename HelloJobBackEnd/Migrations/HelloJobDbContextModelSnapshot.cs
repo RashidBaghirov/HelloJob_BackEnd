@@ -101,6 +101,9 @@ namespace HelloJobBackEnd.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -499,23 +502,13 @@ namespace HelloJobBackEnd.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CvId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("VacansId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CvId");
-
                     b.HasIndex("UserId");
-
-                    b.HasIndex("VacansId");
 
                     b.ToTable("WishLists");
                 });
@@ -530,6 +523,9 @@ namespace HelloJobBackEnd.Migrations
 
                     b.Property<int?>("CvId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsLiked")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("VacansId")
                         .HasColumnType("int");
@@ -873,19 +869,11 @@ namespace HelloJobBackEnd.Migrations
 
             modelBuilder.Entity("HelloJobBackEnd.Entities.WishList", b =>
                 {
-                    b.HasOne("HelloJobBackEnd.Entities.Cv", null)
-                        .WithMany("WishLists")
-                        .HasForeignKey("CvId");
-
                     b.HasOne("HelloJobBackEnd.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("HelloJobBackEnd.Entities.Vacans", null)
-                        .WithMany("WishLists")
-                        .HasForeignKey("VacansId");
 
                     b.Navigation("User");
                 });
@@ -893,11 +881,11 @@ namespace HelloJobBackEnd.Migrations
             modelBuilder.Entity("HelloJobBackEnd.Entities.WishListItem", b =>
                 {
                     b.HasOne("HelloJobBackEnd.Entities.Cv", "Cv")
-                        .WithMany()
+                        .WithMany("WishListItems")
                         .HasForeignKey("CvId");
 
                     b.HasOne("HelloJobBackEnd.Entities.Vacans", "Vacans")
-                        .WithMany()
+                        .WithMany("WishListItems")
                         .HasForeignKey("VacansId");
 
                     b.HasOne("HelloJobBackEnd.Entities.WishList", "WishList")
@@ -988,7 +976,7 @@ namespace HelloJobBackEnd.Migrations
                 {
                     b.Navigation("Requests");
 
-                    b.Navigation("WishLists");
+                    b.Navigation("WishListItems");
                 });
 
             modelBuilder.Entity("HelloJobBackEnd.Entities.Education", b =>
@@ -1024,7 +1012,7 @@ namespace HelloJobBackEnd.Migrations
 
                     b.Navigation("Requests");
 
-                    b.Navigation("WishLists");
+                    b.Navigation("WishListItems");
 
                     b.Navigation("infoEmployeers");
                 });

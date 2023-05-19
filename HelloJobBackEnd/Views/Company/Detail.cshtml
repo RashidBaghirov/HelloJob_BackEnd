@@ -111,8 +111,8 @@
                                     <a class="like-button" data-item-id="@vacans.Id" data-item-type="Vacans">
                                         <i class="fa-regular fa-heart unliked"></i>
                                     </a>
-                                    <a class="unliked-button" data-cv-id="@vacans.Id" data-item-type="Vacans">
-                                        <i class="fa-solid fa-heart liked"></i>
+                                        <a class="unliked-button" data-item-id="@vacans.Id" data-item-type="Vacans">
+                                            <i class="fa-solid fa-heart liked @(vacans.WishListItems.Any(w => w.WishList.User.UserName == User.Identity.Name && w.IsLiked == true) ? "hidden" : "")"></i>
                                     </a>
                                     </span>
                                 </div>

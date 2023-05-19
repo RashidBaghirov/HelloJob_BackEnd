@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\HelloJobBackEnd.csproj": {}
+    "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\HelloJobBackEnd.csproj": {}
   },
   "projects": {
-    "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\HelloJobBackEnd.csproj": {
+    "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\HelloJobBackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\HelloJobBackEnd.csproj",
+        "projectUniqueName": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\HelloJobBackEnd.csproj",
         "projectName": "HelloJobBackEnd",
-        "projectPath": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\HelloJobBackEnd.csproj",
+        "projectPath": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\HelloJobBackEnd.csproj",
         "packagesPath": "C:\\Users\\resid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\obj\\",
+        "outputPath": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -16,6 +16,7 @@ namespace HelloJobBackEnd.Controllers
         }
         public IActionResult Index(string search)
         {
+
             IQueryable<Vacans> allVacans = _context.Vacans.Include(v => v.BusinessArea).
               Include(e => e.Education).
               Include(e => e.Experience).
@@ -25,7 +26,10 @@ namespace HelloJobBackEnd.Controllers
                 ThenInclude(x => x.User).
               Include(c => c.BusinessArea).
                 Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-              Include(o => o.OperatingMode).Where(c => c.Status == OrderStatus.Accepted);
+                     Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+               Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User).
+
+              Where(c => c.Status == OrderStatus.Accepted);
 
             ViewBag.Company = _context.Companies
                     .Include(v => v.Vacans)

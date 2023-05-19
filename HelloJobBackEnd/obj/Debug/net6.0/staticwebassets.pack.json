@@ -1,408 +1,864 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\css\\maps\\style.css.map",
+      "PackagePath": "staticwebassets\\admin\\assets\\css\\maps\\style.css.map"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\css\\style.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\css\\style.css"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Black.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Black.eot"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Black.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Black.ttf"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Black.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Black.woff"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Black.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Black.woff2"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Bold.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Bold.eot"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Bold.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Bold.ttf"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Bold.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Bold.woff"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Bold.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Bold.woff2"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Light.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Light.eot"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Light.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Light.ttf"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Light.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Light.woff"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Light.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Light.woff2"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Medium.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Medium.eot"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Medium.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Medium.ttf"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Medium.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Medium.woff"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Medium.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Medium.woff2"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Regular.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Regular.eot"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Regular.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Regular.ttf"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Regular.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Regular.woff"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\fonts\\Roboto\\Roboto-Regular.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\fonts\\Roboto\\Roboto-Regular.woff2"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\auth\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\auth\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\auth\\lockscreen-bg.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\auth\\lockscreen-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\auth\\login-bg.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\auth\\login-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\auth\\register-bg.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\auth\\register-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face1.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face10.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face10.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face11.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face11.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face12.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face12.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face13.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face13.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face14.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face14.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face15.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face15.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face16.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face16.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face17.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face17.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face18.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face18.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face19.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face19.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face2.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face20.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face20.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face21.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face21.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face22.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face22.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face23.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face23.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face24.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face24.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face25.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face25.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face26.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face26.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face27.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face27.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face3.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face4.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face5.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face6.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face7.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face8.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\faces\\face9.jpg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\faces\\face9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\favicon.ico",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\favicon.png",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\logo-mini.svg",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\logo-mini.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\images\\logo.png",
+      "PackagePath": "staticwebassets\\admin\\assets\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\Chart.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\Chart.min.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\chart.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\chart.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\dashboard.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\dashboard.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\data-table.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\data-table.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\dataTables.bootstrap4.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\dataTables.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\documentation.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\documentation.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\file-upload.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\file-upload.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\hoverable-collapse.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\hoverable-collapse.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\jquery.cookie.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\jquery.cookie.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\jquery.dataTables.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\jquery.dataTables.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\off-canvas.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\off-canvas.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\tabs.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\tabs.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\js\\template.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\template.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\charts\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\charts\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\charts\\chartjs.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\charts\\chartjs.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\forms\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\forms\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\forms\\basic_elements.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\forms\\basic_elements.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\icons\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\icons\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\icons\\mdi.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\icons\\mdi.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\samples\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\samples\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\samples\\lock-screen.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\samples\\lock-screen.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\samples\\login-2.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\samples\\login-2.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\samples\\login.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\samples\\login.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\samples\\register-2.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\samples\\register-2.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\samples\\register.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\samples\\register.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\tables\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\tables\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\tables\\basic-table.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\tables\\basic-table.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\ui-features\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\ui-features\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\ui-features\\buttons.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\ui-features\\buttons.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\pages\\ui-features\\typography.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\pages\\ui-features\\typography.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\partials\\_footer.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\partials\\_footer.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\partials\\_navbar.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\partials\\_navbar.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\partials\\_settings-panel.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\partials\\_settings-panel.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\partials\\_sidebar.html",
+      "PackagePath": "staticwebassets\\admin\\assets\\partials\\_sidebar.html"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\.DS_Store",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\.DS_Store"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\base\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\base\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\base\\vendor.bundle.base.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\base\\vendor.bundle.base.css"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\base\\vendor.bundle.base.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\base\\vendor.bundle.base.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\chart.js\\Chart.min.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\chart.js\\Chart.min.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\datatables.net-bs4\\dataTables.bootstrap4.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\datatables.net-bs4\\dataTables.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\datatables.net-bs4\\dataTables.bootstrap4.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\datatables.net-bs4\\dataTables.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\datatables.net\\jquery.dataTables.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\datatables.net\\jquery.dataTables.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\mdi\\css\\materialdesignicons.min.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\mdi\\css\\materialdesignicons.min.css"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\mdi\\css\\materialdesignicons.min.css.map",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\mdi\\css\\materialdesignicons.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\mdi\\fonts\\materialdesignicons-webfont.eot",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\mdi\\fonts\\materialdesignicons-webfont.eot"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\mdi\\fonts\\materialdesignicons-webfont.ttf",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\mdi\\fonts\\materialdesignicons-webfont.ttf"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\mdi\\fonts\\materialdesignicons-webfont.woff",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\mdi\\fonts\\materialdesignicons-webfont.woff"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\admin\\assets\\vendors\\mdi\\fonts\\materialdesignicons-webfont.woff2",
+      "PackagePath": "staticwebassets\\admin\\assets\\vendors\\mdi\\fonts\\materialdesignicons-webfont.woff2"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.js.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\style.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\bootstrap-5.3.0-alpha1-dist\\style.css",
       "PackagePath": "staticwebassets\\assets\\bootstrap-5.3.0-alpha1-dist\\style.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\main.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\login.css",
+      "PackagePath": "staticwebassets\\assets\\css\\login.css"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\main.css",
       "PackagePath": "staticwebassets\\assets\\css\\main.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\main.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\main.css.map",
       "PackagePath": "staticwebassets\\assets\\css\\main.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\owl.carousel.min.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\owl.carousel.min.css",
       "PackagePath": "staticwebassets\\assets\\css\\owl.carousel.min.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\owl.theme.default.min.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\owl.theme.default.min.css",
       "PackagePath": "staticwebassets\\assets\\css\\owl.theme.default.min.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\slick.css",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\slick.css",
       "PackagePath": "staticwebassets\\assets\\css\\slick.css"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\slick.css.map",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\css\\slick.css.map",
       "PackagePath": "staticwebassets\\assets\\css\\slick.css.map"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\114kb-og-image.png",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\114kb-og-image.png",
       "PackagePath": "staticwebassets\\assets\\images\\Company\\114kb-og-image.png"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\243unnamed (1).png",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\243unnamed (1).png",
       "PackagePath": "staticwebassets\\assets\\images\\Company\\243unnamed (1).png"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\3095uMIxAMv_400x400.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\3095uMIxAMv_400x400.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\Company\\3095uMIxAMv_400x400.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\3725uMIxAMv_400x400.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\3725uMIxAMv_400x400.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\Company\\3725uMIxAMv_400x400.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\119photo_2023-04-28_17-30-34.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\119photo_2023-04-28_17-30-34.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\119photo_2023-04-28_17-30-34.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\13photo_2023-05-14_12-11-01.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\13photo_2023-05-14_12-11-01.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\13photo_2023-05-14_12-11-01.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\270photo_2023-05-14_12-11-01.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\270photo_2023-05-14_12-11-01.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\270photo_2023-05-14_12-11-01.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\39photo_2023-04-28_17-30-34.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\39photo_2023-04-28_17-30-34.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\39photo_2023-04-28_17-30-34.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\427827unnamed.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\427827unnamed.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\427827unnamed.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\497photo_2023-05-14_12-45-48.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\497photo_2023-05-14_12-45-48.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\497photo_2023-05-14_12-45-48.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\572photo_2023-05-14_12-45-48.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\572photo_2023-05-14_12-45-48.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\572photo_2023-05-14_12-45-48.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\575photo_2023-04-28_17-30-27.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\575photo_2023-04-28_17-30-27.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\575photo_2023-04-28_17-30-27.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\606photo_2023-04-28_17-30-34.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\606photo_2023-04-28_17-30-34.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\606photo_2023-04-28_17-30-34.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\627photo_2023-04-28_17-30-27.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\627photo_2023-04-28_17-30-27.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\627photo_2023-04-28_17-30-27.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\641827unnamed.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\641827unnamed.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\641827unnamed.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\725photo_2023-04-28_17-30-27.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\725photo_2023-04-28_17-30-27.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\725photo_2023-04-28_17-30-27.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\857photo_2023-05-14_12-11-01.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\813369890.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\813369890.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\857photo_2023-05-14_12-11-01.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\857photo_2023-05-14_12-11-01.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\941photo_2023-04-28_17-30-27.jpg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\941photo_2023-04-28_17-30-27.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\941photo_2023-04-28_17-30-27.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\105Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\105Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\105Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\162Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\162Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\162Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\244Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\244Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\244Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\40Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\40Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\40Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\495Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\495Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\495Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\557Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\557Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\557Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\558Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\558Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\558Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\657Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\600Cv.pdf",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\600Cv.pdf"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\657Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\657Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\699Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\699Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\699Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\6Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\6Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\6Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\779Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\779Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\779Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\835Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\835Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\835Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\97Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\97Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\97Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\982Cv.pdf",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\982Cv.pdf",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\982Cv.pdf"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\logo.svg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\logo.svg",
       "PackagePath": "staticwebassets\\assets\\images\\logo.svg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\moon.svg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\moon.svg",
       "PackagePath": "staticwebassets\\assets\\images\\moon.svg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\night_mode_logo.svg",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\night_mode_logo.svg",
       "PackagePath": "staticwebassets\\assets\\images\\night_mode_logo.svg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\account.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\account.js",
       "PackagePath": "staticwebassets\\assets\\js\\account.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\createcompany.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\createcompany.js",
       "PackagePath": "staticwebassets\\assets\\js\\createcompany.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\cvpage.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\cvpage.js",
       "PackagePath": "staticwebassets\\assets\\js\\cvpage.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\darkmode.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\darkmode.js",
       "PackagePath": "staticwebassets\\assets\\js\\darkmode.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\details.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\details.js",
       "PackagePath": "staticwebassets\\assets\\js\\details.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\owl.carousel.min.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\owl.carousel.min.js",
       "PackagePath": "staticwebassets\\assets\\js\\owl.carousel.min.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\pageCv.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\pageCv.js",
       "PackagePath": "staticwebassets\\assets\\js\\pageCv.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\postvacans.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\postvacans.js",
       "PackagePath": "staticwebassets\\assets\\js\\postvacans.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\script.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\script.js",
       "PackagePath": "staticwebassets\\assets\\js\\script.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\slick.min.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\slick.min.js",
       "PackagePath": "staticwebassets\\assets\\js\\slick.min.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\wishlist.js",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\wishlist.js",
       "PackagePath": "staticwebassets\\assets\\js\\wishlist.js"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\template\\AcceptedMail.html",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\template\\AcceptedMail.html",
       "PackagePath": "staticwebassets\\assets\\template\\AcceptedMail.html"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\template\\RejectedMail.html",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\template\\RejectedMail.html",
       "PackagePath": "staticwebassets\\assets\\template\\RejectedMail.html"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\template\\ResetPassword.html",
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\template\\ResetPassword.html",
       "PackagePath": "staticwebassets\\assets\\template\\ResetPassword.html"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\template\\Verifyemail.html",
-      "PackagePath": "staticwebassets\\assets\\template\\Verifyemail.html"
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\template\\verifyemail.html",
+      "PackagePath": "staticwebassets\\assets\\template\\verifyemail.html"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.HelloJobBackEnd.Microsoft.AspNetCore.StaticWebAssets.props",
