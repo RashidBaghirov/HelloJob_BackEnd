@@ -1,4 +1,5 @@
 ﻿using HelloJobBackEnd.Entities.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HelloJobBackEnd.Entities
 {
@@ -8,5 +9,6 @@ namespace HelloJobBackEnd.Entities
 
         public string Name { get; set; }
         public List<BusinessArea> BusinessAreas { get; set; }
+
     }
 }

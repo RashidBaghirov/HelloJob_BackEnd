@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Vacans>
+
+@if (TempData["CompanyAccepted"] != null)
+{
+    if ((bool)TempData["CompanyAccepted"] == true)
+    {
+        <input type="hidden" id="acceptedSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="acceptedError" />
+
+    }
+}
+@if (TempData["CompanyReject"] != null)
+{
+    if ((bool)TempData["CompanyReject"] == true)
+    {
+        <input type="hidden" id="rejectedSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="rejectedError" />
+
+    }
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OperatingMode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Experience)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BusinessArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Education)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DrivingLicense)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OperatingMode.Name)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Experience.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.BusinessArea.Name)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Education.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrivingLicense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                    <a asp-action="Accept" asp-route-id="@item.Id">Accept</a> |
+                    <a asp-action="Reject" asp-route-id="@item.Id">Reject</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            if ($("#acceptedSuccess").length) {
+                toastr["success"]("Welcome back to us!", "1 Company Status Changed Is 'accepted' ")
+            }
+            else if ($("#acceptedError").length) {
+                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#rejectedSuccess").length) {
+                toastr["success"]("Welcome back to us!", "1 Company Status Changed Is 'Rejected' ")
+            }
+            else if ($("#rejectedError").length) {
+                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+            }
+        })
+    </script>
+}

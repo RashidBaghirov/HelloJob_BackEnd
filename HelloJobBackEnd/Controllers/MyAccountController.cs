@@ -32,12 +32,8 @@ namespace HelloJobBackEnd.Controllers
             _usermanager = usermanager;
             _signInManager = signInManager;
             _roleManager = roleManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
-            _usermanager = usermanager;
             _context = context;
             _env = env;
-            _context = context;
         }
 
 
@@ -598,7 +594,7 @@ namespace HelloJobBackEnd.Controllers
                 requestItem.Status = OrderStatus.Accepted;
                 _context.SaveChanges();
 
-                string recipientEmail = requestItem.Cv.User.Email;
+                string recipientEmail = requestItem.Cv.Email;
 
                 string body = string.Empty;
                 using (StreamReader reader = new StreamReader("wwwroot/assets/template/acceptedmail.html"))
@@ -606,7 +602,7 @@ namespace HelloJobBackEnd.Controllers
                     body = reader.ReadToEnd();
                 }
 
-                body = body.Replace("{{userFullName}}", requestItem.Cv.User.FullName);
+                body = body.Replace("{{userFullName}}", string.Concat(requestItem.Cv.Name, " ", requestItem.Cv.Surname));
                 body = body.Replace("{{companyName}}", requestItem.Vacans.Company.Name);
                 body = body.Replace("{{position}}", requestItem.Vacans.Position);
 
@@ -669,7 +665,7 @@ namespace HelloJobBackEnd.Controllers
                 requestItem.Status = OrderStatus.Rejected;
                 _context.SaveChanges();
 
-                string recipientEmail = requestItem.Cv.User.Email;
+                string recipientEmail = requestItem.Cv.Email;
 
                 string body = string.Empty;
                 using (StreamReader reader = new StreamReader("wwwroot/assets/template/RejectedMail.html"))
@@ -677,7 +673,7 @@ namespace HelloJobBackEnd.Controllers
                     body = reader.ReadToEnd();
                 }
 
-                body = body.Replace("{{userFullName}}", requestItem.Cv.User.FullName);
+                body = body.Replace("{{userFullName}}", string.Concat(requestItem.Cv.Name, " ", requestItem.Cv.Surname));
                 body = body.Replace("{{companyName}}", requestItem.Vacans.Company.Name);
                 body = body.Replace("{{position}}", requestItem.Vacans.Position);
 
