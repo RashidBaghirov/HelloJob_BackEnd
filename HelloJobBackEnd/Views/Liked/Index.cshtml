@@ -1,6 +1,10 @@
 ﻿@{
     ViewBag.Title = "Liked page";
+    Dictionary<string, string> setting = ViewBag.Setting;
+
 }
+
+@model List<WishList>
 
 <section id="liked">
     <section id="titles_and_bgblue">
@@ -30,12 +34,12 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 ">
                     <div class="title">
-                        <a style="cursor: pointer;" class="vacancy-link">Vakansiyalar <span>1 </span></a>
+                        <a style="cursor: pointer;" class="vacancy-link">Vakansiyalar</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 ">
                     <div class="title">
-                        <a style="cursor: pointer;" class="cv-link">CV-lər <span> 1</span></a>
+                        <a style="cursor: pointer;" class="cv-link">CV-lər</a>
                     </div>
                 </div>
             </div>
@@ -49,53 +53,118 @@
                 <div class="col-lg-8">
                     <div class="liked_vacans">
                         <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg" alt="Bağban">
+                            @foreach (var wishlist in Model)
+                            {
+                                @foreach (var item in wishlist.WishListItems)
+                                {
+                                  
+                                        @if(item.Vacans is not null){
+                                        <div class="vacancies_href">
+                                            <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@item.Vacans.Id">
+                                                <div class="item_left">
+                                                    <div class="icon" style="width: 58px !important; height: auto !important">
+                                                        <img style="width: 100%; object-fit: contain;" src="~/assets/images/BusinessTitle/@item.Vacans.BusinessArea.BusinessTitle.Image" alt="@item.Vacans.Company.Name" />
+                                                    </div>
+                                                    <div class="title">
+                                                        <h3 style="position: inherit !important;">@item.Vacans.Position</h3>
+                                                        <p>@item.Vacans.BusinessArea.Name</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="item_right">
+                                                <span class="salary">@(item.Vacans.Salary == 0 ? "Ə-h razılaşma ilə" : item.Vacans.Salary) (AZN)</span>
+                                                <span class="date">@item.Vacans.CreatedAt.ToString("dd.MM")</span>
+                                                <span class="like">
+                                                    <a class="like-button" data-item-id="@item.Vacans.Id" data-item-type="Vacans">
+                                                        <i class="fa-regular fa-heart unliked"></i>
+                                                    </a>
+                                                    <a class="unliked-button" data-item-id="@item.Vacans.Id" data-item-type="Vacans">
+                                                        <i class="fa-solid fa-heart liked deletedvacans @(item.Vacans.WishListItems.Any(w => w.WishList.User.UserName == User.Identity.Name && w.IsLiked == true) ? "hidden" : "")"></i>
+                                                    </a>
+
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div class="title">
-                                            <h3>Bağban</h3>
-                                            <p></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">500 - 500 AZN</span>
-                                    <span class="date">Dünən 11:29</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
-                            </div>
+                                        }
+                                }
+                            }
                         </div>
                     </div>
                     <div class="liked_cv">
-                        <div class="vacancies">
-                            <div class="vacancies_href">
-                                <a href="">
-                                    <div class="item_left">
-                                        <div class="icon">
-                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/dizayn-cat-64143423043a064143423043ab-dW7E0i95SRjZ4mG.svg" alt="Bağban">
+                            <div class="vacancies">
+                                @foreach (var wishlist in Model)
+                            {
+                                @foreach (var item in wishlist.WishListItems)
+                                {
+                                
+                                        @if(item.Cv is not null)
+                                        {
+                                        <div id="userBlocks" class="user_block">
+                                            <a asp-controller="cvpage" asp-action="detail" asp-route-id="@item.Cv.Id" target="_blank">
+                                                <div class="header_user">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="user_img">
+                                                            <img src="~/assets/images/User/@item.Cv.Image" alt="">
+                                                        </div>
+                                                        <div class="d-flex justify-content-between w-100">
+                                                            <div class="user_desc">
+                                                                <h3 class="profession">@item.Cv.Position</h3>
+
+                                                                <p class="fullname">@string.Concat(item.Cv.Name," ",item.Cv.Surname)</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="user_options" style="justify-content:space-around !important">
+                                                    <div class="item">
+                                                        <div class="icon">
+                                                            <img src="~/assets/images/@setting["UserOperatingModeIcon"]"
+                                                                 alt="" />
+                                                        </div>
+                                                        <div class="text">
+                                                            <h4>@item.Cv.OperatingMode.Name</h4>
+                                                            <p>İş rejimi</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="icon">
+                                                            <img src="~/assets/images/@setting["SalaryIcon"]"
+                                                                 alt="" />
+                                                        </div>
+                                                        <div class="text">
+                                                            <h4>@(item.Cv.Salary == 0 ? "Ə-h razılaşma ilə" : item.Cv.Salary) (AZN)</h4>
+                                                            <p>Minimum əmək haqqı</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="icon">
+                                                            <img src="~/assets/images/@setting["ExperienceIcon"]"
+                                                                 alt="" />
+                                                        </div>
+                                                        <div class="text">
+                                                            <h4>@item.Cv.Experience.Name</h4>
+                                                            <p>İş staji</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </a>
+                                            <div class="hearts">
+                                                <span class="like">
+                                                    <a class="like-button" data-item-id="@item.Cv.Id" data-item-type="Cv">
+                                                        <i class="fa-regular fa-heart unliked"></i>
+                                                    </a>
+                                                    <a class="unliked-button" data-item-id="@item.Cv.Id" data-item-type="Cv">
+                                                        <i class="fa-solid fa-heart liked deletedcv @(item.Cv.WishListItems.Any(w => w.WishList.User.UserName == User.Identity.Name && w.IsLiked == true) ? "hidden" : "")"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div class="title">
-                                            <h3>Devops</h3>
-                                            <p></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="item_right">
-                                    <span class="salary">500 - 500 AZN</span>
-                                    <span class="date">Dünən 11:29</span>
-                                    <span class="like">
-                                        <i class="fa-regular fa-heart unliked"></i>
-                                        <i class="fa-solid fa-heart liked"></i>
-                                    </span>
-                                </div>
+                                        }
+                                }
+                            }
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
@@ -158,4 +227,5 @@
 
 @section Script{
     <script src="~/assets/js/wishlist.js"></script>
+  
 }

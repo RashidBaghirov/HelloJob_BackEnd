@@ -48,8 +48,8 @@
     transition: 0.5s;
 }
 
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
     top: -20px;
     left: 0;
     color: #8ab0df;
@@ -68,12 +68,12 @@
     margin-top: 30px;
 }
 
-.login-box button:hover {
+.login-box a:hover {
     background: #8ab0df;
     color: #fff;
 }
 
-.login-box button span {
+.login-box a span {
     position: absolute;
     display: block;
 }
@@ -92,7 +92,8 @@
         left: -100%;
     }
 
-    50%, 100% {
+    50%,
+    100% {
         left: 100%;
     }
 }
@@ -112,7 +113,8 @@
         top: -100%;
     }
 
-    50%, 100% {
+    50%,
+    100% {
         top: 100%;
     }
 }
@@ -132,7 +134,8 @@
         right: -100%;
     }
 
-    50%, 100% {
+    50%,
+    100% {
         right: 100%;
     }
 }
@@ -152,11 +155,11 @@
         bottom: -100%;
     }
 
-    50%, 100% {
+    50%,
+    100% {
         bottom: 100%;
     }
 }
-
 @media screen and (max-width: 576px) and (min-width: 400px) {
     .login-box {
         width: 250px;
@@ -179,7 +182,6 @@
     .user-box-label {
         font-size: 12px;
     }
-
     .login-box-button {
         font-size: 12px;
     }

@@ -25,5 +25,13 @@ namespace HelloJobBackEnd.Services
             return user?.FullName;
         }
 
+        public Dictionary<string, string> GetSettings()
+        {
+            Dictionary<string, string> settings = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
+
+            return settings;
+        }
+
+
     }
 }

@@ -1,4 +1,7 @@
-﻿
+﻿@{
+    Dictionary<string, string> setting = ViewBag.Setting;
+
+}
 @model List<Cv>
 @foreach (Cv cv in Model)
 {
@@ -23,7 +26,8 @@
             <div class="user_options" style="justify-content:space-around !important">
                 <div class="item">
                     <div class="icon">
-                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
+                        <img src="~/assets/images/@setting["UserOperatingModeIcon"]"
+                             alt="" />
                     </div>
                     <div class="text">
                         <h4>@cv.OperatingMode.Name</h4>
@@ -32,7 +36,8 @@
                 </div>
                 <div class="item">
                     <div class="icon">
-                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
+                        <img src="~/assets/images/@setting["SalaryIcon"]"
+                             alt="" />
                     </div>
                     <div class="text">
                         <h4>@(cv.Salary == 0 ? "Ə-h razılaşma ilə" : cv.Salary) (AZN)</h4>
@@ -41,7 +46,8 @@
                 </div>
                 <div class="item">
                     <div class="icon">
-                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
+                        <img src="~/assets/images/@setting["ExperienceIcon"]"
+                             alt="" />
                     </div>
                     <div class="text">
                         <h4>@cv.Experience.Name</h4>
@@ -55,7 +61,7 @@
                 <a class="like-button" data-item-id="@cv.Id" data-item-type="Cv">
                     <i class="fa-regular fa-heart unliked"></i>
                 </a>
-                <a class="unliked-button" data-item-id="@cv.Id" data-item-type="CV">
+                <a class="unliked-button" data-item-id="@cv.Id" data-item-type="Cv">
                     <i class="fa-solid fa-heart liked @(cv.WishListItems.Any(w => w.WishList.User.UserName == User.Identity.Name && w.IsLiked == true) ? "hidden" : "")"></i>
                 </a>
             </span>

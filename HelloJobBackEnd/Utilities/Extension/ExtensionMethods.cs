@@ -49,12 +49,13 @@ namespace HelloJobBackEnd.Utilities.Extension
             if (cv.BusinessAreaId != 0)
             {
                 List<Cv> relatedByBusinessArea = queryable
-                    .Include(v => v.BusinessArea)
-                    .Include(e => e.Education)
-                    .Include(ex => ex.Experience)
-                    .Include(c => c.City)
-                    .Include(o => o.OperatingMode)
-                    .Include(u => u.User)
+                  .Include(e => e.Education)
+                   .Include(e => e.Experience)
+                   .Include(c => c.City)
+                   .Include(c => c.BusinessArea)
+                   .Include(o => o.OperatingMode)
+                   .Include(x => x.User).
+                   Include(x => x.WishListItems).ThenInclude(x => x.WishList)
                     .AsEnumerable()
                     .Where(p =>
                         p.BusinessAreaId == cv.BusinessAreaId &&

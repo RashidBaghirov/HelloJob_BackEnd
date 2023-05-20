@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "CV Detail page";
     List<Cv> related = ViewBag.Related;
+    Dictionary<string, string> setting = ViewBag.Setting;
+
 }
 @model Cv
 
@@ -81,7 +83,7 @@
                             <div class="col-md-6">
                                 <div class="item">
                                     <div class="icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/birthday-cake.svg"
+                                        <img src="~/assets/images/@setting["BirthdayIcon"]"
                                              alt="" />
                                     </div>
                                     <div class="text">
@@ -93,7 +95,7 @@
                             <div class="col-md-6">
                                 <div class="item mb-0">
                                     <div class="icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/pin.svg"
+                                        <img src="~/assets/images/@setting["CityIcon"]"
                                              alt="" />
                                     </div>
                                     <div class="text">
@@ -110,7 +112,7 @@
                             <div class="col-md-6">
                                 <div class="item">
                                     <div class="icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg"
+                                        <img src="~/assets/images/@setting["UserOperatingModeIcon"]"
                                              alt="" />
                                     </div>
                                     <div class="text">
@@ -122,7 +124,7 @@
                             <div class="col-md-6">
                                 <div class="item mb-0">
                                     <div class="icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg"
+                                        <img src="~/assets/images/@setting["UserOperatingModeIcon"]"
                                              alt="" />
                                     </div>
                                     <div class="text">
@@ -134,7 +136,7 @@
                             <div class="col-md-6">
                                 <div class="item mb-0">
                                     <div class="icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg"
+                                        <img src="~/assets/images/@setting["ExperienceIcon"]"
                                              alt="" />
                                     </div>
                                     <div class="text">
@@ -146,7 +148,7 @@
                             <div class="col-md-6">
                                 <div class="item mb-0">
                                     <div class="icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg"
+                                        <img src="~/assets/images/@setting["SalaryIcon"]"
                                              alt="" />
                                     </div>
                                     <div class="text">
@@ -158,7 +160,7 @@
                             <div class="col-md-6">
                                 <div class="item mb-0">
                                     <div class="icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/graduation.svg"
+                                        <img src="~/assets/images/@setting["EducationIcon"]"
                                              alt="" />
                                     </div>
                                     <div class="text">
@@ -175,7 +177,7 @@
                             <div class="col-md-12">
                                 <div class="item">
                                     <div class="icon">
-                                        <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/folder.svg"
+                                        <img src="~/assets/images/@setting["FolderIcon"]"
                                              alt="" />
                                     </div>
                                     <div class="d-flex justify-content-between w-100">
@@ -204,7 +206,7 @@
                                                 <div class="icon d-flex">
                                                     <div class="all d-flex">
                                                         <div class="image">
-                                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/phone.svg"
+                                                            <img src="~/assets/images/@setting["CalendarIcon"]"
                                                                  alt="" />
                                                         </div>
                                                         <div class="text">
@@ -222,7 +224,7 @@
                                                 <div class="icon d-flex">
                                                     <div class="all d-flex">
                                                         <div class="image">
-                                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/phone.svg"
+                                                            <img src="~/assets/images/@setting["CalendarIcon"]"
                                                                  alt="" />
                                                         </div>
                                                         <div class="text">
@@ -240,7 +242,7 @@
                                                 <div class="icon d-flex justify-content-between">
                                                     <div class="all d-flex">
                                                         <div class="image">
-                                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/eye.svg"
+                                                            <img src="~/assets/images/@setting["EyeIcon"]"
                                                                  alt="" />
                                                         </div>
                                                         <div class="text">
@@ -264,7 +266,7 @@
                                                 <div class="icon d-flex justify-content-between">
                                                     <div class="all d-flex">
                                                         <div class="image">
-                                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/mail.svg"
+                                                            <img src="~/assets/images/@setting["MailIcon"]"
                                                                  alt="" />
                                                         </div>
                                                         <div class="text focus">
@@ -299,7 +301,7 @@
                                                 <div class="icon d-flex justify-content-between">
                                                     <div class="all d-flex">
                                                         <div class="image">
-                                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/phone.svg"
+                                                            <img src="~/assets/images/@setting["PhoneIcon"]"
                                                                  alt="" />
                                                         </div>
                                                         <div class="text focus">
@@ -337,7 +339,8 @@
                                                 <div class="icon d-flex justify-content-between">
                                                     <div class="all d-flex">
                                                         <div class="image">
-                                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/file2.svg" alt="" />
+                                                            <img src="~/assets/images/@setting["FileIcon"]"
+                                                                 alt="" />
                                                         </div>
                                                         <div class="text focus">
                                                             <p style="font-size: 16px; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">cv.pdf formats</p>
@@ -345,7 +348,7 @@
                                                     </div>
                                                     <div class="lock">
                                                         <div class="locking">
-                                                            <a href="@Model.CvPDF" download="@Model.CvPDF" class="image">
+                                                            <a href="javascript:void(0);" onclick="downloadPDF('@Url.Content("~/assets/images/User/Cvs/" + Model.CvPDF)', '@Model.Name')" class="image">
                                                                 <i class="bi bi-file-earmark-arrow-down-fill"></i>
                                                             </a>
                                                         </div>
@@ -401,7 +404,8 @@
                                 <div class="user_options" style=" font-size: 12px !important;">
                                     <div class="item">
                                         <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
+                                            <img src="~/assets/images/@setting["UserOperatingModeIcon"]"
+                                                 alt="" />
                                         </div>
                                         <div class="text">
                                             <h4>@cv.OperatingMode.Name</h4>
@@ -410,7 +414,8 @@
                                     </div>
                                     <div class="item">
                                         <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
+                                            <img src="~/assets/images/@setting["SalaryIcon"]"
+                                                 alt="" />
                                         </div>
                                         <div class="text">
                                             <h4>@(cv.Salary == 0 ? "Ə-h razılaşma ilə" : cv.Salary) (AZN)</h4>
@@ -419,7 +424,8 @@
                                     </div>
                                     <div class="item">
                                         <div class="icon">
-                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
+                                            <img src="~/assets/images/@setting["ExperienceIcon"]"
+                                                 alt="" />
                                         </div>
                                         <div class="text">
                                             <h4>@cv.Experience.Name</h4>
@@ -449,4 +455,15 @@
 </section>
 @section Script{
     <script src="~/assets/js/details.js"></script>
+  
+
+    <script>
+
+        function downloadPDF(pdfUrl, userName) {
+            var downloadLink = document.createElement("a");
+            downloadLink.href = pdfUrl;
+            downloadLink.download = userName + "_CV.pdf";
+            downloadLink.click();
+        }
+    </script>
 }

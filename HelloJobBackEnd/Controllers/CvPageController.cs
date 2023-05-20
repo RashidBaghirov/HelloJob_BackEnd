@@ -24,7 +24,8 @@ namespace HelloJobBackEnd.Controllers
                    .Include(c => c.BusinessArea)
                    .Include(o => o.OperatingMode)
                    .Include(x => x.User).
-                   Include(x => x.WishListItems).ThenInclude(x => x.WishList)
+                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User)
                    .Where(c => c.Status == OrderStatus.Accepted);
 
             if (!string.IsNullOrEmpty(search))
@@ -38,6 +39,8 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.Experince = _context.Experiences.ToList();
             ViewBag.Mode = _context.OperatingModes.ToList();
             ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs).ToList();
+            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
+
 
             return View(filteredCvs);
         }
@@ -53,7 +56,8 @@ namespace HelloJobBackEnd.Controllers
                     .Include(c => c.BusinessArea)
                     .Include(o => o.OperatingMode)
                     .Include(x => x.User).
-                    Include(x => x.WishListItems).ThenInclude(x => x.WishList)
+                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User)
                     .Where(c => c.Status == OrderStatus.Accepted);
             if (!string.IsNullOrEmpty(sort))
             {
@@ -78,6 +82,8 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.Education = _context.Educations.ToList();
             ViewBag.Experince = _context.Experiences.ToList();
             ViewBag.Mode = _context.OperatingModes.ToList();
+            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
+
             ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs).ToList();
 
             return PartialView("_UserblocksPartial", filteredCvs);
@@ -93,8 +99,10 @@ namespace HelloJobBackEnd.Controllers
                     .Include(c => c.BusinessArea)
                     .Include(o => o.OperatingMode)
                     .Include(x => x.User).
-                    Include(x => x.WishListItems).ThenInclude(x => x.WishList)
+                    Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User)
                     .Where(c => c.Status == OrderStatus.Accepted);
+            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
 
             List<Cv> filteredCvs = ApplyFilters(allcvs, businessIds, modeIds, educationIds, experienceIds, hasDriverLicense);
             return PartialView("_UserblocksPartial", filteredCvs);
@@ -134,33 +142,46 @@ namespace HelloJobBackEnd.Controllers
         public IActionResult Detail(int id)
         {
             if (id == 0) return NotFound();
-            IQueryable<Cv> cvs = _context.Cvs.AsNoTracking().AsQueryable();
+            IQueryable<Cv> cvs = _context.Cvs.Include(v => v.BusinessArea)
+              .Include(e => e.Education)
+                   .Include(e => e.Experience)
+                   .Include(c => c.City)
+                   .Include(c => c.BusinessArea)
+                   .Include(o => o.OperatingMode)
+                   .Include(x => x.User).
+                     Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User).AsNoTracking().AsQueryable();
 
-            Cv? cv = _context.Cvs.Include(v => v.BusinessArea).
-              Include(e => e.Education).
-              Include(e => e.Experience).
-              Include(c => c.City).
-              Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-              Include(o => o.OperatingMode).
-                 Include(x => x.WishListItems).ThenInclude(x => x.WishList)
+            Cv? cv = _context.Cvs.Include(v => v.BusinessArea)
+              .Include(e => e.Education)
+                   .Include(e => e.Experience)
+                   .Include(c => c.City)
+                   .Include(c => c.BusinessArea)
+                   .Include(o => o.OperatingMode)
+                   .Include(x => x.User).
+                 Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User)
              .FirstOrDefault(x => x.Id == id);
             if (cv is null) return NotFound();
             cv.Count++;
             _context.SaveChanges();
             ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(cvs, cv, id);
+            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
+
             return View(cv);
         }
 
         public IActionResult Search(string search)
         {
-            IQueryable<Cv> query = _context.Cvs.Include(v => v.BusinessArea).
-              Include(e => e.Education).
-              Include(e => e.Experience).
-              Include(c => c.City).
-              Include(c => c.BusinessArea).
-              Include(o => o.OperatingMode).
-                 Include(x => x.WishListItems).ThenInclude(x => x.WishList).
-              Include(x => x.User).AsQueryable().Where(x => x.Position.Contains(search));
+            IQueryable<Cv> query = _context.Cvs.Include(v => v.BusinessArea)
+              .Include(e => e.Education)
+                   .Include(e => e.Experience)
+                   .Include(c => c.City)
+                   .Include(c => c.BusinessArea)
+                   .Include(o => o.OperatingMode)
+                   .Include(x => x.User).
+                    Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User).AsQueryable().Where(x => x.Position.Contains(search));
             List<Cv> cvs = query.OrderByDescending(x => x.Id).Take(3).Where(c => c.Status == OrderStatus.Accepted).ToList();
             return PartialView("_SerachcvPartial", cvs);
         }

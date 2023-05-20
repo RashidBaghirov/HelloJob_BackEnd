@@ -19,9 +19,37 @@ namespace HelloJobBackEnd.Controllers
             _usermanager = usermanager;
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            List<WishList> wishlists = _context.WishLists
+                .Include(x => x.User)
+       .Include(x => x.WishListItems)
+           .ThenInclude(c => c.Cv)
+       .Include(x => x.WishListItems)
+           .ThenInclude(c => c.Vacans)
+               .ThenInclude(v => v.Company)
+       .Include(x => x.WishListItems)
+           .ThenInclude(c => c.Vacans)
+               .ThenInclude(v => v.BusinessArea)
+                   .ThenInclude(ba => ba.BusinessTitle)
+                   .Include(x => x.WishListItems)
+           .ThenInclude(c => c.Cv)
+               .ThenInclude(v => v.OperatingMode)
+                  .Include(x => x.WishListItems)
+           .ThenInclude(c => c.Cv)
+               .ThenInclude(v => v.Experience)
+       .Where(w => w.UserId == user.Id)
+       .ToList();
+            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
+
+            return View(wishlists);
         }
 
         public async Task<IActionResult> AddToWishlist(int itemId, string itemType)

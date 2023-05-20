@@ -31,6 +31,10 @@ namespace HelloJobBackEnd.DAL
         public DbSet<WishListItem> WishListItems { get; set; }
 
         public DbSet<WishList> WishLists { get; set; }
+        public DbSet<Rules> Rules { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+
+
 
 
 

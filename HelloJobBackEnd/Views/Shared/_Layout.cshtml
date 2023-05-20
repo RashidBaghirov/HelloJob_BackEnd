@@ -1,5 +1,7 @@
 ﻿@inject HelloJobBackEnd.Services.LayoutService layoutService
-
+@{
+    Dictionary<string, string> settings = layoutService.GetSettings();
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +32,8 @@
                 <div class="col-lg-6 col-md-4">
                     <div class="logo">
                         <a asp-controller="home" asp-action="index">
-                            <img class="lightmode" src="~/assets/images/logo.svg" alt="">
-                            <img class="nightmode" src="~/assets/images/night_mode_logo.svg" alt="">
+                            <img class="lightmode" src="~/assets/images/@settings["Logo"]" alt="">
+                            <img class="nightmode" src="~/assets/images/@settings["LogoNight"]" alt="">
                         </a>
                     </div>
                 </div>
@@ -46,7 +48,7 @@
                                 </a>
                                 <ul class="account_head_user_drop">
                                     <li><a asp-controller="myaccount" asp-action="index">Hesabım </a></li>
-                                    <li><a href="./security.html">Şəxsi məlumatlar</a></li>
+                                    <li><a asp-controller="myaccount" asp-action="Security">Şəxsi məlumatlar</a></li>
                                     <li><a asp-controller="account" asp-action="logout">Çıxış</a></li>
                                 </ul>
                             </div>
@@ -97,8 +99,8 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-12 logo_cont mobile_logo_cont">
                         <div class="logo">
-                            <img class="lightmode" src="~/assets/images/logo.svg" alt="">
-                            <img class="nightmode" src="~/assets/images/night_mode_logo.svg" alt="">
+                            <img class="lightmode" src="~/assets/images/@settings["Logo"]" alt="">
+                            <img class="nightmode" src="~/assets/images/@settings["LogoNight"]" alt="">
                         </div>
                         <button name="menu_close" class="menu_close"></button>
                     </div>
@@ -157,10 +159,10 @@
                 </ul>
             </div>
             <div class="col-md-12 p-0 mm_social">
-                <a target="_blank" href="https://www.facebook.com/hellojobaz"><i class="fab fa-facebook-f" aria-hidden="true"><span class="d-none">Facebook</span></i></a>
-                <a target="_blank" href="https://www.instagram.com/hellojobaz"><i class="fab fa-instagram" aria-hidden="true"><span class="d-none">Instagram</span></i></a>
-                <a target="_blank" href="https://www.linkedin.com/company/hellojobaz"><i class="fab fa-linkedin-in" aria-hidden="true"><span class="d-none">Linkedin</span></i></a>
-                <a target="_blank" href="https://t.me/hellojobaz"><i class="fab fa-telegram" aria-hidden="true"></i><span class="d-none">Telegram</span></a>
+                <a target="_blank" href="https://www.facebook.com/hellojobaz"><i class="fab fa-facebook-f" ><span class="d-none">Facebook</span></i></a>
+                <a target="_blank" href="https://www.instagram.com/hellojobaz"><i class="fab fa-instagram" ><span class="d-none">Instagram</span></i></a>
+                <a target="_blank" href="https://www.linkedin.com/company/hellojobaz"><i class="fab fa-linkedin-in" ><span class="d-none">Linkedin</span></i></a>
+                <a target="_blank" href="https://t.me/hellojobaz"><i class="fab fa-telegram" ></i><span class="d-none">Telegram</span></a>
             </div>
         </div>
         <div class="back animate__animated">
@@ -291,26 +293,27 @@
                 <p>© 2019-2023 Hellodigital</p>
                 <ul class="footer__social">
                     <li>
-                        <a href="">
-                            <img src="https://www.hellojob.az/content/assets//images/social/instagram.svg"
+                     
+                        <a target="_blank" href="https://www.instagram.com/hellojobaz">
+                            <img src="~/assets/images/@settings["InstagramIcon"]"
                                  alt="" />
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <img src="https://www.hellojob.az/content/assets//images/social/facebook.svg"
+                        <atarget ="_blank" href="https://www.facebook.com/hellojobaz">
+                            <img src="~/assets/images/@settings["FacebookIcon"]"
                                  alt="" />
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <img src="https://www.hellojob.az/content/assets//images/social/linkedin.svg"
+                        <a target ="_blank" href="https://www.linkedin.com/company/hellojobaz">
+                            <img src="~/assets/images/@settings["LinkedinIcon"]"
                                  alt="" />
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <img src="https://www.hellojob.az/content/assets//images/social/telegram.svg"
+                        <a target ="_blank" href="https://t.me/hellojobaz">
+                            <img src="~/assets/images/@settings["TelegramIcon"]"
                                  alt="" />
                         </a>
                     </li>

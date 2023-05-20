@@ -653,6 +653,78 @@
       "PackagePath": "staticwebassets\\assets\\css\\slick.css.map"
     },
     {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\122facebook.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\122facebook.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\141user-clock.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\141user-clock.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\167logo.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\167logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\183instagram.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\183instagram.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\262eye.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\262eye.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\278experience.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\278experience.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\278telegram.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\278telegram.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\365folder.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\365folder.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\379birthday-cake.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\379birthday-cake.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\403calendar.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\403calendar.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\409linkedin.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\409linkedin.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\464night_mode_logo.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\464night_mode_logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\470mail.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\470mail.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\635file2.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\635file2.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\653phone.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\653phone.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\852loc.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\852loc.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\864graduation.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\864graduation.svg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\977money.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\977money.svg"
+    },
+    {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\BusinessTitle\\19satis-cat.png.svg",
       "PackagePath": "staticwebassets\\assets\\images\\BusinessTitle\\19satis-cat.png.svg"
     },
@@ -771,6 +843,10 @@
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\3725uMIxAMv_400x400.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\Company\\3725uMIxAMv_400x400.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\575unnamed (1).png",
+      "PackagePath": "staticwebassets\\assets\\images\\Company\\575unnamed (1).png"
     },
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\119photo_2023-04-28_17-30-34.jpg",

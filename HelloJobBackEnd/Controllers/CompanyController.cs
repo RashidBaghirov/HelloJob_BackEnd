@@ -24,10 +24,10 @@ namespace HelloJobBackEnd.Controllers
         public IActionResult Index()
         {
             List<Company> companies = _context.Companies.Include(v => v.Vacans).
-                Include(x => x.Vacans).ThenInclude(x => x.WishListItems).ThenInclude(x => x.WishList).
+                Include(x => x.Vacans).ThenInclude(x => x.WishListItems).ThenInclude(x => x.WishList.User).
                 Include(x => x.User).
-                Include(x => x.Vacans).ThenInclude(x => x).
-                Include(b => b.Vacans).ThenInclude(b => b.BusinessArea).Where(x => x.Status == OrderStatus.Accepted).ToList();
+                Include(b => b.Vacans).ThenInclude(b => b.BusinessArea)
+                .Where(x => x.Status == OrderStatus.Accepted).ToList();
             return View(companies);
         }
 
@@ -63,7 +63,8 @@ namespace HelloJobBackEnd.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                ViewBag.Cvs = _context.Cvs.Where(x => x.UserId == user.Id).ToList();
+                ViewBag.Cvs = _context.Cvs.Where(x => x.UserId == user.Id && x.Status == OrderStatus.Accepted).ToList();
+                ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
 
             }
 
@@ -106,8 +107,8 @@ namespace HelloJobBackEnd.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                ViewBag.Cvs = _context.Cvs.Where(x => x.UserId == user.Id).ToList();
-
+                ViewBag.Cvs = _context.Cvs.Where(x => x.UserId == user.Id && x.Status == OrderStatus.Accepted).ToList();
+                ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
                 Request userRequest = _context.Requests.Include(r => r.RequestItems).FirstOrDefault(r => r.UserId == user.Id);
                 if (userRequest != null)
                 {
