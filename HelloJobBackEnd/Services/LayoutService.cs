@@ -1,7 +1,9 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
+using HelloJobBackEnd.Utilities.Enum;
 using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace HelloJobBackEnd.Services
@@ -32,6 +34,16 @@ namespace HelloJobBackEnd.Services
             return settings;
         }
 
+        public (List<Cv> cvList, List<Company> companyList, List<Vacans> vacansList) GetAllData()
+        {
+            var cvList = _context.Cvs.Where(x => x.Status == OrderStatus.Pending).ToList();
+            var companyList = _context.Companies.Where(x => x.Status == OrderStatus.Pending).ToList();
+            var vacansList = _context.Vacans.Include(x => x.Company)
+                .Include(b => b.BusinessArea).ThenInclude(x => x.BusinessTitle)
+                .Where(x => x.Status == OrderStatus.Pending).ToList();
+
+            return (cvList, companyList, vacansList);
+        }
 
     }
 }

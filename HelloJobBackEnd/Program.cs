@@ -1,6 +1,7 @@
 using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
 using HelloJobBackEnd.Services;
+using HelloJobBackEnd.Services.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -15,6 +16,15 @@ namespace HelloJobBackEnd
 
 
             builder.Services.AddScoped<LayoutService>();
+            builder.Services.AddScoped<IVacansService, VacansService>();
+            builder.Services.AddScoped<ICompanyService, CompanyService>();
+            builder.Services.AddScoped<IBusinessTitleService, BusinessTitleService>();
+            builder.Services.AddScoped<ILikedService, LikedService>();
+            builder.Services.AddScoped<ICvPageService, CvPageService>();
+            builder.Services.AddScoped<RequestService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
+
+
 
 
 

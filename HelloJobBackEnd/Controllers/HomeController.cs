@@ -1,5 +1,7 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
+using HelloJobBackEnd.Services;
+using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,55 +11,48 @@ namespace HelloJobBackEnd.Controllers
     public class HomeController : Controller
     {
         private readonly HelloJobDbContext _context;
+        private readonly IVacansService _vacansService;
+        private readonly ICompanyService _companyService;
+        private readonly IBusinessTitleService _businessTitleService;
 
-        public HomeController(HelloJobDbContext context)
+
+        public HomeController(HelloJobDbContext context, IVacansService vacansService, ICompanyService companyService, IBusinessTitleService businessTitleService)
         {
+            _vacansService = vacansService;
+            _companyService = companyService;
+            _businessTitleService = businessTitleService;
             _context = context;
         }
         public IActionResult Index(string search)
         {
+            IQueryable<Vacans> allVacans = _vacansService.GetAcceptedVacansWithRelatedData();
 
-            IQueryable<Vacans> allVacans = _context.Vacans.Include(v => v.BusinessArea).
-              Include(e => e.Education).
-              Include(e => e.Experience).
-              Include(c => c.City).
-              Include(c => c.Company).
-              Include(c => c.Company).
-                ThenInclude(x => x.User).
-              Include(c => c.BusinessArea).
-                Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-                     Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-               Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User).
-              Where(c => c.Status == OrderStatus.Accepted && c.Company.Status == OrderStatus.Accepted);
+            ViewBag.Company = _companyService.GetTopAcceptedCompaniesWithVacans(4);
 
-            ViewBag.Company = _context.Companies
-                    .Include(v => v.Vacans)
-                    .OrderByDescending(c => c.Vacans.Count)
-                        .Take(4).Where(x => x.Status == OrderStatus.Accepted)
-                        .ToList();
             if (!string.IsNullOrEmpty(search))
             {
                 allVacans = allVacans.Where(c => c.Position.Contains(search));
-
             }
+
             List<Vacans> vacans = allVacans.ToList();
+            ViewBag.Titles = _businessTitleService.GetAllBusinessTitlesWithAreas();
+
             return View(vacans);
         }
 
         public IActionResult Search(string search)
         {
-            IQueryable<Vacans> query = _context.Vacans.Include(v => v.BusinessArea).
-              Include(e => e.Education).
-              Include(e => e.Experience).
-              Include(c => c.City).
-              Include(c => c.Company).
-              Include(c => c.Company).
-                ThenInclude(x => x.User).
-              Include(c => c.BusinessArea).
-                Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-              Include(o => o.OperatingMode).AsQueryable().Where(x => x.Position.Contains(search));
-            List<Vacans> vacans = query.OrderByDescending(x => x.Id).Take(3).Where(c => c.Status == OrderStatus.Accepted).ToList();
+            IQueryable<Vacans> query = _vacansService.GetAcceptedVacansWithRelatedData()
+                .Where(x => x.Position.Contains(search));
+
+            List<Vacans> vacans = query.OrderByDescending(x => x.Id)
+                .Take(3)
+                .Where(c => c.Status == OrderStatus.Accepted)
+                .ToList();
+
             return PartialView("_SearchvacansPartial", vacans);
         }
+
+
     }
 }

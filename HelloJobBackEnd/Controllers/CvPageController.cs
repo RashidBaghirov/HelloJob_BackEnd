@@ -1,5 +1,6 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
+using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using HelloJobBackEnd.Utilities.Extension;
 using Microsoft.AspNetCore.Mvc;
@@ -10,23 +11,16 @@ namespace HelloJobBackEnd.Controllers
     public class CvPageController : Controller
     {
         private readonly HelloJobDbContext _context;
+        private readonly ICvPageService _cvPageService;
 
-        public CvPageController(HelloJobDbContext context)
+        public CvPageController(HelloJobDbContext context, ICvPageService cvPageService)
         {
             _context = context;
+            _cvPageService = cvPageService;
         }
         public IActionResult Index(string? search)
         {
-            IQueryable<Cv> allcvs = _context.Cvs.Include(v => v.BusinessArea)
-                   .Include(e => e.Education)
-                   .Include(e => e.Experience)
-                   .Include(c => c.City)
-                   .Include(c => c.BusinessArea)
-                   .Include(o => o.OperatingMode)
-                   .Include(x => x.User).
-                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User)
-                   .Where(c => c.Status == OrderStatus.Accepted);
+            IQueryable<Cv> allcvs = _cvPageService.GetAllCvs();
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -47,37 +41,9 @@ namespace HelloJobBackEnd.Controllers
 
 
         [HttpPost]
-        public IActionResult Sorts(string? sort)
+        public async Task<IActionResult> Sorts(string? sort)
         {
-            IQueryable<Cv> allcvs = _context.Cvs.Include(v => v.BusinessArea)
-                    .Include(e => e.Education)
-                    .Include(e => e.Experience)
-                    .Include(c => c.City)
-                    .Include(c => c.BusinessArea)
-                    .Include(o => o.OperatingMode)
-                    .Include(x => x.User).
-                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User)
-                    .Where(c => c.Status == OrderStatus.Accepted);
-            if (!string.IsNullOrEmpty(sort))
-            {
-                switch (sort)
-                {
-                    case "new":
-                        allcvs = allcvs.OrderByDescending(c => c.Id);
-                        break;
-                    case "old":
-                        allcvs = allcvs.OrderBy(c => c.Id);
-                        break;
-                    case "salary_desc":
-                        allcvs = allcvs.OrderByDescending(c => c.Salary);
-                        break;
-                    case "salary_asc":
-                        allcvs = allcvs.OrderBy(c => c.Salary);
-                        break;
-                }
-            }
-            List<Cv> filteredCvs = allcvs.ToList();
+            List<Cv> filteredCvs = await _cvPageService.GetSortedCvs(sort);
 
             ViewBag.Education = _context.Educations.ToList();
             ViewBag.Experince = _context.Experiences.ToList();
@@ -90,99 +56,33 @@ namespace HelloJobBackEnd.Controllers
         }
 
         [HttpPost]
-        public IActionResult FilterData(int[] businessIds, int[] modeIds, int[] educationIds, int[] experienceIds, bool? hasDriverLicense)
+        public async Task<IActionResult> FilterData(int[] businessIds, int[] modeIds, int[] educationIds, int[] experienceIds, bool? hasDriverLicense)
         {
-            IQueryable<Cv> allcvs = _context.Cvs.Include(v => v.BusinessArea)
-                    .Include(e => e.Education)
-                    .Include(e => e.Experience)
-                    .Include(c => c.City)
-                    .Include(c => c.BusinessArea)
-                    .Include(o => o.OperatingMode)
-                    .Include(x => x.User).
-                    Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User)
-                    .Where(c => c.Status == OrderStatus.Accepted);
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
 
-            List<Cv> filteredCvs = ApplyFilters(allcvs, businessIds, modeIds, educationIds, experienceIds, hasDriverLicense);
+            List<Cv> filteredCvs = await _cvPageService.GetFilteredData(businessIds, modeIds, educationIds, experienceIds, hasDriverLicense);
             return PartialView("_UserblocksPartial", filteredCvs);
         }
 
-        private List<Cv> ApplyFilters(IQueryable<Cv> cvs, int[] businessIds, int[] modeIds, int[] educationIds, int[] experienceIds, bool? hasDriverLicense)
-        {
-            if (businessIds != null && businessIds.Length > 0)
-            {
-                cvs = cvs.Where(c => businessIds.Contains(c.BusinessArea.Id));
-            }
-
-            if (modeIds != null && modeIds.Length > 0)
-            {
-                cvs = cvs.Where(c => modeIds.Contains(c.OperatingMode.Id));
-            }
-
-            if (educationIds != null && educationIds.Length > 0)
-            {
-                cvs = cvs.Where(c => educationIds.Contains(c.Education.Id));
-            }
-
-            if (experienceIds != null && experienceIds.Length > 0)
-            {
-                cvs = cvs.Where(c => experienceIds.Contains(c.Experience.Id));
-            }
-
-            if (hasDriverLicense.HasValue)
-            {
-                cvs = cvs.Where(c => c.DrivingLicense == hasDriverLicense.Value);
-            }
-
-
-
-            return cvs.ToList();
-        }
         public IActionResult Detail(int id)
         {
             if (id == 0) return NotFound();
-            IQueryable<Cv> cvs = _context.Cvs.Include(v => v.BusinessArea)
-              .Include(e => e.Education)
-                   .Include(e => e.Experience)
-                   .Include(c => c.City)
-                   .Include(c => c.BusinessArea)
-                   .Include(o => o.OperatingMode)
-                   .Include(x => x.User).
-                     Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User).AsNoTracking().AsQueryable();
+            IQueryable<Cv> allcvs = _cvPageService.GetAllCvs();
 
-            Cv? cv = _context.Cvs.Include(v => v.BusinessArea)
-              .Include(e => e.Education)
-                   .Include(e => e.Experience)
-                   .Include(c => c.City)
-                   .Include(c => c.BusinessArea)
-                   .Include(o => o.OperatingMode)
-                   .Include(x => x.User).
-                 Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User)
-             .FirstOrDefault(x => x.Id == id);
+
+            Cv? cv = _cvPageService.Details(id);
             if (cv is null) return NotFound();
             cv.Count++;
             _context.SaveChanges();
-            ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(cvs, cv, id);
+            ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(allcvs, cv, id);
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
 
             return View(cv);
         }
 
-        public IActionResult Search(string search)
+        public async Task<IActionResult> Search(string search)
         {
-            IQueryable<Cv> query = _context.Cvs.Include(v => v.BusinessArea)
-              .Include(e => e.Education)
-                   .Include(e => e.Experience)
-                   .Include(c => c.City)
-                   .Include(c => c.BusinessArea)
-                   .Include(o => o.OperatingMode)
-                   .Include(x => x.User).
-                    Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User).AsQueryable().Where(x => x.Position.Contains(search));
-            List<Cv> cvs = query.OrderByDescending(x => x.Id).Take(3).Where(c => c.Status == OrderStatus.Accepted).ToList();
+            List<Cv> cvs = await _cvPageService.SearchCvs(search);
             return PartialView("_SerachcvPartial", cvs);
         }
 

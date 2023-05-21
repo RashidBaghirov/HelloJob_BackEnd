@@ -1,5 +1,6 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
+using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using HelloJobBackEnd.Utilities.Extension;
 using HelloJobBackEnd.ViewModel;
@@ -15,47 +16,32 @@ namespace HelloJobBackEnd.Controllers
     {
         private readonly HelloJobDbContext _context;
         private readonly UserManager<User> _usermanager;
+        private readonly IVacansService _vacansService;
+        private readonly ICompanyService _companyService;
 
-        public CompanyController(HelloJobDbContext context, UserManager<User> usermanager)
+        public CompanyController(HelloJobDbContext context, UserManager<User> usermanager, IVacansService vacansService, ICompanyService companyService)
         {
             _context = context;
             _usermanager = usermanager;
+            _vacansService = vacansService;
+            _companyService = companyService;
         }
         public IActionResult Index()
         {
-            List<Company> companies = _context.Companies.Include(v => v.Vacans).
-                Include(x => x.Vacans).ThenInclude(x => x.WishListItems).ThenInclude(x => x.WishList.User).
-                Include(x => x.User).
-                Include(b => b.Vacans).ThenInclude(b => b.BusinessArea)
-                .Where(x => x.Status == OrderStatus.Accepted).ToList();
+            List<Company> companies = _companyService.GetTopAcceptedCompaniesWithVacans();
             return View(companies);
         }
 
         public IActionResult Detail(int id)
         {
-            Company? company = _context.Companies.Include(v => v.Vacans).
-                Include(x => x.Vacans).ThenInclude(x => x.WishListItems).ThenInclude(x => x.WishList).
-                Include(x => x.User).
-                Include(x => x.Vacans).ThenInclude(x => x).
-                Include(b => b.Vacans).ThenInclude(b => b.BusinessArea).
-                FirstOrDefault(x => x.Id == id);
+            Company? company = _companyService.GetCompanyWithVacansById(id);
 
             return View(company);
         }
 
         public async Task<IActionResult> VacansDetail(int id)
         {
-            IQueryable<Vacans> vacanss = _context.Vacans.Include(v => v.BusinessArea).
-              Include(e => e.Education).
-              Include(e => e.Experience).
-              Include(c => c.City).
-              Include(c => c.Company).
-              Include(c => c.Company).
-                ThenInclude(x => x.User).
-              Include(c => c.BusinessArea).
-                Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-                     Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-               Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User);
+            IQueryable<Vacans> vacanss = _vacansService.GetAcceptedVacansWithRelatedData();
             if (User.Identity.IsAuthenticated)
             {
                 User user = await _usermanager.FindByNameAsync(User.Identity.Name);
@@ -68,17 +54,7 @@ namespace HelloJobBackEnd.Controllers
 
             }
 
-            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
-              Include(e => e.Education).
-              Include(e => e.Experience).
-              Include(c => c.City).
-              Include(c => c.Company).
-              Include(c => c.Company).
-                ThenInclude(x => x.User).
-              Include(c => c.BusinessArea).
-                Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-                     Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-               Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User).FirstOrDefault(x => x.Id == id);
+            Vacans? vacans = vacanss.FirstOrDefault(x => x.Id == id);
             vacans.Count++;
             _context.SaveChanges();
             ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(vacanss, vacans, id);
@@ -89,17 +65,7 @@ namespace HelloJobBackEnd.Controllers
         public async Task<IActionResult> VacansDetail(int id, int cvsID)
         {
             TempData["Request"] = false;
-            IQueryable<Vacans> vacanss = _context.Vacans.Include(v => v.BusinessArea).
-             Include(e => e.Education).
-             Include(e => e.Experience).
-             Include(c => c.City).
-             Include(c => c.Company).
-             Include(c => c.Company).
-               ThenInclude(x => x.User).
-             Include(c => c.BusinessArea).
-               Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-                    Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-              Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User);
+            IQueryable<Vacans> vacanss = _vacansService.GetAcceptedVacansWithRelatedData();
             if (User.Identity.IsAuthenticated)
             {
                 User user = await _usermanager.FindByNameAsync(User.Identity.Name);
@@ -142,19 +108,7 @@ namespace HelloJobBackEnd.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
-               Include(e => e.Education).
-               Include(e => e.Experience).
-               Include(c => c.City).
-               Include(c => c.Company).
-               Include(c => c.Company).
-                 ThenInclude(x => x.User).
-               Include(c => c.BusinessArea).
-                 Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-                      Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
-                Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User).FirstOrDefault(x => x.Id == id);
-            await _context.SaveChangesAsync();
-
+            Vacans? vacans = vacanss.FirstOrDefault(x => x.Id == id);
             ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(vacanss, vacans, id);
             TempData["Request"] = true;
 

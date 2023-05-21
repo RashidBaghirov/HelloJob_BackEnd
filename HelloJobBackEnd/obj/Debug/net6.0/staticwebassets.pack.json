@@ -829,24 +829,12 @@
       "PackagePath": "staticwebassets\\assets\\images\\BusinessTitle\\xidmet.png.svg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\114kb-og-image.png",
-      "PackagePath": "staticwebassets\\assets\\images\\Company\\114kb-og-image.png"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\243unnamed (1).png",
-      "PackagePath": "staticwebassets\\assets\\images\\Company\\243unnamed (1).png"
-    },
-    {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\3095uMIxAMv_400x400.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\Company\\3095uMIxAMv_400x400.jpg"
     },
     {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\3725uMIxAMv_400x400.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\Company\\3725uMIxAMv_400x400.jpg"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\575unnamed (1).png",
-      "PackagePath": "staticwebassets\\assets\\images\\Company\\575unnamed (1).png"
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\34kb-og-image.png",
+      "PackagePath": "staticwebassets\\assets\\images\\Company\\34kb-og-image.png"
     },
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\119photo_2023-04-28_17-30-34.jpg",
@@ -999,6 +987,10 @@
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\details.js",
       "PackagePath": "staticwebassets\\assets\\js\\details.js"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\liked.js",
+      "PackagePath": "staticwebassets\\assets\\js\\liked.js"
     },
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\owl.carousel.min.js",

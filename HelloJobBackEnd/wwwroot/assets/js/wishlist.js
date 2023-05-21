@@ -33,3 +33,7 @@ document.addEventListener('click', function (event) {
         parentDiv.parentNode.removeChild(parentDiv);
     }
 });
+
+const unlikehref = document.querySelectorAll('.unliked-button');
+
+

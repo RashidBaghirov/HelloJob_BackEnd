@@ -24,6 +24,18 @@
 
     }
 }
+@if (TempData["Delete"] != null)
+{
+    if ((bool)TempData["Delete"] == true)
+    {
+        <input type="hidden" id="deleteSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="deleteError" />
+
+    }
+}
 <table class="table">
     <thead>
         <tr>
@@ -90,6 +102,16 @@
                 toastr["success"]("Welcome back to us!", "1 Company Status Changed Is 'Rejected' ")
             }
             else if ($("#rejectedError").length) {
+                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#deleteSuccess").length) {
+                toastr["success"]("Welcome back to us!", "1 Company 'deleted' ")
+            }
+            else if ($("#deleteError").length) {
                 toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
             }
         })

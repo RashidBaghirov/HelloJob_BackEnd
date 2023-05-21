@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Net.Mail;
 using System.Net;
+using HelloJobBackEnd.ViewModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -135,5 +137,26 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             smtp.Send(mail);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            TempData["Deleted"] = false;
+            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
+                  Include(e => e.Education).
+                Include(e => e.Experience).
+                Include(c => c.City).
+                Include(c => c.BusinessArea).
+                Include(i => i.infoEmployeers).
+                 Include(i => i.InfoWorks).
+                Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
+            List<WishListItem> wishlistItems = _context.WishListItems.Where(w => w.VacansId == vacans.Id).ToList();
+            _context.WishListItems.RemoveRange(wishlistItems);
+
+            _context.Vacans.Remove(vacans);
+            _context.SaveChanges();
+            TempData["Deleted"] = true;
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

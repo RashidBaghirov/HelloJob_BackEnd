@@ -1,6 +1,9 @@
 ﻿@{
     Layout = "_MyAccount";
+    Dictionary<string, string> setting = ViewBag.Setting;
+
 }
+@model List<WishList>
 
 <div class="account">
     <div class="account_bar">
@@ -138,10 +141,10 @@
                 <h1>Bəyəndiklərim</h1>
                 <ul class="tab-links">
                     <li>
-                        <a class="cv-link">Cv-lər(1)</a>
+                        <a class="cv-link">Cv-lər</a>
                     </li>
                     <li>
-                        <a class="vacancy-link">Vakansiyalar(1)</a>
+                        <a class="vacancy-link">Vakansiyalar</a>
                     </li>
                 </ul>
             </div>
@@ -154,84 +157,117 @@
                                 <div class="col-lg-10">
                                     <div class="liked_vacans">
                                         <div class="vacancies">
-                                            <div class="vacancies_href">
-                                                <a href="">
-                                                    <div class="item_left">
-                                                        <div class="icon">
-                                                            <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg" alt="Bağban">
+                                            @foreach (var wishlist in Model)
+                                            {
+                                                @foreach (var item in wishlist.WishListItems)
+                                                {
+
+                                                    @if (item.Vacans is not null)
+                                                    {
+                                                        <div class="vacancies_href">
+                                                            <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@item.Vacans.Id">
+                                                                <div class="item_left">
+                                                                    <div class="icon" style="width: 58px !important; height: auto !important">
+                                                                        <img style="width: 100%; object-fit: contain;" src="~/assets/images/BusinessTitle/@item.Vacans.BusinessArea.BusinessTitle.Image" alt="@item.Vacans.Company.Name" />
+                                                                    </div>
+                                                                    <div class="title">
+                                                                        <h3 style="position: inherit !important;">@item.Vacans.Position</h3>
+                                                                        <p>@item.Vacans.BusinessArea.Name</p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <div class="item_right">
+                                                                <span class="salary">@(item.Vacans.Salary == 0 ? "Ə-h razılaşma ilə" : item.Vacans.Salary) (AZN)</span>
+                                                                <span class="date">@item.Vacans.CreatedAt.ToString("dd.MM")</span>
+                                                                <span class="like">
+                                                                    <a class="like-button" data-item-id="@item.Vacans.Id" data-item-type="Vacans">
+                                                                        <i class="fa-regular fa-heart unliked"></i>
+                                                                    </a>
+                                                                    <a class="unliked-button" data-item-id="@item.Vacans.Id" data-item-type="Vacans">
+                                                                        <i class="fa-solid fa-heart liked deletedvacans @(item.Vacans.WishListItems.Any(w => w.WishList.User.UserName == User.Identity.Name && w.IsLiked == true) ? "hidden" : "")"></i>
+                                                                    </a>
+
+                                                                </span>
+                                                            </div>
                                                         </div>
-                                                        <div class="title">
-                                                            <h3>Bağban</h3>
-                                                            <p></p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="item_right">
-                                                    <span class="salary">500 - 500 AZN</span>
-                                                    <span class="date">Dünən 11:29</span>
-                                                    <span class="like">
-                                                        <i class="fa-regular fa-heart unliked"></i>
-                                                        <i class="fa-solid fa-heart liked"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
+                                                    }
+                                                }
+                                            }
                                         </div>
                                     </div>
                                     <div class="liked_cv">
-                                        <div class="user_block">
-                                            <a href="./CVdetail.html" target="_blank">
-                                                <div class="header_user">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="user_img">
-                                                            <img src="https://e7.pngegg.com/pngimages/518/64/png-clipart-person-icon-computer-icons-user-profile-symbol-person-miscellaneous-monochrome-thumbnail.png" alt="">
-                                                        </div>
-                                                        <div class="d-flex justify-content-between w-100">
-                                                            <div class="user_desc">
-                                                                <h3 class="profession">İnsan resursları üzrə kiçik mütəxəssis </h3>
+                                        <div class="vacancies">
+                                            @foreach (var wishlist in Model)
+                                            {
+                                                @foreach (var item in wishlist.WishListItems)
+                                                {
 
-                                                                <p class="fullname">Nərminə Nəzərli Əsgərova</p>
+                                                    @if (item.Cv is not null)
+                                                    {
+                                                        <div id="userBlocks" class="user_block">
+                                                            <a asp-controller="cvpage" asp-action="detail" asp-route-id="@item.Cv.Id" target="_blank">
+                                                                <div class="header_user">
+                                                                    <div class="d-flex justify-content-between align-items-center">
+                                                                        <div class="user_img">
+                                                                            <img src="~/assets/images/User/@item.Cv.Image" alt="">
+                                                                        </div>
+                                                                        <div class="d-flex justify-content-between w-100">
+                                                                            <div class="user_desc">
+                                                                                <h3 class="profession">@item.Cv.Position</h3>
+
+                                                                                <p class="fullname">@string.Concat(item.Cv.Name," ",item.Cv.Surname)</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="user_options" style="justify-content:space-around !important">
+                                                                    <div class="item">
+                                                                        <div class="icon">
+                                                                            <img src="~/assets/images/@setting["UserOperatingModeIcon"]"
+                                                                                 alt="" />
+                                                                        </div>
+                                                                        <div class="text">
+                                                                            <h4>@item.Cv.OperatingMode.Name</h4>
+                                                                            <p>İş rejimi</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="item">
+                                                                        <div class="icon">
+                                                                            <img src="~/assets/images/@setting["SalaryIcon"]"
+                                                                                 alt="" />
+                                                                        </div>
+                                                                        <div class="text">
+                                                                            <h4>@(item.Cv.Salary == 0 ? "Ə-h razılaşma ilə" : item.Cv.Salary) (AZN)</h4>
+                                                                            <p>Minimum əmək haqqı</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="item">
+                                                                        <div class="icon">
+                                                                            <img src="~/assets/images/@setting["ExperienceIcon"]"
+                                                                                 alt="" />
+                                                                        </div>
+                                                                        <div class="text">
+                                                                            <h4>@item.Cv.Experience.Name</h4>
+                                                                            <p>İş staji</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </a>
+                                                            <div class="hearts">
+                                                                <span class="like">
+                                                                    <a class="like-button" data-item-id="@item.Cv.Id" data-item-type="Cv">
+                                                                        <i class="fa-regular fa-heart unliked"></i>
+                                                                    </a>
+                                                                    <a class="unliked-button" data-item-id="@item.Cv.Id" data-item-type="Cv">
+                                                                        <i class="fa-solid fa-heart liked deletedcv @(item.Cv.WishListItems.Any(w => w.WishList.User.UserName == User.Identity.Name && w.IsLiked == true) ? "hidden" : "")"></i>
+                                                                    </a>
+                                                                </span>
                                                             </div>
-
                                                         </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="user_options" style="justify-content:space-around !important">
-                                                    <div class="item">
-                                                        <div class="icon">
-                                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
-                                                        </div>
-                                                        <div class="text">
-                                                            <h4>Tam-ştat</h4>
-                                                            <p>İş rejimi</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item">
-                                                        <div class="icon">
-                                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
-                                                        </div>
-                                                        <div class="text">
-                                                            <h4>600</h4>
-                                                            <p>Minimum əmək haqqı AZN</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item">
-                                                        <div class="icon">
-                                                            <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
-                                                        </div>
-                                                        <div class="text">
-                                                            <h4>1 ildən 3 ilə qədər</h4>
-                                                            <p>İş staji</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <div class="hearts">
-                                                <span class="like">
-                                                    <i class="fa-regular fa-heart unliked"></i>
-                                                    <i class="fa-solid fa-heart liked"></i>
-                                                </span>
-                                            </div>
+                                                    }
+                                                }
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -381,100 +417,132 @@
                     <h1>Bəyəndiklərim</h1>
                     <ul class="tab-links">
                         <li>
-                            <a class="cv-link">Cv-lər(1)</a>
+                            <a class="cv-link">Cv-lər</a>
                         </li>
                         <li>
-                            <a class="vacancy-link">Vakansiyalar(1)</a>
+                            <a class="vacancy-link">Vakansiyalar</a>
                         </li>
                     </ul>
                 </div>
                 <div class="inner_tab">
-
                     <div id="vacans_cv">
                         <div class="likedVacans">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-10">
-                                        <div class="liked_vacans" id="cv-section">
+                                        <div class="liked_vacans">
                                             <div class="vacancies">
-                                                <div class="vacancies_href">
-                                                    <a href="">
-                                                        <div class="item_left">
-                                                            <div class="icon">
-                                                                <img src="https://www.hellojob.az/uploads/_categories/2023/03/17/muxtelif-cat-6414343d74be26414343d74bed-Q30Ca59zmtb--84.svg" alt="Bağban">
+                                                @foreach (var wishlist in Model)
+                                                {
+                                                    @foreach (var item in wishlist.WishListItems)
+                                                    {
+
+                                                        @if (item.Vacans is not null)
+                                                        {
+                                                            <div class="vacancies_href">
+                                                                <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@item.Vacans.Id">
+                                                                    <div class="item_left">
+                                                                        <div class="icon" style="width: 58px !important; height: auto !important">
+                                                                            <img style="width: 100%; object-fit: contain;" src="~/assets/images/BusinessTitle/@item.Vacans.BusinessArea.BusinessTitle.Image" alt="@item.Vacans.Company.Name" />
+                                                                        </div>
+                                                                        <div class="title">
+                                                                            <h3 style="position: inherit !important;">@item.Vacans.Position</h3>
+                                                                            <p>@item.Vacans.BusinessArea.Name</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                                <div class="item_right">
+                                                                    <span class="salary">@(item.Vacans.Salary == 0 ? "Ə-h razılaşma ilə" : item.Vacans.Salary) (AZN)</span>
+                                                                    <span class="date">@item.Vacans.CreatedAt.ToString("dd.MM")</span>
+                                                                    <span class="like">
+                                                                        <a class="like-button" data-item-id="@item.Vacans.Id" data-item-type="Vacans">
+                                                                            <i class="fa-regular fa-heart unliked"></i>
+                                                                        </a>
+                                                                        <a class="unliked-button" data-item-id="@item.Vacans.Id" data-item-type="Vacans">
+                                                                            <i class="fa-solid fa-heart liked deletedvacans @(item.Vacans.WishListItems.Any(w => w.WishList.User.UserName == User.Identity.Name && w.IsLiked == true) ? "hidden" : "")"></i>
+                                                                        </a>
+
+                                                                    </span>
+                                                                </div>
                                                             </div>
-                                                            <div class="title">
-                                                                <h3>Bağban</h3>
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <div class="item_right">
-                                                        <span class="salary">500 - 500 AZN</span>
-                                                        <span class="date">Dünən 11:29</span>
-                                                        <span class="like">
-                                                            <i class="fa-regular fa-heart unliked"></i>
-                                                            <i class="fa-solid fa-heart liked"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                                        }
+                                                    }
+                                                }
                                             </div>
                                         </div>
-                                        <div class="liked_cv" id="vacancy-section">
-                                            <div class="user_block">
-                                                <a href="./CVdetail.html" target="_blank">
-                                                    <div class="header_user">
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                            <div class="user_img">
-                                                                <img src="https://e7.pngegg.com/pngimages/518/64/png-clipart-person-icon-computer-icons-user-profile-symbol-person-miscellaneous-monochrome-thumbnail.png" alt="">
-                                                            </div>
-                                                            <div class="d-flex justify-content-between w-100">
-                                                                <div class="user_desc">
-                                                                    <h3 class="profession">İnsan resursları üzrə kiçik mütəxəssis </h3>
+                                        <div class="liked_cv">
+                                            <div class="vacancies">
+                                                @foreach (var wishlist in Model)
+                                                {
+                                                    @foreach (var item in wishlist.WishListItems)
+                                                    {
 
-                                                                    <p class="fullname">Nərminə Nəzərli Əsgərova</p>
+                                                        @if (item.Cv is not null)
+                                                        {
+                                                            <div id="userBlocks" class="user_block">
+                                                                <a asp-controller="cvpage" asp-action="detail" asp-route-id="@item.Cv.Id" target="_blank">
+                                                                    <div class="header_user">
+                                                                        <div class="d-flex justify-content-between align-items-center">
+                                                                            <div class="user_img">
+                                                                                <img src="~/assets/images/User/@item.Cv.Image" alt="">
+                                                                            </div>
+                                                                            <div class="d-flex justify-content-between w-100">
+                                                                                <div class="user_desc">
+                                                                                    <h3 class="profession">@item.Cv.Position</h3>
+
+                                                                                    <p class="fullname">@string.Concat(item.Cv.Name," ",item.Cv.Surname)</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="user_options" style="justify-content:space-around !important">
+                                                                        <div class="item">
+                                                                            <div class="icon">
+                                                                                <img src="~/assets/images/@setting["UserOperatingModeIcon"]"
+                                                                                     alt="" />
+                                                                            </div>
+                                                                            <div class="text">
+                                                                                <h4>@item.Cv.OperatingMode.Name</h4>
+                                                                                <p>İş rejimi</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="item">
+                                                                            <div class="icon">
+                                                                                <img src="~/assets/images/@setting["SalaryIcon"]"
+                                                                                     alt="" />
+                                                                            </div>
+                                                                            <div class="text">
+                                                                                <h4>@(item.Cv.Salary == 0 ? "Ə-h razılaşma ilə" : item.Cv.Salary) (AZN)</h4>
+                                                                                <p>Minimum əmək haqqı</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="item">
+                                                                            <div class="icon">
+                                                                                <img src="~/assets/images/@setting["ExperienceIcon"]"
+                                                                                     alt="" />
+                                                                            </div>
+                                                                            <div class="text">
+                                                                                <h4>@item.Cv.Experience.Name</h4>
+                                                                                <p>İş staji</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </a>
+                                                                <div class="hearts">
+                                                                    <span class="like">
+                                                                        <a class="like-button" data-item-id="@item.Cv.Id" data-item-type="Cv">
+                                                                            <i class="fa-regular fa-heart unliked"></i>
+                                                                        </a>
+                                                                        <a class="unliked-button" data-item-id="@item.Cv.Id" data-item-type="Cv">
+                                                                            <i class="fa-solid fa-heart liked deletedcv @(item.Cv.WishListItems.Any(w => w.WishList.User.UserName == User.Identity.Name && w.IsLiked == true) ? "hidden" : "")"></i>
+                                                                        </a>
+                                                                    </span>
                                                                 </div>
-
                                                             </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="user_options">
-                                                        <div class="item">
-                                                            <div class="icon">
-                                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/user-clock.svg" alt="">
-                                                            </div>
-                                                            <div class="text">
-                                                                <h4>Tam-ştat</h4>
-                                                                <p>İş rejimi</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item">
-                                                            <div class="icon">
-                                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/money.svg" alt="">
-                                                            </div>
-                                                            <div class="text">
-                                                                <h4>600</h4>
-                                                                <p>Minimum əmək haqqı AZN</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item">
-                                                            <div class="icon">
-                                                                <img src="https://www.hellojob.az/content/assets/images/resume/svg-icons/briefcase.svg" alt="">
-                                                            </div>
-                                                            <div class="text">
-                                                                <h4>1 ildən 3 ilə qədər</h4>
-                                                                <p>İş staji</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="hearts">
-                                                    <span class="like">
-                                                        <i class="fa-regular fa-heart unliked"></i>
-                                                        <i class="fa-solid fa-heart liked"></i>
-                                                    </span>
-                                                </div>
+                                                        }
+                                                    }
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -484,6 +552,7 @@
 
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

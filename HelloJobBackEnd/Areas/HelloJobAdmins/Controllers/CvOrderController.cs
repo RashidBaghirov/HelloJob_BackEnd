@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Net.Mail;
 using System.Net;
+using HelloJobBackEnd.Utilities.Extension;
+using HelloJobBackEnd.ViewModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -15,10 +18,12 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
     public class CvOrderController : Controller
     {
         private readonly HelloJobDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public CvOrderController(HelloJobDbContext context)
+        public CvOrderController(HelloJobDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         public IActionResult Index()
@@ -137,6 +142,31 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
             return View(cv);
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            TempData["Delete"] = false;
+            Cv? cv = _context.Cvs.Include(v => v.BusinessArea).
+                Include(e => e.Education).
+                Include(e => e.Experience).
+                Include(c => c.City).
+                Include(c => c.BusinessArea).
+                Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
+
+
+            var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
+            string filepath = Path.Combine(imagefolderPath, "User", cv.Image);
+            ExtensionMethods.DeleteImage(filepath);
+            string pdfpath = Path.Combine(imagefolderPath, "User", "CVs", cv.CvPDF);
+            ExtensionMethods.DeleteImage(pdfpath);
+            List<WishListItem> wishlistItems = _context.WishListItems.Where(w => w.CvId == cv.Id).ToList();
+            _context.WishListItems.RemoveRange(wishlistItems);
+            _context.Cvs.Remove(cv);
+            _context.SaveChanges();
+            TempData["Delete"] = true;
+            return RedirectToAction(nameof(Index));
+        }
+
 
     }
 }

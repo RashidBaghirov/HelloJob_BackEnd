@@ -1,4 +1,7 @@
-﻿@if (TempData["Login"] != null)
+﻿@model DashboardVM
+
+
+@if (TempData["Login"] != null)
 {
     if ((bool)TempData["Login"] == true)
     {
@@ -10,6 +13,34 @@
 
     }
 }
+
+<input hidden class="maliyye" value="@Model.Maliyye" />
+<input hidden class="marketinq" value="@Model.Marketinq" />
+<input hidden class="texnalogiya" value="@Model.Texnalogiya" />
+<input hidden class="satish" value="@Model.Satish" />
+<input hidden class="xitmet" value="@Model.Xidmet" />
+<input hidden class="dizayn" value="@Model.Dizayn" />
+<input hidden class="muxtelif" value="@Model.Muxtelif" />
+<input hidden class="sehiyye" value="@Model.Sehiyye" />
+<input hidden class="huquq" value="@Model.Huquq" />
+<input hidden class="tehsilelm" value="@Model.TehsilElm" />
+<input hidden class="senaye" value="@Model.Senaye" />
+<input hidden class="inzibati" value="@Model.Inzibati" />
+<input hidden class="saturdeyorder" value="@Model.SaturdayCvOrders" />
+<input hidden class="saturdeyorder" value="@Model.SaturdayVacansOrders" />
+<input hidden class="mondayorder" value="@Model.MondayCVOrders" />
+<input hidden class="mondayorder" value="@Model.MondayVacansOrders" />
+<input hidden class="thursdayorder" value="@Model.ThursdayCVOrders" />
+<input hidden class="thursdayorder" value="@Model.ThursdayVacansOrders" />
+<input hidden class="wednesdayorder" value="@Model.WednesCVOrders" />
+<input hidden class="wednesdayorder" value="@Model.WednesdayVacansOrders" />
+<input hidden class="tuesdayorder" value="@Model.TuesdayCVOrders" />
+<input hidden class="tuesdayorder" value="@Model.TuesdayVacansOrders" />
+<input hidden class="fridayorder" value="@Model.FridayCVOrders" />
+<input hidden class="fridayorder" value="@Model.FridayVacansOrders" />
+<input hidden class="sundayorder" value="@Model.SundayCvOrders" />
+<input hidden class="sundayorder" value="@Model.SundayVacansOrders" />
+
 
 @section Scripts{
 <script>

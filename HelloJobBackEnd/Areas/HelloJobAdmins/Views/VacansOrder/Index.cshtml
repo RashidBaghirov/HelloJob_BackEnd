@@ -24,6 +24,18 @@
 
     }
 }
+@if (TempData["Delete"] != null)
+{
+    if ((bool)TempData["Delete"] == true)
+    {
+        <input type="hidden" id="deleteSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="deleteError" />
+
+    }
+}
 <table class="table">
     <thead>
         <tr>
@@ -55,12 +67,6 @@
                 @Html.DisplayNameFor(model => model.DrivingLicense)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndedAt)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th></th>
@@ -85,7 +91,7 @@
                     @Html.DisplayFor(modelItem => item.Experience.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Salary)
+                    @(item.Salary == 0 ? "Ə-h razılaşma ilə" : item.Salary)
             </td>
             <td>
                     @Html.DisplayFor(modelItem => item.BusinessArea.Name)
@@ -97,17 +103,13 @@
                 @Html.DisplayFor(modelItem => item.DrivingLicense)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndedAt)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                     <a asp-action="Accept" asp-route-id="@item.Id">Accept</a> |
                     <a asp-action="Reject" asp-route-id="@item.Id">Reject</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
+
             </td>
         </tr>
 }
@@ -130,6 +132,16 @@
                 toastr["success"]("Welcome back to us!", "1 Company Status Changed Is 'Rejected' ")
             }
             else if ($("#rejectedError").length) {
+                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#deleteSuccess").length) {
+                toastr["success"]("Welcome back to us!", "1 VAcans 'deleted' ")
+            }
+            else if ($("#deleteError").length) {
                 toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
             }
         })

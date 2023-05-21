@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
 using System.Net;
+using HelloJobBackEnd.Services.Interface;
 
 namespace HelloJobBackEnd.Controllers
 {
@@ -13,45 +14,41 @@ namespace HelloJobBackEnd.Controllers
     {
         private readonly UserManager<User> _usermanager;
         private readonly HelloJobDbContext _context;
+        private readonly ICompanyService _companyService;
+        private readonly ILikedService _likedService;
 
-        public LikedController(UserManager<User> usermanager, HelloJobDbContext context)
+        public LikedController(UserManager<User> usermanager, HelloJobDbContext context, ICompanyService companyService, ILikedService likedService)
         {
             _usermanager = usermanager;
             _context = context;
+            _companyService = companyService;
+            _likedService = likedService;
         }
         public async Task<IActionResult> Index()
         {
-            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
-
-            if (user is null)
+            if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+
+                if (user is null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                List<WishList> wishlists = await _likedService.GetWishLists(user);
+
+                ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
+                ViewBag.Company = _companyService.GetTopAcceptedCompaniesWithVacans(4);
+
+                return View(wishlists);
             }
 
-            List<WishList> wishlists = _context.WishLists
-                .Include(x => x.User)
-       .Include(x => x.WishListItems)
-           .ThenInclude(c => c.Cv)
-       .Include(x => x.WishListItems)
-           .ThenInclude(c => c.Vacans)
-               .ThenInclude(v => v.Company)
-       .Include(x => x.WishListItems)
-           .ThenInclude(c => c.Vacans)
-               .ThenInclude(v => v.BusinessArea)
-                   .ThenInclude(ba => ba.BusinessTitle)
-                   .Include(x => x.WishListItems)
-           .ThenInclude(c => c.Cv)
-               .ThenInclude(v => v.OperatingMode)
-                  .Include(x => x.WishListItems)
-           .ThenInclude(c => c.Cv)
-               .ThenInclude(v => v.Experience)
-       .Where(w => w.UserId == user.Id)
-       .ToList();
-            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
-
-            return View(wishlists);
+            ViewBag.Company = _companyService.GetTopAcceptedCompaniesWithVacans(4);
+            return View();
         }
 
+
+        //--------------------------------------------------------------------------------------------------
         public async Task<IActionResult> AddToWishlist(int itemId, string itemType)
         {
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
@@ -76,39 +73,15 @@ namespace HelloJobBackEnd.Controllers
 
                 _context.WishLists.Add(wishlist);
             }
+
             WishListItem existingItem = wishlist.WishListItems.FirstOrDefault(item => item.VacansId == itemId || item.CvId == itemId);
             if (existingItem != null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            WishListItem wishlistItem = new WishListItem
-            {
-                WishListId = wishlist.Id
-            };
 
-            if (itemType == "Cv")
-            {
-                Cv cv = _context.Cvs.FirstOrDefault(c => c.Id == itemId);
-                if (cv is null)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-
-                wishlistItem.CvId = cv.Id;
-                wishlistItem.IsLiked = true;
-            }
-            else if (itemType == "Vacans")
-            {
-                Vacans vacans = _context.Vacans.FirstOrDefault(v => v.Id == itemId);
-                if (vacans is null)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-
-                wishlistItem.VacansId = vacans.Id;
-                wishlistItem.IsLiked = true;
-            }
-            else
+            WishListItem wishlistItem = _likedService.CreateWishlistItem(itemType, itemId);
+            if (wishlistItem is null)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -118,7 +91,6 @@ namespace HelloJobBackEnd.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
 
         public async Task<IActionResult> RemoveFromWishlist(int itemId, string itemType)
         {
@@ -138,17 +110,7 @@ namespace HelloJobBackEnd.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            WishListItem wishlistItem = null;
-
-            if (itemType == "Cv")
-            {
-                wishlistItem = wishlist.WishListItems.FirstOrDefault(item => item.CvId == itemId);
-            }
-            else if (itemType == "Vacans")
-            {
-                wishlistItem = wishlist.WishListItems.FirstOrDefault(item => item.VacansId == itemId);
-            }
-
+            WishListItem wishlistItem = _likedService.GetWishlistItem(wishlist.WishListItems, itemType, itemId);
             if (wishlistItem != null)
             {
                 wishlist.WishListItems.Remove(wishlistItem);
@@ -157,6 +119,10 @@ namespace HelloJobBackEnd.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+
+
+
 
     }
 }

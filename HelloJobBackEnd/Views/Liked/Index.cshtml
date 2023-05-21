@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Liked page";
     Dictionary<string, string> setting = ViewBag.Setting;
+    List<Company> companies = ViewBag.Company;
 
 }
 
@@ -57,8 +58,9 @@
                             {
                                 @foreach (var item in wishlist.WishListItems)
                                 {
-                                  
-                                        @if(item.Vacans is not null){
+
+                                    @if (item.Vacans is not null)
+                                    {
                                         <div class="vacancies_href">
                                             <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@item.Vacans.Id">
                                                 <div class="item_left">
@@ -85,20 +87,20 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        }
+                                    }
                                 }
                             }
                         </div>
                     </div>
                     <div class="liked_cv">
-                            <div class="vacancies">
-                                @foreach (var wishlist in Model)
+                        <div class="vacancies">
+                            @foreach (var wishlist in Model)
                             {
                                 @foreach (var item in wishlist.WishListItems)
                                 {
-                                
-                                        @if(item.Cv is not null)
-                                        {
+
+                                    @if (item.Cv is not null)
+                                    {
                                         <div id="userBlocks" class="user_block">
                                             <a asp-controller="cvpage" asp-action="detail" asp-route-id="@item.Cv.Id" target="_blank">
                                                 <div class="header_user">
@@ -160,11 +162,10 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        }
+                                    }
                                 }
                             }
-                            </div>
-                        
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
@@ -173,59 +174,42 @@
                             <img src="https://www.hellojob.az/uploads/banners/2023/05/01/kapital-bank-banner-644f848092e7a-9bb97ce3487c22cc702dcd5e0ccb309f644f848092e8e-aryZtKUi6v_De5r.jpg" alt="">
                         </div>
                         <div class="companies">
-                            <div class="company">
-                                <a href="~/companydetail.html">
-                                    <div class="images">
-                                        <img src="https://www.hellojob.az/uploads/company/min/2021/09/14/61409f490f31b-gn4S-uC-ECn51mv.jpg" alt="Kapital Bank" class="image">
-                                    </div>
-                                    <p>36 vakansiya</p>
-                                </a>
 
-                            </div>
-                            <div class="company">
-                                <a href="~/companydetail.html">
-                                    <div class="images">
-                                        <img src="https://www.hellojob.az/uploads/company/min/2021/09/14/6140a01fbb1a9-R_o63qMnR_BeT_p.jpg" alt="PASHA Bank" class="image">
-                                    </div>
-                                    <p>25 vakansiya</p>
-                                </a>
+                            @foreach (Company item in companies)
+                            {
+                                <div class="company">
+                                    <a asp-controller="company" asp-action="detail" asp-route-id="@item.Id" class="full">
+                                        <div>
+                                            <div class="company_images" style="padding:0px !important; position:static !important;">
+                                                <div class="image" style="
+                                                                  height: 70px;
+                                                                   display: flex;
+                                                                   justify-content: center;">
 
-                            </div>
-                            <div class="company">
-                                <a href="~/companydetail.html">
-                                    <div class="images">
-                                        <img src="https://www.hellojob.az/uploads/company/min/2021/09/05/6109511b552b4-8X-PcUZWa58l2-i.png" alt="Xalq Bank" class="image">
-                                    </div>
-                                    <p>20 vakansiya</p>
-                                </a>
-                            </div>
-                            <div class="company">
-                                <a href="~/companydetail.html">
-                                    <div class="images">
-                                        <img src="https://www.hellojob.az/uploads/company/min/2021/09/29/61548ddd3c469-iF_04-QSR3PU3W-.jpg" alt="AccessBank" class="image">
-                                    </div>
-                                    <p>15 vakansiya</p>
-                                </a>
-                            </div>
-                            <div class="company">
-                                <a href="~/companydetail.html">
-                                    <div class="images">
-                                        <img src="https://www.hellojob.az/uploads/company/min/2021/03/02/6038f2d221bd1-Mx_Gdq7mSi7MLA_.jpg" alt="Güvənli MMC" class="image">
-                                    </div>
-                                    <p>8 vakansiya</p>
-                                </a>
-                            </div>
-                        </div>
+                                                    <img src="~/assets/images/Company/@item.Image"
+                                                         alt="@item.Name" />
+                                                </div>
+                                            </div>
+                                            <p style="
+                                             display: flex;
+                                     justify-content: center;
+                                                ">@item.Name</p>
+                                            <p>Vakansiya sayı <span>@item.Vacans.Count()</span> </p>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            }
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    </div>
 </section>
 
 
 @section Script{
-    <script src="~/assets/js/wishlist.js"></script>
-  
+    <script src="~/assets/js/liked.js"></script>
 }

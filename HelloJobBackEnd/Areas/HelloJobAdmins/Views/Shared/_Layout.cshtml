@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using HelloJobBackEnd.Utilities.Enum;
+@inject HelloJobBackEnd.Services.LayoutService layoutService
+@{
+    var orders = layoutService.GetAllData();
+
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -31,113 +38,64 @@
                 </div>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <ul class="navbar-nav mr-lg-4 w-100">
-                    <li class="nav-item nav-search d-none d-lg-block w-100">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="search">
-                                    <i class="mdi mdi-magnify"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
-                        </div>
-                    </li>
-                </ul>
                 <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown me-1">
-                        <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-bs-toggle="dropdown">
-                            <i class="mdi mdi-message-text mx-0"></i>
-                            <span class="count"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
-                            <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <img src="~/admin/assets/images/faces/face4.jpg" alt="image" class="profile-pic">
-                                </div>
-                                <div class="item-content flex-grow">
-                                    <h6 class="ellipsis font-weight-normal">
-                                        David Grey
-                                    </h6>
-                                    <p class="font-weight-light small-text text-muted mb-0">
-                                        The meeting is cancelled
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <img src="~/admin/assets/images/faces/face2.jpg" alt="image" class="profile-pic">
-                                </div>
-                                <div class="item-content flex-grow">
-                                    <h6 class="ellipsis font-weight-normal">
-                                        Tim Cook
-                                    </h6>
-                                    <p class="font-weight-light small-text text-muted mb-0">
-                                        New product launch
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <img src="~/admin/assets/images/faces/face3.jpg" alt="image" class="profile-pic">
-                                </div>
-                                <div class="item-content flex-grow">
-                                    <h6 class="ellipsis font-weight-normal">
-                                        Johnson
-                                    </h6>
-                                    <p class="font-weight-light small-text text-muted mb-0">
-                                        Upcoming board meeting
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
                     <li class="nav-item dropdown me-4">
                         <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
                             <i class="mdi mdi-bell mx-0"></i>
-                            <span class="count"></span>
+                            @if (orders.vacansList.Any() || orders.cvList.Any() || orders.companyList.Any())
+                            {
+                                <span class="count"></span>
+                            }
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
-                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <div class="item-icon bg-success">
-                                        <i class="mdi mdi-information mx-0"></i>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
+                            <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+
+                            @foreach (var vacans in orders.vacansList)
+                            {
+                                    <a class="dropdown-item">
+                                        <div class="item-thumbnail">
+                                        <img src="~/assets/images/BusinessTitle/@vacans.BusinessArea.BusinessTitle.Image" alt="image" class="profile-pic">
+                                        </div>
+                                        <div class="item-content flex-grow">
+                                            <h6 class="ellipsis font-weight-normal">
+                                                @vacans.Company.Name
+                                            </h6>
+                                            <p class="font-weight-light small-text text-muted mb-0">
+                                                @vacans.Position
+                                            </p>
+                                        </div>
+                                    </a>
+                            }
+
+                            @foreach (var cv in orders.cvList)
+                            {
+                                <a class="dropdown-item">
+                                    <div class="item-thumbnail">
+                                        <img src="~/assets/images/User/@cv.Image" alt="image" class="profile-pic">
                                     </div>
-                                </div>
-                                <div class="item-content">
-                                    <h6 class="font-weight-normal">Application Error</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Just now
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <div class="item-icon bg-warning">
-                                        <i class="mdi mdi-settings mx-0"></i>
+                                    <div class="item-content flex-grow">
+                                        <h6 class="ellipsis font-weight-normal">
+                                            @string.Concat(cv.Name," ",cv.Surname)
+                                        </h6>
+                                        <p class="font-weight-light small-text text-muted mb-0">
+                                            @cv.Position
+                                        </p>
                                     </div>
-                                </div>
-                                <div class="item-content">
-                                    <h6 class="font-weight-normal">Settings</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Private message
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <div class="item-icon bg-info">
-                                        <i class="mdi mdi-account-box mx-0"></i>
+                                </a>
+                            }
+                            @foreach (var company in orders.companyList)
+                            {
+                                <a class="dropdown-item">
+                                    <div class="item-thumbnail">
+                                        <img src="~/assets/images/Company/@company.Image" alt="image" class="profile-pic">
                                     </div>
-                                </div>
-                                <div class="item-content">
-                                    <h6 class="font-weight-normal">New user registration</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        2 days ago
-                                    </p>
-                                </div>
-                            </a>
+                                    <div class="item-content flex-grow">
+                                        <h6 class="ellipsis font-weight-normal">
+                                            @company.Name
+                                        </h6>
+                                    </div>
+                                </a>
+                            }
                         </div>
                     </li>
                     <li class="nav-item nav-profile dropdown">
@@ -149,7 +107,7 @@
                                 <i class="mdi mdi-logout text-primary"></i>
                                 Logout
                             </a>
-                            <a asp-area="" asp-controller="Home" asp-action="Index" style="display:block;">
+                            <a asp-area="" asp-controller="Account" asp-action="LogOut" style="display:block;">
                                 <i class="mdi mdi-logout text-primary"></i>
                                 Page
                             </a>
@@ -165,72 +123,82 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="CompanyOrder" asp-action="Index" style="color:black">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="CompanyOrder" asp-action="Index" style="color:black">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">Companies</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="VacansOrder" asp-action="Index">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="VacansOrder" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">Vacans</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="CvOrder" asp-action="Index">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="CvOrder" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">Cvs</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="City" asp-action="Index">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="City" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">Cities</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="Education" asp-action="Index">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="Education" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">Educations</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="Experience" asp-action="Index">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="Experience" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">Experience</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="BusinessTitle" asp-action="Index">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="BusinessTitle" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">BusinessTItles</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="BusinessArea" asp-action="Index">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="BusinessArea" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">BusinessAreas</span>
                         </a>
                     </li>
             
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="OperatingMode" asp-action="Index">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="OperatingMode" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">OperatingMode</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="Setting" asp-action="Index">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="Setting" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">Settings</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="HelloJobAdmins" asp-controller="Rules" asp-action="Index">
+                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="Rules" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">Rules</span>
                         </a>
                     </li>
+                    @if (User.IsInRole(AdminRoles.superadmin.ToString()))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Register">
+                                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                                <span class="menu-title">Register</span>
+                            </a>
+                        </li>
+                    }
+
                 </ul>
             </nav>
             <div class="main-panel">

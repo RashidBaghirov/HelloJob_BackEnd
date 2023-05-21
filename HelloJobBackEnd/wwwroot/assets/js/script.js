@@ -9,9 +9,9 @@ closebtn.addEventListener("click", function () {
     mobmenu.classList.remove("active");
 });
 
-const likeButtons = document.querySelectorAll('.like');
-const unlikedIcons = document.querySelectorAll('.unliked');
-const likedIcons = document.querySelectorAll('.liked');
+let likeButtons = document.querySelectorAll('.like');
+let unlikedIcons = document.querySelectorAll('.unliked');
+let likedIcons = document.querySelectorAll('.liked');
 
 unlikedIcons.forEach((btn, index) => {
     btn.addEventListener('click', () => {
@@ -25,15 +25,15 @@ likedIcons.forEach((btn, index) => {
     });
 });
 
-const likehref = document.querySelectorAll('.like-button');
-const unlikehref = document.querySelectorAll('.unliked-button');
+let likehref = document.querySelectorAll('.like-button');
+let unlikehref = document.querySelectorAll('.unliked-button');
 
 likehref.forEach((btn) => {
     btn.addEventListener('click', () => {
-        const itemId = btn.getAttribute('data-item-id');
-        const itemType = btn.getAttribute('data-item-type');
+        let itemId = btn.getAttribute('data-item-id');
+        let itemType = btn.getAttribute('data-item-type');
 
-        const formData = new FormData();
+        let formData = new FormData();
         formData.append('itemId', itemId);
         formData.append('itemType', itemType);
 
@@ -47,10 +47,10 @@ likehref.forEach((btn) => {
 
 unlikehref.forEach((btn) => {
     btn.addEventListener('click', () => {
-        const itemId = btn.getAttribute('data-item-id');
-        const itemType = btn.getAttribute('data-item-type');
+        let itemId = btn.getAttribute('data-item-id');
+        let itemType = btn.getAttribute('data-item-type');
 
-        const formData = new FormData();
+        let formData = new FormData();
         formData.append('itemId', itemId);
         formData.append('itemType', itemType);
 

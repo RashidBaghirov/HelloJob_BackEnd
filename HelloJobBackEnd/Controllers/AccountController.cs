@@ -9,6 +9,7 @@ using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Utilities.Enum;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using HelloJobBackEnd.Services.Interface;
 
 namespace HelloJobBackEnd.Controllers
 {
@@ -18,16 +19,14 @@ namespace HelloJobBackEnd.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly HelloJobDbContext _context;
+        private readonly IEmailService _emailService;
 
-        public AccountController(UserManager<User> usermanager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, HelloJobDbContext context)
+        public AccountController(UserManager<User> usermanager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, HelloJobDbContext context, IEmailService emailService)
         {
-            _usermanager = usermanager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _usermanager = usermanager;
-            _context = context;
+            _emailService = emailService;
             _context = context;
         }
 
@@ -37,18 +36,22 @@ namespace HelloJobBackEnd.Controllers
         {
             TempData["Register"] = false;
             if (!ModelState.IsValid) return RedirectToAction("index", "home");
-            User user = new()
+
+            User user = new User
             {
                 FullName = string.Concat(account.Firstname, " ", account.Lastname),
                 Email = account.Email,
                 UserName = account.Username
             };
+
             if (_usermanager.Users.Any(x => x.NormalizedEmail == account.Email.ToUpper()))
             {
                 ModelState.AddModelError("Email", "Bu e-poçtda istifadəçi mövcuddur");
                 return RedirectToAction("index", "home");
             }
+
             IdentityResult result = await _usermanager.CreateAsync(user, account.Password);
+
             if (!result.Succeeded)
             {
                 foreach (IdentityError message in result.Errors)
@@ -58,50 +61,37 @@ namespace HelloJobBackEnd.Controllers
                 return RedirectToAction("index", "home");
             }
 
-
-
             string token = await _usermanager.GenerateEmailConfirmationTokenAsync(user);
             string link = Url.Action(nameof(VerifyEmail), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
-            MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("hellojob440@gmail.com", "HelloJOB");
-            mail.To.Add(new MailAddress(user.Email));
+            string body = GetVerifyEmailBody(user.FullName, link);
 
-            mail.Subject = "Verify Email";
+            _emailService.SendEmail(user.Email, "Verify Email", body);
 
-
-            mail.Body = string.Empty;
-            string body = string.Empty;
-            using (StreamReader reader = new StreamReader("wwwroot/assets/template/verifyemail.html"))
-            {
-                body = reader.ReadToEnd();
-            }
-            body = body.Replace("{{userFullName}}", user.FullName);
-            mail.Body = body.Replace("{{link}}", link);
-            mail.IsBodyHtml = true;
-
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
-
-
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
-            smtp.Send(mail);
             await _usermanager.AddToRoleAsync(user, account.userRole.ToString());
 
             TempData["Register"] = true;
             return RedirectToAction("Index", "Home");
-
         }
-
         public async Task<IActionResult> VerifyEmail(string email, string token)
         {
             User user = await _usermanager.FindByEmailAsync(email);
             if (user == null) return BadRequest();
+
             await _usermanager.ConfirmEmailAsync(user, token);
             await _signInManager.SignInAsync(user, true);
             return RedirectToAction("Index", "Home");
+        }
+
+        private string GetVerifyEmailBody(string userFullName, string link)
+        {
+            string body;
+            using (StreamReader reader = new StreamReader("wwwroot/assets/template/verifyemail.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{{userFullName}}", userFullName);
+            body = body.Replace("{{link}}", link);
+            return body;
         }
 
         public async Task<IActionResult> Login(LoginVM account)

@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Net.Mail;
 using System.Net;
+using HelloJobBackEnd.Utilities.Extension;
+using HelloJobBackEnd.ViewModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -15,10 +18,12 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
     public class CompanyOrderController : Controller
     {
         private readonly HelloJobDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public CompanyOrderController(HelloJobDbContext context)
+        public CompanyOrderController(HelloJobDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
         public IActionResult Index()
         {
@@ -99,6 +104,21 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
 
             smtp.Send(mail);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            TempData["Delete"] = false;
+            Company company = _context.Companies.FirstOrDefault(x => x.Id == id);
+            var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
+            string filepath = Path.Combine(imagefolderPath, "Company", company.Image);
+            ExtensionMethods.DeleteImage(filepath);
+
+            _context.Companies.Remove(company);
+            _context.SaveChanges();
+            TempData["Delete"] = true;
             return RedirectToAction(nameof(Index));
         }
     }

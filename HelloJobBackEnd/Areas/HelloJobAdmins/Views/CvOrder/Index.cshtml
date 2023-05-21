@@ -23,6 +23,18 @@
 
     }
 }
+@if (TempData["Delete"] != null)
+{
+    if ((bool)TempData["Delete"] == true)
+    {
+        <input type="hidden" id="deleteSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="deleteError" />
+
+    }
+}
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -80,7 +92,7 @@
                 @Html.DisplayFor(modelItem => item.Position)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Salary)
+                    @(item.Salary == 0 ? "Ə-h razılaşma ilə" : item.Salary)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Education.Name)
@@ -100,7 +112,9 @@
             <td>
                     <a asp-action="Accept" asp-route-id="@item.Id">Accept</a> |
                     <a asp-action="Reject" asp-route-id="@item.Id">Reject</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>|
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
             </td>
         </tr>
 }
@@ -123,6 +137,16 @@
                 toastr["success"]("Welcome back to us!", "1 Cv Status Changed Is 'Rejected' ")
             }
             else if ($("#rejectedError").length) {
+                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#deleteSuccess").length) {
+                toastr["success"]("Welcome back to us!", "1 Cv 'deleted' ")
+            }
+            else if ($("#deleteError").length) {
                 toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
             }
         })
