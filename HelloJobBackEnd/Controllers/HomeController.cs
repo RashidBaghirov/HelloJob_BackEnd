@@ -1,10 +1,8 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
-using HelloJobBackEnd.Services;
 using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace HelloJobBackEnd.Controllers
 {

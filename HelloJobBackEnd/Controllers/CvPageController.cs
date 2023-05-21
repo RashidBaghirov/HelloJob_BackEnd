@@ -1,7 +1,6 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
 using HelloJobBackEnd.Services.Interface;
-using HelloJobBackEnd.Utilities.Enum;
 using HelloJobBackEnd.Utilities.Extension;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

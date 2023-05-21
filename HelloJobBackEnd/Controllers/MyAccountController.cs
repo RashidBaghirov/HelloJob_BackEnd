@@ -6,17 +6,12 @@ using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Common;
-using NuGet.Protocol.Plugins;
-using System.ComponentModel.Design;
 using System.Data;
-using System.Linq;
-using System.Net.Mail;
-using System.Net;
 using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Services;
+using System.Net.Mail;
+using System.Net;
 
 namespace HelloJobBackEnd.Controllers
 {
@@ -30,12 +25,11 @@ namespace HelloJobBackEnd.Controllers
         private readonly IWebHostEnvironment _env;
         private readonly IVacansService _vacansService;
         private readonly ICvPageService _cvPageService;
-        private readonly EmailService _emailService;
-        private readonly RequestService _requestService;
+        private readonly IEmailService _emailService;
         private readonly ILikedService _likedService;
         private readonly ICompanyService _companyService;
 
-        public MyAccountController(UserManager<User> usermanager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, HelloJobDbContext context, IWebHostEnvironment env, IVacansService vacansService, ICvPageService cvPageService, EmailService emailService, RequestService requestService, ILikedService likedService, ICompanyService companyService)
+        public MyAccountController(UserManager<User> usermanager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, HelloJobDbContext context, IWebHostEnvironment env, IVacansService vacansService, ICvPageService cvPageService, IEmailService emailService, ILikedService likedService, ICompanyService companyService)
         {
             _usermanager = usermanager;
             _signInManager = signInManager;
@@ -45,7 +39,6 @@ namespace HelloJobBackEnd.Controllers
             _vacansService = vacansService;
             _cvPageService = cvPageService;
             _emailService = emailService;
-            _requestService = requestService;
             _likedService = likedService;
             _companyService = companyService;
         }
@@ -555,7 +548,15 @@ namespace HelloJobBackEnd.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            Request request = _requestService.GetRequestWithRelatedData(requestId, user);
+            Request? request = _context.Requests
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Cv)
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Cv.User)
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Vacans)
+                .ThenInclude(v => v.Company)
+                .FirstOrDefault(r => r.Id == requestId && (r.User == user || r.RequestItems.Any(ri => ri.Vacans.Company.User == user)));
 
             if (request is null)
             {
@@ -570,7 +571,23 @@ namespace HelloJobBackEnd.Controllers
 
             if (requestItem.Status != OrderStatus.Accepted)
             {
-                _requestService.AcceptRequestItem(requestItem);
+                requestItem.Status = OrderStatus.Accepted;
+                _context.SaveChanges();
+
+                string recipientEmail = requestItem.Cv.Email;
+                string subject = "Bildiriş";
+                string body = string.Empty;
+
+                using (StreamReader reader = new StreamReader("wwwroot/assets/template/acceptedmail.html"))
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                body = body.Replace("{{userFullName}}", string.Concat(requestItem.Cv.Name, " ", requestItem.Cv.Surname));
+                body = body.Replace("{{companyName}}", requestItem.Vacans.Company.Name);
+                body = body.Replace("{{position}}", requestItem.Vacans.Position);
+
+                _emailService.SendEmail(recipientEmail, subject, body);
             }
 
             return RedirectToAction(nameof(MyRequest));
@@ -589,7 +606,15 @@ namespace HelloJobBackEnd.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            Request request = _requestService.GetRequestWithRelatedData(requestId, user);
+            Request? request = _context.Requests
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Cv)
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Cv.User)
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Vacans)
+                .ThenInclude(v => v.Company)
+                .FirstOrDefault(r => r.Id == requestId && (r.User == user || r.RequestItems.Any(ri => ri.Vacans.Company.User == user)));
 
             if (request is null)
             {
@@ -604,11 +629,28 @@ namespace HelloJobBackEnd.Controllers
 
             if (requestItem.Status != OrderStatus.Rejected)
             {
-                _requestService.RejectRequestItem(requestItem);
+                requestItem.Status = OrderStatus.Rejected;
+                _context.SaveChanges();
+
+                string recipientEmail = requestItem.Cv.Email;
+                string subject = "Bildiriş";
+                string body = string.Empty;
+
+                using (StreamReader reader = new StreamReader("wwwroot/assets/template/RejectedMail.html"))
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                body = body.Replace("{{userFullName}}", string.Concat(requestItem.Cv.Name, " ", requestItem.Cv.Surname));
+                body = body.Replace("{{companyName}}", requestItem.Vacans.Company.Name);
+                body = body.Replace("{{position}}", requestItem.Vacans.Position);
+
+                _emailService.SendEmail(recipientEmail, subject, body);
             }
 
             return RedirectToAction(nameof(MyRequest));
         }
+
 
 
 

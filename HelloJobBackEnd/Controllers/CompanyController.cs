@@ -3,12 +3,9 @@ using HelloJobBackEnd.Entities;
 using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using HelloJobBackEnd.Utilities.Extension;
-using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NuGet.ContentModel;
-using System;
 
 namespace HelloJobBackEnd.Controllers
 {

@@ -21,10 +21,7 @@ namespace HelloJobBackEnd
             builder.Services.AddScoped<IBusinessTitleService, BusinessTitleService>();
             builder.Services.AddScoped<ILikedService, LikedService>();
             builder.Services.AddScoped<ICvPageService, CvPageService>();
-            builder.Services.AddScoped<RequestService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
-
-
 
 
 

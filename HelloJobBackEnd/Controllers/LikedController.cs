@@ -1,11 +1,8 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
-using HelloJobBackEnd.Utilities.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Mail;
-using System.Net;
 using HelloJobBackEnd.Services.Interface;
 
 namespace HelloJobBackEnd.Controllers
