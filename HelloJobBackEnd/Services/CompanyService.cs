@@ -20,7 +20,6 @@ namespace HelloJobBackEnd.Services
         {
             IQueryable<Company> query = _context.Companies
                 .Include(v => v.Vacans)
-                .Where(x => x.Status == OrderStatus.Accepted)
                 .OrderByDescending(c => c.Vacans.Count);
 
             if (count.HasValue)

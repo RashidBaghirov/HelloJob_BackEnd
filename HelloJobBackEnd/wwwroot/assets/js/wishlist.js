@@ -37,3 +37,18 @@ document.addEventListener('click', function (event) {
 const unlikehref = document.querySelectorAll('.unliked-button');
 
 
+unlikehref.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        let itemId = btn.getAttribute('data-item-id');
+        let itemType = btn.getAttribute('data-item-type');
+
+        let formData = new FormData();
+        formData.append('itemId', itemId);
+        formData.append('itemType', itemType);
+
+        fetch('/liked/RemoveFromWishlist', {
+            method: 'POST',
+            body: formData
+        })
+    });
+});

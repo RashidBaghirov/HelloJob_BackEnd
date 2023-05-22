@@ -114,12 +114,15 @@
                     }
                     @foreach (BusinessTitle title in titles)
                     {
+                        int totalVac = title.BusinessAreas.Sum(area => area.Vacans.Count);
+
+
                         <div class="item">
                             <div class="new-cat-card">
-                                <a href="">
+                                <a asp-controller="home" asp-action="index" asp-route-titleid="@title.Id">
                                     <img src="~/assets/images/BusinessTitle/@title.Image" alt="Maliyyə">
                                     <div class="new-cat-name"><p>@title.Name</p></div>
-                                    <div class="new-cat-count"><p><span>105</span> iş elanı</p></div>
+                                    <div class="new-cat-count"><p><span>@totalVac</span> iş elanı</p></div>
                                 </a>
                             </div>
                         </div>
@@ -149,7 +152,7 @@
                                     <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@vacans.Id">
                                         <div class="item_left">
                                             <div class="icon" style="width: 58px !important; height: auto !important">
-                                                <img style="width: 100%; object-fit: contain;" src="~/assets/images/Company/@vacans.Company.Image" alt="@vacans.Company.Name" />
+                                                <img style="width: 100%; object-fit: contain;" src="~/assets/images/BusinessTitle/@vacans.BusinessArea.BusinessTitle.Image" alt="@vacans.Company.Name" />
                                             </div>
                                             <div class="title">
                                                 <h3 style="position: inherit !important;">@vacans.Position</h3>

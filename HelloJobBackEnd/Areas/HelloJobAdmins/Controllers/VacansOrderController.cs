@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.Net;
 using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Identity;
+using HelloJobBackEnd.Services.Interface;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -18,46 +19,32 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
     {
 
         private readonly HelloJobDbContext _context;
+        private readonly IEmailService _emailService;
+        private readonly IVacansService _vacansService;
 
-        public VacansOrderController(HelloJobDbContext context)
+        public VacansOrderController(HelloJobDbContext context, IEmailService emailService, IVacansService vacansService)
         {
             _context = context;
+            _emailService = emailService;
+            _vacansService = vacansService;
         }
         public IActionResult Index()
         {
-            List<Vacans>? vacans = _context.Vacans.Include(v => v.BusinessArea).
-                Include(e => e.Education).
-              Include(e => e.Experience).
-              Include(c => c.City).
-              Include(c => c.Company).
-              Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-              Include(i => i.infoEmployeers).
-               Include(i => i.InfoWorks).
-              Include(o => o.OperatingMode).ToList();
+            List<Vacans>? vacans = _vacansService.GetAcceptedVacansWithRelatedData().ToList();
             return View(vacans);
         }
 
         public IActionResult Accept(int id)
         {
             TempData["CompanyAccepted"] = false;
-            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
-               Include(e => e.Education).
-             Include(e => e.Experience).
-             Include(c => c.City).
-             Include(c => c.Company).
-                  ThenInclude(c => c.User).
-             Include(c => c.BusinessArea).
-             Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-             Include(i => i.infoEmployeers).
-              Include(i => i.InfoWorks).
-             Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
+            Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
 
             if (vacans is null) return NotFound();
             vacans.Status = OrderStatus.Accepted;
             _context.SaveChanges();
             TempData["CompanyAccepted"] = true;
             string recipientEmail = vacans.Company.Email;
-
+            string subject = "Elanla Bağlı Məlumat";
             string body = string.Empty;
             using (StreamReader reader = new StreamReader("wwwroot/assets/template/StickyacceptedMail.html"))
             {
@@ -69,47 +56,20 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             body = body.Replace("{{position}}", vacans.Position);
             body = body.Replace("{{companyName}}", vacans.Company.Name);
 
-            MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("hellojob440@gmail.com", "HelloJOB");
-            mail.To.Add(new MailAddress(recipientEmail));
-            mail.Subject = "Elanla Bağlı Məlumat";
-            mail.Body = body;
-            mail.IsBodyHtml = true;
-
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
-
-            smtp.Send(mail);
+            _emailService.SendEmail(recipientEmail, subject, body);
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Reject(int id)
         {
             TempData["CompanyReject"] = false;
-            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
-               Include(e => e.Education).
-             Include(e => e.Experience).
-             Include(c => c.City).
-             Include(c => c.Company).
-                  ThenInclude(c => c.User).
-             Include(c => c.BusinessArea).
-             Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
-             Include(i => i.infoEmployeers).
-              Include(i => i.InfoWorks).
-             Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
-
+            Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
 
             if (vacans is null) return NotFound();
             vacans.Status = OrderStatus.Rejected;
             _context.SaveChanges();
             TempData["CompanyReject"] = true;
-
             string recipientEmail = vacans.Company.Email;
-
-
+            string subject = "Elanla Bağlı Məlumat";
             string body = string.Empty;
             using (StreamReader reader = new StreamReader("wwwroot/assets/template/StickyrejectedMail.html"))
             {
@@ -120,38 +80,16 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             body = body.Replace("{{position}}", vacans.Position);
             body = body.Replace("{{companyName}}", vacans.Company.Name);
 
-            MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("hellojob440@gmail.com", "HelloJOB");
-            mail.To.Add(new MailAddress(recipientEmail));
-            mail.Subject = "Elanla Bağlı Məlumat";
-            mail.Body = body;
-            mail.IsBodyHtml = true;
-
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
-
-            smtp.Send(mail);
+            _emailService.SendEmail(recipientEmail, subject, body);
             return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Delete(int id)
         {
             TempData["Deleted"] = false;
-            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
-                  Include(e => e.Education).
-                Include(e => e.Experience).
-                Include(c => c.City).
-                Include(c => c.BusinessArea).
-                Include(i => i.infoEmployeers).
-                 Include(i => i.InfoWorks).
-                Include(o => o.OperatingMode).FirstOrDefault(x => x.Id == id);
+            Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
             List<WishListItem> wishlistItems = _context.WishListItems.Where(w => w.VacansId == vacans.Id).ToList();
             _context.WishListItems.RemoveRange(wishlistItems);
-
             _context.Vacans.Remove(vacans);
             _context.SaveChanges();
             TempData["Deleted"] = true;

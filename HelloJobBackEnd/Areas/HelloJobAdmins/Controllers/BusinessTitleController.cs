@@ -1,11 +1,13 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
+using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using HelloJobBackEnd.Utilities.Extension;
 using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -18,15 +20,19 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
     {
         private readonly HelloJobDbContext _context;
         private readonly IWebHostEnvironment _env;
+        private readonly IBusinessTitleService _businessTitleService;
 
-        public BusinessTitleController(HelloJobDbContext context, IWebHostEnvironment env)
+        public BusinessTitleController(HelloJobDbContext context, IWebHostEnvironment env, IBusinessTitleService businessTitleService)
         {
             _context = context;
             _env = env;
+            _businessTitleService = businessTitleService;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            List<BusinessTitle> businessTitles = _context.BusinessTitle.Include(b => b.BusinessAreas).ToList();
+            ViewBag.TotalPage = Math.Ceiling((double)_context.BusinessTitle.Count() / 8);
+            ViewBag.CurrentPage = page;
+            IEnumerable<BusinessTitle> businessTitles = _context.BusinessTitle.Include(b => b.BusinessAreas).AsNoTracking().Skip((page - 1) * 8).Take(8).AsEnumerable();
             return View(businessTitles);
         }
         public async Task<IActionResult> Create()
@@ -68,14 +74,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         public async Task<IActionResult> Edit(int id)
         {
 
-            BusinessTitleVM? titleVM = _context.BusinessTitle.Include(v => v.BusinessAreas).Select(p =>
-                                                new BusinessTitleVM
-                                                {
-                                                    Id = p.Id,
-                                                    Name = p.Name,
-                                                    Images = p.Image
-
-                                                }).FirstOrDefault(x => x.Id == id);
+            BusinessTitleVM? titleVM = _businessTitleService.EditedTItle(id);
 
             return View(titleVM);
         }
@@ -83,17 +82,8 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         public async Task<IActionResult> Edit(int id, BusinessTitleVM edited)
         {
             TempData["Edit"] = false;
-            BusinessTitleVM? titleVM = _context.BusinessTitle.Include(v => v.BusinessAreas).Select(p =>
-                                               new BusinessTitleVM
-                                               {
-                                                   Id = p.Id,
-                                                   Name = p.Name,
-                                                   Images = p.Image
-
-                                               }).FirstOrDefault(x => x.Id == id);
-
-            BusinessTitle title = _context.BusinessTitle.Include(v => v.BusinessAreas).FirstOrDefault(x => x.Id == id);
-
+            BusinessTitleVM? titleVM = _businessTitleService.EditedTItle(id);
+            BusinessTitle title = _businessTitleService.GetTitleById(id);
             if (edited.Image is not null)
             {
                 if (!edited.Image.IsValidFile("image/"))
@@ -122,16 +112,14 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         public IActionResult Details(int id)
         {
             if (id == 0) return NotFound();
-            BusinessTitle? title = _context.BusinessTitle.FirstOrDefault(s => s.Id == id);
+            BusinessTitle? title = _businessTitleService.GetTitleById(id);
             return title is null ? BadRequest() : View(title);
         }
 
         public IActionResult Delete(int id)
         {
             if (id == 0) return NotFound();
-            BusinessTitle? title = _context.BusinessTitle
-                .Include(x => x.BusinessAreas)
-                .FirstOrDefault(s => s.Id == id);
+            BusinessTitle? title = _businessTitleService.GetTitleById(id);
             if (title is null) return NotFound();
             return View(title);
         }
@@ -143,9 +131,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             if (id != deleted.Id)
                 return NotFound();
 
-            BusinessTitle? title = _context.BusinessTitle
-                .Include(x => x.BusinessAreas)
-                .FirstOrDefault(s => s.Id == id);
+            BusinessTitle? title = _businessTitleService.GetTitleById(id);
 
             if (title is null)
                 return NotFound();

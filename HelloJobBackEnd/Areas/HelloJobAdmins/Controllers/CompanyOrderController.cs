@@ -10,6 +10,7 @@ using System.Net;
 using HelloJobBackEnd.Utilities.Extension;
 using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Identity;
+using HelloJobBackEnd.Services.Interface;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -19,11 +20,15 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
     {
         private readonly HelloJobDbContext _context;
         private readonly IWebHostEnvironment _env;
+        private readonly IEmailService _emailService;
+        private readonly ICompanyService _companyService;
 
-        public CompanyOrderController(HelloJobDbContext context, IWebHostEnvironment env)
+        public CompanyOrderController(HelloJobDbContext context, IWebHostEnvironment env, IEmailService emailService, ICompanyService companyService)
         {
             _context = context;
             _env = env;
+            _emailService = emailService;
+            _companyService = companyService;
         }
         public IActionResult Index()
         {
@@ -34,16 +39,16 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         public IActionResult Accept(int id)
         {
             TempData["CompanyAccepted"] = false;
-            Company? company = _context.Companies.Include(u => u.User).Include(v => v.Vacans).FirstOrDefault(x => x.Id == id);
+            Company? company = _companyService.GetCompanyWithVacansById(id);
 
             if (company is null) return NotFound();
             company.Status = OrderStatus.Accepted;
             _context.SaveChanges();
             TempData["CompanyAccepted"] = true;
             string recipientEmail = company.Email;
-
             string body = string.Empty;
-            using (StreamReader reader = new StreamReader("wwwroot/assets/template/StickyacceptedMail.html"))
+            string subject = "Elanla Bağlı Məlumat";
+            using (StreamReader reader = new("wwwroot/assets/template/StickyacceptedMail.html"))
             {
                 body = reader.ReadToEnd();
             }
@@ -51,27 +56,14 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             body = body.Replace("{{userFullName}}", company.User.FullName);
             body = body.Replace("{{companyName}}", company.Name);
 
-            MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("hellojob440@gmail.com", "HelloJOB");
-            mail.To.Add(new MailAddress(recipientEmail));
-            mail.Subject = "Elanla Bağlı Məlumat";
-            mail.Body = body;
-            mail.IsBodyHtml = true;
+            _emailService.SendEmail(recipientEmail, subject, body);
 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
-
-            smtp.Send(mail);
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Reject(int id)
         {
             TempData["CompanyReject"] = false;
-            Company? company = _context.Companies.Include(u => u.User).Include(v => v.Vacans).FirstOrDefault(x => x.Id == id);
+            Company? company = _companyService.GetCompanyWithVacansById(id);
 
             if (company is null) return NotFound();
             company.Status = OrderStatus.Rejected;
@@ -79,9 +71,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             TempData["CompanyReject"] = true;
 
             string recipientEmail = company.Email;
-
+            string subject = "Elanla Bağlı Məlumat";
             string body = string.Empty;
-            using (StreamReader reader = new StreamReader("wwwroot/assets/template/StickyrejectedMail.html"))
+            using (StreamReader reader = new("wwwroot/assets/template/StickyrejectedMail.html"))
             {
                 body = reader.ReadToEnd();
             }
@@ -89,21 +81,8 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             body = body.Replace("{{userFullName}}", company.User.FullName);
             body = body.Replace("{{companyName}}", company.Name);
 
-            MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("hellojob440@gmail.com", "HelloJOB");
-            mail.To.Add(new MailAddress(recipientEmail));
-            mail.Subject = "Elanla Bağlı Məlumat";
-            mail.Body = body;
-            mail.IsBodyHtml = true;
+            _emailService.SendEmail(recipientEmail, subject, body);
 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
-
-            smtp.Send(mail);
             return RedirectToAction(nameof(Index));
         }
 
@@ -111,7 +90,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             TempData["Delete"] = false;
-            Company company = _context.Companies.FirstOrDefault(x => x.Id == id);
+            Company? company = _companyService.GetCompanyWithVacansById(id);
             var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
             string filepath = Path.Combine(imagefolderPath, "Company", company.Image);
             ExtensionMethods.DeleteImage(filepath);

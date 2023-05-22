@@ -369,9 +369,15 @@ namespace HelloJobBackEnd.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<bool>("CV")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Rule")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Vacans")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -856,7 +862,7 @@ namespace HelloJobBackEnd.Migrations
             modelBuilder.Entity("HelloJobBackEnd.Entities.Vacans", b =>
                 {
                     b.HasOne("HelloJobBackEnd.Entities.BusinessArea", "BusinessArea")
-                        .WithMany()
+                        .WithMany("Vacans")
                         .HasForeignKey("BusinessAreaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -992,6 +998,8 @@ namespace HelloJobBackEnd.Migrations
             modelBuilder.Entity("HelloJobBackEnd.Entities.BusinessArea", b =>
                 {
                     b.Navigation("Cvs");
+
+                    b.Navigation("Vacans");
                 });
 
             modelBuilder.Entity("HelloJobBackEnd.Entities.BusinessTitle", b =>

@@ -6,6 +6,8 @@ namespace HelloJobBackEnd.Entities
     {
         public string Name { get; set; }
         public List<Cv>? Cvs { get; set; }
+        public List<Vacans>? Vacans { get; set; }
+
         public int BusinessTitleId { get; set; }
         public BusinessTitle BusinessTitle { get; set; }
 

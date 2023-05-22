@@ -25,7 +25,7 @@ namespace HelloJobBackEnd.Controllers
         }
         public IActionResult Index()
         {
-            List<Company> companies = _companyService.GetTopAcceptedCompaniesWithVacans();
+            List<Company> companies = _companyService.GetTopAcceptedCompaniesWithVacans().Where(x => x.Status == OrderStatus.Accepted).ToList();
             return View(companies);
         }
 

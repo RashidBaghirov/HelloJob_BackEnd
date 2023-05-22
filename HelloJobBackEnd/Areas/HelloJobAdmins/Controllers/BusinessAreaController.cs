@@ -21,9 +21,11 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            List<BusinessArea> areas = _context.BusinessArea.Include(b => b.BusinessTitle).OrderBy(b => b.BusinessTitleId).ToList();
+            ViewBag.TotalPage = Math.Ceiling((double)_context.BusinessArea.Count() / 8);
+            ViewBag.CurrentPage = page;
+            IEnumerable<BusinessArea> areas = _context.BusinessArea.Include(b => b.BusinessTitle).OrderBy(b => b.BusinessTitleId).AsNoTracking().Skip((page - 1) * 8).Take(8).AsEnumerable();
             return View(areas);
         }
         public async Task<IActionResult> Create()

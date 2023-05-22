@@ -21,17 +21,20 @@ namespace HelloJobBackEnd.Controllers
             _businessTitleService = businessTitleService;
             _context = context;
         }
-        public IActionResult Index(string search)
+        public IActionResult Index(string search, int titleid)
         {
             IQueryable<Vacans> allVacans = _vacansService.GetAcceptedVacansWithRelatedData();
 
-            ViewBag.Company = _companyService.GetTopAcceptedCompaniesWithVacans(4);
+            ViewBag.Company = _companyService.GetTopAcceptedCompaniesWithVacans(4).Where(x => x.Status == OrderStatus.Accepted).ToList();
 
-            if (!string.IsNullOrEmpty(search))
+            if (search is not null)
             {
                 allVacans = allVacans.Where(c => c.Position.Contains(search));
             }
-
+            else if (titleid != 0)
+            {
+                allVacans = allVacans.Where(c => c.BusinessArea.BusinessTitleId == titleid);
+            }
             List<Vacans> vacans = allVacans.ToList();
             ViewBag.Titles = _businessTitleService.GetAllBusinessTitlesWithAreas();
 

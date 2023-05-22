@@ -191,8 +191,8 @@
                     </li>
                     @if (User.IsInRole(AdminRoles.superadmin.ToString()))
                     {
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Register">
+                        <li class="nav-item ">
+                            <a class="nav-link text-danger" asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Register">
                                 <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                                 <span class="menu-title">Register</span>
                             </a>

@@ -18,7 +18,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             _context = context;
             _env = env;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page)
         {
             IEnumerable<Setting> settings = _context.Settings.AsEnumerable();
             return View(settings);

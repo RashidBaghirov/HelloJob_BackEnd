@@ -1,7 +1,7 @@
 let vacans_cv = document.querySelector("#vacans_cv");
 let cvLink = document.querySelector('.cv-link');
-let liked_vacans = document.querySelector('.liked_vacans');
-let liked_cv = document.querySelector('.liked_cv');
+let liked_vacans = vacans_cv.querySelector('.liked_vacans');
+let liked_cv = vacans_cv.querySelector('.liked_cv');
 let vacansLink = document.querySelector(".vacancy-link")
 
 cvLink.addEventListener('click', () => {

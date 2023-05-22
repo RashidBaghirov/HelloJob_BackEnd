@@ -15,7 +15,7 @@ namespace HelloJobBackEnd.ViewModel
         [Required(ErrorMessage = " İş stajı  qeyd olunmalıdır.*")]
 
         public int ExperienceId { get; set; }
-        public int? Salary { get; set; }
+        public int? Salary { get; set; } = 0;
         [Required(ErrorMessage = " Vəzifə  qeyd olunmalıdır.*")]
 
         public string Position { get; set; }

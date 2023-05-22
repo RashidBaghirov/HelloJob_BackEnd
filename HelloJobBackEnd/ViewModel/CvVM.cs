@@ -17,7 +17,7 @@ namespace HelloJobBackEnd.ViewModel
         public int CityId { get; set; }
         public int OperatingModeId { get; set; }
         public int ExperienceId { get; set; }
-        public int Salary { get; set; }
+        public int Salary { get; set; } = 0;
         public string Position { get; set; }
         public int BusinessAreaId { get; set; }
         public int EducationId { get; set; }
