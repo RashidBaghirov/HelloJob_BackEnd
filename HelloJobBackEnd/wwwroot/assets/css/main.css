@@ -1291,14 +1291,31 @@
   }
 }
 @media screen and (max-width: 391px) {
-  .main #works .vacancies .vacancies_href .salary {
-    font-size: 7px;
+  .main #works .vacancies .vacancies_href .vacancies_href .item_left .icon {
+    width: 28px;
+    height: 28px;
   }
-  .main #works .vacancies .vacancies_href .date {
+  .main #works .vacancies .vacancies_href .vacancies_href .item_left .title {
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .main #works .vacancies .vacancies_href .vacancies_href .item_left .title h3 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .main #works .vacancies .vacancies_href .vacancies_href .item_right .salary {
+    font-size: 10px;
+  }
+  .main #works .vacancies .vacancies_href .vacancies_href .item_right .like {
+    width: 16px;
+    height: 16px;
+  }
+  .main #works .vacancies .vacancies_href .vacancies_href .item_right .like .unliked,
+  .main #works .vacancies .vacancies_href .vacancies_href .item_right .like .liked {
     font-size: 6px;
-  }
-  .main #works .vacancies .vacancies_href .like {
-    display: none;
+    top: 4px;
+    right: 5px;
   }
 }
 .main .sticky_element {
@@ -5111,14 +5128,31 @@
   }
 }
 @media screen and (max-width: 391px) {
-  #company_detail .company_vacans .vacancies .company_vacans__href .salary {
-    font-size: 7px;
+  #company_detail .company_vacans .vacancies .company_vacans__href .vacancies_href .item_left .icon {
+    width: 28px;
+    height: 28px;
   }
-  #company_detail .company_vacans .vacancies .company_vacans__href .date {
+  #company_detail .company_vacans .vacancies .company_vacans__href .vacancies_href .item_left .title {
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  #company_detail .company_vacans .vacancies .company_vacans__href .vacancies_href .item_left .title h3 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  #company_detail .company_vacans .vacancies .company_vacans__href .vacancies_href .item_right .salary {
+    font-size: 10px;
+  }
+  #company_detail .company_vacans .vacancies .company_vacans__href .vacancies_href .item_right .like {
+    width: 16px;
+    height: 16px;
+  }
+  #company_detail .company_vacans .vacancies .company_vacans__href .vacancies_href .item_right .like .unliked,
+  #company_detail .company_vacans .vacancies .company_vacans__href .vacancies_href .item_right .like .liked {
     font-size: 6px;
-  }
-  #company_detail .company_vacans .vacancies .company_vacans__href .like {
-    display: none;
+    top: 4px;
+    right: 5px;
   }
 }
 #company_detail .company_vacans .contact_body {
@@ -5396,14 +5430,31 @@
   }
 }
 @media screen and (max-width: 391px) {
-  #vacansdetail .vacancies .vacancies__href .salary {
-    font-size: 7px;
+  #vacansdetail .vacancies .vacancies__href .vacancies_href .item_left .icon {
+    width: 28px;
+    height: 28px;
   }
-  #vacansdetail .vacancies .vacancies__href .date {
+  #vacansdetail .vacancies .vacancies__href .vacancies_href .item_left .title {
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  #vacansdetail .vacancies .vacancies__href .vacancies_href .item_left .title h3 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  #vacansdetail .vacancies .vacancies__href .vacancies_href .item_right .salary {
+    font-size: 10px;
+  }
+  #vacansdetail .vacancies .vacancies__href .vacancies_href .item_right .like {
+    width: 16px;
+    height: 16px;
+  }
+  #vacansdetail .vacancies .vacancies__href .vacancies_href .item_right .like .unliked,
+  #vacansdetail .vacancies .vacancies__href .vacancies_href .item_right .like .liked {
     font-size: 6px;
-  }
-  #vacansdetail .vacancies .vacancies__href .like {
-    display: none;
+    top: 4px;
+    right: 5px;
   }
 }
 #vacansdetail .vacans_block {
