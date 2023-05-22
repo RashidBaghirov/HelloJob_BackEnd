@@ -39,7 +39,6 @@ namespace HelloJobBackEnd.Controllers
 
                 return View(wishlists);
             }
-
             ViewBag.Company = _companyService.GetTopAcceptedCompaniesWithVacans(4);
             return View();
         }

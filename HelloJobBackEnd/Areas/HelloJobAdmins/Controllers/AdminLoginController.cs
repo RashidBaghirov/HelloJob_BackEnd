@@ -65,7 +65,11 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         }
 
-
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Login));
+        }
 
 
     }

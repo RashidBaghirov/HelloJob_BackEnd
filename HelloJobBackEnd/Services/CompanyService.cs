@@ -19,7 +19,8 @@ namespace HelloJobBackEnd.Services
         public List<Company> GetTopAcceptedCompaniesWithVacans(int? count = null)
         {
             IQueryable<Company> query = _context.Companies
-                .Include(v => v.Vacans)
+                .Include(v => v.Vacans).ThenInclude(x => x.BusinessArea)
+                    .Include(v => v.Vacans).ThenInclude(x => x.BusinessArea.BusinessTitle)
                 .OrderByDescending(c => c.Vacans.Count);
 
             if (count.HasValue)
@@ -34,12 +35,11 @@ namespace HelloJobBackEnd.Services
         public Company? GetCompanyWithVacansById(int id)
         {
 
-            Company? company = _context.Companies
-               .Include(v => v.Vacans)
-               .Include(x => x.Vacans).ThenInclude(x => x.WishListItems).ThenInclude(x => x.WishList)
-               .Include(x => x.User)
-               .Include(b => b.Vacans).ThenInclude(b => b.BusinessArea)
-               .FirstOrDefault(x => x.Id == id);
+            Company? company = _context.Companies.Include(v => v.Vacans).
+                Include(x => x.Vacans).ThenInclude(x => x.WishListItems).ThenInclude(x => x.WishList).ThenInclude(x => x.User).
+                Include(x => x.User).
+                Include(b => b.Vacans).ThenInclude(b => b.BusinessArea).
+                FirstOrDefault(x => x.Id == id);
             return company;
         }
         public CompanyVM GetCompanyById(int id)

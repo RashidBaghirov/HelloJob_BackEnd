@@ -172,6 +172,8 @@
                                     <span>Şəkil əlavə et</span>
                                     <p>SVG, PNG, JPG or GIF (max. 1000x1000px)</p>
                                 </label>
+                                <span asp-validation-for="Image" class="text-danger"></span>
+
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -267,6 +269,8 @@
                                         <input asp-for="Position"
                                                class="form-control inputs"
                                                placeholder="Vəzifəniz" />
+                                        <span asp-validation-for="Position" class="text-danger"></span>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

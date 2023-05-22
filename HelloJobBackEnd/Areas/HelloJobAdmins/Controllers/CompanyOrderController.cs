@@ -55,6 +55,8 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
             body = body.Replace("{{userFullName}}", company.User.FullName);
             body = body.Replace("{{companyName}}", company.Name);
+            body = body.Replace("{{position}}", company.Email);
+
 
             _emailService.SendEmail(recipientEmail, subject, body);
 
