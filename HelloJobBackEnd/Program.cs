@@ -38,9 +38,9 @@ namespace HelloJobBackEnd
             builder.Services.AddIdentity<User, IdentityRole>(opt =>
             {
                 opt.SignIn.RequireConfirmedEmail = true;
-                opt.Password.RequiredUniqueChars = 4;
+                opt.Password.RequiredUniqueChars = 1;
                 opt.Password.RequireNonAlphanumeric = false;
-                opt.Password.RequiredLength = 6;
+                opt.Password.RequiredLength = 5;
                 opt.Password.RequireDigit = true;
                 opt.Password.RequireLowercase = true;
                 opt.Password.RequireUppercase = false;
@@ -48,7 +48,7 @@ namespace HelloJobBackEnd
 
                 opt.User.RequireUniqueEmail = false;
 
-                opt.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnm_-1234567890.";
+                opt.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnm_-1234567890.QWERTYUIOPASDFGHJKLZXCVBNM:)(";
 
                 opt.Lockout.MaxFailedAccessAttempts = 5;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);

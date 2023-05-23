@@ -928,7 +928,7 @@ namespace HelloJobBackEnd.Controllers
                 FullName = user.FullName
             };
             ViewBag.User = profileVM;
-            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.Cities = _context.Cities.OrderBy(x => x.Name).ToList();
             ViewBag.Education = _context.Educations.ToList();
             ViewBag.Experince = _context.Experiences.ToList();
             ViewBag.Mode = _context.OperatingModes.ToList();

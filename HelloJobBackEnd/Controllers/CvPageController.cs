@@ -3,6 +3,7 @@ using HelloJobBackEnd.Entities;
 using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Extension;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace HelloJobBackEnd.Controllers
@@ -17,7 +18,7 @@ namespace HelloJobBackEnd.Controllers
             _context = context;
             _cvPageService = cvPageService;
         }
-        public IActionResult Index(string? search)
+        public IActionResult Index(string? search, int page = 1)
         {
             IQueryable<Cv> allcvs = _cvPageService.GetAllCvs();
 
@@ -26,15 +27,16 @@ namespace HelloJobBackEnd.Controllers
                 allcvs = allcvs.Where(c => c.Position.Contains(search));
             }
 
-            List<Cv> filteredCvs = allcvs.ToList();
+
 
             ViewBag.Education = _context.Educations.ToList();
             ViewBag.Experince = _context.Experiences.ToList();
             ViewBag.Mode = _context.OperatingModes.ToList();
             ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs).ToList();
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
-
-
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
+            ViewBag.CurrentPage = page;
+            List<Cv> filteredCvs = allcvs.Skip((page - 1) * 8).Take(8).ToList();
             return View(filteredCvs);
         }
 

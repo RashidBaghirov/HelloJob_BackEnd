@@ -1,8 +1,8 @@
-const vacans_cv = document.querySelector("#vacans_cv");
-const cvLink = document.querySelector('.cv-link');
-const liked_vacans = vacans_cv.querySelector('.liked_vacans');
-const liked_cv = vacans_cv.querySelector('.liked_cv');
-const vacansLink = document.querySelector(".vacancy-link")
+let vacans_cv = document.querySelector(".vacans_cv");
+let cvLink = document.querySelector('.cv-link');
+let liked_vacans = vacans_cv.querySelector('.liked_vacans');
+let liked_cv = vacans_cv.querySelector('.liked_cv');
+let vacansLink = document.querySelector(".vacancy-link")
 
 cvLink.addEventListener('click', () => {
     liked_vacans.classList.add('active');
@@ -17,6 +17,8 @@ vacansLink.addEventListener('click', () => {
     cvLink.classList.remove("blue");
     vacansLink.classList.add("blue");
 });
+
+
 
 
 document.addEventListener('click', function (event) {

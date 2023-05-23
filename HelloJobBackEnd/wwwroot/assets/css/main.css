@@ -3153,14 +3153,31 @@
   }
 }
 @media screen and (max-width: 391px) {
-  .main #vacans_cv .vacancies .vacancies_href .salary {
-    font-size: 7px;
+  .main #vacans_cv .vacancies .vacancies_href .vacancies_href .item_left .icon {
+    width: 28px;
+    height: 28px;
   }
-  .main #vacans_cv .vacancies .vacancies_href .date {
+  .main #vacans_cv .vacancies .vacancies_href .vacancies_href .item_left .title {
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .main #vacans_cv .vacancies .vacancies_href .vacancies_href .item_left .title h3 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .main #vacans_cv .vacancies .vacancies_href .vacancies_href .item_right .salary {
+    font-size: 10px;
+  }
+  .main #vacans_cv .vacancies .vacancies_href .vacancies_href .item_right .like {
+    width: 16px;
+    height: 16px;
+  }
+  .main #vacans_cv .vacancies .vacancies_href .vacancies_href .item_right .like .unliked,
+  .main #vacans_cv .vacancies .vacancies_href .vacancies_href .item_right .like .liked {
     font-size: 6px;
-  }
-  .main #vacans_cv .vacancies .vacancies_href .like {
-    display: none;
+    top: 4px;
+    right: 5px;
   }
 }
 .main #vacans_cv .vacancies .user_block {
@@ -4570,10 +4587,10 @@
   font-weight: bold;
 }
 
-#vacans_cv .vacancies {
+.vacans_cv .vacancies {
   padding: 26px 0 0;
 }
-#vacans_cv .vacancies .vacancies_href {
+.vacans_cv .vacancies .vacancies_href {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4584,29 +4601,29 @@
   position: relative;
   margin-bottom: 26px;
 }
-#vacans_cv .vacancies .vacancies_href a {
+.vacans_cv .vacancies .vacancies_href a {
   text-decoration: none;
   color: black;
 }
-#vacans_cv .vacancies .vacancies_href a .item_left {
+.vacans_cv .vacancies .vacancies_href a .item_left {
   max-width: 390px;
   display: flex;
   align-items: center;
 }
-#vacans_cv .vacancies .vacancies_href a .item_left .icon {
+.vacans_cv .vacancies .vacancies_href a .item_left .icon {
   width: 56px;
   height: 56px;
   overflow: hidden;
   border-radius: 50%;
   overflow: hidden;
 }
-#vacans_cv .vacancies .vacancies_href a .item_left .title {
+.vacans_cv .vacancies .vacancies_href a .item_left .title {
   margin-left: 15px;
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
 }
-#vacans_cv .vacancies .vacancies_href a .item_left .title h3 {
+.vacans_cv .vacancies .vacancies_href a .item_left .title h3 {
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -4615,29 +4632,29 @@
   top: 35px;
 }
 @media screen and (max-width: 821px) {
-  #vacans_cv .vacancies .vacancies_href a .item_left .icon {
+  .vacans_cv .vacancies .vacancies_href a .item_left .icon {
     width: 36px;
     height: 36px;
   }
-  #vacans_cv .vacancies .vacancies_href a .item_left .icon img {
+  .vacans_cv .vacancies .vacancies_href a .item_left .icon img {
     width: 100%;
     -o-object-fit: contain;
        object-fit: contain;
   }
-  #vacans_cv .vacancies .vacancies_href a .item_left .title {
+  .vacans_cv .vacancies .vacancies_href a .item_left .title {
     margin-left: 15px;
     font-weight: 400;
     font-size: 8px;
     line-height: 11px;
   }
-  #vacans_cv .vacancies .vacancies_href a .item_left .title h3 {
+  .vacans_cv .vacancies .vacancies_href a .item_left .title h3 {
     font-weight: 500;
     font-size: 8px;
     line-height: 16px;
     margin-bottom: 10px;
   }
 }
-#vacans_cv .vacancies .vacancies_href .item_right {
+.vacans_cv .vacancies .vacancies_href .item_right {
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -4645,12 +4662,12 @@
   align-items: center;
   cursor: pointer;
 }
-#vacans_cv .vacancies .vacancies_href .item_right .salary {
+.vacans_cv .vacancies .vacancies_href .item_right .salary {
   color: #2196F3;
   display: flex;
   align-items: center;
 }
-#vacans_cv .vacancies .vacancies_href .item_right .salary::after {
+.vacans_cv .vacancies .vacancies_href .item_right .salary::after {
   display: block;
   content: "";
   width: 1px;
@@ -4658,7 +4675,7 @@
   background-color: #E4E7EC;
   margin: 0 12px;
 }
-#vacans_cv .vacancies .vacancies_href .item_right .like {
+.vacans_cv .vacancies .vacancies_href .item_right .like {
   position: relative;
   width: 32px;
   height: 32px;
@@ -4666,7 +4683,7 @@
   border-radius: 6px;
   margin-left: 28px;
 }
-#vacans_cv .vacancies .vacancies_href .item_right .like .unliked {
+.vacans_cv .vacancies .vacancies_href .item_right .like .unliked {
   font-size: 18px;
   text-align: center;
   position: absolute;
@@ -4674,7 +4691,7 @@
   right: 7px;
   display: none;
 }
-#vacans_cv .vacancies .vacancies_href .item_right .like .liked {
+.vacans_cv .vacancies .vacancies_href .item_right .like .liked {
   font-size: 18px;
   text-align: center;
   position: absolute;
@@ -4682,39 +4699,56 @@
   right: 7px;
   color: #2196f3;
 }
-#vacans_cv .vacancies .vacancies_href .item_right .like .hidden {
+.vacans_cv .vacancies .vacancies_href .item_right .like .hidden {
   display: block;
 }
 @media screen and (max-width: 821px) {
-  #vacans_cv .vacancies .vacancies_href .salary {
+  .vacans_cv .vacancies .vacancies_href .salary {
     font-size: 9px;
   }
-  #vacans_cv .vacancies .vacancies_href .date {
+  .vacans_cv .vacancies .vacancies_href .date {
     font-size: 8px;
   }
-  #vacans_cv .vacancies .vacancies_href .like {
+  .vacans_cv .vacancies .vacancies_href .like {
     width: 22px;
     height: 22px;
   }
-  #vacans_cv .vacancies .vacancies_href .like .unliked {
+  .vacans_cv .vacancies .vacancies_href .like .unliked {
     font-size: 8px;
   }
-  #vacans_cv .vacancies .vacancies_href .like .liked {
+  .vacans_cv .vacancies .vacancies_href .like .liked {
     font-size: 8px;
   }
 }
 @media screen and (max-width: 391px) {
-  #vacans_cv .vacancies .vacancies_href .salary {
-    font-size: 7px;
+  .vacans_cv .vacancies .vacancies_href .vacancies_href .item_left .icon {
+    width: 28px;
+    height: 28px;
   }
-  #vacans_cv .vacancies .vacancies_href .date {
+  .vacans_cv .vacancies .vacancies_href .vacancies_href .item_left .title {
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .vacans_cv .vacancies .vacancies_href .vacancies_href .item_left .title h3 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .vacans_cv .vacancies .vacancies_href .vacancies_href .item_right .salary {
+    font-size: 10px;
+  }
+  .vacans_cv .vacancies .vacancies_href .vacancies_href .item_right .like {
+    width: 16px;
+    height: 16px;
+  }
+  .vacans_cv .vacancies .vacancies_href .vacancies_href .item_right .like .unliked,
+  .vacans_cv .vacancies .vacancies_href .vacancies_href .item_right .like .liked {
     font-size: 6px;
-  }
-  #vacans_cv .vacancies .vacancies_href .like {
-    display: none;
+    top: 4px;
+    right: 5px;
   }
 }
-#vacans_cv .user_block {
+.vacans_cv .user_block {
   border: 1px solid #e2e9f2;
   border-radius: 8px;
   background-color: white;
@@ -4723,18 +4757,18 @@
   margin-top: 20px;
   position: relative;
 }
-#vacans_cv .user_block a {
+.vacans_cv .user_block a {
   text-decoration: none;
   color: #000;
 }
-#vacans_cv .user_block a .header_user {
+.vacans_cv .user_block a .header_user {
   margin-bottom: 24px;
   position: unset;
   display: flex;
   align-items: center;
   padding: 15px;
 }
-#vacans_cv .user_block a .header_user .user_img {
+.vacans_cv .user_block a .header_user .user_img {
   border: 5px solid #e2e9f2;
   width: 120px;
   height: 95px;
@@ -4742,37 +4776,37 @@
   overflow: hidden;
   margin-right: 30px;
 }
-#vacans_cv .user_block a .header_user .user_img img {
+.vacans_cv .user_block a .header_user .user_img img {
   width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
-#vacans_cv .user_block a .header_user .user_desc {
+.vacans_cv .user_block a .header_user .user_desc {
   margin-right: 30px;
 }
-#vacans_cv .user_block a .header_user .user_desc .profession {
+.vacans_cv .user_block a .header_user .user_desc .profession {
   font-weight: 500;
   font-size: 20px;
   margin-bottom: 4px;
   display: flex;
   align-items: center;
 }
-#vacans_cv .user_block a .header_user .user_desc .fullname {
+.vacans_cv .user_block a .header_user .user_desc .fullname {
   font-weight: 400;
   margin-bottom: 15px;
   color: #000;
 }
-#vacans_cv .user_block a .user_options {
+.vacans_cv .user_block a .user_options {
   display: flex;
   justify-content: space-between;
 }
-#vacans_cv .user_block a .user_options .item {
+.vacans_cv .user_block a .user_options .item {
   margin-bottom: 0;
   display: flex;
   align-items: flex-start;
   padding: 10px;
 }
-#vacans_cv .user_block a .user_options .item .icon {
+.vacans_cv .user_block a .user_options .item .icon {
   width: 40px;
   height: 40px;
   background: #ebedf3;
@@ -4782,29 +4816,29 @@
   justify-content: center;
   margin-right: 16px;
 }
-#vacans_cv .user_block a .user_options .item .text {
+.vacans_cv .user_block a .user_options .item .text {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
-#vacans_cv .user_block a .user_options .item .text h4 {
+.vacans_cv .user_block a .user_options .item .text h4 {
   padding: 0;
   font-size: 18px;
   color: #565252;
   margin: 0;
 }
-#vacans_cv .user_block a .user_options .item .text p {
+.vacans_cv .user_block a .user_options .item .text p {
   color: gray;
   margin: 0;
   padding: 0;
 }
-#vacans_cv .user_block .hearts {
+.vacans_cv .user_block .hearts {
   position: absolute;
   top: 10px;
   right: 80px;
   cursor: pointer;
 }
-#vacans_cv .user_block .hearts .like {
+.vacans_cv .user_block .hearts .like {
   top: 20px;
   position: absolute;
   width: 28px;
@@ -4813,7 +4847,7 @@
   border-radius: 6px;
   margin-left: 28px;
 }
-#vacans_cv .user_block .hearts .like .unliked {
+.vacans_cv .user_block .hearts .like .unliked {
   font-size: 20px;
   text-align: center;
   position: absolute;
@@ -4822,11 +4856,11 @@
   transition: 0.3s ease;
   display: none;
 }
-#vacans_cv .user_block .hearts .like .unliked:hover {
+.vacans_cv .user_block .hearts .like .unliked:hover {
   color: red;
   transition: 0.3s ease;
 }
-#vacans_cv .user_block .hearts .like .liked {
+.vacans_cv .user_block .hearts .like .liked {
   font-size: 20px;
   text-align: center;
   position: absolute;
@@ -4834,41 +4868,199 @@
   right: 4px;
   color: rgb(235, 63, 63);
 }
-#vacans_cv .user_block .hearts .like .hidden {
+.vacans_cv .user_block .hearts .like .hidden {
   display: block;
 }
 @media screen and (max-width: 821px) {
-  #vacans_cv .user_block a .header_user {
+  .vacans_cv .user_block a .header_user {
     margin-bottom: 24px;
   }
-  #vacans_cv .user_block a .header_user .user_desc {
+  .vacans_cv .user_block a .header_user .user_desc {
     margin-right: 10px;
   }
-  #vacans_cv .user_block a .header_user .user_desc .profession {
+  .vacans_cv .user_block a .header_user .user_desc .profession {
     font-size: 10px;
   }
-  #vacans_cv .user_block a .header_user .user_desc .name {
+  .vacans_cv .user_block a .header_user .user_desc .name {
     margin-bottom: 8px;
   }
-  #vacans_cv .user_block a .user_options .item {
+  .vacans_cv .user_block a .user_options .item {
     padding: 10px;
   }
-  #vacans_cv .user_block a .user_options .item .icon {
+  .vacans_cv .user_block a .user_options .item .icon {
     width: 20px;
   }
-  #vacans_cv .user_block a .user_options .item .text {
+  .vacans_cv .user_block a .user_options .item .text {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
-  #vacans_cv .user_block a .user_options .item .text h4 {
+  .vacans_cv .user_block a .user_options .item .text h4 {
     font-size: 10px;
   }
-  #vacans_cv .user_block a .user_options .item .text p {
+  .vacans_cv .user_block a .user_options .item .text p {
     font-size: 8px;
   }
 }
-#vacans_cv .active {
+@media screen and (max-width: 391px) {
+  .vacans_cv .user_block {
+    border: 1px solid #e2e9f2;
+    border-radius: 8px;
+    background-color: white;
+    margin-bottom: 32px;
+    color: #061e40;
+    margin-top: 20px;
+    position: relative;
+  }
+  .vacans_cv .user_block a {
+    text-decoration: none;
+    color: #000;
+  }
+  .vacans_cv .user_block a .header_user {
+    margin-bottom: 24px;
+    position: unset;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  .vacans_cv .user_block a .header_user .user_img {
+    border: 5px solid #e2e9f2;
+    width: 80px;
+    height: 65px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+  }
+  .vacans_cv .user_block a .header_user .user_img img {
+    width: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .vacans_cv .user_block a .header_user .user_desc {
+    margin-right: 15px;
+  }
+  .vacans_cv .user_block a .header_user .user_desc .profession {
+    font-weight: 500;
+    font-size: 12px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+  }
+  .vacans_cv .user_block a .header_user .user_desc .fullname {
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #000;
+  }
+  .vacans_cv .user_block a .user_options {
+    display: flex;
+    justify-content: space-between;
+  }
+  .vacans_cv .user_block a .user_options .item {
+    margin-bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    padding: 5px;
+  }
+  .vacans_cv .user_block a .user_options .item .icon {
+    width: 20px;
+    height: 20px;
+    background: #ebedf3;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+  }
+  .vacans_cv .user_block a .user_options .item .text {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .vacans_cv .user_block a .user_options .item .text h4 {
+    padding: 0;
+    font-size: 10px;
+    color: #565252;
+    margin: 0;
+  }
+  .vacans_cv .user_block a .user_options .item .text p {
+    color: gray;
+    margin: 0;
+    padding: 0;
+    font-size: 8px;
+  }
+  .vacans_cv .user_block .hearts {
+    position: absolute;
+    top: 8px;
+    right: 60px;
+    cursor: pointer;
+  }
+  .vacans_cv .user_block .hearts .like {
+    top: 15px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #F4F6F9;
+    border-radius: 6px;
+    margin-left: 20px;
+  }
+  .vacans_cv .user_block .hearts .like .unliked {
+    font-size: 16px;
+    text-align: center;
+    position: absolute;
+    top: 5px;
+    right: 3px;
+    transition: 0.3s ease;
+    display: none;
+  }
+  .vacans_cv .user_block .hearts .like .unliked:hover {
+    color: red;
+    transition: 0.3s ease;
+  }
+  .vacans_cv .user_block .hearts .like .liked {
+    font-size: 16px;
+    text-align: center;
+    position: absolute;
+    top: 5px;
+    right: 3px;
+    color: rgb(235, 63, 63);
+  }
+  .vacans_cv .user_block .hearts .like .hidden {
+    display: block;
+  }
+}
+@media screen and (max-width: 391px) and (max-width: 391px) {
+  .vacans_cv .user_block a .header_user {
+    margin-bottom: 12px;
+  }
+  .vacans_cv .user_block a .header_user .user_desc {
+    margin-right: 8px;
+  }
+  .vacans_cv .user_block a .header_user .user_desc .profession {
+    font-size: 8px;
+  }
+  .vacans_cv .user_block a .header_user .user_desc .name {
+    margin-bottom: 6px;
+  }
+  .vacans_cv .user_block a .user_options .item {
+    padding: 5px;
+  }
+  .vacans_cv .user_block a .user_options .item .icon {
+    width: 16px;
+  }
+  .vacans_cv .user_block a .user_options .item .text {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .vacans_cv .user_block a .user_options .item .text h4 {
+    font-size: 8px;
+  }
+  .vacans_cv .user_block a .user_options .item .text p {
+    font-size: 6px;
+  }
+}
+
+.active {
   display: none;
 }
 

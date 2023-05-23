@@ -1,3 +1,9 @@
+
+
+
+
+
+
 const menubtn = document.querySelector(".menu_open");
 const mobmenu = document.querySelector(".mobile_menu")
 menubtn.addEventListener("click", function () {
@@ -70,8 +76,9 @@ $(".responsive").slick({
     autoplaySpeed: 2000,
     slidesToShow: 4,
     slidesToScroll: 1,
-    prevArrow: '<i class="fa-solid fa-chevron-left left_arrow">',
-    nextArrow: ' <i class="fa-solid fa-chevron-right right_arrow"> ',
+    prevArrow: '<i class="fa-solid fa-chevron-right left_arrow">',
+    nextArrow: ' <i class="fa-solid fa-chevron-left right_arrow"> ',
+
     responsive: [
         {
             breakpoint: 1024,
@@ -98,8 +105,6 @@ $(".responsive").slick({
         },
     ],
 });
-
-
 const login_btn = document.querySelectorAll(".login_btn");
 const backgray = document.querySelector(".back");
 const close_button = document.querySelectorAll(".close_button")
@@ -175,4 +180,3 @@ account_head_user.addEventListener("click", (event) => {
     event.preventDefault();
     account_head_user_drop.classList.toggle("active");
 });
-
