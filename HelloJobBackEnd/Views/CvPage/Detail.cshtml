@@ -4,6 +4,30 @@
     Dictionary<string, string> setting = ViewBag.Setting;
 
 }
+@if (TempData["Register"] != null)
+{
+    if ((bool)TempData["Register"] == true)
+    {
+        <input type="hidden" id="registerSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="registerError" />
+
+    }
+}
+@if (TempData["Login"] != null)
+{
+    if ((bool)TempData["Login"] == true)
+    {
+        <input type="hidden" id="loginSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="loginError" />
+
+    }
+}
 @model Cv
 
 <section id="titles_and_bgblue">
@@ -465,5 +489,25 @@
             downloadLink.download = userName + "_CV.pdf";
             downloadLink.click();
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#registerSuccess").length) {
+                toastr["success"]("You have successfully joined us!", "Hello,Please check your register email")
+            }
+            else if ($("#registerError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#loginSuccess").length) {
+                toastr["success"]("Welcome back to us!", "Hello")
+            }
+            else if ($("#loginError").length) {
+                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+            }
+        })
     </script>
 }

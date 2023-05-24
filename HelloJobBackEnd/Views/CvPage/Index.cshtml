@@ -2,6 +2,30 @@
     ViewBag.Title = "CV page";
 
 }
+@if (TempData["Register"] != null)
+{
+    if ((bool)TempData["Register"] == true)
+    {
+        <input type="hidden" id="registerSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="registerError" />
+
+    }
+}
+@if (TempData["Login"] != null)
+{
+    if ((bool)TempData["Login"] == true)
+    {
+        <input type="hidden" id="loginSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="loginError" />
+
+    }
+}
 @model List<Cv>
 <section id="titles_and_bgblue">
     <div class="blueback">
@@ -185,7 +209,6 @@
     <script src="~/assets/js/cvpage.js"></script>
 
     <script>
-        //Cvpage search method
         const searchForm = document.querySelector('.search');
         const searchInput = searchForm.querySelector('.search-input');
         const searchResults = document.querySelector('.search-results');
@@ -215,5 +238,25 @@
             }, 500);
         });
 
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#registerSuccess").length) {
+                toastr["success"]("You have successfully joined us!", "Hello,Please check your register email")
+            }
+            else if ($("#registerError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#loginSuccess").length) {
+                toastr["success"]("Welcome back to us!", "Hello")
+            }
+            else if ($("#loginError").length) {
+                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+            }
+        })
     </script>
 }

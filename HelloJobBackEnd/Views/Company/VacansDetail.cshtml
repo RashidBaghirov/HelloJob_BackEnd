@@ -2,6 +2,7 @@
     ViewBag.Title = "Vacans detail page";
     List<Vacans> related = ViewBag.Related;
     Dictionary<string, string> setting = ViewBag.Setting;
+   
 }
 @if (TempData["Request"] != null)
 {
@@ -12,6 +13,30 @@
     else
     {
         <input type="hidden" id="requestError" />
+
+    }
+}
+@if (TempData["Register"] != null)
+{
+    if ((bool)TempData["Register"] == true)
+    {
+        <input type="hidden" id="registerSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="registerError" />
+
+    }
+}
+@if (TempData["Login"] != null)
+{
+    if ((bool)TempData["Login"] == true)
+    {
+        <input type="hidden" id="loginSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="loginError" />
 
     }
 }
@@ -206,7 +231,8 @@
                                 <div class="button">
                                 @if (User.Identity.IsAuthenticated && (User.IsInRole(UserRole.employeer.ToString())))
                                 {
-                                    <div class="vacans_block">
+                                
+                           <div class="vacans_block">
 
                                         <h3 class="infos">Cv-nizi Seçin</h3>
                                         <select name="cvsID"  asp-items="@(new SelectList(ViewBag.Cvs,"Id","Email"))" class="form-control" style="box-shadow:none">
@@ -217,9 +243,16 @@
                                     </div>
                                     <button type="submit" class="req_btn">Müraciət et</button>
                                 }
-                                    
+                                else
+                                {
+                                    <div class="alert alert-info" role="alert">
+                                        Vakansiya-ya Müraciət etmək üçün zəhmət olmasa <strong>"işçi"</strong> kimi qeydiiyatdan keçin və ya  <strong>"işçi"</strong> hesabınız varsa  giriş edin
+                                    </div>
+                                }
+
                                 </div>
                             </form>
+                    
                         </div>
                 </div>
             </div>
@@ -359,4 +392,24 @@
         }
     })
 </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#registerSuccess").length) {
+                toastr["success"]("You have successfully joined us!", "Hello,Please check your register email")
+            }
+            else if ($("#registerError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#loginSuccess").length) {
+                toastr["success"]("Welcome back to us!", "Hello")
+            }
+            else if ($("#loginError").length) {
+                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+            }
+        })
+    </script>
 }

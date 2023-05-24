@@ -67,10 +67,19 @@ function updateCheckboxes() {
 
 updateIntervals();
 //Filter's method '
+document.querySelectorAll("#filterForm input").forEach(function (input) {
+    input.addEventListener("change", function () {
+        filterData();
+    });
+});
+
 document.getElementById("filterForm").addEventListener("submit", function (event) {
     event.preventDefault();
+    filterData();
+});
 
-    var formData = new FormData(this);
+function filterData() {
+    var formData = new FormData(document.getElementById("filterForm"));
 
     fetch('/Cvpage/FilterData', {
         method: 'POST',
@@ -81,7 +90,12 @@ document.getElementById("filterForm").addEventListener("submit", function (event
             document.getElementById("userBlocks").innerHTML = result;
         })
         .catch(error => console.log(error));
-});
+}
+
+function resetForm() {
+    document.getElementById("filterForm").reset();
+    filterData();
+}
 
 
 

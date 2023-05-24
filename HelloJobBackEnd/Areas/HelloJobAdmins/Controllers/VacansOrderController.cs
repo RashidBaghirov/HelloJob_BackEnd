@@ -10,6 +10,7 @@ using System.Net;
 using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using HelloJobBackEnd.Services.Interface;
+using HelloJobBackEnd.Services;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -94,6 +95,12 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             _context.SaveChanges();
             TempData["Deleted"] = true;
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Details(int id)
+        {
+            Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
+            return View(vacans);
         }
 
     }

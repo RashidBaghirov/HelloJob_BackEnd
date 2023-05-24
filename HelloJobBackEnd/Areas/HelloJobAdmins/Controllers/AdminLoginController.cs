@@ -35,13 +35,13 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         public async Task<IActionResult> Login(LoginVM account)
         {
             TempData["Login"] = false;
-            if (!ModelState.IsValid) return RedirectToAction("Login", "AdminAccount");
+            if (!ModelState.IsValid) return View();
 
             User user = await _usermanager.FindByNameAsync(account.UserName);
             if (user is null)
             {
                 ModelState.AddModelError("", "Username or password is incorrect");
-                return RedirectToAction("Login", "AdminAccount");
+                return View();
             }
 
             var userRoles = await _usermanager.GetRolesAsync(user);
@@ -57,7 +57,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
                         ModelState.AddModelError("", "Due to your efforts, our account was blocked for 5 minutes");
                     }
                     ModelState.AddModelError("", "Username or password is incorrect");
-                    return RedirectToAction("Login", "AdminAccount");
+                    return View();
                 }
                 TempData["Login"] = true;
             }

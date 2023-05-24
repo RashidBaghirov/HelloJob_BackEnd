@@ -24,19 +24,13 @@ namespace HelloJobBackEnd.Controllers
             _usermanager = usermanager;
             _signInManager = signInManager;
             _roleManager = roleManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
-            _usermanager = usermanager;
-            _context = context;
             _context = context;
         }
-
-
 
         public async Task<IActionResult> Register(RegisterVM account)
         {
             TempData["Register"] = false;
-            if (!ModelState.IsValid) return RedirectToAction("index", "home");
+            if (!ModelState.IsValid) return Redirect(Request.Headers["Referer"].ToString());
             User user = new()
             {
                 FullName = string.Concat(account.Firstname, " ", account.Lastname),
@@ -46,7 +40,7 @@ namespace HelloJobBackEnd.Controllers
             if (_usermanager.Users.Any(x => x.NormalizedEmail == account.Email.ToUpper()))
             {
                 ModelState.AddModelError("Email", "Bu e-poçtda istifadəçi mövcuddur");
-                return RedirectToAction("index", "home");
+                return Redirect(Request.Headers["Referer"].ToString());
             }
             IdentityResult result = await _usermanager.CreateAsync(user, account.Password);
             if (!result.Succeeded)
@@ -55,7 +49,7 @@ namespace HelloJobBackEnd.Controllers
                 {
                     ModelState.AddModelError("", message.Description);
                 }
-                return RedirectToAction("index", "home");
+                return Redirect(Request.Headers["Referer"].ToString());
             }
 
 
@@ -107,13 +101,13 @@ namespace HelloJobBackEnd.Controllers
         public async Task<IActionResult> Login(LoginVM account)
         {
             TempData["Login"] = false;
-            if (!ModelState.IsValid) return RedirectToAction("index", "home");
+            if (!ModelState.IsValid) return Redirect(Request.Headers["Referer"].ToString());
 
             User user = await _usermanager.FindByNameAsync(account.UserName);
             if (user is null)
             {
                 ModelState.AddModelError("", "Username or password is incorrect");
-                return RedirectToAction("index", "home");
+                return Redirect(Request.Headers["Referer"].ToString());
             }
 
             var userRoles = await _usermanager.GetRolesAsync(user);
@@ -129,27 +123,27 @@ namespace HelloJobBackEnd.Controllers
                         ModelState.AddModelError("", "Due to your efforts, our account was blocked for 5 minutes");
                     }
                     ModelState.AddModelError("", "Username or password is incorrect");
-                    return RedirectToAction("index", "home");
+                    return Redirect(Request.Headers["Referer"].ToString());
                 }
                 TempData["Login"] = true;
             }
-            return RedirectToAction("Index", "Home");
+            return Redirect(Request.Headers["Referer"].ToString());
 
         }
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("index", "home");
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
 
         public async Task<IActionResult> ForgotPassword(AccountVM account)
         {
             TempData["ForgotPassword"] = false;
-            if (account.User.Email is null) return RedirectToAction("index", "home");
+            if (account.User.Email is null) return Redirect(Request.Headers["Referer"].ToString());
             User user = await _usermanager.FindByEmailAsync(account.User.Email);
 
-            if (user is null) return RedirectToAction("index", "home");
+            if (user is null) return Redirect(Request.Headers["Referer"].ToString());
 
             string token = await _usermanager.GeneratePasswordResetTokenAsync(user);
             string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
@@ -168,7 +162,6 @@ namespace HelloJobBackEnd.Controllers
             body = body.Replace("{{userFullName}}", user.FullName);
             mail.Body = body.Replace("{{link}}", link);
             mail.IsBodyHtml = true;
-
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
@@ -180,7 +173,7 @@ namespace HelloJobBackEnd.Controllers
 
             smtp.Send(mail);
             TempData["ForgotPassword"] = true;
-            return RedirectToAction("Index", "Home");
+            return Redirect(Request.Headers["Referer"].ToString());
 
 
         }

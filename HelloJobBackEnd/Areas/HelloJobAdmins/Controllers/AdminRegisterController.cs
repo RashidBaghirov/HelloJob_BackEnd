@@ -32,7 +32,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         public async Task<IActionResult> Register(RegisterVM account)
         {
             TempData["Register"] = false;
-            if (!ModelState.IsValid) return RedirectToAction("Register", "AdminRegister");
+            if (!ModelState.IsValid) return View();
             User user = new()
             {
                 FullName = string.Concat(account.Firstname, " ", account.Lastname),
@@ -46,7 +46,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
                 {
                     ModelState.AddModelError("", message.Description);
                 }
-                return RedirectToAction("Register", "AdminRegister");
+                return View();
             }
             TempData["Register"] = true;
             await _usermanager.AddToRoleAsync(user, account.adminRoles.ToString());

@@ -36,17 +36,19 @@ namespace HelloJobBackEnd.Services
 
         public Vacans? GetVacansWithRelatedEntitiesById(int id)
         {
-            Vacans? vacans = _context.Vacans
-               .Include(v => v.BusinessArea)
-               .Include(e => e.Education)
-               .Include(e => e.Experience)
-               .Include(c => c.City)
-               .Include(c => c.Company)
-               .Include(c => c.Company).ThenInclude(x => x.User)
-               .Include(c => c.BusinessArea)
-               .Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle)
-               .Include(x => x.WishListItems).ThenInclude(wt => wt.WishList)
-               .Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User)
+            Vacans? vacans = _context.Vacans.Include(v => v.BusinessArea).
+              Include(e => e.Education).
+              Include(e => e.Experience).
+              Include(o => o.OperatingMode).
+              Include(o => o.InfoWorks).
+              Include(o => o.infoEmployeers).
+              Include(c => c.City).
+              Include(c => c.Company).
+              Include(c => c.Company).
+                ThenInclude(x => x.User).
+                Include(c => c.BusinessArea).ThenInclude(b => b.BusinessTitle).
+                     Include(x => x.WishListItems).ThenInclude(wt => wt.WishList).
+               Include(x => x.WishListItems).ThenInclude(wt => wt.WishList.User)
                .FirstOrDefault(x => x.Id == id);
 
             return vacans;

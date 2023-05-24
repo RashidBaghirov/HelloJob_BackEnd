@@ -51,7 +51,7 @@ namespace HelloJobBackEnd.Controllers
 
             }
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
-            Vacans? vacans = vacanss.FirstOrDefault(x => x.Id == id);
+            Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
             vacans.Count++;
             _context.SaveChanges();
             ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(vacanss, vacans, id);
@@ -105,7 +105,7 @@ namespace HelloJobBackEnd.Controllers
                 await _context.SaveChangesAsync();
             }
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
-            Vacans? vacans = vacanss.FirstOrDefault(x => x.Id == id);
+            Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
             ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(vacanss, vacans, id);
             TempData["Request"] = true;
 

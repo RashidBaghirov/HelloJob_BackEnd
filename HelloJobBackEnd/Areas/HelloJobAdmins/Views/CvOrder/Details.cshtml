@@ -58,7 +58,7 @@
             @Html.DisplayNameFor(model => model.Salary)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Salary) AZN
+            @(Model.Salary == 0 ? "Ə-h razılaşma ilə" : Model.Salary)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.BusinessArea)
@@ -125,6 +125,8 @@
     </dl>
 </div>
 <div class=" m-3">
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a> |
+    <a asp-action="Accept" asp-route-id="@Model?.Id">Accept</a> |
+    <a asp-action="Reject" asp-route-id="@Model?.Id">Reject</a> |
     <a asp-action="Index">Back to List</a>
 </div>

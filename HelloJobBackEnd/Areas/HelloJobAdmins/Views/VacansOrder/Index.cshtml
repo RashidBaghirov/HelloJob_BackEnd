@@ -64,9 +64,6 @@
                 @Html.DisplayNameFor(model => model.Education)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DrivingLicense)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th></th>
@@ -100,14 +97,12 @@
                     @Html.DisplayFor(modelItem => item.Education.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DrivingLicense)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                     <a asp-action="Accept" asp-route-id="@item.Id">Accept</a> |
                     <a asp-action="Reject" asp-route-id="@item.Id">Reject</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
 
             </td>
