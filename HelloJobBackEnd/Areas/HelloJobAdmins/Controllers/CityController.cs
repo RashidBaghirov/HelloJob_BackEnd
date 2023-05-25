@@ -2,6 +2,7 @@
 using HelloJobBackEnd.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
@@ -16,9 +17,11 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            List<City> cities = _context.Cities.OrderBy(x => x.Name).ToList();
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Cities.Count() / 8);
+            ViewBag.CurrentPage = page;
+            List<City> cities = _context.Cities.OrderBy(x => x.Name).AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
             return View(cities);
         }
 

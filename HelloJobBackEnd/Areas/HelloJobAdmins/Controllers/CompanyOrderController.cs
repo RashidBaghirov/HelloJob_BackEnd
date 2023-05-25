@@ -30,9 +30,11 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             _emailService = emailService;
             _companyService = companyService;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            List<Company> companies = _context.Companies.Include(u => u.User).Include(v => v.Vacans).ToList();
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Companies.Count() / 8);
+            ViewBag.CurrentPage = page;
+            List<Company> companies = _context.Companies.Include(u => u.User).Include(v => v.Vacans).AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
             return View(companies);
         }
 

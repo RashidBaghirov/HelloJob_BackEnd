@@ -27,7 +27,7 @@
                             <br />
                             <strong> Cv Category</strong>
                             <br />
-                            <span>@cv.BusinessArea.Name</span>
+                            <span>@cv.Position</span>
                             <br />
                         </li>
                     }
@@ -54,7 +54,7 @@
                             <ul>
                                 @foreach (var vacancy in company.Vacans)
                                 {
-                                    <li>@vacancy.BusinessArea.Name</li>
+                                    <li>@vacancy.Position</li>
                                 }
                             </ul>
                         </li>

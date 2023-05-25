@@ -11,6 +11,7 @@ using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Services;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -29,9 +30,11 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             _emailService = emailService;
             _vacansService = vacansService;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            List<Vacans>? vacans = _vacansService.GetAcceptedVacansWithRelatedData().ToList();
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 8);
+            ViewBag.CurrentPage = page;
+            List<Vacans>? vacans = _vacansService.GetAcceptedVacansWithRelatedData().AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
             return View(vacans);
         }
 

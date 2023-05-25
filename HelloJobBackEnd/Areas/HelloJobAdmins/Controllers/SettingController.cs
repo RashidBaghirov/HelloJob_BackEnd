@@ -3,6 +3,7 @@ using HelloJobBackEnd.Entities;
 using HelloJobBackEnd.Utilities.Extension;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -18,9 +19,11 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             _context = context;
             _env = env;
         }
-        public IActionResult Index(int page)
+        public IActionResult Index(int page = 1)
         {
-            IEnumerable<Setting> settings = _context.Settings.AsEnumerable();
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Settings.Count() / 8);
+            ViewBag.CurrentPage = page;
+            IEnumerable<Setting> settings = _context.Settings.AsNoTracking().Skip((page - 1) * 8).Take(8).AsEnumerable();
             return View(settings);
         }
 

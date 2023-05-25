@@ -11,6 +11,7 @@ using HelloJobBackEnd.Utilities.Extension;
 using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using HelloJobBackEnd.Services.Interface;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -31,9 +32,11 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             _cvPageService = cvPageService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            List<Cv>? cvs = _cvPageService.GetAllCvs().ToList();
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
+            ViewBag.CurrentPage = page;
+            List<Cv>? cvs = _cvPageService.GetAllCvs().AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
             return View(cvs);
         }
 

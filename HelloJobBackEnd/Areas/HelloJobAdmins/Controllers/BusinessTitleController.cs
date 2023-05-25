@@ -30,9 +30,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         }
         public IActionResult Index(int page = 1)
         {
-            ViewBag.TotalPage = Math.Ceiling((double)_context.BusinessTitle.Count() / 8);
+            ViewBag.TotalPage = Math.Ceiling((double)_context.BusinessTitle.Count() / 4);
             ViewBag.CurrentPage = page;
-            IEnumerable<BusinessTitle> businessTitles = _context.BusinessTitle.Include(b => b.BusinessAreas).AsNoTracking().Skip((page - 1) * 8).Take(8).AsEnumerable();
+            IEnumerable<BusinessTitle> businessTitles = _context.BusinessTitle.Include(b => b.BusinessAreas).AsNoTracking().Skip((page - 1) * 4).Take(4).AsEnumerable();
             return View(businessTitles);
         }
         public async Task<IActionResult> Create()
