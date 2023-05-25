@@ -244,7 +244,7 @@ namespace HelloJobBackEnd.Controllers
         //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public async Task<IActionResult> MySticker()
+        public async Task<IActionResult> MySticker(int page = 1)
         {
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             if (user is null)
@@ -255,13 +255,17 @@ namespace HelloJobBackEnd.Controllers
             if (User.IsInRole(UserRole.employeer.ToString()))
             {
                 IQueryable<Cv> allcvs = _cvPageService.GetAllCvs();
-                ViewBag.Allcv = allcvs.ToList();
+                ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 6);
+                ViewBag.CurrentPage = page;
+                ViewBag.Allcv = allcvs.AsNoTracking().Skip((page - 1) * 6).Where(x => x.Status == OrderStatus.Accepted).Take(6).ToList();
                 return View();
             }
             else
             {
                 IQueryable<Vacans> allvacans = _vacansService.GetAcceptedVacansWithRelatedData();
-                ViewBag.Allvacans = allvacans.ToList();
+                ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 6);
+                ViewBag.CurrentPage = page;
+                ViewBag.Allvacans = allvacans.AsNoTracking().Skip((page - 1) * 6).Where(x => x.Status == OrderStatus.Accepted).Take(6).ToList();
                 return View();
 
             }
@@ -289,21 +293,14 @@ namespace HelloJobBackEnd.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+
             ViewBags(user);
+
             if (!ModelState.IsValid)
             {
                 return View();
             }
-            if (!newCv.Image.IsValidFile("image/"))
-            {
-                ModelState.AddModelError(string.Empty, "Şəkil file seçin");
-                return View();
-            }
-            if (!newCv.Image.IsValidLength(1))
-            {
-                ModelState.AddModelError(string.Empty, "Maximum ölçü 1 mb ola bilər");
-                return View();
-            }
+
             Cv cv = new()
             {
                 User = user,
@@ -325,17 +322,41 @@ namespace HelloJobBackEnd.Controllers
                 Status = OrderStatus.Pending,
                 Count = 0
             };
-            var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
-            var pdffolderPath = Path.Combine(_env.WebRootPath, "assets", "images", "User");
-            cv.Image = await newCv.Image.CreateImage(imagefolderPath, "User");
-            cv.CvPDF = await newCv.CvPDF.CreateImage(pdffolderPath, "CVs");
 
+            if (newCv.Image is not null)
+            {
+                if (!newCv.Image.IsValidFile("image/"))
+                {
+                    ModelState.AddModelError(string.Empty, "Şəkil file seçin");
+                    return View();
+                }
+
+                if (!newCv.Image.IsValidLength(2))
+                {
+                    ModelState.AddModelError(string.Empty, "Cv şəkili max 2Mb ola bilər..");
+                    return View();
+                }
+
+                var imageFolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
+                cv.Image = await newCv.Image.CreateImage(imageFolderPath, "User");
+            }
+
+            if (newCv.CvPDF is not null)
+            {
+                var pdfFolderPath = Path.Combine(_env.WebRootPath, "assets", "images", "User");
+                cv.CvPDF = await newCv.CvPDF.CreateImage(pdfFolderPath, "CVs");
+            }
+
+            if (newCv.CvPDF is null)
+            {
+                ModelState.AddModelError(string.Empty, "Cv fileni seçin");
+                return View();
+            }
             _context.Cvs.Add(cv);
             _context.SaveChanges();
             TempData["Create"] = true;
             return RedirectToAction(nameof(MyOrder));
         }
-
         //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------

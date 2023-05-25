@@ -46,6 +46,8 @@ namespace HelloJobBackEnd.ViewModel
         {
             AllWorkInfos = new();
             AllEmployeerInfos = new();
+            DeleteWork = new List<int>();
+            DeleteEmployeers = new List<int>();
         }
     }
 }

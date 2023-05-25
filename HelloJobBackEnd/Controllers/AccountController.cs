@@ -198,6 +198,7 @@ namespace HelloJobBackEnd.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(AccountVM account)
         {
+            TempData["Security"] = false;
             User user = await _usermanager.FindByEmailAsync(account.User.Email);
             AccountVM model = new()
             {
@@ -206,6 +207,7 @@ namespace HelloJobBackEnd.Controllers
             };
             if (!ModelState.IsValid) return View(model);
             await _usermanager.ResetPasswordAsync(user, account.Token, account.Password);
+            TempData["Security"] = true;
             return RedirectToAction("Index", "Home");
         }
 

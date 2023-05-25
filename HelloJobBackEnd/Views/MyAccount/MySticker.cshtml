@@ -152,27 +152,6 @@
         <div class="create_cv">
             <div class="title">
                 <h1>Elanlarim</h1>
-                <ul class="profile__add-cv__parts">
-                    @if (User.IsInRole(UserRole.employeer.ToString()))
-                    {
-
-
-                        <li class="active">
-                            <a href="#tab1" class="tab1 step_btn">CV(@cvs.Count())</a>
-                        </li>
-
-
-
-                    }
-                    else
-                    {
-                        <li class="active">
-                            <a href="#tab1" class="tab1 step_btn">Vakansiyalar(@vacans.Count())</a>
-                        </li>
-                    }
-              
-            
-                </ul>
             </div>
             <div class="inner_tab">
                 <div class="container">
@@ -333,27 +312,6 @@
             <div class="create_cv">
                 <div class="title">
                     <h1>Elanlarim</h1>
-                    <ul class="profile__add-cv__parts">
-                        @if (User.IsInRole(UserRole.employeer.ToString()))
-                        {
-
-
-                            <li class="active">
-                                <a href="#tab1" class="tab1 step_btn">CV(@cvs.Count())</a>
-                            </li>
-
-
-
-                        }
-                        else
-                        {
-                            <li class="active">
-                                <a href="#tab1" class="tab1 step_btn">Vakansiyalar(@vacans.Count())</a>
-                            </li>
-                        }
-
-
-                    </ul>
                 </div>
                 <div class="inner_tab">
                     <div class="container">

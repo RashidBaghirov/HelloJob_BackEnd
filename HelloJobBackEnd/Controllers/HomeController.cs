@@ -22,7 +22,7 @@ namespace HelloJobBackEnd.Controllers
             _businessTitleService = businessTitleService;
             _context = context;
         }
-        public IActionResult Index(string search, int titleid, int page = 1)
+        public IActionResult Index(int page = 1)
         {
             IQueryable<Vacans> allVacans = _vacansService.GetAcceptedVacansWithRelatedData();
 
@@ -31,14 +31,6 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 9);
             ViewBag.CurrentPage = page;
 
-            if (search is not null)
-            {
-                allVacans = allVacans.Where(c => c.Position.Contains(search));
-            }
-            else if (titleid != 0)
-            {
-                allVacans = allVacans.Where(c => c.BusinessArea.BusinessTitleId == titleid);
-            }
             List<Vacans> vacans = allVacans.AsNoTracking().Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
             ViewBag.Titles = _businessTitleService.GetAllBusinessTitlesWithAreas();
 
@@ -58,6 +50,31 @@ namespace HelloJobBackEnd.Controllers
             return PartialView("_SearchvacansPartial", vacans);
         }
 
+        public IActionResult Sorted(int titleid)
+        {
+            IQueryable<Vacans> allVacans = _vacansService.GetAcceptedVacansWithRelatedData();
 
+            List<Vacans> sortvacans = allVacans.Where(c => c.BusinessArea.BusinessTitleId == titleid).ToList();
+
+            return PartialView("_HomePartial", sortvacans);
+        }
+
+        public IActionResult SearchResult(string search)
+        {
+            IQueryable<Vacans> allVacans = _vacansService.GetAcceptedVacansWithRelatedData();
+
+            if (search is not null)
+            {
+                allVacans = allVacans.Where(c => c.Position.Contains(search));
+            }
+            else
+            {
+                allVacans = allVacans;
+            }
+            List<Vacans> searching = allVacans.ToList();
+
+            return PartialView("_HomePartial", searching);
+
+        }
     }
 }

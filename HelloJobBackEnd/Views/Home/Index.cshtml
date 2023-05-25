@@ -119,7 +119,7 @@
 
                         <div class="item">
                             <div class="new-cat-card">
-                                <a asp-controller="home" asp-action="index" asp-route-titleid="@title.Id">
+                                <a  class="title-link" data-titleid="@title.Id">
                                     <img src="~/assets/images/BusinessTitle/@title.Image" alt="Maliyyə">
                                     <div class="new-cat-name"><p>@title.Name</p></div>
                                     <div class="new-cat-count"><p><span>@totalVac</span> iş elanı</p></div>
@@ -144,7 +144,7 @@
                     </h1>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8 col-md-8">
+                    <div class="col-lg-8 col-md-8" id="partials">
                         @await Html.PartialAsync("_HomePartial",Model)
                        
                     </div>
@@ -194,15 +194,22 @@
 @section Script{
 
     <script>
-
+        //Searching 
         const searchForm = document.querySelector('.search');
         const searchInput = searchForm.querySelector('.search-input');
         const searchResults = document.querySelector('.search-results');
 
+
         searchForm.addEventListener('submit', (e) => {
-            const searchQuery = e.target.value.trim();
             e.preventDefault();
-            window.location.href = "/Home/Index?search=${searchQuery}";
+            const searchQuery = searchInput.value.trim();
+            fetch(`/home/searchresult?search=${encodeURIComponent(searchQuery)}`)
+                .then(response => response.text())
+                .then(data => {
+                    const partialContainer = document.getElementById('partials');
+                    partialContainer.innerHTML = data;
+                })
+                .catch(error => console.error('Fetch hatası:', error));
         });
 
         let timeoutId;
@@ -221,9 +228,31 @@
                         searchResults.innerHTML = data;
                     })
                     .catch(error => console.log(error));
-            }, 500);
+            }, 200);
         });
 
+
+        //titles sorted
+        var titleLinks = document.querySelectorAll('.title-link');
+
+        titleLinks.forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                var titleid = this.getAttribute('data-titleid');
+
+                fetch('/home/sorted?titleid=' + titleid)
+                    .then(response => response.text())
+                    .then(data => {
+                        var partialContainer = document.getElementById('partials');
+
+                        partialContainer.innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
+        });
        
 
 

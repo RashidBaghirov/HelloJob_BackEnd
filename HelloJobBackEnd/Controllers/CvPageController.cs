@@ -18,17 +18,9 @@ namespace HelloJobBackEnd.Controllers
             _context = context;
             _cvPageService = cvPageService;
         }
-        public IActionResult Index(string? search, int page = 1)
+        public IActionResult Index(int page = 1)
         {
             IQueryable<Cv> allcvs = _cvPageService.GetAllCvs();
-
-            if (!string.IsNullOrEmpty(search))
-            {
-                allcvs = allcvs.Where(c => c.Position.Contains(search));
-            }
-
-
-
             ViewBag.Education = _context.Educations.ToList();
             ViewBag.Experince = _context.Experiences.ToList();
             ViewBag.Mode = _context.OperatingModes.ToList();
@@ -36,8 +28,8 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
             ViewBag.CurrentPage = page;
-            List<Cv> filteredCvs = allcvs.Skip((page - 1) * 8).Take(8).ToList();
-            return View(filteredCvs);
+            List<Cv> cvs = allcvs.Skip((page - 1) * 8).Take(8).ToList();
+            return View(cvs);
         }
 
 
@@ -87,6 +79,25 @@ namespace HelloJobBackEnd.Controllers
             return PartialView("_SerachcvPartial", cvs);
         }
 
+
+
+        public IActionResult SearchResult(string search)
+        {
+            IQueryable<Cv> allcvs = _cvPageService.GetAllCvs();
+            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
+
+            if (search is not null)
+            {
+                allcvs = allcvs.Where(c => c.Position.Contains(search));
+            }
+            else
+            {
+                allcvs = allcvs;
+            }
+            List<Cv> cvs = allcvs.ToList();
+
+            return PartialView("_UserblocksPartial", cvs);
+        }
 
 
     }

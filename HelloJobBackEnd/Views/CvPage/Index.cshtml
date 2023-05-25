@@ -213,10 +213,17 @@
         const searchInput = searchForm.querySelector('.search-input');
         const searchResults = document.querySelector('.search-results');
 
+
         searchForm.addEventListener('submit', (e) => {
-            const searchQuery = e.target.value.trim();
             e.preventDefault();
-            window.location.href = "/CvPage/Index?search=${searchQuery}";
+            const searchQuery = searchInput.value.trim();
+            fetch(`/cvpage/SearchResult?search=${encodeURIComponent(searchQuery)}`)
+                .then(response => response.text())
+                .then(data => {
+                    const partialContainer = document.getElementById('userBlocks');
+                    partialContainer.innerHTML = data;
+                })
+                .catch(error => console.error(error));
         });
 
         let timeoutId;
@@ -235,7 +242,7 @@
                         searchResults.innerHTML = data;
                     })
                     .catch(error => console.log(error));
-            }, 500);
+            }, 200);
         });
 
     </script>
