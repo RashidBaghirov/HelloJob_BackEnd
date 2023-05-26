@@ -31,23 +31,11 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
             ViewBag.CurrentPage = page;
 
-            DateTime currentDate = DateTime.Now;
-
-            List<Cv> cvs = allcvs.ToList();
-
-            foreach (Cv cv in cvs)
-            {
-                if (cv.Status == OrderStatus.Accepted && cv.EndedAt <= currentDate)
-                {
-                    cv.Status = OrderStatus.Pending;
-                    _context.SaveChanges();
-                }
-            }
-
-            cvs = allcvs.Skip((page - 1) * 8).Take(8).Where(x => x.Status == OrderStatus.Accepted).ToList();
+            List<Cv> cvs = allcvs.Skip((page - 1) * 8).Take(8).Where(x => x.Status == OrderStatus.Accepted).ToList();
 
             return View(cvs);
         }
+
 
 
 
@@ -111,7 +99,7 @@ namespace HelloJobBackEnd.Controllers
         public async Task<IActionResult> SearchResult(string search)
         {
             IQueryable<Cv> allcv = _cvPageService.GetAllCvs();
-
+            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
             if (search is not null)
             {
                 allcv = allcv.Where(c => c.Position.Contains(search));
