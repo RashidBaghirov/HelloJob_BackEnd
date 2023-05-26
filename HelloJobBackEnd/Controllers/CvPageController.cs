@@ -1,6 +1,8 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
+using HelloJobBackEnd.Services;
 using HelloJobBackEnd.Services.Interface;
+using HelloJobBackEnd.Utilities.Enum;
 using HelloJobBackEnd.Utilities.Extension;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -28,9 +30,25 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
             ViewBag.CurrentPage = page;
-            List<Cv> cvs = allcvs.Skip((page - 1) * 8).Take(8).ToList();
+
+            DateTime currentDate = DateTime.Now;
+
+            List<Cv> cvs = allcvs.ToList();
+
+            foreach (Cv cv in cvs)
+            {
+                if (cv.Status == OrderStatus.Accepted && cv.EndedAt <= currentDate)
+                {
+                    cv.Status = OrderStatus.Pending;
+                    _context.SaveChanges();
+                }
+            }
+
+            cvs = allcvs.Skip((page - 1) * 8).Take(8).Where(x => x.Status == OrderStatus.Accepted).ToList();
+
             return View(cvs);
         }
+
 
 
         [HttpPost]
@@ -49,12 +67,14 @@ namespace HelloJobBackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> FilterData(int[] businessIds, int[] modeIds, int[] educationIds, int[] experienceIds, bool? hasDriverLicense)
+        public async Task<IActionResult> FilterData(int[] businessIds, int[] modeIds, int[] educationIds, int[] experienceIds, bool? hasDriverLicense, int page = 1)
         {
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
-
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
+            ViewBag.CurrentPage = page;
             List<Cv> filteredCvs = await _cvPageService.GetFilteredData(businessIds, modeIds, educationIds, experienceIds, hasDriverLicense);
-            return PartialView("_UserblocksPartial", filteredCvs);
+            List<Cv> PageCv = filteredCvs.Skip((page - 1) * 8).Take(8).Where(s => s.Status == OrderStatus.Accepted).ToList();
+            return PartialView("_UserblocksPartial", PageCv);
         }
 
         public IActionResult Detail(int id)
@@ -75,28 +95,34 @@ namespace HelloJobBackEnd.Controllers
 
         public async Task<IActionResult> Search(string search)
         {
-            List<Cv> cvs = await _cvPageService.SearchCvs(search);
-            return PartialView("_SerachcvPartial", cvs);
+            IQueryable<Cv> query = _cvPageService.GetAllCvs()
+                      .Where(x => x.Position.Contains(search));
+
+            List<Cv> cv = query.OrderByDescending(x => x.Id)
+                .Take(3)
+                .Where(c => c.Status == OrderStatus.Accepted)
+                .ToList();
+
+            return PartialView("_SerachcvPartial", cv);
         }
 
 
 
-        public IActionResult SearchResult(string search)
+        public async Task<IActionResult> SearchResult(string search)
         {
-            IQueryable<Cv> allcvs = _cvPageService.GetAllCvs();
-            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
+            IQueryable<Cv> allcv = _cvPageService.GetAllCvs();
 
             if (search is not null)
             {
-                allcvs = allcvs.Where(c => c.Position.Contains(search));
+                allcv = allcv.Where(c => c.Position.Contains(search));
             }
             else
             {
-                allcvs = allcvs;
+                allcv = allcv;
             }
-            List<Cv> cvs = allcvs.ToList();
+            List<Cv> searching = allcv.ToList();
 
-            return PartialView("_UserblocksPartial", cvs);
+            return PartialView("_UserblocksPartial", searching);
         }
 
 

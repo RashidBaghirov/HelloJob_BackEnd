@@ -8,7 +8,6 @@ namespace HelloJobBackEnd.Services.Interface
         IQueryable<Cv> GetAllCvs();
         Task<List<Cv>> GetSortedCvs(string sort);
         Task<List<Cv>> GetFilteredData(int[] businessIds, int[] modeIds, int[] educationIds, int[] experienceIds, bool? hasDriverLicense);
-        Task<List<Cv>> SearchCvs(string search);
         Cv Details(int id);
         CvVM? EditedModelCv(int id);
     }

@@ -234,9 +234,17 @@
                                                                  alt="" />
                                                         </div>
                                                         <div class="text">
-                                                            <h4 class="secrets-title">
-                                                                @Model.CreatedAt.ToString("dd.MM")
-                                                            </h4>
+                                                            @if (DateTime.Now >= Model.EndedAt)
+                                                            {
+                                                                <h4 style="font-size:13px">Müddəti bitib</h4>
+                                                            }
+                                                            else
+                                                            {
+                                                                <h4 class="secrets-title">
+                                                                    @Model.CreatedAt.ToString("dd.MM")
+                                                                </h4>
+                                                            }
+                                                         
                                                             <p>Elan Tarixi</p>
                                                         </div>
                                                     </div>
@@ -252,9 +260,17 @@
                                                                  alt="" />
                                                         </div>
                                                         <div class="text">
-                                                            <h4 class="secrets-title">
-                                                                @Model.EndedAt.ToString("dd.MM")
-                                                            </h4>
+                                                            @if (DateTime.Now >= Model.EndedAt)
+                                                            {
+                                                                <h4 style="font-size:13px">Müddəti bitib</h4>
+                                                            }
+                                                            else
+                                                            {
+                                                                <h4 class="secrets-title">
+                                                                    @Model.EndedAt.ToString("dd.MM")
+                                                                </h4>
+                                                            }
+                                                          
                                                             <p>Bitme Tarixi</p>
                                                         </div>
                                                     </div>

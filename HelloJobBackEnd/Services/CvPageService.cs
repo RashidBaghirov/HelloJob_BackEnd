@@ -65,16 +65,6 @@ namespace HelloJobBackEnd.Services
             return filteredCvs.ToList();
         }
 
-        public async Task<List<Cv>> SearchCvs(string search)
-        {
-            IQueryable<Cv> query = GetAllCvs().Where(x => x.Position.Contains(search));
-            List<Cv> cvs = await query.OrderByDescending(x => x.Id)
-                .Where(c => c.Status == OrderStatus.Accepted)
-                .Take(3)
-                .ToListAsync();
-
-            return cvs;
-        }
 
 
 
