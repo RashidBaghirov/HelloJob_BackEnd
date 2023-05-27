@@ -470,17 +470,17 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  background: #1f9dff;
+  background: #7adb8f;
   padding: 10px;
   text-align: center;
-  border: 1px solid #1f9dff;
+  border: 1px solid #bad0e0;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
   border-radius: 8px;
   color: white;
   transition: 0.5s all;
 }
 .header .back .login_body .buttons_sbmt .login_submit button:hover {
-  background: #084c80;
+  background: #5cd877;
 }
 .header .back .login_body .buttons_sbmt .goRegister {
   display: block;
@@ -503,6 +503,54 @@
 }
 .header .back .login_body .buttons_sbmt .goRegister button:hover {
   background: rgb(221, 218, 218);
+}
+.header .back .login_body .buttons_sbmt .gogmail {
+  display: block;
+  margin: 10px;
+  width: 100%;
+}
+.header .back .login_body .buttons_sbmt .gogmail a {
+  display: inline-block;
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  background: #EF1804;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #bad0e0;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  border-radius: 8px;
+  color: black;
+  transition: 0.5s all;
+  text-decoration: none;
+}
+.header .back .login_body .buttons_sbmt .gogmail a:hover {
+  background: #c51808;
+}
+.header .back .login_body .buttons_sbmt .gofb {
+  display: block;
+  margin: 10px;
+  width: 100%;
+}
+.header .back .login_body .buttons_sbmt .gofb a {
+  display: inline-block;
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  background: #1976F2;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #bad0e0;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  border-radius: 8px;
+  color: black;
+  transition: 0.5s all;
+  text-decoration: none;
+}
+.header .back .login_body .buttons_sbmt .gofb a:hover {
+  background: #0c67df;
 }
 .header .back .registration_body {
   width: 400px;
@@ -814,6 +862,134 @@
   transition: 0.5s all;
 }
 .header .back .forgot_password .buttons_sbmt .goLogin button:hover {
+  background: rgb(221, 218, 218);
+}
+.header .back .enter_gmail {
+  width: 400px;
+  height: unset;
+  width: 400px;
+  padding: 24px;
+  position: relative;
+  background-color: white;
+  top: 60px;
+  margin: auto;
+  border-radius: 12px;
+}
+.header .back .enter_gmail .close_button {
+  font-size: 35px;
+  position: absolute;
+  right: 4px;
+  top: -8px;
+  border-radius: 8.5px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  border: 0;
+}
+.header .back .enter_gmail .close_button .close {
+  color: #333;
+  overflow: visible;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  display: block;
+  outline: none;
+  padding: 0;
+  z-index: 1046;
+  box-shadow: none;
+}
+.header .back .enter_gmail .pass_head .pass_head_icon {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 10px;
+  margin-bottom: 16px;
+}
+.header .back .enter_gmail .pass_head .pass_head_text {
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #475467;
+}
+.header .back .enter_gmail .pass_head .pass_head_text h3 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: #101828;
+  margin-bottom: 4px;
+}
+.header .back .enter_gmail .forgot .inputs_lg {
+  margin-bottom: 16px;
+}
+.header .back .enter_gmail .forgot .inputs_lg label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #344054;
+  margin-bottom: 6px;
+  display: block;
+}
+.header .back .enter_gmail .forgot .inputs_lg input {
+  border: 1px solid #D0D5DD;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #101828;
+  height: auto;
+  display: block;
+  width: 100%;
+  font-weight: 400;
+  background-color: #fff;
+  background-clip: padding-box;
+}
+.header .back .enter_gmail .buttons_sbmt .forgot_submit {
+  display: block;
+  margin: 10px;
+  width: 100%;
+}
+.header .back .enter_gmail .buttons_sbmt .forgot_submit button {
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  background: #1f9dff;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #1f9dff;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  border-radius: 8px;
+  color: white;
+  transition: 0.5s all;
+}
+.header .back .enter_gmail .buttons_sbmt .forgot_submit button:hover {
+  background: #084c80;
+}
+.header .back .enter_gmail .buttons_sbmt .goLogin {
+  display: block;
+  margin: 10px;
+  width: 100%;
+}
+.header .back .enter_gmail .buttons_sbmt .goLogin button {
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  background: white;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #bad0e0;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  border-radius: 8px;
+  color: black;
+  transition: 0.5s all;
+}
+.header .back .enter_gmail .buttons_sbmt .goLogin button:hover {
   background: rgb(221, 218, 218);
 }
 .header .back .active {
@@ -3650,8 +3826,7 @@
   left: 0;
   padding: 12px 6px;
   border-radius: 0 0 14px 14px;
-  opacity: 0;
-  visibility: hidden;
+  display: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   list-style: none;
   transition: 0.3s ease;
@@ -3665,9 +3840,8 @@
   text-decoration: none;
 }
 .account .account_content .account_head .account_head_tools .active {
-  opacity: 1;
-  visibility: visible;
   transition: 0.3s ease;
+  display: block;
 }
 .account .account_content .account_body {
   padding: 0 24px;

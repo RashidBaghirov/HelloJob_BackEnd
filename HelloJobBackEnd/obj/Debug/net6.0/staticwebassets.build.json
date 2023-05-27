@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ErrOvWJegBqRfP7hdttHEixD639XRBrpc7XaUfwEx70=",
+  "Hash": "CvRSNxX30tshRrN6fhIpsmaaG60a5EWOsHuStcjRFAA=",
   "Source": "HelloJobBackEnd",
   "BasePath": "_content/HelloJobBackEnd",
   "Mode": "Default",
@@ -3706,23 +3706,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\User\\226kb-og-image.png"
     },
     {
-      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\293827unnamed.jpg",
-      "SourceId": "HelloJobBackEnd",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
-      "BasePath": "_content/HelloJobBackEnd",
-      "RelativePath": "assets/images/User/293827unnamed.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\293827unnamed.jpg"
-    },
-    {
       "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\454photo_2023-05-14_12-45-48.jpg",
       "SourceId": "HelloJobBackEnd",
       "SourceType": "Discovered",
@@ -3755,23 +3738,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\User\\64photo_2023-05-14_12-45-48.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\592Cv.pdf",
-      "SourceId": "HelloJobBackEnd",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
-      "BasePath": "_content/HelloJobBackEnd",
-      "RelativePath": "assets/images/User/CVs/592Cv.pdf",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\CVs\\592Cv.pdf"
     },
     {
       "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\js\\account.js",

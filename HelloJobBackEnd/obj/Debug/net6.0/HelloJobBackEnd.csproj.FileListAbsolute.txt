@@ -546,3 +546,5 @@ C:\Users\resid\OneDrive\Desktop\HelloJobBack\HelloJob_BackEnd\HelloJobBackEnd\ob
 C:\Users\resid\OneDrive\Desktop\HelloJobBack\HelloJob_BackEnd\HelloJobBackEnd\obj\Debug\net6.0\HelloJobBackEnd.pdb
 C:\Users\resid\OneDrive\Desktop\HelloJobBack\HelloJob_BackEnd\HelloJobBackEnd\obj\Debug\net6.0\HelloJobBackEnd.genruntimeconfig.cache
 C:\Users\resid\OneDrive\Desktop\HelloJobBack\HelloJob_BackEnd\HelloJobBackEnd\obj\Debug\net6.0\ref\HelloJobBackEnd.dll
+C:\Users\resid\OneDrive\Desktop\HelloJobBack\HelloJob_BackEnd\HelloJobBackEnd\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\resid\OneDrive\Desktop\HelloJobBack\HelloJob_BackEnd\HelloJobBackEnd\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Facebook.dll

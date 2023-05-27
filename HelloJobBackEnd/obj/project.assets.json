@@ -53,6 +53,38 @@
       "MessagePackAnalyzer/2.1.152": {
         "type": "package"
       },
+      "Microsoft.AspNetCore.Authentication.Facebook/6.0.16": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Facebook.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Facebook.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Microsoft.AspNetCore.Authentication.Google/6.0.16": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.16": {
         "type": "package",
         "compile": {
@@ -2730,6 +2762,23 @@
           }
         }
       },
+      "System.Net.WebSockets/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Win32.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Net.WebSockets.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Net.WebSockets.dll": {}
+        }
+      },
       "System.ObjectModel/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -3675,6 +3724,36 @@
         "messagepackanalyzer.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Facebook/6.0.16": {
+      "sha512": "hNKadnleiCdt8Wv09CjH73hZvKzZ1yjSB72vYrKQ2L/LsJC+SB8Qlx6K3o5cnOqoBTRpIE1Dn4PqbJBY8bxKKQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.facebook/6.0.16",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Facebook.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Facebook.xml",
+        "microsoft.aspnetcore.authentication.facebook.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.facebook.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Google/6.0.16": {
+      "sha512": "MbWGOoW1XGcy6aFEmXaQwztyhR+VjmvhSZW+d8/0xE5PO9S9nWUYGRNEPDqdk95vxxbQQHmBDG+nFYoeh8FmgA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.google/6.0.16",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.xml",
+        "microsoft.aspnetcore.authentication.google.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.google.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.16": {
@@ -7882,6 +7961,45 @@
         "system.net.sockets.nuspec"
       ]
     },
+    "System.Net.WebSockets/4.3.0": {
+      "sha512": "u6fFNY5q4T8KerUAVbya7bR6b7muBuSTAersyrihkcmE5QhEOiH3t5rh4il15SexbVlpXFHGuMwr/m8fDrnkQg==",
+      "type": "package",
+      "path": "system.net.websockets/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Net.WebSockets.dll",
+        "lib/netstandard1.3/System.Net.WebSockets.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Net.WebSockets.dll",
+        "ref/netstandard1.3/System.Net.WebSockets.dll",
+        "ref/netstandard1.3/System.Net.WebSockets.xml",
+        "ref/netstandard1.3/de/System.Net.WebSockets.xml",
+        "ref/netstandard1.3/es/System.Net.WebSockets.xml",
+        "ref/netstandard1.3/fr/System.Net.WebSockets.xml",
+        "ref/netstandard1.3/it/System.Net.WebSockets.xml",
+        "ref/netstandard1.3/ja/System.Net.WebSockets.xml",
+        "ref/netstandard1.3/ko/System.Net.WebSockets.xml",
+        "ref/netstandard1.3/ru/System.Net.WebSockets.xml",
+        "ref/netstandard1.3/zh-hans/System.Net.WebSockets.xml",
+        "ref/netstandard1.3/zh-hant/System.Net.WebSockets.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.net.websockets.4.3.0.nupkg.sha512",
+        "system.net.websockets.nuspec"
+      ]
+    },
     "System.ObjectModel/4.3.0": {
       "sha512": "bdX+80eKv9bN6K4N+d77OankKHGn6CH711a6fcOpMQu2Fckp/Ft4L/kW9WznHpyR0NRAvJutzOMHNNlBGvxQzQ==",
       "type": "package",
@@ -10184,11 +10302,14 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Microsoft.AspNetCore.Authentication.Facebook >= 6.0.16",
+      "Microsoft.AspNetCore.Authentication.Google >= 6.0.16",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.16",
       "Microsoft.EntityFrameworkCore >= 6.0.16",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.16",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.16",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.13"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.13",
+      "System.Net.WebSockets >= 4.3.0"
     ]
   },
   "packageFolders": {
@@ -10236,6 +10357,14 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Facebook": {
+            "target": "Package",
+            "version": "[6.0.16, )"
+          },
+          "Microsoft.AspNetCore.Authentication.Google": {
+            "target": "Package",
+            "version": "[6.0.16, )"
+          },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
             "version": "[6.0.16, )"
@@ -10257,6 +10386,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.13, )"
+          },
+          "System.Net.WebSockets": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [

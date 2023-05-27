@@ -9,6 +9,7 @@ using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Utilities.Enum;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using System.Security.Claims;
 
 namespace HelloJobBackEnd.Controllers
 {
@@ -26,6 +27,127 @@ namespace HelloJobBackEnd.Controllers
             _roleManager = roleManager;
             _context = context;
         }
+        [HttpGet]
+        public IActionResult RegisterWithGoogle(string returnUrl = null)
+        {
+            var authenticationProperties = _signInManager.ConfigureExternalAuthenticationProperties("Google", Url.Action("GoogleCallback", "Account", new { returnUrl }));
+            return Challenge(authenticationProperties, "Google");
+        }
+        [HttpGet]
+        public async Task<IActionResult> GoogleCallback(string returnUrl = null)
+        {
+            var externalLoginInfo = await _signInManager.GetExternalLoginInfoAsync();
+            if (externalLoginInfo == null)
+            {
+                return RedirectToAction("Register");
+            }
+
+            var email = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Email);
+            var userName = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Name);
+
+            var existingUser = await _usermanager.FindByEmailAsync(email);
+            if (existingUser != null)
+            {
+                await _signInManager.SignInAsync(existingUser, isPersistent: false);
+
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            var userNameWithoutSpaces = userName.Replace(" ", string.Empty);
+            var newUser = new User
+            {
+                FullName = userName,
+                UserName = userNameWithoutSpaces.ToLower(),
+                Email = email
+            };
+
+            var result = await _usermanager.CreateAsync(newUser);
+            if (result.Succeeded)
+            {
+                await _usermanager.AddToRoleAsync(newUser, UserRole.employeer.ToString());
+
+                await _signInManager.SignInAsync(newUser, isPersistent: false);
+
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Register");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult RegisterWithFacebook(string returnUrl = null)
+        {
+            var authenticationProperties = _signInManager.ConfigureExternalAuthenticationProperties("Facebook", Url.Action("FacebookCallback", "Account", new { returnUrl }));
+            return Challenge(authenticationProperties, "Facebook");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> FacebookCallback(string returnUrl = null)
+        {
+            var externalLoginInfo = await _signInManager.GetExternalLoginInfoAsync();
+            if (externalLoginInfo == null)
+            {
+                return RedirectToAction("Register");
+            }
+
+            var email = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Email);
+            var userName = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Name);
+
+            var existingUser = await _usermanager.FindByEmailAsync(email);
+            if (existingUser != null)
+            {
+                await _signInManager.SignInAsync(existingUser, isPersistent: false);
+
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            var userNameWithoutSpaces = userName.Replace(" ", string.Empty);
+            var newUser = new User
+            {
+                FullName = userName,
+                UserName = userNameWithoutSpaces.ToLower(),
+                Email = email
+            };
+
+            var result = await _usermanager.CreateAsync(newUser);
+            if (result.Succeeded)
+            {
+                await _usermanager.AddToRoleAsync(newUser, UserRole.employeer.ToString());
+
+                await _signInManager.SignInAsync(newUser, isPersistent: false);
+
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Register");
+            }
+        }
+
+
+
 
         public async Task<IActionResult> Register(RegisterVM account)
         {
@@ -133,7 +255,7 @@ namespace HelloJobBackEnd.Controllers
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return Redirect(Request.Headers["Referer"].ToString());
+            return RedirectToAction("Index", "Home");
         }
 
 

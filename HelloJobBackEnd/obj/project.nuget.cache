@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6QAqsOivgWHM0tKZOsFPWxXA/sulAY/xo8cLYIKf2gJL8DnwefZyERmpGnPAySpvSbeqAIq9zF0FC7fzRndf3A==",
+  "dgSpecHash": "rocrDKqApuw28nNhYEHtDsV8pwZ69LwGsJvwCso1qG6PH84MTl6U6nGi0ar/jLXDF3rjboVbuwMN9SCCWt0ubQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\HelloJobBackEnd.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "C:\\Users\\resid\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\resid\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\resid\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\resid\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\6.0.16\\microsoft.aspnetcore.authentication.facebook.6.0.16.nupkg.sha512",
+    "C:\\Users\\resid\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\6.0.16\\microsoft.aspnetcore.authentication.google.6.0.16.nupkg.sha512",
     "C:\\Users\\resid\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.16\\microsoft.aspnetcore.cryptography.internal.6.0.16.nupkg.sha512",
     "C:\\Users\\resid\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.16\\microsoft.aspnetcore.cryptography.keyderivation.6.0.16.nupkg.sha512",
     "C:\\Users\\resid\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.16\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.16.nupkg.sha512",
@@ -135,6 +137,7 @@
     "C:\\Users\\resid\\.nuget\\packages\\system.net.http\\4.3.0\\system.net.http.4.3.0.nupkg.sha512",
     "C:\\Users\\resid\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\resid\\.nuget\\packages\\system.net.sockets\\4.3.0\\system.net.sockets.4.3.0.nupkg.sha512",
+    "C:\\Users\\resid\\.nuget\\packages\\system.net.websockets\\4.3.0\\system.net.websockets.4.3.0.nupkg.sha512",
     "C:\\Users\\resid\\.nuget\\packages\\system.objectmodel\\4.3.0\\system.objectmodel.4.3.0.nupkg.sha512",
     "C:\\Users\\resid\\.nuget\\packages\\system.private.uri\\4.3.2\\system.private.uri.4.3.2.nupkg.sha512",
     "C:\\Users\\resid\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",

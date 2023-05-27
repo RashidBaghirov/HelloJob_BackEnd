@@ -257,7 +257,7 @@ namespace HelloJobBackEnd.Controllers
                 IQueryable<Cv> allcvs = _cvPageService.GetAllCvs();
                 ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 6);
                 ViewBag.CurrentPage = page;
-                ViewBag.Allcv = allcvs.AsNoTracking().Skip((page - 1) * 6).Where(x => x.Status == OrderStatus.Accepted).Take(6).ToList();
+                ViewBag.Allcv = allcvs.AsNoTracking().Skip((page - 1) * 6).Where(x => x.Status == OrderStatus.Accepted && x.UserId == user.Id).Take(6).ToList();
                 return View();
             }
             else
@@ -265,7 +265,7 @@ namespace HelloJobBackEnd.Controllers
                 IQueryable<Vacans> allvacans = _vacansService.GetAcceptedVacansWithRelatedData();
                 ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 6);
                 ViewBag.CurrentPage = page;
-                ViewBag.Allvacans = allvacans.AsNoTracking().Skip((page - 1) * 6).Where(x => x.Status == OrderStatus.Accepted).Take(6).ToList();
+                ViewBag.Allvacans = allvacans.AsNoTracking().Skip((page - 1) * 6).Where(x => x.Status == OrderStatus.Accepted && x.Company.UserId == user.Id).Take(6).ToList();
                 return View();
 
             }

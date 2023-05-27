@@ -8,11 +8,14 @@
     ".NETCoreApp,Version=v6.0": {
       "HelloJobBackEnd/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Facebook": "6.0.16",
+          "Microsoft.AspNetCore.Authentication.Google": "6.0.16",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.16",
           "Microsoft.EntityFrameworkCore": "6.0.16",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.16",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.16",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.13"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.13",
+          "System.Net.WebSockets": "4.3.0"
         },
         "runtime": {
           "HelloJobBackEnd.dll": {}
@@ -52,6 +55,22 @@
         }
       },
       "MessagePackAnalyzer/2.1.152": {},
+      "Microsoft.AspNetCore.Authentication.Facebook/6.0.16": {
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Facebook.dll": {
+            "assemblyVersion": "6.0.16.0",
+            "fileVersion": "6.0.1623.17406"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Google/6.0.16": {
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "assemblyVersion": "6.0.16.0",
+            "fileVersion": "6.0.1623.17406"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.16": {
         "runtime": {
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
@@ -1904,6 +1923,14 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
+      "System.Net.WebSockets/4.3.0": {
+        "dependencies": {
+          "Microsoft.Win32.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        }
+      },
       "System.ObjectModel/4.3.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -2349,6 +2376,20 @@
       "sha512": "sha512-uJhZlGMkXDaFYsH8V9S6o1EyvsUqB9mpU4DVBXNr0DXZVzZMhuLP1IkLj5xK3EKlaAcvkFkZv3eSvuz360wb3Q==",
       "path": "messagepackanalyzer/2.1.152",
       "hashPath": "messagepackanalyzer.2.1.152.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Facebook/6.0.16": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hNKadnleiCdt8Wv09CjH73hZvKzZ1yjSB72vYrKQ2L/LsJC+SB8Qlx6K3o5cnOqoBTRpIE1Dn4PqbJBY8bxKKQ==",
+      "path": "microsoft.aspnetcore.authentication.facebook/6.0.16",
+      "hashPath": "microsoft.aspnetcore.authentication.facebook.6.0.16.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Google/6.0.16": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MbWGOoW1XGcy6aFEmXaQwztyhR+VjmvhSZW+d8/0xE5PO9S9nWUYGRNEPDqdk95vxxbQQHmBDG+nFYoeh8FmgA==",
+      "path": "microsoft.aspnetcore.authentication.google/6.0.16",
+      "hashPath": "microsoft.aspnetcore.authentication.google.6.0.16.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.16": {
       "type": "package",
@@ -3238,6 +3279,13 @@
       "sha512": "sha512-m6icV6TqQOAdgt5N/9I5KNpjom/5NFtkmGseEH+AK/hny8XrytLH3+b5M8zL/Ycg3fhIocFpUMyl/wpFnVRvdw==",
       "path": "system.net.sockets/4.3.0",
       "hashPath": "system.net.sockets.4.3.0.nupkg.sha512"
+    },
+    "System.Net.WebSockets/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u6fFNY5q4T8KerUAVbya7bR6b7muBuSTAersyrihkcmE5QhEOiH3t5rh4il15SexbVlpXFHGuMwr/m8fDrnkQg==",
+      "path": "system.net.websockets/4.3.0",
+      "hashPath": "system.net.websockets.4.3.0.nupkg.sha512"
     },
     "System.ObjectModel/4.3.0": {
       "type": "package",

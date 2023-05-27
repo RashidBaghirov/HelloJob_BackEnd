@@ -4,6 +4,7 @@ using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace HelloJobBackEnd.Controllers
 {
@@ -76,5 +77,9 @@ namespace HelloJobBackEnd.Controllers
             return PartialView("_HomePartial", searching);
 
         }
+
     }
+
+
+
 }

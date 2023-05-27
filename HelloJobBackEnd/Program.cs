@@ -2,6 +2,7 @@ using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
 using HelloJobBackEnd.Services;
 using HelloJobBackEnd.Services.Interface;
+using HelloJobBackEnd.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -23,17 +24,27 @@ namespace HelloJobBackEnd
             builder.Services.AddScoped<ICvPageService, CvPageService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
 
+            builder.Services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = "866366361059-m9c9icfu0v1c8cth4prdedkfp2osa9cp.apps.googleusercontent.com";
+                options.ClientSecret = "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";
+            });
 
-
+            builder.Services.AddAuthentication()
+            .AddFacebook(options =>
+             {
+                 options.AppId = "619404193439456";
+                 options.AppSecret = "e8139a69cfb8be730351123655d00dee";
+             });
+            builder.Services.AddDbContext<HelloJobDbContext>(opt =>
+            {
+                opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+            });
             builder.Services.AddControllersWithViews().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
-            builder.Services.AddDbContext<HelloJobDbContext>(opt =>
-            {
-                opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
-            });
 
             builder.Services.AddIdentity<User, IdentityRole>(opt =>
             {
@@ -48,12 +59,11 @@ namespace HelloJobBackEnd
 
                 opt.User.RequireUniqueEmail = false;
 
-                opt.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnm_-1234567890.QWERTYUIOPASDFGHJKLZXCVBNM:)(";
+                opt.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnm_-1234567890.QWERTYUIOPASDFGHJKLZXCVBNM:)( ";
 
                 opt.Lockout.MaxFailedAccessAttempts = 5;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<HelloJobDbContext>();
-
 
 
             var app = builder.Build();

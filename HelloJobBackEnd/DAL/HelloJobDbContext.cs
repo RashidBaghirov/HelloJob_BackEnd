@@ -33,6 +33,7 @@ namespace HelloJobBackEnd.DAL
         public DbSet<WishList> WishLists { get; set; }
         public DbSet<Rules> Rules { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Message> Messages { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Company>().

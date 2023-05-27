@@ -227,7 +227,7 @@
                 </div>
                    
                         <div class="request">
-                            <form asp-controller="Company" asp-action="VAcansDetail" method="post">
+                            <form asp-controller="Company" asp-action="VAcansDetail" asp-route-id="@Model.Id" method="post">
                                 <div class="button">
                                 @if (User.Identity.IsAuthenticated && (User.IsInRole(UserRole.employeer.ToString())))
                                 {
@@ -237,7 +237,6 @@
                                         <h3 class="infos">Cv-nizi Seçin</h3>
                                         <select name="cvsID"  asp-items="@(new SelectList(ViewBag.Cvs,"Id","Email"))" class="form-control" style="box-shadow:none">
                                         </select>
-                                        <input class="d-none" name="id" value="@Model.Id"/>
                                         <span class="text-danger"></span>
 
                                     </div>
