@@ -98,7 +98,6 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
             string filepath = Path.Combine(imagefolderPath, "Company", company.Image);
             ExtensionMethods.DeleteImage(filepath);
-
             _context.Companies.Remove(company);
             _context.SaveChanges();
             TempData["Delete"] = true;

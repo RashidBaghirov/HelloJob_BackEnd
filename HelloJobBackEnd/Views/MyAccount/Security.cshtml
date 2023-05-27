@@ -1,6 +1,8 @@
 ﻿@{
     Layout = "_MyAccount";
 }
+
+
 @model ProfileVM
 <div class="account">
     <div class="account_bar">
@@ -178,6 +180,13 @@
                                     <button class="btn btn-submit submit" type="submit">Yeniləmək</button>
                                 </div>
                             </form>
+                           <div class="mt-3">
+                                <form id="deleteUserForm" asp-controller="myaccount" asp-action="DeleteUserData" method="post">
+                                    <input type="hidden" name="userId" value="@ViewBag.User.Id" />
+                                    <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Kullanıcıyı Sil</button>
+                                </form>
+                           </div>
+
                         </div>
                     </div>
                 </div>
@@ -367,3 +376,11 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        function confirmDelete() {
+            var confirmation = confirm("Hesabıvızı silməyə əminsiniz?");
+            return confirmation;
+        }
+    </script>
+}

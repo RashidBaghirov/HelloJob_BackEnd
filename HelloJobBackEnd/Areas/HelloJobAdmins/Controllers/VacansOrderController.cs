@@ -93,7 +93,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             TempData["Deleted"] = false;
             Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
             List<WishListItem> wishlistItems = _context.WishListItems.Where(w => w.VacansId == vacans.Id).ToList();
+            List<RequestItem> requestItem = _context.RequestItems.Where(w => w.VacansId == vacans.Id).ToList();
             _context.WishListItems.RemoveRange(wishlistItems);
+            _context.RequestItems.RemoveRange(requestItem);
             _context.Vacans.Remove(vacans);
             _context.SaveChanges();
             TempData["Deleted"] = true;

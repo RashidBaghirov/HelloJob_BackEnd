@@ -231,7 +231,9 @@ namespace HelloJobBackEnd.Controllers
             VacansVM? vacanVM = _vacansService.GetEditedModelVC(id);
             Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
             List<WishListItem> wishlistItems = _context.WishListItems.Where(w => w.VacansId == vacans.Id).ToList();
+            List<RequestItem> requestItem = _context.RequestItems.Where(w => w.VacansId == vacans.Id).ToList();
             _context.WishListItems.RemoveRange(wishlistItems);
+            _context.RequestItems.RemoveRange(requestItem);
             _context.Vacans.Remove(vacans);
             _context.SaveChanges();
             TempData["Deleted"] = true;
@@ -484,7 +486,9 @@ namespace HelloJobBackEnd.Controllers
             string pdfpath = Path.Combine(imagefolderPath, "User", "CVs", cv.CvPDF);
             ExtensionMethods.DeleteImage(pdfpath);
             List<WishListItem> wishlistItems = _context.WishListItems.Where(w => w.CvId == cv.Id).ToList();
+            List<RequestItem> requestItem = _context.RequestItems.Where(w => w.CvId == cv.Id).ToList();
             _context.WishListItems.RemoveRange(wishlistItems);
+            _context.RequestItems.RemoveRange(requestItem);
             _context.Cvs.Remove(cv);
             _context.SaveChanges();
             TempData["Deleted"] = true;
@@ -761,8 +765,33 @@ namespace HelloJobBackEnd.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteUserData(string userId)
+        {
+            var user = await _usermanager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                IQueryable<Cv> cvsToDelete = _context.Cvs.Where(cv => cv.UserId == userId);
+                _context.Cvs.RemoveRange(cvsToDelete);
 
+                IQueryable<Company> companiesToDelete = _context.Companies.Where(company => company.UserId == userId);
+                _context.Companies.RemoveRange(companiesToDelete);
 
+                IQueryable<Request> requestToDelete = _context.Requests.Where(rq => rq.UserId == userId);
+                _context.Requests.RemoveRange(requestToDelete);
+
+                IQueryable<WishList> wishListsDelete = _context.WishLists.Where(ws => ws.UserId == userId);
+                _context.WishLists.RemoveRange(wishListsDelete);
+
+                await _usermanager.DeleteAsync(user);
+
+                await _signInManager.SignOutAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction(nameof(Security));
+
+        }
         //-----------------------------------------------------------------------------------------------------------------------------------------------------
 
         public async Task<IActionResult> CreatingCompany()
@@ -882,6 +911,7 @@ namespace HelloJobBackEnd.Controllers
 
         //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
         //-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -944,6 +974,7 @@ namespace HelloJobBackEnd.Controllers
         {
             ProfileVM profileVM = new()
             {
+                Id = user.Id,
                 Email = user.Email,
                 UserName = user.UserName,
                 FullName = user.FullName

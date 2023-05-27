@@ -104,7 +104,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             string pdfpath = Path.Combine(imagefolderPath, "User", "CVs", cv.CvPDF);
             ExtensionMethods.DeleteImage(pdfpath);
             List<WishListItem> wishlistItems = _context.WishListItems.Where(w => w.CvId == cv.Id).ToList();
+            List<RequestItem> requestItem = _context.RequestItems.Where(w => w.CvId == cv.Id).ToList();
             _context.WishListItems.RemoveRange(wishlistItems);
+            _context.RequestItems.RemoveRange(requestItem);
             _context.Cvs.Remove(cv);
             _context.SaveChanges();
             TempData["Delete"] = true;
