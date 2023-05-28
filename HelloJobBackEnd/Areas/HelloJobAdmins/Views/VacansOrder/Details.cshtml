@@ -103,8 +103,8 @@
     </dl>
 </div>
 <div class="m-3">
-    <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a> |
-    <a asp-action="Accept" asp-route-id="@Model?.Id">Accept</a> |
-    <a asp-action="Reject" asp-route-id="@Model?.Id">Reject</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Accept" asp-route-id="@Model.Id" class="btn btn-inverse waves-effect waves-light">Accept</a>
+    <a asp-action="Reject" asp-route-id="@Model.Id" class="btn btn-success waves-effect waves-light">Reject</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger waves-effect waves-light">Delete</a>
+    <a asp-action="Index" class="btn waves-effect waves-light btn-inverse">Back to List</a>
 </div>

@@ -1,232 +1,408 @@
-﻿@using HelloJobBackEnd.Utilities.Enum;
+﻿﻿@using HelloJobBackEnd.Utilities.Enum;
 @inject HelloJobBackEnd.Services.LayoutService layoutService
 @{
     var orders = layoutService.GetAllData();
 
 }
 
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Majestic Admin</title>
-    <link rel="stylesheet" href="~/admin/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="~/admin/assets/vendors/base/vendor.bundle.base.css">
-    <link rel="stylesheet" href="~/admin/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="~/admin/assets/css/style.css">
-    <link rel="shortcut icon" href="images/favicon.png" />
-    <link rel="shortcut icon"
-          type="image/x-icon"
-          href="~/assets/images/favicon.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" />
-    <link rel="icon shortcut" href="https://www.hellojob.az/content/assets/images/favicon.svg?v=2">
 
+<head>
+    <title>Material Able bootstrap admin template by Codedthemes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="Codedthemes" />
+    <link rel="icon" href="~/admin/assets/images/favicon.ico" type="image/x-icon">
+    <link href="~/admin/https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/admin/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/admin/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/style.css">
 </head>
+
 <body>
-    <div class="container-scroller">
-        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div class="navbar-brand-wrapper d-flex justify-content-center">
-                <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                    <a class="navbar-brand brand-logo" asp-area="HelloJobAdmins" asp-controller="home" asp-action="Index"><img style="height:80px;" src="~/assets/images/logo.svg" alt="logo" /></a>
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="~/admin/assets/images/logo-mini.svg" alt="logo" /></a>
-                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                        <span class="mdi mdi-sort-variant"></span>
-                    </button>
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="preloader-wrapper">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
                 </div>
             </div>
-            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown me-4">
-                        <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                            <i class="mdi mdi-bell mx-0"></i>
-                            @if (orders.vacansList.Any() || orders.cvList.Any() || orders.companyList.Any())
-                            {
-                                <span class="count"></span>
-                            }
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
-                            <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-
-                            @foreach (var vacans in orders.vacansList)
-                            {
-                                <a class="dropdown-item">
-                                    <div class="item-thumbnail">
-                                        <img src="~/assets/images/BusinessTitle/@vacans.BusinessArea.BusinessTitle.Image" alt="image" class="profile-pic">
-                                    </div>
-                                    <div class="item-content flex-grow">
-                                        <h6 class="ellipsis font-weight-normal">
-                                            @vacans.Company.Name
-                                        </h6>
-                                        <p class="font-weight-light small-text text-muted mb-0">
-                                            @vacans.Position
-                                        </p>
-                                    </div>
-                                </a>
-                            }
-
-                            @foreach (var cv in orders.cvList)
-                            {
-                                <a class="dropdown-item">
-                                    <div class="item-thumbnail">
-                                        <img src="~/assets/images/User/@cv.Image" alt="image" class="profile-pic">
-                                    </div>
-                                    <div class="item-content flex-grow">
-                                        <h6 class="ellipsis font-weight-normal">
-                                            @string.Concat(cv.Name," ",cv.Surname)
-                                        </h6>
-                                        <p class="font-weight-light small-text text-muted mb-0">
-                                            @cv.Position
-                                        </p>
-                                    </div>
-                                </a>
-                            }
-                            @foreach (var company in orders.companyList)
-                            {
-                                <a class="dropdown-item">
-                                    <div class="item-thumbnail">
-                                        <img src="~/assets/images/Company/@company.Image" alt="image" class="profile-pic">
-                                    </div>
-                                    <div class="item-content flex-grow">
-                                        <h6 class="ellipsis font-weight-normal">
-                                            @company.Name
-                                        </h6>
-                                    </div>
-                                </a>
-                            }
-                        </div>
-                    </li>
-                    <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                            <span class="nav-profile-name">@User.Identity.Name</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                            <a asp-area="HelloJobAdmins" asp-controller="AdminLogin" asp-action="LogOut" style="display:block;">
-                                <i class="mdi mdi-logout text-primary"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                    <span class="mdi mdi-menu"></span>
-                </button>
-            </div>
-        </nav>
-        <div class="container-fluid page-body-wrapper">
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="CompanyOrder" asp-action="Index" style="color:black">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">Companies</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="VacansOrder" asp-action="Index">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">Vacans</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="CvOrder" asp-action="Index">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">Cvs</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="City" asp-action="Index">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">Cities</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="Education" asp-action="Index">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">Educations</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="Experience" asp-action="Index">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">Experience</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="BusinessTitle" asp-action="Index">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">BusinessTItles</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="BusinessArea" asp-action="Index">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">BusinessAreas</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="OperatingMode" asp-action="Index">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">OperatingMode</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="Setting" asp-action="Index">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">Settings</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " asp-area="HelloJobAdmins" asp-controller="Rules" asp-action="Index">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">Rules</span>
-                        </a>
-                    </li>
-                    @if (User.IsInRole(AdminRoles.superadmin.ToString()))
-                    {
-                        <li class="nav-item ">
-                            <a class="nav-link text-danger" asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Register">
-                                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                                <span class="menu-title">Register</span>
-                            </a>
-                        </li>
-                    }
-
-                </ul>
-            </nav>
-            <div class="main-panel">
-                @RenderBody()
-            </div>
-
-            <!-- partial -->
         </div>
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2021</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best <a href="https://www.bootstrapdash.com/" target="_blank"> Bootstrap dashboard  </a> templates</span>
-            </div>
-        </footer>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo">
+                        <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+                        <div class="mobile-search waves-effect waves-light">
+                            <div class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-prepend search-close"><i class="ti-close input-group-text"></i></span>
+                                        <input type="text" class="form-control" placeholder="Enter Keyword">
+                                        <span class="input-group-append search-btn"><i class="ti-search input-group-text"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a asp-area="HelloJobAdmins" asp-controller="home" asp-action="Index" style="
+    width: 145px;
+">
+                            <img class="img-fluid" src="/assets/images/464night_mode_logo.svg" theme-logo"="">
+                        </a>
+                        <a class="mobile-options waves-effect waves-light">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                            </li>
+                            <li>
+                                <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                                    <i class="ti-fullscreen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="header-notification">
+                                <a href="#!" class="waves-effect waves-light">
+                                    <i class="ti-bell"></i>
+                                         @if (orders.vacansList.Any() || orders.cvList.Any() || orders.companyList.Any())
+                                    {
+                                        <span class="badge bg-c-red"></span>
+
+                                    }
+                                </a>
+                                <ul class="show-notification">
+                                    <li>
+                                        <h6>Notifications</h6>
+                                        <label class="label label-danger">New</label>
+                                    </li>
+                                         @foreach (var vacans in orders.vacansList)
+                                    {
+                                        <li class="waves-effect waves-light">
+                                            <a asp-area="HelloJobAdmins" asp-controller="vacansOrder" asp-action="index" >
+                                                <div class="media">
+                                                    <img class="d-flex align-self-center img-radius" src="~/assets/images/BusinessTitle/@vacans.BusinessArea.BusinessTitle.Image" alt="Generic placeholder image">
+                                                    <div class="media-body">
+                                                        <h5 class="notification-user">@vacans.Company.Name</h5>
+                                                        <p class="notification-msg"> @vacans.Position.</p>
+                                                        <span class="notification-time">@vacans.CreatedAt.ToString("dd/MM")</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                                                    
+                                      }
+                                    @foreach (var cv in orders.cvList)
+                                    {
+                                        <li class="waves-effect waves-light">
+                                            <a asp-area="HelloJobAdmins" asp-controller="cvorder" asp-action="index" >
+                                                <div class="media">
+                                                <img class="d-flex align-self-center img-radius" src="~/assets/images/User/@cv.Image" alt="Generic placeholder image">
+                                                <div class="media-body">
+                                                    <h5 class="notification-user">  @string.Concat(cv.Name," ",cv.Surname)</h5>
+                                                    <p class="notification-msg"> @cv.Position.</p>
+                                                    <span class="notification-time">@cv.CreatedAt.ToString("dd/MM")</span>
+                                                </div>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                    }
+                                     @foreach (var company in orders.companyList)
+                                    {
+                                        <li class="waves-effect waves-light">
+                                            <a asp-area="HelloJobAdmins" asp-controller="CompanyOrder" asp-action="index" >
+                                                <div class="media">
+                                                <img class="d-flex align-self-center img-radius" src="~/assets/images/Company/@company.Image" alt="Generic placeholder image">
+                                                <div class="media-body">
+                                                    <h5 class="notification-user">  @company.Name</h5>
+                                                </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
+
+                                 
+                                </ul>
+                            </li>
+                            <li class="user-profile header-notification">
+                                <a asp-area="HelloJobAdmins" asp-controller="home" asp-action="Index" class="waves-effect waves-light">
+                                    <img src="~/assets/images/Screenshot 2023-05-09 143145.png" class="img-radius" alt="User-Profile-Image">
+                                    <span>@User.Identity.Name</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="show-notification profile-notification">
+                                  
+                                        @if (User.IsInRole(AdminRoles.superadmin.ToString()))
+                                        {
+                                        <li class="waves-effect waves-light">
+                                            <a asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Register"><i class="ti-settings"></i>Register</a>
+                                        </li>
+
+                                        }
+                                    <li class="waves-effect waves-light">
+                                        <a asp-area="HelloJobAdmins" asp-controller="AdminLogin" asp-action="LogOut">
+                                            <i class="ti-layout-sidebar-left"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a asp-area="HelloJobAdmins" asp-controller="home" asp-action="Index"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+                            <div class="">
+                                <div class="main-menu-header">
+                                    <img class="img-80 img-radius" src="~/assets/images/Screenshot 2023-05-09 143145.png" alt="User-Profile-Image">
+                                    <div class="user-details">
+                                        <span id="more-details">@User.Identity.Name<i class="fa fa-caret-down"></i></span>
+                                    </div>
+                                </div>
+                                <div class="main-menu-content">
+                                    <ul>
+                                        <li class="more-details">
+                                                @if (User.IsInRole(AdminRoles.superadmin.ToString()))
+                                            {
+                                                <a asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Register"><i class="ti-settings"></i>Register</a>
+
+                                            }
+                                            <a asp-area="HelloJobAdmins" asp-controller="AdminLogin" asp-action="LogOut"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pcoded-navigation-label">Navigation</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="active">
+                                    <a asp-area="HelloJobAdmins" asp-controller="home" asp-action="Index" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">Dashboard</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="pcoded-navigation-label">Entities</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>BC</b></span>
+                                        <span class="pcoded-mtext">Basic</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a asp-area="HelloJobAdmins" asp-controller="City" asp-action="Index" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Cities</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a asp-area="HelloJobAdmins" asp-controller="Education" asp-action="Index" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Educations</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a asp-area="HelloJobAdmins" asp-controller="Experience" asp-action="Index" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Experience</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a hasp-area="HelloJobAdmins" asp-controller="BusinessTitle" asp-action="Index" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">BusinessTitles</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a asp-area="HelloJobAdmins" asp-controller="BusinessArea" asp-action="Index" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">BusinessAreas</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a asp-area="HelloJobAdmins" asp-controller="OperatingMode" asp-action="Index" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">OperatingMode</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a asp-area="HelloJobAdmins" asp-controller="Setting" asp-action="Index" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Settings</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a asp-area="HelloJobAdmins" asp-controller="Rules" asp-action="Index" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Rules</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a asp-area="HelloJobAdmins" asp-controller="Subscribe" asp-action="Index" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Subscribe</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div class="pcoded-navigation-label">Cvs</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a asp-area="HelloJobAdmins" asp-controller="CvOrder" asp-action="Index" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>A</b></span>
+                                        <span class="pcoded-mtext">Cv</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="pcoded-navigation-label">Vacans</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a asp-area="HelloJobAdmins" asp-controller="VacansOrder" asp-action="Index" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>B</b></span>
+                                        <span class="pcoded-mtext">Vacans</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="pcoded-navigation-label">Company</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a asp-area="HelloJobAdmins" asp-controller="CompanyOrder" asp-action="Index" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-bar-chart-alt"></i><b>C</b></span>
+                                        <span class="pcoded-mtext">Company</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="pcoded-content">
+                        <div class="page-header">
+                            <div class="page-block">
+                                <div class="row align-items-center">
+                                    <div class="col-md-8">
+                                        <div class="page-header-title">
+                                            <h5 class="m-b-10">HelloJob</h5>
+                                            <p class="m-b-0">Welcome To HelloJob Admin's Panel</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <ul class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a asp-area=" " asp-controller="account" asp-action="Logout"> <i class="fa fa-home"></i> </a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a asp-area=" " asp-controller="account" asp-action="Logout">HelloJob</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/admin/https://code.jquery.com/jquery-3.6.3.min.js"
             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
             crossorigin="anonymous"></script>
-    <script src="~/admin/assets/vendors/base/vendor.bundle.base.js"></script>
-    <script src="~/admin/assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="~/admin/assets/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="~/admin/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="~/admin/assets/js/off-canvas.js"></script>
-    <script src="~/admin/assets/js/hoverable-collapse.js"></script>
-    <script src="~/admin/assets/js/template.js"></script>
-    <script src="~/admin/assets/js/dashboard.js"></script>
-    <script src="~/admin/assets/js/data-table.js"></script>
-    <script src="~/admin/assets/js/jquery.dataTables.js"></script>
-    <script src="~/admin/assets/js/dataTables.bootstrap4.js"></script>
+    <script type="text/javascript" src="~/admin/assets/js/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="~/admin/assets/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="~/admin/assets/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="~/admin/assets/js/bootstrap/js/bootstrap.min.js "></script>
+    <script src="~/admin/assets/pages/waves/js/waves.min.js"></script>
+    <script type="text/javascript" src="~/admin/assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/admin/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script src="~/admin/assets/js/pcoded.min.js"></script>
+    <script src="~/admin/assets/js/vertical/vertical-layout.min.js "></script>
+    <script type="text/javascript" src="~/admin/assets/js/script.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @RenderSection("Scripts",false)
-    <script src="~/admin/assets/js/jquery.cookie.js" type="text/javascript"></script>
 </body>
 
 </html>

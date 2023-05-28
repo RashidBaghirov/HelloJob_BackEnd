@@ -39,7 +39,7 @@
     BusinessAreas
 </div>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn waves-effect waves-light btn-success btn-outline-success">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -63,9 +63,9 @@
                 @Html.DisplayFor(modelItem => item.BusinessTitle.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn waves-effect waves-light btn-warning btn-outline-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn waves-effect waves-light btn-info btn-outline-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn waves-effect waves-light btn-danger btn-outline-danger">Delete</a>
             </td>
         </tr>
 }
