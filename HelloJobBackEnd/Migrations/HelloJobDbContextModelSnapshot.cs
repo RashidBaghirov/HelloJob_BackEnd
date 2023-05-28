@@ -404,6 +404,23 @@ namespace HelloJobBackEnd.Migrations
                     b.ToTable("Settings");
                 });
 
+            modelBuilder.Entity("HelloJobBackEnd.Entities.Subscribe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subscribe");
+                });
+
             modelBuilder.Entity("HelloJobBackEnd.Entities.User", b =>
                 {
                     b.Property<string>("Id")

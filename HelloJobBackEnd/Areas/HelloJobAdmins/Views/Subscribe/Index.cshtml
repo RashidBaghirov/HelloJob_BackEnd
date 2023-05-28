@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Subscribe>
+
+@if (TempData["Delete"] != null)
+{
+    if ((bool)TempData["Delete"] == true)
+    {
+        <input type="hidden" id="deleteSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="deleteError" />
+
+    }
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            if ($("#deleteSuccess").length) {
+                toastr["success"]("Welcome back to us!", "1 City Is 'Deleted' ")
+            }
+            else if ($("#deleteError").length) {
+                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+            }
+        })
+    </script>
+}

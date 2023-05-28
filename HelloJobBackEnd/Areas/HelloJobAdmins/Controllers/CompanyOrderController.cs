@@ -61,8 +61,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
 
             _emailService.SendEmail(recipientEmail, subject, body);
-
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("SendMail", new { urlMessage = Url.Action("Create") });
         }
         public IActionResult Reject(int id)
         {
@@ -102,6 +101,33 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             _context.SaveChanges();
             TempData["Delete"] = true;
             return RedirectToAction(nameof(Index));
+        }
+
+
+
+        public IActionResult SendMail(string urlMessage)
+        {
+            List<Subscribe> subscribes = _context.Subscribe.ToList();
+            foreach (Subscribe email in subscribes)
+            {
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress("hellojob440@gmail.com", "HelloJob");
+                mailMessage.To.Add(new MailAddress(email.Email));
+
+
+                mailMessage.Subject = "New Product";
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Body = $"Yeni Product əlavə olundu: <br> {urlMessage}";
+
+                SmtpClient smtpClient = new SmtpClient();
+                smtpClient.Port = 587;
+                smtpClient.Host = "smtp.gmail.com";
+                smtpClient.EnableSsl = true;
+                smtpClient.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
+                smtpClient.Send(mailMessage);
+
+            }
+            return RedirectToAction("Index");
         }
     }
 }

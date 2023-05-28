@@ -853,8 +853,16 @@
       "PackagePath": "staticwebassets\\assets\\images\\User\\192827unnamed.jpg"
     },
     {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\225827unnamed.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\225827unnamed.jpg"
+    },
+    {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\226kb-og-image.png",
       "PackagePath": "staticwebassets\\assets\\images\\User\\226kb-og-image.png"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\231827unnamed.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\231827unnamed.jpg"
     },
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\454photo_2023-05-14_12-45-48.jpg",
@@ -863,6 +871,14 @@
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\64photo_2023-05-14_12-45-48.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\User\\64photo_2023-05-14_12-45-48.jpg"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\276Cv.pdf",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\276Cv.pdf"
+    },
+    {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\87Cv.pdf",
+      "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\87Cv.pdf"
     },
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\logo.svg",

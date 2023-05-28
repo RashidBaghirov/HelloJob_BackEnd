@@ -62,7 +62,12 @@ namespace HelloJobBackEnd.Controllers
         public async Task<IActionResult> VacansDetail(int id, int cvsID)
         {
             TempData["Request"] = false;
+            Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
+            if (cvsID == 0) return View(vacans);
             IQueryable<Vacans> vacanss = _vacansService.GetAcceptedVacansWithRelatedData();
+            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
+            ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(vacanss, vacans, id);
+
             if (User.Identity.IsAuthenticated)
             {
                 User user = await _usermanager.FindByNameAsync(User.Identity.Name);
@@ -70,13 +75,21 @@ namespace HelloJobBackEnd.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
+
                 ViewBag.Cvs = _context.Cvs.Where(x => x.UserId == user.Id && x.Status == OrderStatus.Accepted).ToList();
                 ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
-                Request userRequest = _context.Requests.Include(r => r.RequestItems).FirstOrDefault(r => r.UserId == user.Id);
+
+                Request userRequest = _context.Requests.Include(r => r.RequestItems)
+                                                       .FirstOrDefault(r => r.UserId == user.Id);
+
                 if (userRequest != null)
                 {
                     bool cvRequestExists = userRequest.RequestItems.Any(ri => ri.CvId == cvsID && ri.VacansId == id);
-                    if (!cvRequestExists)
+                    if (cvRequestExists)
+                    {
+                        return View(vacans);
+                    }
+                    else
                     {
                         RequestItem newRequestItem = new RequestItem
                         {
@@ -85,10 +98,20 @@ namespace HelloJobBackEnd.Controllers
                             Status = OrderStatus.Pending
                         };
                         userRequest.RequestItems.Add(newRequestItem);
+                        await _context.SaveChangesAsync();
                     }
                 }
                 else
                 {
+                    bool hasRequested = await _context.Requests
+                                                      .AnyAsync(r => r.UserId == user.Id
+                                                                     && r.RequestItems.Any(ri => ri.CvId == cvsID && ri.VacansId == id));
+
+                    if (hasRequested)
+                    {
+                        return View(vacans);
+                    }
+
                     RequestItem newRequestItem = new RequestItem
                     {
                         CvId = cvsID,
@@ -101,16 +124,17 @@ namespace HelloJobBackEnd.Controllers
                         RequestItems = new List<RequestItem> { newRequestItem }
                     };
                     _context.Requests.Add(userRequest);
+                    await _context.SaveChangesAsync();
                 }
-                await _context.SaveChangesAsync();
             }
-            ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
-            Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
-            ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(vacanss, vacans, id);
-            TempData["Request"] = true;
 
+            TempData["Request"] = true;
             return View(vacans);
         }
+
+
+
+
 
 
     }

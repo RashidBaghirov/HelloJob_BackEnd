@@ -52,7 +52,18 @@
     }
 }
 
+@if (TempData["Subscribe"] != null)
+{
+    if ((bool)TempData["Subscribe"] == true)
+    {
+        <input type="hidden" id="subscribeSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="subscribeError" />
 
+    }
+}
 
 <section id="titles_and_bgblue">
     <div class="blueback">
@@ -261,40 +272,50 @@
     <script>
         $(document).ready(function () {
             if ($("#registerSuccess").length) {
-                toastr["success"]("You have successfully joined us!", "Hello,Please check your register email" )
+                toastr["success"]("Uğurlu əməliyyət!", "Salam.Zəhmət olmasa e-poçtuvuzu yoxlayın")
             }
             else if ($("#registerError").length) {
-                toastr["error"]("Something went wrong!", "Upsss Sorry")
+                toastr["error"]("Xəta baş verdi!", "Yenidən yoxlayın...")
             }
         })
     </script>
     <script>
         $(document).ready(function () {
             if ($("#loginSuccess").length) {
-                toastr["success"]("Welcome back to us!", "Hello")
+                toastr["success"]("Sizi yenidən görmək xoşdur!", "Salam")
             }
             else if ($("#loginError").length) {
-                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+                toastr["error"]("İstifadəçi adı və ya Parol səhfdir!", "Bağışlayın...")
             }
         })
     </script>
     <script>
         $(document).ready(function () {
             if ($("#forgotSuccess").length) {
-                toastr["success"]("You have successfully joined us!", "Hello,Please check your register email")
+                toastr["success"]("Uğurlu əməliyyət!", "Salam.Zəhmət olmasa e-poçtuvuzu yoxlayın")
             }
             else if ($("#forgotError").length) {
-                toastr["error"]("Something went wrong!", "Upsss Sorry")
+                toastr["error"]("Xəta baş verdi!", "Bağışlayın...")
             }
         })
     </script>
     <script>
         $(document).ready(function () {
             if ($("#securitySuccess").length) {
-                toastr["success"]("You have successfully joined us!", "Hello,Your Password or Username Changed")
+                toastr["success"]("Uğurlu əməliyyət!", "Salam,Sizin İstifadəçi adı və ya Parol dəyişdirildi yenidən giriş edin.")
             }
             else if ($("#securityError").length) {
-                toastr["error"]("Something went wrong!", "Upsss Sorry")
+                toastr["error"]("Xəta baş verdi!", "Bağışlayın...")
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            if ($("#subscribeSuccess").length) {
+                toastr["success"]("Uğurlu əməliyyət!", "Salam siz artıq səhifədəki yeniliklərdən xəbərdar olacaqsınız")
+            }
+            else if ($("#subscribeError").length) {
+                toastr["error"]("Xəta baş verdi!", "Bu Email istifadə olunub və ya başqa səbəbdən...")
             }
         })
     </script>

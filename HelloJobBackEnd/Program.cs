@@ -33,8 +33,8 @@ namespace HelloJobBackEnd
             builder.Services.AddAuthentication()
             .AddFacebook(options =>
              {
-                 options.AppId = "619404193439456";
-                 options.AppSecret = "e8139a69cfb8be730351123655d00dee";
+                 options.AppId = "203567782610976";
+                 options.AppSecret = "9537ea0fa0ab56e49e29f4a9385dce52";
              });
             builder.Services.AddDbContext<HelloJobDbContext>(opt =>
             {

@@ -78,6 +78,26 @@ namespace HelloJobBackEnd.Controllers
 
         }
 
+        public ActionResult Subscribe(string email)
+        {
+            TempData["Subscribe"] = false;
+            bool Isdublicate = _context.Subscribe.Any(c => c.Email == email);
+
+            if (Isdublicate)
+            {
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+            Subscribe subscribe = new()
+            {
+                Email = email
+            };
+            _context.Subscribe.Add(subscribe);
+            _context.SaveChanges();
+            TempData["Subscribe"] = true;
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+
     }
 
 

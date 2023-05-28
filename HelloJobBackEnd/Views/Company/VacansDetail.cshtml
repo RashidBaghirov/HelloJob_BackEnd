@@ -2,7 +2,7 @@
     ViewBag.Title = "Vacans detail page";
     List<Vacans> related = ViewBag.Related;
     Dictionary<string, string> setting = ViewBag.Setting;
-   
+    List<Cv> UserCv = ViewBag.Cvs;
 }
 @if (TempData["Request"] != null)
 {
@@ -231,16 +231,26 @@
                                 <div class="button">
                                 @if (User.Identity.IsAuthenticated && (User.IsInRole(UserRole.employeer.ToString())))
                                 {
-                                
-                           <div class="vacans_block">
+                                    if (UserCv.Any())
+                                    {
+                                        <div class="vacans_block">
 
-                                        <h3 class="infos">Cv-nizi Seçin</h3>
-                                        <select name="cvsID"  asp-items="@(new SelectList(ViewBag.Cvs,"Id","Email"))" class="form-control" style="box-shadow:none">
-                                        </select>
-                                        <span class="text-danger"></span>
+                                            <h3 class="infos">Cv-nizi Seçin</h3>
+                                            <select name="cvsID" asp-items="@(new SelectList(UserCv,"Id","Id"))" class="form-control" style="box-shadow:none">
+                                            </select>
+                                            <span class="text-danger"></span>
 
-                                    </div>
-                                    <button type="submit" class="req_btn">Müraciət et</button>
+                                        </div>
+                                        <button type="submit" class="req_btn">Müraciət et</button>
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-info" role="alert">
+                                            Müraciət etmək üçün zəhmət olmasa <strong>"Cv Yerləşdirdən"</strong>  <strong>"Cv-nizi"</strong> yerləşdirin.!
+                                        </div>
+                                    }
+
+                                     
                                 }
                                 else
                                 {
@@ -384,30 +394,30 @@
 <script>
     $(document).ready(function () {
             if ($("#requestSuccess").length) {
-                toastr["success"]("You have successfully joined us!", "successfully")
+                toastr["success"]("Sizin sorğunuz uğurla göndərildi", "Uğurlu əməliyyat!")
         }
             else if ($("#requestError").length) {
-            toastr["error"]("Something went wrong!", "Upsss Sorry")
+                toastr["error"]("Xəta baş verdi!", "Bu Cv ilə vakansiyaya sorğu göndərmisiniz..")
         }
     })
 </script>
     <script>
         $(document).ready(function () {
             if ($("#registerSuccess").length) {
-                toastr["success"]("You have successfully joined us!", "Hello,Please check your register email")
+                toastr["success"]("Uğurlu əməliyyət!", "Salam.Zəhmət olmasa e-poçtuvuzu yoxlayın")
             }
             else if ($("#registerError").length) {
-                toastr["error"]("Something went wrong!", "Upsss Sorry")
+                toastr["error"]("Xəta baş verdi!", "Yenidən yoxlayın...")
             }
         })
     </script>
     <script>
         $(document).ready(function () {
             if ($("#loginSuccess").length) {
-                toastr["success"]("Welcome back to us!", "Hello")
+                toastr["success"]("Sizi yenidən görmək xoşdur!", "Salam")
             }
             else if ($("#loginError").length) {
-                toastr["error"]("Username or password is incorrect!", "Upsss Sorry")
+                toastr["error"]("İstifadəçi adı və ya Parol səhfdir!", "Bağışlayın...")
             }
         })
     </script>

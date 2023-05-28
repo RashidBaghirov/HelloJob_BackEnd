@@ -104,8 +104,8 @@
                                 </svg>
                             </a>
                         </div>
-                        <div class="darkmode">
-                            <button class="night night_mode"></button>
+                        <div class="darkmode" >
+                            <button class="night night_mode" ></button>
                             <button class="day night_mode"></button>
                         </div>
                     </div>
@@ -251,14 +251,27 @@
     </main>
     <footer class="footer">
         <div class="container">
-            <div class="row">
+           
+            <div class="row brd">
+             
                 <div class="col-md-4">
                     <a asp-controller="home" asp-action="index">
                         <div class="footer__logo">
-                            <img src="~/assets/images/night_mode_logo.svg" alt="" />
+                            <img src="~/assets/images/@settings["LogoNight"]" alt="" />
                         </div>
                         <p>Yeni işinizi qarşılayın</p>
                     </a>
+                    <form asp-controller="home" asp-action="Subscribe">
+                        <p class="text-light">Səhifədəki yeniliklərdən xəbərdar olmaq üçün  təsdiqləyin</p>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input class="form-control" style="box-shadow: none; width: max-content;" name="email" type="email" >
+                            </div>
+                            <div class="col-lg-6">
+                                <button type="submit" class="btn btn-outline-primary">Təsdiqlə</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-md-2">
                     <div class="footer__menu">
@@ -349,6 +362,7 @@
             </div>
         </div>
     </footer>
+    <script src="//code.jivosite.com/widget/3LgkoivRyd" async></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
             crossorigin="anonymous"></script>
