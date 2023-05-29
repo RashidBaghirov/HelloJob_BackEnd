@@ -23,6 +23,8 @@ namespace HelloJobBackEnd
             builder.Services.AddScoped<ILikedService, LikedService>();
             builder.Services.AddScoped<ICvPageService, CvPageService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
+            builder.Services.AddScoped<UserService>();
+
 
             builder.Services.AddAuthentication().AddGoogle(options =>
             {

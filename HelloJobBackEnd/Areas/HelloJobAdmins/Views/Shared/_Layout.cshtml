@@ -10,11 +10,10 @@
 <html lang="en">
 
 <head>
-    <title>Material Able bootstrap admin template by Codedthemes</title>
+    <title>HelloJob Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <link rel="icon" href="~/admin/assets/images/favicon.ico" type="image/x-icon">
     <link href="~/admin/https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
@@ -26,6 +25,8 @@
     <link rel="stylesheet" type="text/css" href="~/admin/assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="~/admin/assets/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" type="text/css" href="~/admin/assets/css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </head>
 
 <body>
@@ -102,7 +103,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a asp-area="HelloJobAdmins" asp-controller="home" asp-action="Index" style="
+                        <a asp-area="HelloJobAdmins" asp-controller="home" asp-action="index" style="
     width: 145px;
 ">
                             <img class="img-fluid" src="/assets/images/464night_mode_logo.svg" theme-logo"="">
@@ -135,7 +136,11 @@
                                 <ul class="show-notification">
                                     <li>
                                         <h6>Notifications</h6>
-                                        <label class="label label-danger">New</label>
+                                                     @if (orders.vacansList.Any() || orders.cvList.Any() || orders.companyList.Any())
+                                        {
+                                            <label class="label label-danger">New</label>
+
+                                        }
                                     </li>
                                          @foreach (var vacans in orders.vacansList)
                                     {
@@ -187,9 +192,9 @@
                                 </ul>
                             </li>
                             <li class="user-profile header-notification">
-                                <a asp-area="HelloJobAdmins" asp-controller="home" asp-action="Index" class="waves-effect waves-light">
+                                <a  class="waves-effect waves-light">
                                     <img src="~/assets/images/Screenshot 2023-05-09 143145.png" class="img-radius" alt="User-Profile-Image">
-                                    <span>@User.Identity.Name</span>
+                                    <span>@await layoutService.GetUserFullName()</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -222,7 +227,7 @@
                                 <div class="main-menu-header">
                                     <img class="img-80 img-radius" src="~/assets/images/Screenshot 2023-05-09 143145.png" alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span id="more-details">@User.Identity.Name<i class="fa fa-caret-down"></i></span>
+                                        <span id="more-details">@await layoutService.GetUserFullName()<i class="fa fa-caret-down"></i></span>
                                     </div>
                                 </div>
                                 <div class="main-menu-content">
@@ -402,7 +407,7 @@
     <script src="~/admin/assets/js/vertical/vertical-layout.min.js "></script>
     <script type="text/javascript" src="~/admin/assets/js/script.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    @RenderSection("Scripts",false)
+     @RenderSection("Scripts",false)
 </body>
 
 </html>

@@ -1,70 +1,93 @@
-﻿@model DashboardModel
+﻿
+<div class="alert alert-primary" role="alert">
+    You can do anything if you have enough reasons.
+</div>
 
-@{
-    ViewBag.Title = "Dashboard";
-}
-
-<div class="container">
-    <h1>HelloJob Dashboard</h1>
-    <p>Welcome to the HelloJob dashboard. Here, you can monitor various job-related metrics and statistics.</p>
-
-    <div class="row">
-        <div class="col-md-6">
-            <h2>CVs</h2>
-            @if (Model.CVs != null && Model.CVs.Count > 0)
-            {
-                <ol class="list-group list-group-numbered">
-                    @foreach (var cv in Model.CVs)
-                    {
-                        <li class="list-group-item">
-                            <strong>User FulName</strong>
-                            <br />
-                            <span>@cv.User.FullName </span>
-                            <br />
-                            <strong>FullName in CV</strong>
-                            <br />
-                            <span>@cv.Name  @cv.Surname</span>
-                            <br />
-                            <strong> Cv Category</strong>
-                            <br />
-                            <span>@cv.Position</span>
-                            <br />
-                        </li>
-                    }
-                </ol>
-            }
-            else
-            {
-                <p>No CVs found.</p>
-            }
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>CV and Vacancy table by BusinessArea</h5>
         </div>
-        <div class="col-md-6">
-            <h2>Companies</h2>
-            @if (Model.Companies != null && Model.Companies.Count > 0)
-            {
-                <ul class="list-group">
-                    @foreach (var company in Model.Companies)
-                    {
-                        <li class="list-group-item">
-                            <strong>@company.Name</strong>
-                            <br />
-                            <span>@company.User.FullName</span>
-                            <br />
-                            <strong>Vacancies:</strong>
-                            <ul>
-                                @foreach (var vacancy in company.Vacans)
-                                {
-                                    <li>@vacancy.Position</li>
-                                }
-                            </ul>
-                        </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <p>No companies found.</p>
-            }
+        <div class="card-block">
+            <canvas id="chart"></canvas>
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var labels = @Html.Raw(Json.Serialize(ViewBag.Labels));
+    var dataset1Data = @Html.Raw(Json.Serialize(ViewBag.Dataset1Data));
+    var dataset2Data = @Html.Raw(Json.Serialize(ViewBag.Dataset2Data));
+    var data = {
+        labels: labels,
+        datasets: [
+            {
+                label: "CV Sayı",
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                data: dataset1Data
+            },
+            {
+                label: "Vacans Sayı",
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                data: dataset2Data
+            }
+        ]
+    };
+    var ctx = document.getElementById("chart").getContext("2d");
+    var chart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+
+<div class="col-md-12 col-lg-6">
+    <div class="card">
+        <div class="card-header">
+            <h5>Vacancy numbers of companies</h5>
+        </div>
+        <div class="card-block">
+            <canvas id="morris-bar-chart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    var labels = @Html.Raw(Json.Serialize(ViewBag.LabelsCompany));
+    var datasetData = @Html.Raw(Json.Serialize(ViewBag.DatasetData));
+
+    var data = {
+        labels: labels,
+        datasets: [
+            {
+                label: "Vacans Sayı",
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                data: datasetData
+            }
+        ]
+    };
+
+    var ctx = document.getElementById("morris-bar-chart").getContext("2d");
+    var chart = new Chart(ctx, {
+        type: "bar",
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

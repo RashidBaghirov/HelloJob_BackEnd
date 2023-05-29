@@ -36,7 +36,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
             ViewBag.CurrentPage = page;
-            List<Cv>? cvs = _cvPageService.GetAllCvs().AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
+            List<Cv>? cvs = _cvPageService.GetAllCvs().AsNoTracking().OrderByDescending(x => x.Id).Skip((page - 1) * 8).Take(8).ToList();
             return View(cvs);
         }
 

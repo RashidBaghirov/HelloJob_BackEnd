@@ -34,7 +34,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             ViewBag.TotalPage = Math.Ceiling((double)_context.Companies.Count() / 8);
             ViewBag.CurrentPage = page;
-            List<Company> companies = _context.Companies.Include(u => u.User).Include(v => v.Vacans).AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
+            List<Company> companies = _context.Companies.Include(u => u.User).Include(v => v.Vacans).OrderByDescending(x => x.Id).AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
             return View(companies);
         }
 
@@ -47,7 +47,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             company.Status = OrderStatus.Accepted;
             _context.SaveChanges();
             TempData["CompanyAccepted"] = true;
-            string recipientEmail = company.Email;
+            string recipientEmail = company.User.Email;
             string body = string.Empty;
             string subject = "Elanla Bağlı Məlumat";
             using (StreamReader reader = new("wwwroot/assets/template/StickyacceptedMail.html"))

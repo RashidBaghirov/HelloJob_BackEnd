@@ -34,7 +34,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 8);
             ViewBag.CurrentPage = page;
-            List<Vacans>? vacans = _vacansService.GetAcceptedVacansWithRelatedData().AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
+            List<Vacans>? vacans = _vacansService.GetAcceptedVacansWithRelatedData().AsNoTracking().OrderByDescending(x => x.Id).Skip((page - 1) * 8).Take(8).ToList();
             return View(vacans);
         }
 
@@ -72,7 +72,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             vacans.Status = OrderStatus.Rejected;
             _context.SaveChanges();
             TempData["CompanyReject"] = true;
-            string recipientEmail = vacans.Company.Email;
+            string recipientEmail = vacans.Company.User.Email;
             string subject = "Elanla Bağlı Məlumat";
             string body = string.Empty;
             using (StreamReader reader = new StreamReader("wwwroot/assets/template/StickyrejectedMail.html"))
