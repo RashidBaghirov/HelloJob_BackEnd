@@ -11,6 +11,7 @@ using HelloJobBackEnd.Utilities.Extension;
 using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using HelloJobBackEnd.Services.Interface;
+using HelloJobBackEnd.Services;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -35,6 +36,20 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             ViewBag.TotalPage = Math.Ceiling((double)_context.Companies.Count() / 8);
             ViewBag.CurrentPage = page;
             List<Company> companies = _context.Companies.Include(u => u.User).Include(v => v.Vacans).OrderByDescending(x => x.Id).AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
+            return View(companies);
+        }
+
+        [HttpPost]
+        public IActionResult Index(string search, int page = 1)
+        {
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Companies.Count() / 8);
+            ViewBag.CurrentPage = page;
+            List<Company> companies = _context.Companies.Include(u => u.User).Include(v => v.Vacans).OrderByDescending(x => x.Id).AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
+            if (!string.IsNullOrEmpty(search))
+            {
+                companies = companies.Where(x => x.Name.ToLower().StartsWith(search.ToLower().Substring(0, Math.Min(search.Length, 3)))).ToList();
+            }
+
             return View(companies);
         }
 

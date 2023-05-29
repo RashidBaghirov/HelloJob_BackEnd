@@ -599,7 +599,7 @@ namespace HelloJobBackEnd.Controllers
                 requestItem.Status = OrderStatus.Accepted;
                 _context.SaveChanges();
 
-                string recipientEmail = requestItem.Cv.Email;
+                string recipientEmail = requestItem.Cv.User.Email;
                 string subject = "Bildiriş";
                 string body = string.Empty;
 
@@ -657,7 +657,7 @@ namespace HelloJobBackEnd.Controllers
                 requestItem.Status = OrderStatus.Rejected;
                 _context.SaveChanges();
 
-                string recipientEmail = requestItem.Cv.Email;
+                string recipientEmail = requestItem.Cv.User.Email;
                 string subject = "Bildiriş";
                 string body = string.Empty;
 
@@ -801,7 +801,7 @@ namespace HelloJobBackEnd.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteUserData(string userId)
         {
-            var user = await _usermanager.FindByIdAsync(userId);
+            User user = await _usermanager.FindByIdAsync(userId);
             if (user != null)
             {
                 IQueryable<Cv> cvsToDelete = _context.Cvs.Where(cv => cv.UserId == userId);

@@ -2,9 +2,30 @@
 @{
     int count = 1;
 }
+<form method="post" asp-controller="User" asp-action="Index">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="search" id="searchInput">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="submitForm()">Search</button>
+    </div>
+</form>
+
+<script>
+    function submitForm() {
+        var searchValue = document.getElementById("searchInput").value;
+        var form = document.querySelector("form");
+
+        if (searchValue) {
+            form.submit();
+        } else {
+            form.action = "@Url.Action("Index")";
+            form.method = "post";
+            form.submit();
+        }
+    }
+</script>
 <div class="card">
     <div class="card-header">
-        <h5>Basic Table</h5>
+        <h5>User Table</h5>
         <span>use class <code>table</code> inside table element</span>
         <div class="card-header-right">
             <ul class="list-unstyled card-option">

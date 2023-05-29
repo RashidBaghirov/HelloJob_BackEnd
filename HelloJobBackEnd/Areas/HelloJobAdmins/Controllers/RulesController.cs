@@ -26,6 +26,20 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             return View(rules);
         }
 
+        [HttpPost]
+        public IActionResult Index(string search, int page = 1)
+        {
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Rules.Count() / 8);
+            ViewBag.CurrentPage = page;
+            IEnumerable<Rules> rules = _context.Rules.AsNoTracking().Skip((page - 1) * 8).Take(8).AsEnumerable();
+            if (!string.IsNullOrEmpty(search))
+            {
+                rules = rules.Where(x => x.Rule.ToLower().StartsWith(search.ToLower().Substring(0, Math.Min(search.Length, 3)))).ToList();
+            }
+
+            return View(rules);
+        }
+
         public IActionResult Create()
         {
             return View();

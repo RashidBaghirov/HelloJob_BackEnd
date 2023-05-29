@@ -35,6 +35,21 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             IEnumerable<BusinessTitle> businessTitles = _context.BusinessTitle.Include(b => b.BusinessAreas).AsNoTracking().Skip((page - 1) * 4).Take(4).AsEnumerable();
             return View(businessTitles);
         }
+
+
+        [HttpPost]
+        public IActionResult Index(string search, int page = 1)
+        {
+            ViewBag.TotalPage = Math.Ceiling((double)_context.BusinessTitle.Count() / 4);
+            ViewBag.CurrentPage = page;
+            IEnumerable<BusinessTitle> businessTitles = _context.BusinessTitle.Include(b => b.BusinessAreas).AsNoTracking().Skip((page - 1) * 4).Take(4).AsEnumerable();
+            if (!string.IsNullOrEmpty(search))
+            {
+                businessTitles = businessTitles.Where(x => x.Name.ToLower().StartsWith(search.ToLower().Substring(0, Math.Min(search.Length, 3)))).ToList();
+            }
+
+            return View(businessTitles);
+        }
         public async Task<IActionResult> Create()
         {
             return View();

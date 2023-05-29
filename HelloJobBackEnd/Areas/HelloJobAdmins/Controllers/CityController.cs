@@ -1,5 +1,6 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
+using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,19 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cities.Count() / 8);
             ViewBag.CurrentPage = page;
             List<City> cities = _context.Cities.OrderBy(x => x.Name).AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
+            return View(cities);
+        }
+
+        [HttpPost]
+        public IActionResult Index(string search, int page = 1)
+        {
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Cities.Count() / 8);
+            ViewBag.CurrentPage = page;
+            List<City> cities = _context.Cities.OrderBy(x => x.Name).AsNoTracking().Skip((page - 1) * 8).Take(8).ToList();
+            if (!string.IsNullOrEmpty(search))
+            {
+                cities = cities.Where(x => x.Name.ToLower().StartsWith(search.ToLower().Substring(0, Math.Min(search.Length, 3)))).ToList();
+            }
             return View(cities);
         }
 

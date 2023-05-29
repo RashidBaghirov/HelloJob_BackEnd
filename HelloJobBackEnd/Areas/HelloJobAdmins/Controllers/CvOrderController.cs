@@ -40,6 +40,21 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             return View(cvs);
         }
 
+
+        [HttpPost]
+        public IActionResult Index(string search, int page = 1)
+        {
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
+            ViewBag.CurrentPage = page;
+            List<Cv>? cvs = _cvPageService.GetAllCvs().AsNoTracking().OrderByDescending(x => x.Id).Skip((page - 1) * 8).Take(8).ToList();
+            if (!string.IsNullOrEmpty(search))
+            {
+                cvs = cvs.Where(x => x.Position.ToLower().StartsWith(search.ToLower().Substring(0, Math.Min(search.Length, 3)))).ToList();
+            }
+
+            return View(cvs);
+        }
+
         public IActionResult Accept(int id)
         {
             TempData["CVaccepted"] = false;

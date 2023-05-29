@@ -22,6 +22,18 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             return View(experiences);
         }
 
+        [HttpPost]
+        public IActionResult Index(string search)
+        {
+            List<Experience> experiences = _context.Experiences.OrderBy(x => x.Name).ToList();
+            if (!string.IsNullOrEmpty(search))
+            {
+                experiences = experiences.Where(x => x.Name.ToLower().StartsWith(search.ToLower().Substring(0, Math.Min(search.Length, 3)))).ToList();
+            }
+
+            return View(experiences);
+        }
+
         public IActionResult Create()
         {
             return View();

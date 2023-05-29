@@ -22,7 +22,7 @@ namespace HelloJobBackEnd.Services
 
         public User GetUserById(string id)
         {
-            User? users = _context.Users.FirstOrDefault(x => x.Id == id);
+            User? users = _context.Users.Include(x => x.Cvs).Include(x => x.Companies).ThenInclude(x => x.Vacans).FirstOrDefault(x => x.Id == id);
             return users;
         }
 

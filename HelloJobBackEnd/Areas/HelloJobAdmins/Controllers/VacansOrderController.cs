@@ -38,6 +38,21 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             return View(vacans);
         }
 
+        [HttpPost]
+        public IActionResult Index(string search, int page = 1)
+        {
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 8);
+            ViewBag.CurrentPage = page;
+            List<Vacans>? vacans = _vacansService.GetAcceptedVacansWithRelatedData().AsNoTracking().OrderByDescending(x => x.Id).Skip((page - 1) * 8).Take(8).ToList();
+            if (!string.IsNullOrEmpty(search))
+            {
+                vacans = vacans.Where(x => x.Position.ToLower().StartsWith(search.ToLower().Substring(0, Math.Min(search.Length, 3)))).ToList();
+            }
+
+
+            return View(vacans);
+        }
+
         public IActionResult Accept(int id)
         {
             TempData["CompanyAccepted"] = false;

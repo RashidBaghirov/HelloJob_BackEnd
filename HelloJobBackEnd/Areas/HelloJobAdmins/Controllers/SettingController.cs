@@ -3,6 +3,7 @@ using HelloJobBackEnd.Entities;
 using HelloJobBackEnd.Utilities.Extension;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
@@ -24,6 +25,21 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             ViewBag.TotalPage = Math.Ceiling((double)_context.Settings.Count() / 8);
             ViewBag.CurrentPage = page;
             IEnumerable<Setting> settings = _context.Settings.AsNoTracking().Skip((page - 1) * 8).Take(8).AsEnumerable();
+            return View(settings);
+        }
+
+
+        [HttpPost]
+        public IActionResult Index(string search, int page = 1)
+        {
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Settings.Count() / 8);
+            ViewBag.CurrentPage = page;
+            IEnumerable<Setting> settings = _context.Settings.AsNoTracking().Skip((page - 1) * 8).Take(8).AsEnumerable();
+            if (!string.IsNullOrEmpty(search))
+            {
+                settings = settings.Where(x => x.Key.ToLower().StartsWith(search.ToLower().Substring(0, Math.Min(search.Length, 1)))).ToList();
+            }
+
             return View(settings);
         }
 

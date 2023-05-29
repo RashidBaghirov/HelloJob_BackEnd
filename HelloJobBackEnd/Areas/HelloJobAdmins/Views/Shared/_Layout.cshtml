@@ -24,6 +24,8 @@
     <link rel="stylesheet" type="text/css" href="~/admin/assets/css/font-awesome-n.min.css">
     <link rel="stylesheet" type="text/css" href="~/admin/assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="~/admin/assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
     <link rel="stylesheet" type="text/css" href="~/admin/assets/css/style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
@@ -202,8 +204,9 @@
                                         @if (User.IsInRole(AdminRoles.superadmin.ToString()))
                                         {
                                         <li class="waves-effect waves-light">
-                                            <a asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Register"><i class="ti-settings"></i>Register</a>
+                                            <a asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Register"><i class="bi bi-person-plus-fill"></i>Register</a>
                                         </li>
+                                   
 
                                         }
                                     <li class="waves-effect waves-light">
@@ -235,7 +238,10 @@
                                         <li class="more-details">
                                                 @if (User.IsInRole(AdminRoles.superadmin.ToString()))
                                             {
-                                                <a asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Register"><i class="ti-settings"></i>Register</a>
+                                                <a asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Register"><i class="bi bi-person-plus-fill"></i>Register</a>
+
+                                                <a asp-area="HelloJobAdmins" asp-controller="User" asp-action="Index"><i class="bi bi-people"></i>Users</a>
+                                        
 
                                             }
                                             <a asp-area="HelloJobAdmins" asp-controller="AdminLogin" asp-action="LogOut"><i class="ti-layout-sidebar-left"></i>Logout</a>

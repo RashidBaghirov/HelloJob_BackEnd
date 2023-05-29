@@ -38,6 +38,27 @@
 <div class="alert alert-primary" role="alert">
    Cvs
 </div>
+<form method="post" asp-controller="CvOrder" asp-action="Index">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="search" id="searchInput">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="submitForm()">Search</button>
+    </div>
+</form>
+
+<script>
+    function submitForm() {
+        var searchValue = document.getElementById("searchInput").value;
+        var form = document.querySelector("form");
+
+        if (searchValue) {
+            form.submit();
+        } else {
+            form.action = "@Url.Action("Index")";
+            form.method = "post";
+            form.submit();
+        }
+    }
+</script>
 <table class="table" style="overflow:auto;">
     <thead>
         <tr>

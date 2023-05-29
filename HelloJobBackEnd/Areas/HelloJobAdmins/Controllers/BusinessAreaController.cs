@@ -28,6 +28,19 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             IEnumerable<BusinessArea> areas = _context.BusinessArea.Include(b => b.BusinessTitle).OrderBy(b => b.BusinessTitleId).AsNoTracking().Skip((page - 1) * 8).Take(8).AsEnumerable();
             return View(areas);
         }
+        [HttpPost]
+        public IActionResult Index(string search, int page = 1)
+        {
+            ViewBag.TotalPage = Math.Ceiling((double)_context.BusinessArea.Count() / 8);
+            ViewBag.CurrentPage = page;
+            IEnumerable<BusinessArea> areas = _context.BusinessArea.Include(b => b.BusinessTitle).OrderBy(b => b.BusinessTitleId).AsNoTracking().Skip((page - 1) * 8).Take(8).AsEnumerable();
+            if (!string.IsNullOrEmpty(search))
+            {
+                areas = areas.Where(x => x.Name.ToLower().StartsWith(search.ToLower().Substring(0, Math.Min(search.Length, 3)))).ToList();
+            }
+
+            return View(areas);
+        }
         public async Task<IActionResult> Create()
         {
             ViewBag.Business = _context.BusinessTitle.Include(b => b.BusinessAreas).ToList();

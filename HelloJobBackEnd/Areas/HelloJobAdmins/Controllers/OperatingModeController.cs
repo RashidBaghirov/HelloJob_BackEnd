@@ -2,6 +2,7 @@
 using HelloJobBackEnd.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
@@ -19,6 +20,17 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         public IActionResult Index()
         {
             List<OperatingMode> mode = _context.OperatingModes.OrderBy(x => x.Name).ToList();
+            return View(mode);
+        }
+        [HttpPost]
+        public IActionResult Index(string search)
+        {
+            List<OperatingMode> mode = _context.OperatingModes.OrderBy(x => x.Name).ToList();
+            if (!string.IsNullOrEmpty(search))
+            {
+                mode = mode.Where(x => x.Name.ToLower().StartsWith(search.ToLower().Substring(0, Math.Min(search.Length, 3)))).ToList();
+            }
+
             return View(mode);
         }
 

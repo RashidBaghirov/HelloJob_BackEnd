@@ -2,7 +2,26 @@
 <div class="alert alert-primary" role="alert">
    Settings
 </div>
+<form method="post" asp-controller="Setting" asp-action="Index">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="search" id="searchInput">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="submitForm()">Search</button>
+    </div>
+</form>
+<script>
+    function submitForm() {
+        var searchValue = document.getElementById("searchInput").value;
+        var form = document.querySelector("form");
 
+        if (searchValue) {
+            form.submit();
+        } else {
+            form.action = "@Url.Action("Index")";
+            form.method = "post";
+            form.submit();
+        }
+    }
+</script>
 <p>
     <a asp-action="Create" class="btn waves-effect waves-light btn-success btn-outline-success">Create New</a>
 
@@ -32,7 +51,9 @@
                     @(item.Value.Length > 35 ? string.Concat(item.Value.Substring(0, 35), "...") : item.Value)
             </td>
                 <td>
-                   <img src="~/assets/images/@item.Value" />
+                    <div style="width:80px;height:80px;">
+                        <img style="width:100%; object-fit:contain;" src="~/assets/images/@item.Value" />
+                        </div>
                 </td>
             <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn waves-effect waves-light btn-warning btn-outline-warning">Edit</a>
