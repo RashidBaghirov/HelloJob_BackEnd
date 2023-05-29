@@ -678,7 +678,40 @@ namespace HelloJobBackEnd.Controllers
 
 
 
+        public async Task<IActionResult> DeleteRequest(int requestId, int requestItemId)
+        {
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
+            Request? request = _context.Requests
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Cv)
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Cv.User)
+                .Include(r => r.RequestItems)
+                .ThenInclude(ri => ri.Vacans)
+                .ThenInclude(v => v.Company)
+                .FirstOrDefault(r => r.Id == requestId && (r.User == user || r.RequestItems.Any(ri => ri.Vacans.Company.User == user)));
+
+            if (request is null)
+            {
+                return RedirectToAction("Index", "Myaccount");
+            }
+
+            RequestItem requestItem = request.RequestItems.FirstOrDefault(ri => ri.Id == requestItemId);
+            if (requestItem is null)
+            {
+                return RedirectToAction("Index", "Myaccount");
+            }
+
+            request.RequestItems.Remove(requestItem);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(MyRequest));
+        }
 
 
 

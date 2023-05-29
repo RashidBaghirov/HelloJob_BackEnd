@@ -21,10 +21,10 @@ namespace HelloJobBackEnd.Services
             _userManager = userManager;
         }
 
-        public async Task<string> GetUserFullName()
+        public async Task<User> GetUserFullName()
         {
             var user = await _userManager.GetUserAsync(_accessor.HttpContext.User);
-            return user?.FullName;
+            return user;
         }
 
         public Dictionary<string, string> GetSettings()
@@ -43,6 +43,30 @@ namespace HelloJobBackEnd.Services
                 .Where(x => x.Status == OrderStatus.Pending).ToList();
 
             return (cvList, companyList, vacansList);
+        }
+
+
+        public List<RequestItem> GetAcceptedOrRejectedRequests(string userId)
+        {
+            List<RequestItem> acceptedOrRejectedRequests = new List<RequestItem>();
+
+            List<Request> requests = _context.Requests
+                .Include(r => r.RequestItems)
+                .Where(r => r.UserId == userId)
+                .ToList();
+
+            foreach (Request request in requests)
+            {
+                foreach (RequestItem requestItem in request.RequestItems)
+                {
+                    if (requestItem.Status == OrderStatus.Accepted || requestItem.Status == OrderStatus.Rejected)
+                    {
+                        acceptedOrRejectedRequests.Add(requestItem);
+                    }
+                }
+            }
+
+            return acceptedOrRejectedRequests;
         }
 
     }

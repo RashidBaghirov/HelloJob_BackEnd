@@ -19,6 +19,10 @@
             {
                 <th scope="col">Qəbul et/İmtina et</th>
             }
+            else
+            {
+                <th scope="col">Silmək</th>
+            }
    
         </tr>
     </thead>
@@ -62,17 +66,25 @@
                         </a>
                     </td>
                     <td>@(item.Status==OrderStatus.Pending ? "Gözləmədə" : item.Status )</td>
-                    @if (User.IsInRole(UserRole.business.ToString()))
-                    {
+                 
                         <td style="
-    padding: 0;
-
-    margin:0;
-">
+                        padding: 0;
+        
+                              margin:0;
+                                ">
+                        @if (User.IsInRole(UserRole.business.ToString()))
+                        {
                             <a asp-controller="myaccount" asp-action="AcceptRequestItem" asp-route-requestId="@request.Id" asp-route-requestItemId="@item.Id" class="btn btn-primary" style="display:inline;padding:0;">Təsdiqlə</a>
                             <a asp-controller="myaccount" asp-action="RejectedRequestItem" asp-route-requestId="@request.Id" asp-route-requestItemId="@item.Id" class="btn btn-warning" style="display:inline;padding:0;">Imtina et</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="myaccount" asp-action="DeleteRequest" asp-route-requestId="@request.Id" asp-route-requestItemId="@item.Id" class="btn btn-danger" style="display:inline;padding:0;">Sorğunu sil</a>
+                        }
+
                         </td>
-                    }
+
+
                 </tr>
                 count++;
             }
