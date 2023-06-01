@@ -37,8 +37,6 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             List<Vacans> vacansList = _vacansService.GetAcceptedVacansWithRelatedData().ToList();
             List<Cv> cvList = _cvPageService.GetAllCvs().ToList();
             List<Company> companyList = _companyService.GetTopAcceptedCompaniesWithVacans().ToList();
-            ViewBag.VacansList = vacansList;
-            ViewBag.CvList = cvList;
 
             List<BusinessTitle> businessTitles = _businessTitleService.GetAllBusinessTitlesWithAreas();
 

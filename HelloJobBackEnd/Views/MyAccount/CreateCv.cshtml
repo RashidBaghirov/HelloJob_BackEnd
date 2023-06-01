@@ -155,7 +155,7 @@
                         <div class="col-lg-10">
                             <div class="form-group">
                                 <div class="image_input">
-                                    <input class="choose"
+                                    <input class="choose" required
                                            asp-for="Image"
                                            id="fileInput"
                                            accept="image/*" />
@@ -180,7 +180,7 @@
                                     <div class="cv_inputs">
                                         <label asp-for="Name">
                                             Ad</label>
-                                        <input asp-for="Name"
+                                        <input asp-for="Name" required
                                                class="form-control inputs"
                                                placeholder="Adınız" />
                                         <span asp-validation-for="Name" class="text-danger"></span>
@@ -189,7 +189,7 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="Surname">Soyad</label>
-                                        <input asp-for="Surname"
+                                        <input asp-for="Surname" required
                                                class="form-control inputs"
                                                placeholder="Soyad" />
                                         <span asp-validation-for="Surname" class="text-danger"></span>
@@ -200,7 +200,7 @@
                                     <div class="cv_inputs">
                                         <label asp-for ="BornDate">
                                             Doğum Tarixi</label>
-                                        <input asp-for="BornDate"
+                                        <input asp-for="BornDate" required
                                                value="__/__/____"
                                                class="form-control inputs"
                                                placeholder="__/__/____" />
@@ -210,8 +210,7 @@
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
                                         <label asp-for="Email">E-Poçt</label>
-                                        <input asp-for="Email"
-                                               value="rrrr@gmail.com"
+                                        <input asp-for="Email" required
                                                class="form-control inputs"
                                                placeholder="E-poçt ünvanınızı yazın" />
                                         <span asp-validation-for="Email" class="text-danger"></span>
@@ -238,7 +237,7 @@
                                                    placeholder="Mobil nömrənizi qeyd edin"
                                                    class="form-control inputs"
                                                    im-insert="true"
-                                                   style="padding-left: 60px" />
+                                                   style="padding-left: 60px" required />
                                         </div>
                                         <input type="hidden"  asp-for="Number" id="full_phone_number" />
                                         <span asp-validation-for="Number" class="text-danger"></span>
@@ -295,8 +294,6 @@
                                     <div class="cv_inputs">
                                         <label asp-for="ExperienceId">İş stajı</label>
                                         <select asp-for="ExperienceId"  asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>İş stajı seçin</option>
-
                                         </select>
                                         <span asp-validation-for="ExperienceId" class="text-danger"></span>
 
@@ -306,9 +303,6 @@
                                     <div class="cv_inputs">
                                         <label asp-for="EducationId">Təhsil</label>
                                         <select asp-for="EducationId"  asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>Təhsilinizi seçin</option>
-
-
                                         </select>
                                         <span asp-validation-for="EducationId" class="text-danger"></span>
 
@@ -318,8 +312,6 @@
                                     <div class="cv_inputs">
                                         <label asp-for="OperatingModeId">İş saatı</label>
                                         <select asp-for="OperatingModeId"  asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>İş saatı seçin</option>
-
                                         </select>
                                         <span asp-validation-for="OperatingModeId" class="text-danger"></span>
 
@@ -327,11 +319,11 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="cv_inputs">
-                                        <label asp-for="Salary">Minimum əmək haqqı AZN</label>
+                                        <label asp-for="Salary">Minimum əmək haqqı AZN(Məs:1500)</label>
                                         <input asp-for="Salary"
                                                max="12000"
                                                class="form-control inputs"
-                                               placeholder="Məs:1500" />
+                                               placeholder="" value="0" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -539,7 +531,7 @@
                             <div class="col-lg-10">
                                 <div class="form-group">
                                     <div class="image_input">
-                                        <input class="choose"
+                                        <input class="choose" required
                                                asp-for="Image"
                                                id="fileInput"
                                                accept="image/*" />
@@ -556,6 +548,8 @@
                                         <span>Şəkil əlavə et</span>
                                         <p>SVG, PNG, JPG or GIF (max. 1000x1000px)</p>
                                     </label>
+                                    <span asp-validation-for="Image" class="text-danger"></span>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -563,7 +557,7 @@
                                             <label asp-for="Name">
                                                 Ad
                                             </label>
-                                            <input asp-for="Name"
+                                            <input asp-for="Name" required
                                                    class="form-control inputs"
                                                    placeholder="Adınız" />
                                             <span asp-validation-for="Name" class="text-danger"></span>
@@ -572,7 +566,7 @@
                                     <div class="col-lg-6">
                                         <div class="cv_inputs">
                                             <label asp-for="Surname">Soyad</label>
-                                            <input asp-for="Surname"
+                                            <input asp-for="Surname" required
                                                    class="form-control inputs"
                                                    placeholder="Soyad" />
                                             <span asp-validation-for="Surname" class="text-danger"></span>
@@ -584,7 +578,7 @@
                                             <label asp-for="BornDate">
                                                 Doğum Tarixi
                                             </label>
-                                            <input asp-for="BornDate"
+                                            <input asp-for="BornDate" required
                                                    value="__/__/____"
                                                    class="form-control inputs"
                                                    placeholder="__/__/____" />
@@ -594,8 +588,7 @@
                                     <div class="col-lg-6">
                                         <div class="cv_inputs">
                                             <label asp-for="Email">E-Poçt</label>
-                                            <input asp-for="Email"
-                                                   value="rrrr@gmail.com"
+                                            <input asp-for="Email" required
                                                    class="form-control inputs"
                                                    placeholder="E-poçt ünvanınızı yazın" />
                                             <span asp-validation-for="Email" class="text-danger"></span>
@@ -622,7 +615,7 @@
                                                        placeholder="Mobil nömrənizi qeyd edin"
                                                        class="form-control inputs"
                                                        im-insert="true"
-                                                       style="padding-left: 60px" />
+                                                       style="padding-left: 60px" required />
                                             </div>
                                             <input type="hidden" asp-for="Number" id="full_phone_number" />
                                             <span asp-validation-for="Number" class="text-danger"></span>
@@ -653,6 +646,8 @@
                                             <input asp-for="Position"
                                                    class="form-control inputs"
                                                    placeholder="Vəzifəniz" />
+                                            <span asp-validation-for="Position" class="text-danger"></span>
+
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -677,8 +672,6 @@
                                         <div class="cv_inputs">
                                             <label asp-for="ExperienceId">İş stajı</label>
                                             <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
-                                                <option selected disabled>İş stajı seçin</option>
-
                                             </select>
                                             <span asp-validation-for="ExperienceId" class="text-danger"></span>
 
@@ -688,9 +681,6 @@
                                         <div class="cv_inputs">
                                             <label asp-for="EducationId">Təhsil</label>
                                             <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
-                                                <option selected disabled>Təhsilinizi seçin</option>
-
-
                                             </select>
                                             <span asp-validation-for="EducationId" class="text-danger"></span>
 
@@ -700,8 +690,6 @@
                                         <div class="cv_inputs">
                                             <label asp-for="OperatingModeId">İş saatı</label>
                                             <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
-                                                <option selected disabled>İş saatı seçin</option>
-
                                             </select>
                                             <span asp-validation-for="OperatingModeId" class="text-danger"></span>
 
@@ -709,11 +697,11 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="cv_inputs">
-                                            <label asp-for="Salary">Minimum əmək haqqı AZN</label>
+                                            <label asp-for="Salary">Minimum əmək haqqı AZN(Məs:1500)</label>
                                             <input asp-for="Salary"
                                                    max="12000"
                                                    class="form-control inputs"
-                                                   placeholder="Məs:1500" />
+                                                   placeholder="" value="0" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">

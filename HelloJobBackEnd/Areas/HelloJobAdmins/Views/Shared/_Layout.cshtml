@@ -84,7 +84,6 @@
             </div>
         </div>
     </div>
-    <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
@@ -214,6 +213,11 @@
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
                                     </li>
+                                    <li class="waves-effect waves-light">
+                                        <a asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Security">
+                                            <i class="ti-settings"></i> Setting
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -244,7 +248,11 @@
                                         
 
                                             }
+                                            <a asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Security">
+                                                <i class="ti-settings"></i> Setting
+                                            </a>
                                             <a asp-area="HelloJobAdmins" asp-controller="AdminLogin" asp-action="LogOut"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                         
                                         </li>
                                     </ul>
                                 </div>

@@ -53,6 +53,8 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             return View(companies);
         }
 
+
+
         public IActionResult Accept(int id)
         {
             TempData["CompanyAccepted"] = false;
@@ -65,7 +67,11 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             string recipientEmail = company.User.Email;
             string body = string.Empty;
             string subject = "Elanla Bağlı Məlumat";
-            using (StreamReader reader = new("wwwroot/assets/template/StickyacceptedMail.html"))
+
+            string urlMessage = Url.Action("Detail", "Company", new { id = company.Id }, Request.Scheme);
+            urlMessage = urlMessage.Replace("/HelloJobAdmins", "");
+
+            using (StreamReader reader = new StreamReader("wwwroot/assets/template/StickyacceptedMail.html"))
             {
                 body = reader.ReadToEnd();
             }
@@ -73,11 +79,13 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             body = body.Replace("{{userFullName}}", company.User.FullName);
             body = body.Replace("{{companyName}}", company.Name);
             body = body.Replace("{{position}}", company.Email);
-
+            body = body.Replace("{{urlMessage}}", urlMessage);
 
             _emailService.SendEmail(recipientEmail, subject, body);
-            return RedirectToAction("SendMail", new { urlMessage = Url.Action("Create") });
+
+            return RedirectToAction("SendMail", new { urlMessage });
         }
+
         public IActionResult Reject(int id)
         {
             TempData["CompanyReject"] = false;
@@ -120,28 +128,30 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
 
 
-        public IActionResult SendMail(string urlMessage)
+        public async Task<IActionResult> SendMail(string urlMessage)
         {
             List<Subscribe> subscribes = _context.Subscribe.ToList();
             foreach (Subscribe email in subscribes)
             {
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("hellojob440@gmail.com", "HelloJob");
-                mailMessage.To.Add(new MailAddress(email.Email));
+                using (MailMessage mailMessage = new MailMessage())
+                {
+                    mailMessage.From = new MailAddress("hellojob440@gmail.com", "HelloJob");
+                    mailMessage.To.Add(new MailAddress(email.Email));
 
+                    mailMessage.Subject = "New Product";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Body = $"Yeni Şirkət əlavə olundu: <br> {urlMessage}";
 
-                mailMessage.Subject = "New Product";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = $"Yeni Product əlavə olundu: <br> {urlMessage}";
+                    using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtpClient.EnableSsl = true;
+                        smtpClient.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
 
-                SmtpClient smtpClient = new SmtpClient();
-                smtpClient.Port = 587;
-                smtpClient.Host = "smtp.gmail.com";
-                smtpClient.EnableSsl = true;
-                smtpClient.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
-                smtpClient.Send(mailMessage);
-
+                        await smtpClient.SendMailAsync(mailMessage);
+                    }
+                }
             }
+
             return RedirectToAction("Index");
         }
     }

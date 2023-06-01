@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -62,21 +63,23 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             vacans.Status = OrderStatus.Accepted;
             _context.SaveChanges();
             TempData["CompanyAccepted"] = true;
-            string recipientEmail = vacans.Company.Email;
+            string recipientEmail = vacans.Company.User.Email;
             string subject = "Elanla Bağlı Məlumat";
             string body = string.Empty;
             using (StreamReader reader = new StreamReader("wwwroot/assets/template/StickyacceptedMail.html"))
             {
                 body = reader.ReadToEnd();
             }
-
+            string urlMessage = Url.Action("VacansDetail", "Company", new { id = vacans.Id }, Request.Scheme);
+            urlMessage = urlMessage.Replace("/HelloJobAdmins", "");
 
             body = body.Replace("{{userFullName}}", vacans.Company.User.FullName);
             body = body.Replace("{{position}}", vacans.Position);
             body = body.Replace("{{companyName}}", vacans.Company.Name);
+            body = body.Replace("{{urlMessage}}", urlMessage);
 
             _emailService.SendEmail(recipientEmail, subject, body);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("SendMail", new { urlMessage = Url.Action("Create") });
         }
         public IActionResult Reject(int id)
         {
@@ -121,6 +124,31 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
             return View(vacans);
+        }
+
+        public IActionResult SendMail(string urlMessage)
+        {
+            List<Subscribe> subscribes = _context.Subscribe.ToList();
+            foreach (Subscribe email in subscribes)
+            {
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress("hellojob440@gmail.com", "HelloJob");
+                mailMessage.To.Add(new MailAddress(email.Email));
+
+
+                mailMessage.Subject = "New Product";
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Body = $"Yeni Vacansiya Əlave olundu : <br> {urlMessage}";
+
+                SmtpClient smtpClient = new SmtpClient();
+                smtpClient.Port = 587;
+                smtpClient.Host = "smtp.gmail.com";
+                smtpClient.EnableSsl = true;
+                smtpClient.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
+                smtpClient.Send(mailMessage);
+
+            }
+            return RedirectToAction("Index");
         }
 
     }

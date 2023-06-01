@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSGVsbG9Kb2JBZG1pbnNcVmlld3NcQWRtaW5SZWdpc3RlclxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Areas/HelloJobAdmins/Views/AdminRegister/Security.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSGVsbG9Kb2JBZG1pbnNcVmlld3NcQWRtaW5SZWdpc3RlclxTZWN1cml0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/resid/OneDrive/Desktop/HelloJobBack/HelloJob_BackEnd/HelloJobBackEnd/Areas/HelloJobAdmins/Views/BusinessArea/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSGVsbG9Kb2JBZG1pbnNcVmlld3NcQnVzaW5lc3NBcmVhXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

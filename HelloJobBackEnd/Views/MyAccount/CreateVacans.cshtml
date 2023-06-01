@@ -168,8 +168,6 @@
                                     <div class="vacans_inputs">
                                         <label asp-for="EducationId">Təhsil tələbi</label>
                                         <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>Təhsil tələbinizi seçin</option>
-
 
                                         </select>
                                         <span asp-validation-for="EducationId" class="text-danger"></span>
@@ -214,7 +212,6 @@
                                     <div class="vacans_inputs">
                                         <label asp-for="ExperienceId">İş stajı</label>
                                         <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>İş stajı seçin</option>
 
                                         </select>
                                         <span asp-validation-for="ExperienceId" class="text-danger"></span>
@@ -224,7 +221,6 @@
                                     <div class="vacans_inputs">
                                         <label asp-for="OperatingModeId">İş saatı</label>
                                         <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
-                                            <option selected disabled>İş saatı seçin</option>
 
                                         </select>
                                         <span asp-validation-for="OperatingModeId" class="text-danger"></span>
@@ -472,9 +468,9 @@
                             </div>
                             <div class="col-lg-10">
                                 <div class="row">
-                                
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
+
                                             <label asp-for="CompanyId">Şirkət adı</label>
                                             <select asp-for="CompanyId" asp-items="@(new SelectList(ViewBag.Company,"Id","Name"))" class="form-control cities">
                                                 <option selected disabled>Şirkətinizi Seçin</option>
@@ -489,9 +485,6 @@
                                         <div class="vacans_inputs">
                                             <label asp-for="EducationId">Təhsil tələbi</label>
                                             <select asp-for="EducationId" asp-items="@(new SelectList(ViewBag.Education,"Id","Name"))" class="form-control cities">
-                                                <option selected disabled>Təhsil tələbinizi seçin</option>
-
-
                                             </select>
                                             <span asp-validation-for="EducationId" class="text-danger"></span>
                                         </div>
@@ -535,8 +528,6 @@
                                         <div class="vacans_inputs">
                                             <label asp-for="ExperienceId">İş stajı</label>
                                             <select asp-for="ExperienceId" asp-items="@(new SelectList(ViewBag.Experince,"Id","Name"))" class="form-control cities">
-                                                <option selected disabled>İş stajı seçin</option>
-
                                             </select>
                                             <span asp-validation-for="ExperienceId" class="text-danger"></span>
                                         </div>
@@ -545,19 +536,17 @@
                                         <div class="vacans_inputs">
                                             <label asp-for="OperatingModeId">İş saatı</label>
                                             <select asp-for="OperatingModeId" asp-items="@(new SelectList(ViewBag.Mode,"Id","Name"))" class="form-control cities">
-                                                <option selected disabled>İş saatı seçin</option>
-
                                             </select>
                                             <span asp-validation-for="OperatingModeId" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="vacans_inputs">
-                                            <label asp-for="Salary">Əmək haqqı AZN</label>
+                                            <label asp-for="Salary">Əmək haqqı AZN(Məs:1500)</label>
                                             <input asp-for="Salary"
                                                    max="12000"
-                                                   class="form-control inputs"
-                                                   placeholder="Məs:1500" />
+                                                   value="0"
+                                                   class="form-control inputs" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">

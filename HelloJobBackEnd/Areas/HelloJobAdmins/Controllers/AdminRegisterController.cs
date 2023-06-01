@@ -4,6 +4,7 @@ using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol.Plugins;
 
 namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 {
@@ -53,6 +54,63 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
             return RedirectToAction("login", "adminLogin");
 
+        }
+
+
+
+
+        public async Task<IActionResult> Security()
+        {
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ProfileVM profileVM = new()
+            {
+                Email = user.Email,
+                UserName = user.UserName,
+                FullName = user.FullName
+            };
+            return View(profileVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Security(ProfileVM profileVM)
+        {
+            TempData["Security"] = false;
+            User user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            if (!string.IsNullOrWhiteSpace(profileVM.ConfirmNewPassword) && !string.IsNullOrWhiteSpace(profileVM.NewPassword))
+            {
+                var passwordChangeResult = await _usermanager.ChangePasswordAsync(user, profileVM.CurrentPassword, profileVM.NewPassword);
+
+                if (!passwordChangeResult.Succeeded)
+                {
+                    foreach (var item in passwordChangeResult.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
+
+                    return View();
+                }
+
+            }
+
+            user.UserName = profileVM.UserName;
+            var result = await _usermanager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError("", item.Description);
+                }
+
+                return View();
+            }
+            await _signInManager.SignOutAsync();
+            TempData["Security"] = true;
+            return RedirectToAction("Login", "adminlogin");
         }
     }
 }

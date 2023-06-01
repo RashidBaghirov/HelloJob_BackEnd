@@ -4,13 +4,13 @@
     <form asp-controller="Account" asp-action="Login">
         <div class="inputs_lg form-group">
             <label asp-for="UserName"></label>
-            <input asp-for="UserName" placeholder="E-poçtunuzu yazın">
+            <input asp-for="UserName" placeholder="E-poçtunuzu yazın" required>
             <span asp-validation-for="UserName"></span>
 
         </div>
         <div class="inputs_lg form-group">
             <label asp-for="Password"></label>
-            <input asp-for="Password" placeholder="********">
+            <input asp-for="Password" placeholder="********" required>
             <span asp-validation-for="Password"></span>
         </div>
         <div class="log_foot">

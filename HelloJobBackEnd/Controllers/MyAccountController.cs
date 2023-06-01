@@ -759,11 +759,8 @@ namespace HelloJobBackEnd.Controllers
         public async Task<IActionResult> Security(ProfileVM profileVM)
         {
             TempData["Security"] = false;
-            if (!ModelState.IsValid) return View();
-
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             ViewBags(user);
-
             if (!string.IsNullOrWhiteSpace(profileVM.ConfirmNewPassword) && !string.IsNullOrWhiteSpace(profileVM.NewPassword))
             {
                 var passwordChangeResult = await _usermanager.ChangePasswordAsync(user, profileVM.CurrentPassword, profileVM.NewPassword);

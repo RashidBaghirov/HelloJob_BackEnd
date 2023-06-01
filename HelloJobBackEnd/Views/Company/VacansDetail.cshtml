@@ -86,7 +86,7 @@
                                         <img style="
                                  width: 100%;
                                  object-fit: contain;
-                                  " src="~/assets/images/Company/@Model.Company.Image"
+                                  " src="~/assets/images/BusinessTitle/@Model.BusinessArea.BusinessTitle.Image"
                                              alt="@Model.Company.Name" />
                                     </div>
                                     <div class="title">
@@ -349,25 +349,25 @@
                             <div class="col-lg-6">
                                 <div class="vacancies">
                                     <div class="vacancies__href">
-                                        <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@Model.Id">
+                                        <a asp-controller="company" asp-action="vacansdetail" asp-route-id="@vacans.Id">
                                             <div class="item_left">
                                                 <div class="icon" style="
                          width: 58px !important;height:auto !important">
                                                     <img style="
                                  width: 100%;
                                  object-fit: contain;
-                                  " src="~/assets/images/Company/@Model.Company.Image"
-                                                         alt="@Model.Company.Name" />
+                                  " src="~/assets/images/BusinessTitle/@vacans.BusinessArea.BusinessTitle.Image"
+                                                         alt="@vacans.Company.Name" />
                                                 </div>
                                                 <div class="title">
-                                                    <h3>@Model.Position</h3>
-                                                    <p>@Model.Company.Name</p>
+                                                    <h3>@vacans.Position</h3>
+                                                    <p>@vacans.Company.Name</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <div class="item_right">
-                                            <span class="salary">@(Model.Salary == 0 ? "Ə-h razılaşma ilə" : Model.Salary) (AZN)</span>
-                                            <span class="date">@Model.CreatedAt.ToString("dd.MM")</span>
+                                            <span class="salary">@(vacans.Salary == 0 ? "Ə-h razılaşma ilə" : vacans.Salary) (AZN)</span>
+                                            <span class="date">@vacans.CreatedAt.ToString("dd.MM")</span>
                                             <span class="like">
                                                 <a class="like-button" data-item-id="@vacans.Id" data-item-type="Vacans">
                                                     <i class="fa-regular fa-heart unliked"></i>

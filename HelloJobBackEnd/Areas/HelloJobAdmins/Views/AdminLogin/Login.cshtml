@@ -1,7 +1,21 @@
 ﻿@{
     Layout = null;
 }
+
+
 @model LoginVM
+
+@if (TempData["Security"] != null)
+{
+    if ((bool)TempData["Security"] == true)
+    {
+        <input type="hidden" id="securitySuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="securityError" />
+    }
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,3 +66,16 @@
     </body>
 
 </html>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            if ($("#securitySuccess").length) {
+                toastr["success"]("Uğurlu əməliyyət!", "Salam,Sizin İstifadəçi adı və ya Parol dəyişdirildi yenidən giriş edin.")
+            }
+            else if ($("#securityError").length) {
+                toastr["error"]("Xəta baş verdi!", "Bağışlayın...")
+            }
+        })
+    </script>
+}

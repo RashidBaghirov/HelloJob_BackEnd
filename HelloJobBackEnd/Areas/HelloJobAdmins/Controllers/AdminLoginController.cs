@@ -34,7 +34,6 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM account)
         {
-            TempData["Login"] = false;
             if (!ModelState.IsValid) return View();
 
             User user = await _usermanager.FindByNameAsync(account.UserName);
@@ -59,7 +58,6 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
                     ModelState.AddModelError("", "Username or password is incorrect");
                     return View();
                 }
-                TempData["Login"] = true;
             }
             return RedirectToAction("Index", "Home");
 
