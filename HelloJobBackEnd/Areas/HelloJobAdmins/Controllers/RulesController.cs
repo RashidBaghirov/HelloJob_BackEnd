@@ -65,18 +65,18 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Edit(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Rules? rules = _context.Rules.FirstOrDefault(c => c.Id == id);
-            if (rules is null) return NotFound();
+            if (rules is null) return Redirect("~/Error/Error");
             return View(rules);
         }
 
         [HttpPost]
         public IActionResult Edit(int id, Rules editRules)
         {
-            if (id != editRules.Id) return NotFound();
+            if (id != editRules.Id) return Redirect("~/Error/Error");
             Rules? rules = _context.Rules.FirstOrDefault(c => c.Id == id);
-            if (rules is null) return NotFound();
+            if (rules is null) return Redirect("~/Error/Error");
             rules.Rule = editRules.Rule;
             rules.CV = editRules.CV;
             rules.Vacans = editRules.Vacans;
@@ -86,27 +86,27 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Details(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Rules? rules = _context.Rules.FirstOrDefault(c => c.Id == id);
-            return rules is null ? BadRequest() : View(rules);
+            return rules is null ? Redirect("~/Error/Error") : View(rules);
         }
 
 
 
         public IActionResult Delete(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Rules? rules = _context.Rules.FirstOrDefault(c => c.Id == id);
-            if (rules is null) return NotFound();
+            if (rules is null) return Redirect("~/Error/Error");
             return View(rules);
         }
 
         [HttpPost]
         public IActionResult Delete(int id, Rules deleteRule)
         {
-            if (id != deleteRule.Id) return NotFound();
+            if (id != deleteRule.Id) return Redirect("~/Error/Error");
             Rules? rule = _context.Rules.FirstOrDefault(c => c.Id == id);
-            if (rule is null) return NotFound();
+            if (rule is null) return Redirect("~/Error/Error");
             _context.Rules.Remove(rule);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));

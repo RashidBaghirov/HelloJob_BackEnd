@@ -67,9 +67,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Edit(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Education? education = _context.Educations.FirstOrDefault(c => c.Id == id);
-            if (education is null) return NotFound();
+            if (education is null) return Redirect("~/Error/Error");
             return View(education);
         }
 
@@ -78,9 +78,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             TempData["Edit"] = false;
 
-            if (id != editEducation.Id) return NotFound();
+            if (id != editEducation.Id) return Redirect("~/Error/Error");
             Education? education = _context.Educations.FirstOrDefault(c => c.Id == id);
-            if (education is null) return NotFound();
+            if (education is null) return Redirect("~/Error/Error");
             bool duplicate = _context.Educations.Any(c => c.Name == editEducation.Name && education.Name != editEducation.Name);
             if (duplicate)
             {
@@ -96,18 +96,18 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Details(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Education? education = _context.Educations.FirstOrDefault(c => c.Id == id);
-            return education is null ? BadRequest() : View(education);
+            return education is null ? Redirect("~/Error/Error") : View(education);
         }
 
 
 
         public IActionResult Delete(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Education? education = _context.Educations.FirstOrDefault(c => c.Id == id);
-            if (education is null) return NotFound();
+            if (education is null) return Redirect("~/Error/Error");
             return View(education);
         }
 
@@ -116,9 +116,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             TempData["Delete"] = false;
 
-            if (id != deleteeducation.Id) return NotFound();
+            if (id != deleteeducation.Id) return Redirect("~/Error/Error");
             Education? education = _context.Educations.FirstOrDefault(c => c.Id == id);
-            if (education is null) return NotFound();
+            if (education is null) return Redirect("~/Error/Error");
             _context.Educations.Remove(education);
             _context.SaveChanges();
             TempData["Delete"] = true;

@@ -2,7 +2,6 @@ using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
 using HelloJobBackEnd.Services;
 using HelloJobBackEnd.Services.Interface;
-using HelloJobBackEnd.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;

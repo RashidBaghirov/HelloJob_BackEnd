@@ -72,9 +72,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Edit(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             City? city = _context.Cities.FirstOrDefault(c => c.Id == id);
-            if (city is null) return NotFound();
+            if (city is null) return Redirect("~/Error/Error");
             return View(city);
         }
 
@@ -83,9 +83,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             TempData["Edit"] = false;
 
-            if (id != editCity.Id) return NotFound();
+            if (id != editCity.Id) return Redirect("~/Error/Error");
             City? city = _context.Cities.FirstOrDefault(c => c.Id == id);
-            if (city is null) return NotFound();
+            if (city is null) return Redirect("~/Error/Error");
             bool duplicate = _context.Cities.Any(c => c.Name == editCity.Name && city.Name != editCity.Name);
             if (duplicate)
             {
@@ -101,18 +101,18 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Details(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             City? city = _context.Cities.FirstOrDefault(c => c.Id == id);
-            return city is null ? BadRequest() : View(city);
+            return city is null ? Redirect("~/Error/Error") : View(city);
         }
 
 
 
         public IActionResult Delete(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             City? city = _context.Cities.FirstOrDefault(c => c.Id == id);
-            if (city is null) return NotFound();
+            if (city is null) return Redirect("~/Error/Error");
             return View(city);
         }
 
@@ -121,9 +121,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             TempData["Delete"] = false;
 
-            if (id != deleteCity.Id) return NotFound();
+            if (id != deleteCity.Id) return Redirect("~/Error/Error");
             City? city = _context.Cities.FirstOrDefault(c => c.Id == id);
-            if (city is null) return NotFound();
+            if (city is null) return Redirect("~/Error/Error");
             _context.Cities.Remove(city);
             _context.SaveChanges();
             TempData["Delete"] = true;

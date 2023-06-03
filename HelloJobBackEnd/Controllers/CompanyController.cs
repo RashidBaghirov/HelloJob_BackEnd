@@ -31,8 +31,9 @@ namespace HelloJobBackEnd.Controllers
 
         public IActionResult Detail(int id)
         {
+            if (id == 0) return RedirectToAction("Error", "Error");
             Company? company = _companyService.GetCompanyWithVacansById(id);
-
+            if (company is null) return RedirectToAction("Error", "Error");
             return View(company);
         }
 

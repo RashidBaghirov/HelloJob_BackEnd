@@ -86,12 +86,12 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             if (id <= 0)
             {
-                return NotFound();
+                return Redirect("~/Error/Error");
             }
             Setting setting = _context.Settings.FirstOrDefault(s => s.Id == id);
             if (setting is null)
             {
-                return BadRequest();
+                return Redirect("~/Error/Error");
             }
             return View(setting);
         }
@@ -99,7 +99,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Setting edited)
         {
-            if (id != edited.Id) return NotFound();
+            if (id != edited.Id) return Redirect("~/Error/Error");
             Setting setting = _context.Settings.FirstOrDefault(s => s.Id == id);
             if (!ModelState.IsValid) return View(setting);
             _context.Entry<Setting>(setting).CurrentValues.SetValues(edited);
@@ -119,27 +119,27 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Details(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Setting? setting = _context.Settings.FirstOrDefault(c => c.Id == id);
-            return setting is null ? BadRequest() : View(setting);
+            return setting is null ? Redirect("~/Error/Error") : View(setting);
         }
 
 
 
         public IActionResult Delete(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Setting? setting = _context.Settings.FirstOrDefault(c => c.Id == id);
-            if (setting is null) return NotFound();
+            if (setting is null) return Redirect("~/Error/Error");
             return View(setting);
         }
 
         [HttpPost]
         public IActionResult Delete(int id, Setting deleted)
         {
-            if (id != deleted.Id) return NotFound();
+            if (id != deleted.Id) return Redirect("~/Error/Error");
             Setting? setting = _context.Settings.FirstOrDefault(c => c.Id == id);
-            if (setting is null) return NotFound();
+            if (setting is null) return Redirect("~/Error/Error");
             _context.Settings.Remove(setting);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));

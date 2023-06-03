@@ -67,9 +67,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Edit(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Experience? experience = _context.Experiences.FirstOrDefault(c => c.Id == id);
-            if (experience is null) return NotFound();
+            if (experience is null) return Redirect("~/Error/Error");
             return View(experience);
         }
 
@@ -78,9 +78,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             TempData["Edit"] = false;
 
-            if (id != editexperience.Id) return NotFound();
+            if (id != editexperience.Id) return Redirect("~/Error/Error");
             Experience? experience = _context.Experiences.FirstOrDefault(c => c.Id == id);
-            if (experience is null) return NotFound();
+            if (experience is null) return Redirect("~/Error/Error");
             bool duplicate = _context.Experiences.Any(c => c.Name == editexperience.Name && experience.Name != editexperience.Name);
             if (duplicate)
             {
@@ -96,18 +96,18 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Details(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Experience? experience = _context.Experiences.FirstOrDefault(c => c.Id == id);
-            return experience is null ? BadRequest() : View(experience);
+            return experience is null ? Redirect("~/Error/Error") : View(experience);
         }
 
 
 
         public IActionResult Delete(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             Experience? experience = _context.Experiences.FirstOrDefault(c => c.Id == id);
-            if (experience is null) return NotFound();
+            if (experience is null) return Redirect("~/Error/Error");
             return View(experience);
         }
 
@@ -116,9 +116,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             TempData["Delete"] = false;
 
-            if (id != deleteexperience.Id) return NotFound();
+            if (id != deleteexperience.Id) return Redirect("~/Error/Error");
             Experience? experience = _context.Experiences.FirstOrDefault(c => c.Id == id);
-            if (experience is null) return NotFound();
+            if (experience is null) return Redirect("~/Error/Error");
             _context.Experiences.Remove(experience);
             _context.SaveChanges();
             TempData["Delete"] = true;

@@ -73,10 +73,10 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == 0) return BadRequest();
+            if (id == 0) return Redirect("~/Error/Error");
             ViewBag.Business = _context.BusinessTitle.Include(b => b.BusinessAreas).ToList();
             BusinessArea areas = _context.BusinessArea.Include(b => b.BusinessTitle).FirstOrDefault(x => x.Id == id);
-            if (areas is null) return BadRequest();
+            if (areas is null) return Redirect("~/Error/Error");
             return View(areas);
         }
 
@@ -84,7 +84,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         public async Task<IActionResult> Edit(int id, BusinessArea edited)
         {
             TempData["Edit"] = false;
-            if (id == 0) return BadRequest();
+            if (id == 0) return Redirect("~/Error/Error");
             ViewBag.Business = _context.BusinessTitle.Include(b => b.BusinessAreas).ToList();
             BusinessArea areas = _context.BusinessArea.Include(b => b.BusinessTitle).FirstOrDefault(x => x.Id == id);
 
@@ -99,14 +99,14 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             if (id == 0) return NotFound();
             BusinessArea? area = _context.BusinessArea.Include(b => b.BusinessTitle).FirstOrDefault(s => s.Id == id);
-            return area is null ? BadRequest() : View(area);
+            return area is null ? Redirect("~/Error/Error") : View(area);
         }
 
         public IActionResult Delete(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             BusinessArea? area = _context.BusinessArea.Include(x => x.BusinessTitle).FirstOrDefault(s => s.Id == id);
-            if (area is null) return NotFound();
+            if (area is null) return Redirect("~/Error/Error");
             return View(area);
         }
 
@@ -116,9 +116,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
 
             TempData["Delete"] = false;
-            if (id != deleted.Id) return NotFound();
+            if (id != deleted.Id) return Redirect("~/Error/Error");
             BusinessArea? area = _context.BusinessArea.Include(x => x.BusinessTitle).FirstOrDefault(s => s.Id == id);
-            if (area is null) return NotFound();
+            if (area is null) return Redirect("~/Error/Error");
             _context.BusinessArea.Remove(area);
             _context.SaveChanges();
             TempData["Delete"] = true;

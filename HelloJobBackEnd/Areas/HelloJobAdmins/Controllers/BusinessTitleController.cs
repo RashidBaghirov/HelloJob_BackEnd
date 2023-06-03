@@ -88,9 +88,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-
+            if (id == 0) return Redirect("~/Error/Error");
             BusinessTitleVM? titleVM = _businessTitleService.EditedTItle(id);
-
+            if (titleVM is null) return Redirect("~/Error/Error");
             return View(titleVM);
         }
         [HttpPost]
@@ -126,16 +126,16 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Details(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             BusinessTitle? title = _businessTitleService.GetTitleById(id);
-            return title is null ? BadRequest() : View(title);
+            return title is null ? Redirect("~/Error/Error") : View(title);
         }
 
         public IActionResult Delete(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             BusinessTitle? title = _businessTitleService.GetTitleById(id);
-            if (title is null) return NotFound();
+            if (title is null) return Redirect("~/Error/Error");
             return View(title);
         }
         [HttpPost]
@@ -144,12 +144,12 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             TempData["Delete"] = false;
 
             if (id != deleted.Id)
-                return NotFound();
+                return Redirect("~/Error/Error");
 
             BusinessTitle? title = _businessTitleService.GetTitleById(id);
 
             if (title is null)
-                return NotFound();
+                return Redirect("~/Error/Error");
 
             string imageFolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
             string filePath = Path.Combine(imageFolderPath, "BusinessTitle", title.Image);

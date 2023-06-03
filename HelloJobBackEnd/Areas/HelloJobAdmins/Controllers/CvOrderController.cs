@@ -60,7 +60,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             TempData["CVaccepted"] = false;
             Cv? cv = _cvPageService.Details(id);
 
-            if (cv is null) return NotFound();
+            if (cv is null) return Redirect("~/Error/Error");
             cv.Status = OrderStatus.Accepted;
             _context.SaveChanges();
             TempData["CVaccepted"] = true;
@@ -82,7 +82,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             TempData["CVrejected"] = false;
             Cv? cv = _cvPageService.Details(id);
 
-            if (cv is null) return NotFound();
+            if (cv is null) return Redirect("~/Error/Error");
             cv.Status = OrderStatus.Rejected;
             _context.SaveChanges();
             TempData["CVrejected"] = true;

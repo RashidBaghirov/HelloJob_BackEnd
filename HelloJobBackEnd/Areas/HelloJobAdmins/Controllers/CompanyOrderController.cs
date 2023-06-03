@@ -60,7 +60,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             TempData["CompanyAccepted"] = false;
             Company? company = _companyService.GetCompanyWithVacansById(id);
 
-            if (company is null) return NotFound();
+            if (company is null) return Redirect("~/Error/Error");
             company.Status = OrderStatus.Accepted;
             _context.SaveChanges();
             TempData["CompanyAccepted"] = true;
@@ -91,7 +91,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             TempData["CompanyReject"] = false;
             Company? company = _companyService.GetCompanyWithVacansById(id);
 
-            if (company is null) return NotFound();
+            if (company is null) return Redirect("~/Error/Error");
             company.Status = OrderStatus.Rejected;
             _context.SaveChanges();
             TempData["CompanyReject"] = true;

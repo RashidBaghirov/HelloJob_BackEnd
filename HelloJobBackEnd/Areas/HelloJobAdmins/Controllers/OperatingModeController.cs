@@ -67,9 +67,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Edit(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             OperatingMode? mode = _context.OperatingModes.FirstOrDefault(c => c.Id == id);
-            if (mode is null) return NotFound();
+            if (mode is null) return Redirect("~/Error/Error");
             return View(mode);
         }
 
@@ -78,9 +78,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             TempData["Edit"] = false;
 
-            if (id != editmode.Id) return NotFound();
+            if (id != editmode.Id) return Redirect("~/Error/Error");
             OperatingMode? mode = _context.OperatingModes.FirstOrDefault(c => c.Id == id);
-            if (mode is null) return NotFound();
+            if (mode is null) return Redirect("~/Error/Error");
             bool duplicate = _context.Experiences.Any(c => c.Name == editmode.Name && mode.Name != editmode.Name);
             if (duplicate)
             {
@@ -96,18 +96,18 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
 
         public IActionResult Details(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             OperatingMode? mode = _context.OperatingModes.FirstOrDefault(c => c.Id == id);
-            return mode is null ? BadRequest() : View(mode);
+            return mode is null ? Redirect("~/Error/Error") : View(mode);
         }
 
 
 
         public IActionResult Delete(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
             OperatingMode? mode = _context.OperatingModes.FirstOrDefault(c => c.Id == id);
-            if (mode is null) return NotFound();
+            if (mode is null) return Redirect("~/Error/Error");
             return View(mode);
         }
 
@@ -116,9 +116,9 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             TempData["Delete"] = false;
 
-            if (id != deleteMode.Id) return NotFound();
+            if (id != deleteMode.Id) return Redirect("~/Error/Error");
             OperatingMode? mode = _context.OperatingModes.FirstOrDefault(c => c.Id == id);
-            if (mode is null) return NotFound();
+            if (mode is null) return Redirect("~/Error/Error");
             _context.OperatingModes.Remove(mode);
             _context.SaveChanges();
             TempData["Delete"] = true;

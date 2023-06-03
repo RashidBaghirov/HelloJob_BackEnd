@@ -42,12 +42,12 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
         {
             TempData["Delete"] = false;
 
-            if (id == 0) return NotFound();
+            if (id == 0) return Redirect("~/Error/Error");
 
 
             Subscribe? subscribe = _context.Subscribe.FirstOrDefault(x => x.Id == id);
 
-            if (subscribe is null) return NotFound();
+            if (subscribe is null) return Redirect("~/Error/Error");
 
             _context.Subscribe.Remove(subscribe);
             _context.SaveChanges();

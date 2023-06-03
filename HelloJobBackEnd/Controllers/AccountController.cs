@@ -125,7 +125,8 @@ namespace HelloJobBackEnd.Controllers
             {
                 FullName = userName,
                 UserName = userNameWithoutSpaces.ToLower(),
-                Email = email
+                Email = email,
+                EmailConfirmed = true
             };
 
             var result = await _usermanager.CreateAsync(newUser);

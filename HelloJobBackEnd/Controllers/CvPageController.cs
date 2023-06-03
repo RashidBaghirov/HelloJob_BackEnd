@@ -67,12 +67,12 @@ namespace HelloJobBackEnd.Controllers
 
         public IActionResult Detail(int id)
         {
-            if (id == 0) return NotFound();
+            if (id == 0) return RedirectToAction("Error", "Error");
             IQueryable<Cv> allcvs = _cvPageService.GetAllCvs();
 
 
             Cv? cv = _cvPageService.Details(id);
-            if (cv is null) return NotFound();
+            if (cv is null) RedirectToAction("Error", "Error");
             cv.Count++;
             _context.SaveChanges();
             ViewBag.Related = ExtensionMethods.RelatedByBusinessArea(allcvs, cv, id);

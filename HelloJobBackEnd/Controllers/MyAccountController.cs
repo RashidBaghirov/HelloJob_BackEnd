@@ -144,14 +144,14 @@ namespace HelloJobBackEnd.Controllers
             ViewBags(user);
 
             VacansVM? vacanVM = _vacansService.GetEditedModelVC(id);
-            if (vacanVM is null) return BadRequest();
+            if (vacanVM is null) return RedirectToAction("Error", "Error");
             return View(vacanVM);
         }
 
         [HttpPost]
         public async Task<IActionResult> EditVacans(int id, VacansVM editedvacans)
         {
-            if (id == 0) return BadRequest();
+            if (id == 0) return RedirectToAction("Error", "Error");
             TempData["Edited"] = false;
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             if (user is null)
@@ -160,7 +160,7 @@ namespace HelloJobBackEnd.Controllers
             }
             ViewBags(user);
             VacansVM? vacanVM = _vacansService.GetEditedModelVC(id);
-            if (vacanVM is null) return BadRequest();
+            if (vacanVM is null) return RedirectToAction("Error", "Error");
             Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
             vacans.InfoWorks.RemoveAll(p => !editedvacans.DeleteWork.Contains(p.Id));
             if (editedvacans.InfoWorks is not null)
@@ -370,7 +370,7 @@ namespace HelloJobBackEnd.Controllers
         public async Task<IActionResult> EditCV(int id)
         {
 
-            if (id == 0) return BadRequest();
+            if (id == 0) return RedirectToAction("Error", "Error");
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             if (user is null)
             {
@@ -378,7 +378,7 @@ namespace HelloJobBackEnd.Controllers
             }
             CvVM? cvVm = _cvPageService.EditedModelCv(id);
             ViewBags(user);
-            if (cvVm is null) return BadRequest();
+            if (cvVm is null) return RedirectToAction("Error", "Error"); ;
             return View(cvVm);
         }
 
