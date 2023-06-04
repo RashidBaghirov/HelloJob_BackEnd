@@ -31,7 +31,7 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
             ViewBag.CurrentPage = page;
 
-            List<Cv> cvs = allcvs.Skip((page - 1) * 8).Take(8).Where(x => x.Status == OrderStatus.Accepted).ToList();
+            List<Cv> cvs = allcvs.Skip((page - 1) * 8).Take(8).Where(x => x.Status == OrderStatus.Accepted && x.TimeIsOver == false).ToList();
 
             return View(cvs);
         }

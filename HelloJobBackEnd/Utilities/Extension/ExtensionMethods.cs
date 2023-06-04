@@ -58,7 +58,7 @@ namespace HelloJobBackEnd.Utilities.Extension
                    Include(x => x.WishListItems).ThenInclude(x => x.WishList)
                     .AsEnumerable()
                     .Where(p =>
-                        p.BusinessAreaId == cv.BusinessAreaId &&
+                        p.BusinessAreaId == cv.BusinessAreaId && p.TimeIsOver == false &&
                         p.Id != id &&
                         !relatedCvs.Contains(p, new CvComparer())
                     )
@@ -88,7 +88,7 @@ namespace HelloJobBackEnd.Utilities.Extension
             Include(o => o.OperatingMode)
                     .AsEnumerable()
                     .Where(p =>
-                        p.BusinessAreaId == vacans.BusinessAreaId &&
+                        p.BusinessAreaId == vacans.BusinessAreaId && p.TimeIsOver == false &&
                         p.Id != id &&
                         !relatedvacanss.Contains(p, new VacansComparer())
                     )

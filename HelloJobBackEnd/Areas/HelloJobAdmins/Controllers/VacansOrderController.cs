@@ -66,12 +66,13 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             string recipientEmail = vacans.Company.User.Email;
             string subject = "Elanla Bağlı Məlumat";
             string body = string.Empty;
+            string urlMessage = Url.Action("VacansDetail", "Company", new { id = vacans.Id }, Request.Scheme);
+            urlMessage = urlMessage.Replace("/HelloJobAdmins", "");
             using (StreamReader reader = new StreamReader("wwwroot/assets/template/StickyacceptedMail.html"))
             {
                 body = reader.ReadToEnd();
             }
-            string urlMessage = Url.Action("VacansDetail", "Company", new { id = vacans.Id }, Request.Scheme);
-            urlMessage = urlMessage.Replace("/HelloJobAdmins", "");
+
 
             body = body.Replace("{{userFullName}}", vacans.Company.User.FullName);
             body = body.Replace("{{position}}", vacans.Position);
@@ -79,7 +80,7 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             body = body.Replace("{{urlMessage}}", urlMessage);
 
             _emailService.SendEmail(recipientEmail, subject, body);
-            return RedirectToAction("SendMail", new { urlMessage = Url.Action("Create") });
+            return RedirectToAction("SendMail", new { urlMessage });
         }
         public IActionResult Reject(int id)
         {

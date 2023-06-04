@@ -10,5 +10,6 @@ namespace HelloJobBackEnd.Services.Interface
         Task<List<Cv>> GetFilteredData(int[] businessIds, int[] modeIds, int[] educationIds, int[] experienceIds, bool? hasDriverLicense);
         Cv Details(int id);
         CvVM? EditedModelCv(int id);
+        public void CheckCv();
     }
 }

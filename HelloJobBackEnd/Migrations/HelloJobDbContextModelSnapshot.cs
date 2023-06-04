@@ -187,6 +187,9 @@ namespace HelloJobBackEnd.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("TimeIsOver")
+                        .HasColumnType("bit");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -536,6 +539,9 @@ namespace HelloJobBackEnd.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<bool>("TimeIsOver")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

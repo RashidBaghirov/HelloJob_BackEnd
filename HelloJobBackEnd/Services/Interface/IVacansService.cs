@@ -11,5 +11,6 @@ namespace HelloJobBackEnd.Services.Interface
         void AddInfoWorks(Vacans vacans, string workInfo);
         void AddInfoEmployeers(Vacans vacans, string employeeInfo);
         VacansVM? GetEditedModelVC(int id);
+        public void CheckVacans();
     }
 }

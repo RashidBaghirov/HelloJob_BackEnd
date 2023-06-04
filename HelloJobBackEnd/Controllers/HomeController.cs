@@ -1,10 +1,13 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
+using HelloJobBackEnd.Services;
 using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Net;
+using System.Net.Mail;
 
 namespace HelloJobBackEnd.Controllers
 {
@@ -14,14 +17,16 @@ namespace HelloJobBackEnd.Controllers
         private readonly IVacansService _vacansService;
         private readonly ICompanyService _companyService;
         private readonly IBusinessTitleService _businessTitleService;
+        private readonly ICvPageService _cvPageService;
 
 
-        public HomeController(HelloJobDbContext context, IVacansService vacansService, ICompanyService companyService, IBusinessTitleService businessTitleService)
+        public HomeController(HelloJobDbContext context, IVacansService vacansService, ICompanyService companyService, IBusinessTitleService businessTitleService, ICvPageService cvPageService)
         {
             _vacansService = vacansService;
             _companyService = companyService;
             _businessTitleService = businessTitleService;
             _context = context;
+            _cvPageService = cvPageService;
         }
         public IActionResult Index(int page = 1)
         {
@@ -34,8 +39,10 @@ namespace HelloJobBackEnd.Controllers
 
             List<Vacans> vacans = allVacans.AsNoTracking().Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
             ViewBag.Titles = _businessTitleService.GetAllBusinessTitlesWithAreas();
-
+            _vacansService.CheckVacans();
+            _cvPageService.CheckCv();
             return View(vacans);
+
         }
 
         public IActionResult Search(string search)
@@ -96,6 +103,8 @@ namespace HelloJobBackEnd.Controllers
             TempData["Subscribe"] = true;
             return Redirect(Request.Headers["Referer"].ToString());
         }
+
+
 
 
     }

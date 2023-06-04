@@ -22,6 +22,7 @@ namespace HelloJobBackEnd.Controllers
             _usermanager = usermanager;
             _vacansService = vacansService;
             _companyService = companyService;
+
         }
         public IActionResult Index()
         {

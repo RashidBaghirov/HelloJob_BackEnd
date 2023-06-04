@@ -21,6 +21,7 @@ namespace HelloJobBackEnd.Services
             IQueryable<Company> query = _context.Companies
                 .Include(v => v.Vacans).ThenInclude(x => x.BusinessArea)
                     .Include(v => v.Vacans).ThenInclude(x => x.BusinessArea.BusinessTitle)
+                    .Include(v => v.Vacans.Where(v => v.TimeIsOver == false))
                 .OrderByDescending(c => c.Vacans.Count);
 
             if (count.HasValue)
@@ -37,7 +38,8 @@ namespace HelloJobBackEnd.Services
 
             Company? company = _context.Companies.Include(v => v.Vacans).
                 Include(x => x.Vacans).ThenInclude(x => x.WishListItems).ThenInclude(x => x.WishList).ThenInclude(x => x.User).
-                Include(x => x.User).
+                Include(x => x.User)
+                 .Include(v => v.Vacans.Where(v => v.TimeIsOver == false)).
                 Include(b => b.Vacans).ThenInclude(b => b.BusinessArea).
                 FirstOrDefault(x => x.Id == id);
             return company;

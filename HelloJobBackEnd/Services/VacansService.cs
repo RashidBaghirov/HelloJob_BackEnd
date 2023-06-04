@@ -4,6 +4,8 @@ using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using HelloJobBackEnd.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+using System.Net;
 
 namespace HelloJobBackEnd.Services
 {
@@ -120,6 +122,42 @@ namespace HelloJobBackEnd.Services
                 .FirstOrDefault(x => x.Id == id);
 
             return vacansVM;
+        }
+
+        public void CheckVacans()
+        {
+            List<Vacans> vacans = _context.Vacans
+                .Include(r => r.Company).ThenInclude(x => x.User)
+                .ToList();
+
+            foreach (var item in vacans)
+            {
+                if (!item.TimeIsOver)
+                {
+                    if (item.EndedAt <= DateTime.Now)
+                    {
+                        MailMessage message = new MailMessage();
+                        message.From = new MailAddress("hellojob440@gmail.com", "HelloJob");
+                        message.To.Add(new MailAddress(item.Company.User.Email));
+                        message.Subject = "HelloJob";
+                        message.Body = string.Empty;
+                        message.Body = $"Last day of stickers {item.EndedAt.ToString("D")}" + " " +
+                        $"{item.Company.Name + " " + item.Position + " from " + " link: https://localhost:7120/company/vacansdetail?id=" + item.Id}";
+
+
+                        SmtpClient smtpClient = new SmtpClient();
+                        smtpClient.Host = "smtp.gmail.com";
+                        smtpClient.Port = 587;
+                        smtpClient.EnableSsl = true;
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        smtpClient.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
+                        smtpClient.Send(message);
+                        item.TimeIsOver = true;
+                        _context.SaveChanges();
+                    }
+                }
+            }
         }
 
 

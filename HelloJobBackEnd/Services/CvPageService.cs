@@ -4,6 +4,8 @@ using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using HelloJobBackEnd.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+using System.Net;
 
 namespace HelloJobBackEnd.Services
 {
@@ -148,6 +150,42 @@ namespace HelloJobBackEnd.Services
                                               Count = p.Count
                                           }).FirstOrDefault(x => x.Id == id);
             return cvVm;
+        }
+
+        public void CheckCv()
+        {
+            List<Cv> cv = _context.Cvs
+                .Include(r => r.User)
+                .ToList();
+
+            foreach (var item in cv)
+            {
+                if (!item.TimeIsOver)
+                {
+                    if (item.EndedAt <= DateTime.Now)
+                    {
+                        MailMessage message = new MailMessage();
+                        message.From = new MailAddress("hellojob440@gmail.com", "HelloJob");
+                        message.To.Add(new MailAddress(item.User.Email));
+                        message.Subject = "HelloJob";
+                        message.Body = string.Empty;
+                        message.Body = $"Last day of stickers {item.EndedAt.ToString("D")}" + " " +
+                        $"{item.Name + " " + item.Surname + " " + item.Position + " from " + " link: https://localhost:7120/cvpage/detail?id=" + item.Id}";
+
+
+                        SmtpClient smtpClient = new SmtpClient();
+                        smtpClient.Host = "smtp.gmail.com";
+                        smtpClient.Port = 587;
+                        smtpClient.EnableSsl = true;
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        smtpClient.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
+                        smtpClient.Send(message);
+                        item.TimeIsOver = true;
+                        _context.SaveChanges();
+                    }
+                }
+            }
         }
     }
 
