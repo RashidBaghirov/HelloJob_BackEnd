@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "CV page";
-
+    List<BusinessArea> areas = ViewBag.Business;
+    List<Education> educations = ViewBag.Education;
+    List<OperatingMode> modes = ViewBag.Mode;
+    List<Experience> experiences = ViewBag.Experince;
 }
 @if (TempData["Register"] != null)
 {
@@ -80,15 +83,15 @@
                         <div class="filters_item">
                             <h3 class="title">İxtisas</h3>
                             <div class="pro">
-                                @foreach (var item in ViewBag.Business)
+                                @foreach (BusinessArea area in areas)
                                 {
                                     <div class="inputs">
                                         <div class="checkbox">
-                                            <input type="checkbox" name="businessIds" value="@item.Id"  class="form-check-input mt-0">
-                                            <label for="@item.Id">@item.Name</label>
+                                            <input type="checkbox" name="businessIds" value="@area.Id" class="form-check-input mt-0">
+                                            <label for="@area.Id">@area.Name</label>
                                         </div>
                                         <div class="count">
-                                            <span class="prof_count">@item.Cvs.Count</span>
+                                            <span class="prof_count">@area.Cvs.Where(x=>x.Status==OrderStatus.Accepted && x.TimeIsOver==false).Count()</span>
                                         </div>
                                     </div>
                                 }
@@ -98,11 +101,11 @@
                             <h3 class="title">İş rejimi</h3>
                             <div class="pro">
                                 <div class="inputs">
-                                    @foreach (OperatingMode item in ViewBag.Mode)
+                                    @foreach (OperatingMode mode in modes)
                                     {
                                         <div class="checkbox">
-                                            <input type="checkbox" name="modeIds" value="@item.Id"  class="form-check-input mt-0">
-                                            <label for="@item.Id">@item.Name</label>
+                                            <input type="checkbox" name="modeIds" value="@mode.Id" class="form-check-input mt-0">
+                                            <label for="@mode.Id">@mode.Name</label>
                                         </div>
                                     }
                                 </div>
@@ -112,11 +115,11 @@
                             <h3 class="title">Təhsil</h3>
                             <div class="pro">
                                 <div class="inputs">
-                                    @foreach (Education item in ViewBag.Education)
+                                    @foreach (Education education in educations)
                                     {
                                         <div class="checkbox">
-                                            <input type="checkbox" name="educationIds" value="@item.Id"  class="form-check-input mt-0">
-                                            <label for="@item.Id">@item.Name</label>
+                                            <input type="checkbox" name="educationIds" value="@education.Id" class="form-check-input mt-0">
+                                            <label for="@education.Id">@education.Name</label>
                                         </div>
                                     }
                                 </div>
@@ -133,11 +136,11 @@
                                             <span tabindex="0" class="handle" style="left: 0%;"></span>
                                         </div>
                                         <div class="interval text-center">
-                                            @foreach (Experience item in ViewBag.Experince)
+                                            @foreach (Experience experience in experiences)
                                             {
                                                 <div class="checkbox">
-                                                    <input type="radio"  name="experienceIds" value="@item.Id" class="form-check-input mt-0 d-none">
-                                                    <label for="@item.Id">@item.Name</label>
+                                                    <input type="radio" name="experienceIds" value="@experience.Id" class="form-check-input mt-0 d-none">
+                                                    <label for="@experience.Id">@experience.Name</label>
                                                 </div>
                                             }
                                         </div>

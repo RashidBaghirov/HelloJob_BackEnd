@@ -69,5 +69,13 @@ namespace HelloJobBackEnd.Services
             return acceptedOrRejectedRequests;
         }
 
+
+        public List<OperatingMode> GetMode()
+        {
+            List<OperatingMode> modes = _context.OperatingModes.ToList();
+
+            return modes;
+        }
+
     }
 }

@@ -133,26 +133,15 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             List<Subscribe> subscribes = _context.Subscribe.ToList();
             foreach (Subscribe email in subscribes)
             {
-                using (MailMessage mailMessage = new MailMessage())
-                {
-                    mailMessage.From = new MailAddress("hellojob440@gmail.com", "HelloJob");
-                    mailMessage.To.Add(new MailAddress(email.Email));
+                string recipientEmail = email.Email;
+                string subject = "New Company";
+                string body = $"Yeni Şirkət əlavə olundu: <br> {urlMessage}";
 
-                    mailMessage.Subject = "New Product";
-                    mailMessage.IsBodyHtml = true;
-                    mailMessage.Body = $"Yeni Şirkət əlavə olundu: <br> {urlMessage}";
-
-                    using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587))
-                    {
-                        smtpClient.EnableSsl = true;
-                        smtpClient.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
-
-                        await smtpClient.SendMailAsync(mailMessage);
-                    }
-                }
+                _emailService.SendEmail(recipientEmail, subject, body);
             }
 
             return RedirectToAction("Index");
         }
+
     }
 }

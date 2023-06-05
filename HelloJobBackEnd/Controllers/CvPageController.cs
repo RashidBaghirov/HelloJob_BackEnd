@@ -26,7 +26,7 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.Education = _context.Educations.ToList();
             ViewBag.Experince = _context.Experiences.ToList();
             ViewBag.Mode = _context.OperatingModes.ToList();
-            ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs).ToList();
+            ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs.Where(x => x.TimeIsOver == false)).ToList();
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
             ViewBag.CurrentPage = page;
@@ -40,23 +40,26 @@ namespace HelloJobBackEnd.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Sorts(string? sort)
+        public async Task<IActionResult> Sorts(string? sort, int page = 1)
         {
-            List<Cv> filteredCvs = await _cvPageService.GetSortedCvs(sort);
+            List<Cv> filtered = await _cvPageService.GetSortedCvs(sort);
 
+            List<Cv> cvs = filtered.Skip((page - 1) * 8).Take(8).Where(x => x.Status == OrderStatus.Accepted && x.TimeIsOver == false).ToList();
             ViewBag.Education = _context.Educations.ToList();
             ViewBag.Experince = _context.Experiences.ToList();
             ViewBag.Mode = _context.OperatingModes.ToList();
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
+            ViewBag.CurrentPage = page;
+            ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs.Where(x => x.TimeIsOver == false)).ToList();
 
-            ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs).ToList();
-
-            return PartialView("_UserblocksPartial", filteredCvs);
+            return PartialView("_UserblocksPartial", cvs);
         }
 
         [HttpPost]
         public async Task<IActionResult> FilterData(int[] businessIds, int[] modeIds, int[] educationIds, int[] experienceIds, bool? hasDriverLicense, int page = 1)
         {
+
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
             ViewBag.CurrentPage = page;
@@ -96,8 +99,10 @@ namespace HelloJobBackEnd.Controllers
 
 
 
-        public async Task<IActionResult> SearchResult(string search)
+        public async Task<IActionResult> SearchResult(string search, int page = 1)
         {
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
+            ViewBag.CurrentPage = page;
             IQueryable<Cv> allcv = _cvPageService.GetAllCvs();
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
             if (search is not null)
@@ -108,7 +113,7 @@ namespace HelloJobBackEnd.Controllers
             {
                 allcv = allcv;
             }
-            List<Cv> searching = allcv.ToList();
+            List<Cv> searching = allcv.Skip((page - 1) * 8).Take(8).Where(s => s.Status == OrderStatus.Accepted).ToList();
 
             return PartialView("_UserblocksPartial", searching);
         }

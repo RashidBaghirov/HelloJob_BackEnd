@@ -126,29 +126,18 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             Vacans? vacans = _vacansService.GetVacansWithRelatedEntitiesById(id);
             return View(vacans);
         }
-
-        public IActionResult SendMail(string urlMessage)
+        public async Task<IActionResult> SendMail(string urlMessage)
         {
             List<Subscribe> subscribes = _context.Subscribe.ToList();
             foreach (Subscribe email in subscribes)
             {
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("hellojob440@gmail.com", "HelloJob");
-                mailMessage.To.Add(new MailAddress(email.Email));
+                string recipientEmail = email.Email;
+                string subject = "New Vacans";
+                string body = $"Yeni VAcans əlavə olundu: <br> {urlMessage}";
 
-
-                mailMessage.Subject = "New Product";
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = $"Yeni Vacansiya Əlave olundu : <br> {urlMessage}";
-
-                SmtpClient smtpClient = new SmtpClient();
-                smtpClient.Port = 587;
-                smtpClient.Host = "smtp.gmail.com";
-                smtpClient.EnableSsl = true;
-                smtpClient.Credentials = new NetworkCredential("hellojob440@gmail.com", "eomddhluuxosvnoy");
-                smtpClient.Send(mailMessage);
-
+                _emailService.SendEmail(recipientEmail, subject, body);
             }
+
             return RedirectToAction("Index");
         }
 

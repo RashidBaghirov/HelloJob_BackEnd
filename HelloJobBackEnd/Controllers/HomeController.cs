@@ -4,6 +4,7 @@ using HelloJobBackEnd.Services;
 using HelloJobBackEnd.Services.Interface;
 using HelloJobBackEnd.Utilities.Enum;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Net;
@@ -58,17 +59,41 @@ namespace HelloJobBackEnd.Controllers
             return PartialView("_SearchvacansPartial", vacans);
         }
 
-        public IActionResult Sorted(int titleid)
+        public IActionResult Sorted(int titleid, int page = 1)
         {
+
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 9);
+            ViewBag.CurrentPage = page;
             IQueryable<Vacans> allVacans = _vacansService.GetAcceptedVacansWithRelatedData();
 
-            List<Vacans> sortvacans = allVacans.Where(c => c.BusinessArea.BusinessTitleId == titleid).ToList();
+            List<Vacans> sortvacans = allVacans.Where(c => c.BusinessArea.BusinessTitleId == titleid).Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
 
             return PartialView("_HomePartial", sortvacans);
         }
 
-        public IActionResult SearchResult(string search)
+
+
+        public IActionResult SortedMode(int? modeid, int page = 1)
         {
+
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 9);
+            ViewBag.CurrentPage = page;
+            if (modeid.HasValue)
+            {
+                IQueryable<Vacans> allVacans = _vacansService.GetAcceptedVacansWithRelatedData();
+                List<Vacans> sortvacans = allVacans.Where(c => c.OperatingModeId == modeid.Value).Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
+                return PartialView("_HomePartial", sortvacans);
+            }
+            else
+            {
+                return PartialView("_HomePartial", new List<Vacans>());
+            }
+        }
+
+        public IActionResult SearchResult(string search, int page = 1)
+        {
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 9);
+            ViewBag.CurrentPage = page;
             IQueryable<Vacans> allVacans = _vacansService.GetAcceptedVacansWithRelatedData();
 
             if (search is not null)
@@ -79,7 +104,7 @@ namespace HelloJobBackEnd.Controllers
             {
                 allVacans = allVacans;
             }
-            List<Vacans> searching = allVacans.ToList();
+            List<Vacans> searching = allVacans.Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
 
             return PartialView("_HomePartial", searching);
 

@@ -24,9 +24,11 @@ namespace HelloJobBackEnd.Controllers
             _companyService = companyService;
 
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            List<Company> companies = _companyService.GetTopAcceptedCompaniesWithVacans().Where(x => x.Status == OrderStatus.Accepted).ToList();
+            ViewBag.TotalPage = Math.Ceiling((double)_context.Companies.Count() / 8);
+            ViewBag.CurrentPage = page;
+            List<Company> companies = _companyService.GetTopAcceptedCompaniesWithVacans().Where(x => x.Status == OrderStatus.Accepted).Skip((page - 1) * 8).Take(8).ToList();
             return View(companies);
         }
 
@@ -48,7 +50,7 @@ namespace HelloJobBackEnd.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                ViewBag.Cvs = _context.Cvs.Where(x => x.UserId == user.Id && x.Status == OrderStatus.Accepted).ToList();
+                ViewBag.Cvs = _context.Cvs.Where(x => x.UserId == user.Id && x.Status == OrderStatus.Accepted && x.TimeIsOver == false).ToList();
                 ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
 
             }
@@ -78,7 +80,7 @@ namespace HelloJobBackEnd.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                ViewBag.Cvs = _context.Cvs.Where(x => x.UserId == user.Id && x.Status == OrderStatus.Accepted).ToList();
+                ViewBag.Cvs = _context.Cvs.Where(x => x.UserId == user.Id && x.Status == OrderStatus.Accepted && x.TimeIsOver == false).ToList();
                 ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
 
                 Request userRequest = _context.Requests.Include(r => r.RequestItems)
