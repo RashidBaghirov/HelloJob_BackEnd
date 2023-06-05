@@ -337,16 +337,6 @@ namespace HelloJobBackEnd.Controllers
         }
 
 
-        //public async Task CreateRoles()
-        //{
-        //await _roleManager.CreateAsync(new IdentityRole(UserRole.business.ToString()));
-        //await _roleManager.CreateAsync(new IdentityRole(UserRole.employeer.ToString()));
-
-        //await _roleManager.CreateAsync(new IdentityRole(AdminRoles.superadmin.ToString()));
-        //await _roleManager.CreateAsync(new IdentityRole(AdminRoles.admin.ToString()));
-        //await _roleManager.CreateAsync(new IdentityRole(AdminRoles.moderator.ToString()));
-
-        //}
 
 
 

@@ -40,7 +40,7 @@ namespace HelloJobBackEnd.Services
                 Include(x => x.Vacans).ThenInclude(x => x.WishListItems).ThenInclude(x => x.WishList).ThenInclude(x => x.User).
                 Include(x => x.User)
                  .Include(v => v.Vacans.Where(v => v.TimeIsOver == false)).
-                Include(b => b.Vacans).ThenInclude(b => b.BusinessArea).
+            ThenInclude(b => b.BusinessArea).ThenInclude(x => x.BusinessTitle).
                 FirstOrDefault(x => x.Id == id);
             return company;
         }
@@ -56,7 +56,7 @@ namespace HelloJobBackEnd.Services
                     Email = p.Email,
                     Images = p.Image
                 })
-                .FirstOrDefault();
+                .FirstOrDefault(x => x.Id == id);
 
             return companyVM;
         }

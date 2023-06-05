@@ -758,6 +758,13 @@ namespace HelloJobBackEnd.Controllers
         [HttpPost]
         public async Task<IActionResult> Security(ProfileVM profileVM)
         {
+            if (!ModelState.IsValid)
+            {
+                foreach (string message in ModelState.Values.SelectMany(e => e.Errors).Select(e => e.ErrorMessage))
+                {
+                    ModelState.AddModelError("", message);
+                }
+            }
             TempData["Security"] = false;
             User user = await _usermanager.FindByNameAsync(User.Identity.Name);
             ViewBags(user);
