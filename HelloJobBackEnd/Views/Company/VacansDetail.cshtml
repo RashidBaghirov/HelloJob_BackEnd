@@ -236,7 +236,11 @@
                                         <div class="vacans_block">
 
                                             <h3 class="infos">Cv-nizi Seçin</h3>
-                                            <select name="cvsID" asp-items="@(new SelectList(UserCv,"Id","Email"))" class="form-control" style="box-shadow:none">
+                                            <select name="cvsID" class="form-control" style="box-shadow:none">
+                                                @foreach (var cv in UserCv)
+                                                {
+                                                    <option value="@cv.Id">@cv.Email - @cv.CreatedAt.ToString("dd.MMMM.yyyy")</option>
+                                                }
                                             </select>
                                             <span class="text-danger"></span>
 
