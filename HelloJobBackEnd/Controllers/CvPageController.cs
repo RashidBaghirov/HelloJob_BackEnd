@@ -26,12 +26,12 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.Education = _context.Educations.ToList();
             ViewBag.Experince = _context.Experiences.ToList();
             ViewBag.Mode = _context.OperatingModes.ToList();
-            ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs.Where(x => x.TimeIsOver == false)).ToList();
+            ViewBag.Business = _context.BusinessTitle.Include(b => b.BusinessAreas).ThenInclude(b => b.Cvs.Where(x => x.TimeIsOver == false)).ToList();
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
             ViewBag.CurrentPage = page;
 
-            List<Cv> cvs = allcvs.Skip((page - 1) * 8).Take(8).Where(x => x.Status == OrderStatus.Accepted && x.TimeIsOver == false).ToList();
+            List<Cv> cvs = allcvs.Skip((page - 1) * 8).Take(8).Where(x => x.Status == OrderStatus.Accepted && x.TimeIsOver == false).OrderByDescending(x => x.Id).ToList();
 
             return View(cvs);
         }
@@ -51,7 +51,7 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.Setting = _context.Settings.ToDictionary(s => s.Key, s => s.Value);
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
             ViewBag.CurrentPage = page;
-            ViewBag.Business = _context.BusinessArea.Include(b => b.BusinessTitle).Include(b => b.Cvs.Where(x => x.TimeIsOver == false)).ToList();
+            ViewBag.Business = _context.BusinessTitle.Include(b => b.BusinessAreas).ThenInclude(b => b.Cvs.Where(x => x.TimeIsOver == false)).ToList();
 
             return PartialView("_UserblocksPartial", cvs);
         }
@@ -64,7 +64,7 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 8);
             ViewBag.CurrentPage = page;
             List<Cv> filteredCvs = await _cvPageService.GetFilteredData(businessIds, modeIds, educationIds, experienceIds, hasDriverLicense);
-            List<Cv> PageCv = filteredCvs.Skip((page - 1) * 8).Take(8).Where(s => s.Status == OrderStatus.Accepted).ToList();
+            List<Cv> PageCv = filteredCvs.Skip((page - 1) * 8).Take(8).Where(s => s.Status == OrderStatus.Accepted).OrderByDescending(x => x.Id).ToList();
             return PartialView("_UserblocksPartial", PageCv);
         }
 

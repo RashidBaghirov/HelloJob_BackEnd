@@ -257,7 +257,7 @@ namespace HelloJobBackEnd.Controllers
             if (User.IsInRole(UserRole.employeer.ToString()))
             {
                 IQueryable<Cv> allcvs = _cvPageService.GetAllCvs();
-                ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Count() / 6);
+                ViewBag.TotalPage = Math.Ceiling((double)_context.Cvs.Where(x => x.Status == OrderStatus.Accepted && x.UserId == user.Id).Count() / 6);
                 ViewBag.CurrentPage = page;
                 ViewBag.Allcv = allcvs.AsNoTracking().Skip((page - 1) * 6).Where(x => x.Status == OrderStatus.Accepted && x.UserId == user.Id).Take(6).ToList();
                 return View();
@@ -265,7 +265,7 @@ namespace HelloJobBackEnd.Controllers
             else
             {
                 IQueryable<Vacans> allvacans = _vacansService.GetAcceptedVacansWithRelatedData();
-                ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 6);
+                ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Where(x => x.Status == OrderStatus.Accepted && x.Company.UserId == user.Id).Count() / 6);
                 ViewBag.CurrentPage = page;
                 ViewBag.Allvacans = allvacans.AsNoTracking().Skip((page - 1) * 6).Where(x => x.Status == OrderStatus.Accepted && x.Company.UserId == user.Id).Take(6).ToList();
                 return View();
@@ -341,6 +341,10 @@ namespace HelloJobBackEnd.Controllers
 
                 var imageFolderPath = Path.Combine(_env.WebRootPath, "assets", "images");
                 cv.Image = await newCv.Image.CreateImage(imageFolderPath, "User");
+            }
+            else
+            {
+                cv.Image = "user-128.png";
             }
 
             if (newCv.CvPDF is not null)
@@ -513,14 +517,14 @@ namespace HelloJobBackEnd.Controllers
             if (User.IsInRole(UserRole.employeer.ToString()))
             {
                 IQueryable<Cv> cvs = _cvPageService.GetAllCvs();
-                ViewBag.Allcv = cvs.Where(x => x.Status == OrderStatus.Pending).ToList();
+                ViewBag.Allcv = cvs.Where(x => x.Status == OrderStatus.Pending && x.UserId == user.Id).ToList();
                 return View();
             }
             else
             {
                 IQueryable<Vacans> vacans = _vacansService.GetAcceptedVacansWithRelatedData();
 
-                ViewBag.Allvacans = vacans.Where(x => x.Status == OrderStatus.Pending).ToList();
+                ViewBag.Allvacans = vacans.Where(x => x.Status == OrderStatus.Pending && x.Company.UserId == user.Id).ToList();
                 return View();
 
             }

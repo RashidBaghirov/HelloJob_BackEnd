@@ -1,10 +1,8 @@
 ﻿using HelloJobBackEnd.DAL;
 using HelloJobBackEnd.Entities;
 using HelloJobBackEnd.Utilities.Enum;
-using HelloJobBackEnd.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 
 namespace HelloJobBackEnd.Services
 {

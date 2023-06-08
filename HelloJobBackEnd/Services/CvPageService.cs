@@ -74,7 +74,7 @@ namespace HelloJobBackEnd.Services
         {
             if (businessIds?.Length > 0)
             {
-                cvs = cvs.Where(c => businessIds.Contains(c.BusinessArea.Id));
+                cvs = cvs.Where(c => businessIds.Contains(c.BusinessArea.BusinessTitleId));
             }
 
             if (modeIds?.Length > 0)

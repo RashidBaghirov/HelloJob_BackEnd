@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "CV page";
-    List<BusinessArea> areas = ViewBag.Business;
+    List<BusinessTitle> areas = ViewBag.Business;
     List<Education> educations = ViewBag.Education;
     List<OperatingMode> modes = ViewBag.Mode;
     List<Experience> experiences = ViewBag.Experince;
@@ -83,15 +83,17 @@
                         <div class="filters_item">
                             <h3 class="title">İxtisas</h3>
                             <div class="pro">
-                                @foreach (BusinessArea area in areas)
+                                @foreach (BusinessTitle area in areas)
                                 {
+                                    int totalCv = area.BusinessAreas.Sum(areas => areas.Cvs.Count(cv => cv.TimeIsOver==false));
+
                                     <div class="inputs">
                                         <div class="checkbox">
                                             <input type="checkbox" name="businessIds" value="@area.Id" class="form-check-input mt-0">
                                             <label for="@area.Id">@area.Name</label>
                                         </div>
                                         <div class="count">
-                                            <span class="prof_count">@area.Cvs.Where(x=>x.Status==OrderStatus.Accepted && x.TimeIsOver==false).Count()</span>
+                                            <span class="prof_count">@totalCv</span>
                                         </div>
                                     </div>
                                 }

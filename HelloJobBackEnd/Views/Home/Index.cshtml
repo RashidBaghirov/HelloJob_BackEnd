@@ -125,9 +125,7 @@
                     }
                     @foreach (BusinessTitle title in titles)
                     {
-                        int totalVac = title.BusinessAreas.Sum(area => area.Vacans.Count);
-
-
+                        int totalVac = title.BusinessAreas.Sum(areas => areas.Vacans.Count(cv => cv.TimeIsOver == false));
                         <div class="item">
                             <div class="new-cat-card">
                                 <a  class="title-link" data-titleid="@title.Id">

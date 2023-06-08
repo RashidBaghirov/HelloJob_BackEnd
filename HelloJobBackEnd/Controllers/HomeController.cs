@@ -38,7 +38,7 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.TotalPage = Math.Ceiling((double)_context.Vacans.Count() / 9);
             ViewBag.CurrentPage = page;
 
-            List<Vacans> vacans = allVacans.AsNoTracking().Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
+            List<Vacans> vacans = allVacans.OrderByDescending(x => x.Id).AsNoTracking().Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
             ViewBag.Titles = _businessTitleService.GetAllBusinessTitlesWithAreas();
             _vacansService.CheckVacans();
             _cvPageService.CheckCv();
@@ -66,7 +66,7 @@ namespace HelloJobBackEnd.Controllers
             ViewBag.CurrentPage = page;
             IQueryable<Vacans> allVacans = _vacansService.GetAcceptedVacansWithRelatedData();
 
-            List<Vacans> sortvacans = allVacans.Where(c => c.BusinessArea.BusinessTitleId == titleid).Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
+            List<Vacans> sortvacans = allVacans.OrderByDescending(x => x.Id).Where(x => x.BusinessArea.BusinessTitleId == titleid && x.Status == OrderStatus.Accepted).Skip((page - 1) * 9).ToList();
 
             return PartialView("_HomePartial", sortvacans);
         }
@@ -81,7 +81,7 @@ namespace HelloJobBackEnd.Controllers
             if (modeid.HasValue)
             {
                 IQueryable<Vacans> allVacans = _vacansService.GetAcceptedVacansWithRelatedData();
-                List<Vacans> sortvacans = allVacans.Where(c => c.OperatingModeId == modeid.Value).Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
+                List<Vacans> sortvacans = allVacans.OrderByDescending(x => x.Id).Where(x => x.OperatingModeId == modeid.Value && x.Status == OrderStatus.Accepted).Skip((page - 1) * 9).Take(9).ToList();
                 return PartialView("_HomePartial", sortvacans);
             }
             else
@@ -104,7 +104,7 @@ namespace HelloJobBackEnd.Controllers
             {
                 allVacans = allVacans;
             }
-            List<Vacans> searching = allVacans.Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
+            List<Vacans> searching = allVacans.OrderByDescending(x => x.Id).Skip((page - 1) * 9).Where(x => x.Status == OrderStatus.Accepted).Take(9).ToList();
 
             return PartialView("_HomePartial", searching);
 
