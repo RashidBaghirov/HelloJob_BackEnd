@@ -87,14 +87,9 @@
              USer Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CvPDF)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimeIsOver)
-            </th>
+    
             <th></th>
         </tr>
     </thead>
@@ -102,11 +97,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                    <div class="user_img" style="
-    width: 150px;
-">
-                        <img style="width:100%;;object-fit:contain;" src="~/assets/images/User/@item.Image" alt="">
-                    </div>
+           <div class="user_img" style="
+              width: 150px;">
+              <img style="width:100%;object-fit:contain;" src="~/assets/images/User/@item.Image" alt="">
+             </div>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -130,14 +124,9 @@
                     @Html.DisplayFor(modelItem => item.User.Email)
                 </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CvPDF)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
-                <td>
-                    @Html.DisplayFor(model => item.TimeIsOver)
-                </td>
+       
             <td>
                     <a asp-action="Accept" asp-route-id="@item.Id" class="btn btn-inverse waves-effect waves-light">Accept</a> 
                     <a asp-action="Reject" asp-route-id="@item.Id" class="btn btn-success waves-effect waves-light">Reject</a> 

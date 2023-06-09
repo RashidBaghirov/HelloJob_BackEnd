@@ -47,25 +47,14 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
                 VacansCount = vacansList.Count(v => v.CompanyId == c.Id)
             }).ToList();
 
-            List<BusinessTitleChartData> cvCountByBusinessArea = businessTitles.Select(ba => new BusinessTitleChartData
+            List<BusinessTitleChartData> CountByBusinessArea = businessTitles.Select(ba => new BusinessTitleChartData
             {
                 BusinessName = ba.Name,
                 CvCount = cvList.Count(cv => cv.BusinessArea.BusinessTitleId == ba.Id),
                 VacansCount = vacansList.Count(v => v.BusinessArea.BusinessTitleId == ba.Id)
             }).ToList();
-            List<BusinessTitleChartData> vacansCountByBusinessArea = businessTitles.Select(ba => new BusinessTitleChartData
-            {
-                BusinessName = ba.Name,
-                CvCount = cvList.Count(cv => cv.BusinessAreaId == ba.Id),
-                VacansCount = vacansList.Count(v => v.BusinessAreaId == ba.Id)
-            }).ToList();
-            List<ModesVM> CvmodesCount = operatingModes.Select(ba => new ModesVM
-            {
-                ModeName = ba.Name,
-                CvCount = cvList.Count(cv => cv.OperatingModeId == ba.Id),
-                VacansCount = vacansList.Count(v => v.OperatingModeId == ba.Id)
-            }).ToList();
-            List<ModesVM> VacansmodesCount = operatingModes.Select(ba => new ModesVM
+
+            List<ModesVM> modesCount = operatingModes.Select(ba => new ModesVM
             {
                 ModeName = ba.Name,
                 CvCount = cvList.Count(cv => cv.OperatingModeId == ba.Id),
@@ -74,12 +63,11 @@ namespace HelloJobBackEnd.Areas.HelloJobAdmins.Controllers
             var labels_company = companyVacansCounts.Select(cv => cv.CompanyName).ToList();
             var labels = businessTitles.Select(ba => ba.Name).ToList();
             var labelsMode = operatingModes.Select(ba => ba.Name).ToList();
-
             var datasetData = companyVacansCounts.Select(cv => cv.VacansCount).ToList();
-            var dataset1Data = cvCountByBusinessArea.Select(item => item.CvCount).ToList();
-            var dataset2Data = vacansCountByBusinessArea.Select(item => item.VacansCount).ToList();
-            var dataset3Data = CvmodesCount.Select(item => item.CvCount).ToList();
-            var dataset4Data = VacansmodesCount.Select(item => item.VacansCount).ToList();
+            var dataset1Data = CountByBusinessArea.Select(item => item.CvCount).ToList();
+            var dataset2Data = CountByBusinessArea.Select(item => item.VacansCount).ToList();
+            var dataset3Data = modesCount.Select(item => item.CvCount).ToList();
+            var dataset4Data = modesCount.Select(item => item.VacansCount).ToList();
             ViewBag.LabelsCompany = labels_company;
             ViewBag.DatasetData = datasetData;
             ViewBag.Labels = labels;

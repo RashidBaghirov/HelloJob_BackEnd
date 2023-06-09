@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TbxiifygLVCLvvIb6xyv+Bnyg17OY7aQRca91eGl1ho=",
+  "Hash": "UKyFssdi2G2F3WEQDTgYBu41Fy53blVUUKrRHTaPBhU=",
   "Source": "HelloJobBackEnd",
   "BasePath": "_content/HelloJobBackEnd",
   "Mode": "Default",
@@ -5287,6 +5287,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\Company\\3275uMIxAMv_400x400.jpg"
     },
     {
+      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\397baku-medical-plaza_1426578760.jpg",
+      "SourceId": "HelloJobBackEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
+      "BasePath": "_content/HelloJobBackEnd",
+      "RelativePath": "assets/images/Company/397baku-medical-plaza_1426578760.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\Company\\397baku-medical-plaza_1426578760.jpg"
+    },
+    {
       "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\461unnamed (1).png",
       "SourceId": "HelloJobBackEnd",
       "SourceType": "Discovered",
@@ -6169,23 +6186,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\User\\CVs\\419Customer-Service-Representative.docx"
-    },
-    {
-      "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\431Cv.pdf",
-      "SourceId": "HelloJobBackEnd",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\",
-      "BasePath": "_content/HelloJobBackEnd",
-      "RelativePath": "assets/images/User/CVs/431Cv.pdf",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\User\\CVs\\431Cv.pdf"
     },
     {
       "Identity": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\43Customer-Service-Representative.docx",

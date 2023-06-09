@@ -35,7 +35,7 @@
                             <p>@string.Concat(cv.Name,"",cv.Surname)</p>
                             <p>@cv.Position</p>
                             <div class="user_img" style="width: 150px; height: 150px;">
-                                <iframe src="~/assets/images/User/Cvs/@cv.CvPDF" style="width: 100%;"></iframe>
+                                <img src="~/assets/images/User/@cv.Image" style="width: 100%;" />
                             </div>
                         </li>
                     }
@@ -54,7 +54,7 @@
                         <li>
                             <div class="d-flex align-items-center">
                                 <div class="user_img" style="width: 100px; height: 100px;">
-                                    <img src="~/assets/images/Company/@companies.Image" style="width: 100%;"></img>
+                                    <img src="~/assets/images/Company/@companies.Image" style="width: 100%;" />
                                 </div>
                                 <p>@companies.Name</p>
                             </div>

@@ -1241,6 +1241,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\Company\\3275uMIxAMv_400x400.jpg"
     },
     {
+      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\397baku-medical-plaza_1426578760.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\Company\\397baku-medical-plaza_1426578760.jpg"
+    },
+    {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\Company\\461unnamed (1).png",
       "PackagePath": "staticwebassets\\assets\\images\\Company\\461unnamed (1).png"
     },
@@ -1435,10 +1439,6 @@
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\419Customer-Service-Representative.docx",
       "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\419Customer-Service-Representative.docx"
-    },
-    {
-      "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\431Cv.pdf",
-      "PackagePath": "staticwebassets\\assets\\images\\User\\CVs\\431Cv.pdf"
     },
     {
       "Id": "C:\\Users\\resid\\OneDrive\\Desktop\\HelloJobBack\\HelloJob_BackEnd\\HelloJobBackEnd\\wwwroot\\assets\\images\\User\\CVs\\43Customer-Service-Representative.docx",
