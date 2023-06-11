@@ -2,6 +2,7 @@
 @inject HelloJobBackEnd.Services.LayoutService layoutService
 @{
     var orders = layoutService.GetAllData();
+    User user = await layoutService.GetUserFullName();
 
 }
 
@@ -195,7 +196,7 @@
                             <li class="user-profile header-notification">
                                 <a  class="waves-effect waves-light">
                                     <img src="~/assets/images/Screenshot 2023-05-09 143145.png" class="img-radius" alt="User-Profile-Image">
-                                    <span>@await layoutService.GetUserFullName()</span>
+                                    <span>@user.FullName</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -214,7 +215,7 @@
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Security">
+                                        <a asp-area="HelloJobAdmins" asp-controller="Security" asp-action="Security">
                                             <i class="ti-settings"></i> Setting
                                         </a>
                                     </li>
@@ -234,7 +235,7 @@
                                 <div class="main-menu-header">
                                     <img class="img-80 img-radius" src="~/assets/images/Screenshot 2023-05-09 143145.png" alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span id="more-details">@await layoutService.GetUserFullName()<i class="fa fa-caret-down"></i></span>
+                                        <span id="more-details">@user.FullName<i class="fa fa-caret-down"></i></span>
                                     </div>
                                 </div>
                                 <div class="main-menu-content">
@@ -248,7 +249,7 @@
                                         
 
                                             }
-                                            <a asp-area="HelloJobAdmins" asp-controller="AdminRegister" asp-action="Security">
+                                            <a asp-area="HelloJobAdmins" asp-controller="Security" asp-action="Security">
                                                 <i class="ti-settings"></i> Setting
                                             </a>
                                             <a asp-area="HelloJobAdmins" asp-controller="AdminLogin" asp-action="LogOut"><i class="ti-layout-sidebar-left"></i>Logout</a>
