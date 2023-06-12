@@ -15,7 +15,6 @@ closebtn.addEventListener("click", function () {
     mobmenu.classList.remove("active");
 });
 
-let likeButtons = document.querySelectorAll('.like');
 let unlikedIcons = document.querySelectorAll('.unliked');
 let likedIcons = document.querySelectorAll('.liked');
 

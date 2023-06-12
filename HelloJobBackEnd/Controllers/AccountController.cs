@@ -39,7 +39,7 @@ namespace HelloJobBackEnd.Controllers
             var externalLoginInfo = await _signInManager.GetExternalLoginInfoAsync();
             if (externalLoginInfo == null)
             {
-                return RedirectToAction("Register");
+                return Redirect(Request.Headers["Referer"].ToString());
             }
 
             var email = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Email);
@@ -54,8 +54,7 @@ namespace HelloJobBackEnd.Controllers
                 {
                     return Redirect(returnUrl);
                 }
-
-                return RedirectToAction("Index", "Home");
+                return Redirect(Request.Headers["Referer"].ToString());
             }
 
             var userNameWithoutSpaces = userName.Replace(" ", string.Empty);
@@ -84,7 +83,7 @@ namespace HelloJobBackEnd.Controllers
             }
             else
             {
-                return RedirectToAction("Register");
+                return Redirect(Request.Headers["Referer"].ToString());
             }
         }
 
