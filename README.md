@@ -2,6 +2,8 @@
 
 - During registration, the category must be specified and you must confirm the registration.
 
+- After registration, you must confirm your email, otherwise you will not be able to log in
+
 - When registering as a company, you will have different characteristics(At this time, you can create a company, post a vacancy, of course, the ads you post will be published after being checked by the admin)
 
 - If you register or login as a job seeker, you can apply to the vacancies you see with your own CV. (CV.PDF file is mandatory when creating a CV)
