@@ -499,8 +499,8 @@
   text-decoration: none;
 }
 .header .back .login_body .buttons_sbmt .login_submit {
-  margin: 10px;
   width: 100%;
+  margin-bottom: 10px;
 }
 .header .back .login_body .buttons_sbmt .login_submit button {
   width: 100%;
@@ -520,8 +520,8 @@
   background: #5cd877;
 }
 .header .back .login_body .buttons_sbmt .goRegister {
+  margin-bottom: 10px;
   display: block;
-  margin: 10px;
   width: 100%;
 }
 .header .back .login_body .buttons_sbmt .goRegister button {
@@ -543,8 +543,8 @@
 }
 .header .back .login_body .buttons_sbmt .gogmail {
   display: block;
-  margin: 10px;
   width: 100%;
+  margin-bottom: 10px;
 }
 .header .back .login_body .buttons_sbmt .gogmail a {
   display: inline-block;
@@ -567,8 +567,8 @@
 }
 .header .back .login_body .buttons_sbmt .gofb {
   display: block;
-  margin: 10px;
   width: 100%;
+  margin-bottom: 10px;
 }
 .header .back .login_body .buttons_sbmt .gofb a {
   display: inline-block;
@@ -6584,4 +6584,4 @@
 .myorder .table tr td {
   border-right: 1px solid #2196F3;
   color: #2196F3;
-}/*# sourceMappingURL=main.css.map */
+}
